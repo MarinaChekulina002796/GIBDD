@@ -21,5 +21,6 @@ admin.site.register(models.Decree)
 admin.site.register(models.PDD)
 admin.site.register(models.KOAP)
 admin.site.register(models.CarHistory)
+admin.site.register(models.LicenseDisqualification)
 
 

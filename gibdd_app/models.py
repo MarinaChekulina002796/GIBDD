@@ -56,6 +56,29 @@ class MedicalCertificate(models.Model):
         return self.medical_number
 
 
+DISQAULIF_CHOICES = (
+    ('type1', 'Действующие'),
+    ('type2', 'Лишение'),
+    ('type3', 'Просрочены'),
+)
+
+
+class LicenseDisqualification(models.Model):
+    disqualif_id = models.AutoField(primary_key=True, verbose_name="Код лишения прав")
+    disqualif_status = models.CharField(verbose_name="Статус прав", max_length=20, choices=DISQAULIF_CHOICES,
+                                        default='type1')
+    disqualif_time = models.CharField(verbose_name="Срок лишения прав", max_length=10, help_text="18 месяцев")
+    disqualif_date_from = models.DateField(verbose_name="Дата лишения прав")
+    disqualif_date_end = models.DateField(verbose_name="Дата окончания лишение прав")
+    disqualif_cause = models.CharField(max_length=200, verbose_name="Причина лишения",
+                                       default="Вождение автомобиля под воздействием алкоголя")
+    disqualif_alcohol_amount = models.FloatField(verbose_name="Промилле алкоголя в крови")
+    disqualif_comment = models.TextField(verbose_name="Комментарий")
+
+    def __str__(self):
+        return self.disqualif_status
+
+
 # Водительское удостоверение(ВУ)
 class License(models.Model):
     dr_license_id = models.AutoField(primary_key=True, verbose_name="Код ВУ")
@@ -68,6 +91,8 @@ class License(models.Model):
                                          verbose_name="Фото ВУ")
     series_dr_license = models.CharField(max_length=4, verbose_name="Серия ВУ")
     number_dr_license = models.CharField(max_length=6, verbose_name="Номер ВУ")
+    status_dr_license = models.OneToOneField(LicenseDisqualification, on_delete=models.CASCADE,
+                                             verbose_name="Лишение прав")
     date_issue_dr_license = models.DateField(verbose_name="Дата выдачи ВУ")
     date_end_dr_license = models.DateField(verbose_name="Дата окончания действия ВУ")
     division_give_dr_license = models.CharField(max_length=100, verbose_name="Подразделение ГИБДД, выдавшее ВУ")

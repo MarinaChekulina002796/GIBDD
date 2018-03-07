@@ -17,7 +17,7 @@
 
 <title>{% block title %}{% endblock %}</title>
 
-<body>
+
 
 <header id="header">
     <div><h2>{% block header %}{% endblock %}</h2></div>
@@ -66,6 +66,8 @@
         </div>
     </nav>
 </header>
+<body>
+
 {% block body %}
     <form>{% block form %} {% endblock %} </form>
 {% endblock %}

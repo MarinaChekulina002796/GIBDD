@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls.base import reverse
 from django.views import View
+from gibdd_app.forms import AuthorizationForm
 
 # from channel.forms import ChannelForm, RegistrationForm, AuthorizationForm
 # from channel.models import Channel, Comment, Like, Subscription
@@ -26,3 +27,24 @@ def main(request):
     # except EmptyPage:
     #     channels = paginator.page(paginator.num_pages)
     return render(request, 'gibdd_app/main.html')
+
+
+
+# для авторизации уже зарегистрированного пользователя
+def login(request):
+    if request.method == 'POST':
+        form = AuthorizationForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(username=data.get('username'), password=data.get('password'))
+            if user is not None:
+                auth_login(request, user)
+            return redirect(reverse('main'))
+    else:
+        form = AuthorizationForm()
+    return render(request, 'gibdd_app/login.html', {'form': form})
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect(reverse('main'))

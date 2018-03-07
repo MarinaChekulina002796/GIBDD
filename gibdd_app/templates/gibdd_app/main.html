@@ -33,10 +33,10 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <div id="navbar" class="navbar-collapse collapse" style="position:relative; right: 160px">
+                <div id="navbar" class="navbar-collapse collapse" style="position:relative; left: 1000px; top: 50px">
                     {% if user.is_authenticated %}
                         {#                        <h4 align="center" style="color:white"> Your login: {{ user.username }}</h4>#}
-                        <button id="signout" type="submit" class="btn btn-success button_style ">Sign
+                        <button id="signout" type="submit" class="btn btn-success button_style">Sign
                             out {{ user.username }}</button>
                         {#                <button id="_new" type="submit" class="btn btn-success " data-toggle="modal"#}
                         {#                        data-target="#modal1"> Add channel#}
@@ -61,14 +61,14 @@
 
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="main.html">Home</a></li>
-                    <li><a href="gibdd.html">Госавтоинспекция</a></li>
-                    <li><a href="participants.html">Участникам движения</a></li>
-                    <li><a href="services_for_drivers.html">Услуги</a></li>
-                    <li><a href="services_for_drivers.html">Сотрудникам</a></li>
-                    <li><a href="statistics.html">Статистика</a></li>
+                    <li class="active"><a href="{% url 'main' %}">Home</a></li>
+                    <li><a href="{% url 'gibdd' %}">Госавтоинспекция</a></li>
+                    <li><a href="{% url 'participants' %}">Участникам движения</a></li>
+                    <li><a href="{% url 'services' %}">Услуги</a></li>
+                    <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
+                    <li><a href="{% url 'statistics' %}">Статистика</a></li>
                     {#                        <li><a href="blog.html">Blog</a></li>#}
-                                            <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
                 </ul>
             </div>
         </div><!--/.container-->

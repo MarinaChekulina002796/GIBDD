@@ -29,6 +29,29 @@ def main(request):
     return render(request, 'gibdd_app/main.html')
 
 
+def services(request):
+    return render (request,'gibdd_app/services_for_drivers.html')
+
+
+def gibdd(request):
+    return render (request,'gibdd_app/gibdd.html')
+
+
+def participants(request):
+    return render (request,'gibdd_app/participants.html')
+
+
+def workers(request):
+    return render (request,'gibdd_app/workers.html')
+
+
+def statistics(request):
+    return render (request,'gibdd_app/statistics.html')
+
+
+def contacts(request):
+    return render (request,'gibdd_app/contacts.html')
+
 
 # для авторизации уже зарегистрированного пользователя
 def login(request):

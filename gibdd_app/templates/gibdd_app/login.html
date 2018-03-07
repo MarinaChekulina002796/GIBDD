@@ -9,7 +9,7 @@
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn-primary" type="submit">Авторизироваться</button>
+                <button class="btn-primary" type="submit">Авторизоваться</button>
                 <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
             </form>
 

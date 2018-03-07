@@ -32,17 +32,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                {#                <a>#}
-                {#                    <div class="bn-logo">#}
-                {#                        <img src="{% static 'gibdd_app/images/logo.png' %}" alt="">#}
-                {#                </div>#}
-                {#                </a>#}
-
 
                 <div id="navbar" class="navbar-collapse collapse" style="position:relative; right: 160px">
                     {% if user.is_authenticated %}
-{#                        <h2 align="center" style="color:white"> Your login: {{ user.username }}</h2>#}
-                        <button id="signout" type="submit" class="btn btn-success button_style ">Sign out</button>
+                        {#                        <h4 align="center" style="color:white"> Your login: {{ user.username }}</h4>#}
+                        <button id="signout" type="submit" class="btn btn-success button_style ">Sign
+                            out {{ user.username }}</button>
                         {#                <button id="_new" type="submit" class="btn btn-success " data-toggle="modal"#}
                         {#                        data-target="#modal1"> Add channel#}
                         {#                </button>#}
@@ -67,11 +62,13 @@
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="main.html">Home</a></li>
-                    {#                        <li><a href="about-us.html">About Us</a></li>#}
-                    <li><a href="services_for_drivers.html">Services</a></li>
-                    {#                        <li><a href="portfolio.html">Portfolio</a></li>#}
+                    <li><a href="gibdd.html">Госавтоинспекция</a></li>
+                    <li><a href="participants.html">Участникам движения</a></li>
+                    <li><a href="services_for_drivers.html">Услуги</a></li>
+                    <li><a href="services_for_drivers.html">Сотрудникам</a></li>
+                    <li><a href="statistics.html">Статистика</a></li>
                     {#                        <li><a href="blog.html">Blog</a></li>#}
-                    {#                        <li><a href="contact-us.html">Contact</a></li>#}
+                                            <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </div>
         </div><!--/.container-->
@@ -82,7 +79,8 @@
 <div class="slider">
     <div class="container">
         <div id="about-slider">
-            <div id="carousel-slider" class="carousel slide" data-ride="carousel" align="center" style="position:relative; top: 50px">
+            <div id="carousel-slider" class="carousel slide" data-ride="carousel" align="center"
+                 style="position:relative; top: 125px">
                 <!-- Indicators -->
                 <ol class="carousel-indicators visible-xs">
                     <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
@@ -96,33 +94,33 @@
                 <div class="carousel-inner">
                     <div class="item active" align="center">
                         <img src="{% static 'gibdd_app/images/slider__one.jpg' %}" width="800" height="400"
-                                     class="img-responsive" alt="">
+                             class="img-responsive" alt="">
                     </div>
 
-                    <div class="item" align="center" >
+                    <div class="item" align="center">
                         <img src="{% static 'gibdd_app/images/slider_two.jpg' %}" width="800" height="400"
-                                     class="img-responsive" alt="">
+                             class="img-responsive" alt="">
                     </div>
                     <div class="item" align="center">
 
-                            <img src="{% static 'gibdd_app/images/slider_three.jpg' %}" width="800" height="400"
-                                 class="img-responsive" alt="">
+                        <img src="{% static 'gibdd_app/images/slider_three.jpg' %}" width="800" height="400"
+                             class="img-responsive" alt="">
                     </div>
                     <div class="item" align="center">
 
-                            <img src="{% static 'gibdd_app/images/slider_four.jpg' %}" width="800" height="400"
-                                 class="img-responsive" alt="">
+                        <img src="{% static 'gibdd_app/images/slider_four.jpg' %}" width="800" height="400"
+                             class="img-responsive" alt="">
                     </div>
 
                     <div class="item" align="center">
 
-                            <img src="{% static 'gibdd_app/images/slider_five.jpg' %}" width="800" height="400"
-                                 class="img-responsive" alt="">
+                        <img src="{% static 'gibdd_app/images/slider_five.jpg' %}" width="800" height="400"
+                             class="img-responsive" alt="">
                     </div>
                     <div class="item" align="center">
 
-                            <img src="{% static 'gibdd_app/images/slider_six.jpg' %}" width="800" height="400"
-                                 class="img-responsive" alt="">
+                        <img src="{% static 'gibdd_app/images/slider_six.jpg' %}" width="800" height="400"
+                             class="img-responsive" alt="">
                     </div>
 
                 </div>
@@ -482,7 +480,7 @@
 {#</section><!--/#middle-->#}
 
 
-<div class="top-bar" style="position:relative; top: 50px">
+<div class="top-bar" style="position:relative; top: 120px">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -500,7 +498,7 @@
     </div><!--/.container-->
 </div><!--/.top-bar-->
 
-<footer id="footer" class="midnight-blue" style="position:relative; top: 50px">
+<footer id="footer" class="midnight-blue" style="position:relative; top: 120px">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -527,13 +525,13 @@
             event.stopPropagation();
         }
     }
-{#    var signup = document.getElementById('signup');#}
-{#    if (signup != undefined) {#}
-{#        signup.onclick = function (event) {#}
-{#            window.location = '{% url 'registration' %}';#}
-{#            event.stopPropagation();#}
-{#        }#}
-{#    }#}
+    {#    var signup = document.getElementById('signup');#}
+    {#    if (signup != undefined) {#}
+    {#        signup.onclick = function (event) {#}
+    {#            window.location = '{% url 'registration' %}';#}
+    {#            event.stopPropagation();#}
+    {#        }#}
+    {#    }#}
     var signout = document.getElementById('signout');
     if (signout != undefined) {
         signout.onclick = function (event) {
@@ -541,13 +539,13 @@
             event.stopPropagation();
         }
     }
-{#    var _new = document.getElementById('_new');#}
-{#    if (_new != undefined) {#}
-{#        _new.onclick = function (event) {#}
-{#            window.location = '{% url 'new' %}';#}
-{#            event.stopPropagation();#}
-{#        }#}
-{#    }#}
+    {#    var _new = document.getElementById('_new');#}
+    {#    if (_new != undefined) {#}
+    {#        _new.onclick = function (event) {#}
+    {#            window.location = '{% url 'new' %}';#}
+    {#            event.stopPropagation();#}
+    {#        }#}
+    {#    }#}
 
 </script>
 </body>

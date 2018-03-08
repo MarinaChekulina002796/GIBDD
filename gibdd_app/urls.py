@@ -2,7 +2,8 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 
 from gibdd_app import views
-from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts
+from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, LicenseCreate, \
+    CategoryCreate
 # , rate, add_channel
 from gibdd_app.views import main
 # , item, new, registration
@@ -27,6 +28,8 @@ urlpatterns = [
                   url(r'^med/create/$', MedicalCertificateCreate.as_view(), name='med_create'),
                   url(r'^med/(?P<pk>\d+)/update/$', MedicalCertificateUpdate.as_view(), name='med_update'),
                   url(r'^med/(?P<pk>\d+)/delete/$', MedicalCertificateDelete.as_view(), name='med_delete'),
+                  url(r'^license/create/$', LicenseCreate.as_view(), name='license_create'),
+                  url(r'^category/create/$', CategoryCreate.as_view(), name='category_create'),
                   # url(r'^rate', rate, name='rate'),
                   # url(r'^subscribe/(?P<id>\d+)', views.SubscribeView.as_view(), name='subscribe'),
                   # url(r'^add_content', views.AddContent.as_view(), name='add_content'),

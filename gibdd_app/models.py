@@ -25,11 +25,14 @@ class Driver(models.Model):
 class Category(models.Model):
     category_dr_license_id = models.AutoField(primary_key=True, verbose_name="Код категории")
     category_name = models.CharField(max_length=5, verbose_name="Название категории")
-    contents_category = models.TextField(verbose_name="Допустимые для управления ТС", blank=True)
+    contents_category = models.TextField(verbose_name="Допустимые для управления ТС", blank=True,null=True)
     date_open_category = models.DateField(verbose_name="Дата открытия категории")
 
     def __str__(self):
         return "%s от %s" % (self.category_name, self.date_open_category)
+
+    def get_absolute_url(self):
+        return reverse('category_create')
 
 
 MEDICAL_CHOICES = (
@@ -89,8 +92,8 @@ class LicenseDisqualification(models.Model):
 # Водительское удостоверение(ВУ)
 class License(models.Model):
     dr_license_id = models.AutoField(primary_key=True, verbose_name="Код ВУ")
-    driver_data = models.ForeignKey(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")
-    category_dr_license_data = models.ManyToManyField(Category, verbose_name="Данные о доступных категорях")
+    driver_data = models.OneToOneField(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")
+    category_dr_license_data = models.ForeignKey(Category, verbose_name="Данные о доступных категорях",on_delete=models.CASCADE,null=True)
     medical_certificate_data = models.OneToOneField(MedicalCertificate, on_delete=models.CASCADE,
                                                     verbose_name="Данные о мед. справках")
     photo_dr_license = models.ImageField(upload_to='driving_license_photo/',
@@ -99,7 +102,7 @@ class License(models.Model):
     series_dr_license = models.CharField(max_length=4, verbose_name="Серия ВУ")
     number_dr_license = models.CharField(max_length=6, verbose_name="Номер ВУ")
     status_dr_license = models.OneToOneField(LicenseDisqualification, on_delete=models.CASCADE,
-                                             verbose_name="Лишение прав")
+                                             verbose_name="Статус прав")
     date_issue_dr_license = models.DateField(verbose_name="Дата выдачи ВУ")
     date_end_dr_license = models.DateField(verbose_name="Дата окончания действия ВУ")
     division_give_dr_license = models.CharField(max_length=100, verbose_name="Подразделение ГИБДД, выдавшее ВУ")

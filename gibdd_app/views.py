@@ -12,14 +12,15 @@ from gibdd_app.forms import AuthorizationForm
 # from channel.forms import ChannelForm, RegistrationForm, AuthorizationForm
 # from channel.models import Channel, Comment, Like, Subscription
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import CreateView,UpdateView,DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from gibdd_app.models import MedicalCertificate
+from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification
+
 
 # главная страница со списком каналов
 def main(request):
     # по алфавиту по названиям
-    #channels = Channel.objects.all().order_by('title')
+    # channels = Channel.objects.all().order_by('title')
     # page = request.GET.get('page')
     # paginator = Paginator(channels, 3)
     # try:
@@ -32,27 +33,27 @@ def main(request):
 
 
 def services(request):
-    return render (request,'gibdd_app/services_for_drivers.html')
+    return render(request, 'gibdd_app/services_for_drivers.html')
 
 
 def gibdd(request):
-    return render (request,'gibdd_app/gibdd.html')
+    return render(request, 'gibdd_app/gibdd.html')
 
 
 def participants(request):
-    return render (request,'gibdd_app/participants.html')
+    return render(request, 'gibdd_app/participants.html')
 
 
 def workers(request):
-    return render (request,'gibdd_app/workers.html')
+    return render(request, 'gibdd_app/workers.html')
 
 
 def statistics(request):
-    return render (request,'gibdd_app/statistics.html')
+    return render(request, 'gibdd_app/statistics.html')
 
 
 def contacts(request):
-    return render (request,'gibdd_app/contacts.html')
+    return render(request, 'gibdd_app/contacts.html')
 
 
 # для авторизации уже зарегистрированного пользователя
@@ -76,29 +77,47 @@ def logout(request):
 
 
 class MedicalCertificateCreate(CreateView):
-        model = MedicalCertificate
-        # template_name = 'gibdd_app/MedicalCertificate_form.html'
-        fields = '__all__'
+    model = MedicalCertificate
+    # template_name = 'gibdd_app/MedicalCertificate_form.html'
+    fields = '__all__'
 
 
 class MedicalCertificateUpdate(UpdateView):
-        model = MedicalCertificate
-        # template_name = 'gibdd_app/MedicalCertificate_form.html'
-        fields = '__all__'
+    model = MedicalCertificate
+    # template_name = 'gibdd_app/MedicalCertificate_form.html'
+    fields = '__all__'
 
 
 class MedicalCertificateDelete(DeleteView):
-        model = MedicalCertificate
-        success_url = reverse_lazy('main')
-# @login_required
-# def new(request):
-#     if request.method == 'POST':
-#         form = MedicalCertificateCreate(request.POST, request.FILES)
-#         if form.is_valid():
-#             med = MedicalCertificate(**form.cleaned_data, author=request.user)
-#             med.save()
-#             return redirect(reverse('item', args=[med.id]))
-#     else:
-#         form = MedicalCertificateCreate()
-#     return render(request, 'channel/new.html', {'form': form})
+    model = MedicalCertificate
+    success_url = reverse_lazy('main')
 
+
+class LicenseCreate(CreateView):
+    model = License
+    fields = ['driver_data','category_dr_license_data','medical_certificate_data','photo_dr_license', 'series_dr_license', 'number_dr_license', 'status_dr_license',
+              'date_issue_dr_license', 'date_end_dr_license', 'division_give_dr_license', 'town_dr_license']
+
+
+class LicenseUpdate(UpdateView):
+    model = License
+    fields = ['photo_dr_license', 'series_dr_license', 'number_dr_license', 'status_dr_license',
+              'date_issue_dr_license', 'date_end_dr_license', 'division_give_dr_license', 'town_dr_license']
+
+
+class LicenseDelete(DeleteView):
+    model = License
+    success_url = reverse_lazy('main')
+
+
+class CategoryCreate(CreateView):
+    model = Category
+    fields = ['category_name','contents_category','date_open_category']
+
+class CategoryUpdate(UpdateView):
+    model = Category
+    fields = ['category_name', 'contents_category', 'date_open_category']
+
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('main')

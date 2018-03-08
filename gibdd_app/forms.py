@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from gibdd_app.models import MedicalCertificate
 
 # форма для авторизации
 
@@ -20,3 +21,5 @@ class AuthorizationForm(forms.Form):
                 raise forms.ValidationError('Пользователь неактивен')
         else:
             raise forms.ValidationError('Неверный логин или пароль')
+
+

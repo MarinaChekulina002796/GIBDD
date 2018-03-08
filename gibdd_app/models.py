@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 # Водитель
+from django.urls import reverse
+
+
 class Driver(models.Model):
     driver_id = models.AutoField(primary_key=True, verbose_name="Код водителя")
     passport_number = models.CharField(max_length=11, verbose_name="Номер паспорта")
@@ -55,6 +58,9 @@ class MedicalCertificate(models.Model):
 
     def __str__(self):
         return self.medical_number
+
+    def get_absolute_url(self):
+        return reverse('main')
 
 
 DISQAULIF_CHOICES = (
@@ -337,15 +343,23 @@ class AutoSchool(models.Model):
                                                   verbose_name="Обучение на данную категорию прав в автошколе")
 
 
+CAR_CHOICES = (
+    ('type1', 'Стоит на учете'),
+    ('type2', 'Снят на учете'),
+    ('type3', 'Числится в угоне'),
+)
+
+
 # Автомобиль
 class Car(models.Model):
     car_id = models.AutoField(primary_key=True)
+    car_status = models.CharField(max_length=20, verbose_name="Статус автомобиля", choices=CAR_CHOICES, default="type1")
     car_photo = models.ImageField(upload_to='car_photo/',
                                   default='car_photo/default_car.jpg',
                                   verbose_name="Фото автомобиля")
     car_model = models.CharField(max_length=100, verbose_name="Модель автомобиля")
     car_colour = models.CharField(max_length=50, verbose_name="Цвет автомобиля")
-    car_number = models.CharField(max_length=9, verbose_name="Номер автомобиля")
+    car_number = models.CharField(max_length=9, verbose_name="Номер автомобиля", null=True, blank=True)
     car_registr_certificate = models.OneToOneField(RegistrationCertificate, verbose_name="Свидетельство о регистрации",
                                                    on_delete=models.CASCADE)
     car_owner = models.OneToOneField(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля")

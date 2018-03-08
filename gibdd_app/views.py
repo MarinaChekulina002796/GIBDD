@@ -6,13 +6,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls.base import reverse
-from django.views import View
+from django.views import View, generic
+from pandas.io import json
 from gibdd_app.forms import AuthorizationForm
-
 # from channel.forms import ChannelForm, RegistrationForm, AuthorizationForm
 # from channel.models import Channel, Comment, Like, Subscription
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.views.generic import CreateView,UpdateView,DeleteView
+from django.urls import reverse_lazy
+from gibdd_app.models import MedicalCertificate
 
 # главная страница со списком каналов
 def main(request):
@@ -71,3 +73,32 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect(reverse('main'))
+
+
+class MedicalCertificateCreate(CreateView):
+        model = MedicalCertificate
+        template_name = 'gibdd_app/MedicalCertificate_form.html'
+        fields = '__all__'
+
+
+class MedicalCertificateUpdate(UpdateView):
+        model = MedicalCertificate
+        template_name = 'gibdd_app/MedicalCertificate_form.html'
+        fields = '__all__'
+
+
+class MedicalCertificateDelete(DeleteView):
+        model = MedicalCertificate
+        success_url = reverse_lazy('main')
+# @login_required
+# def new(request):
+#     if request.method == 'POST':
+#         form = MedicalCertificateCreate(request.POST, request.FILES)
+#         if form.is_valid():
+#             med = MedicalCertificate(**form.cleaned_data, author=request.user)
+#             med.save()
+#             return redirect(reverse('item', args=[med.id]))
+#     else:
+#         form = MedicalCertificateCreate()
+#     return render(request, 'channel/new.html', {'form': form})
+

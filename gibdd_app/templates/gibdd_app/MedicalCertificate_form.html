@@ -1,0 +1,26 @@
+{% extends 'gibdd_app/base.html' %}
+
+{% block title %}Мед справка{% endblock %}
+{% block body %}
+<div align="center" style="position:relative; top:60px">
+    {% block header %}<h2>Мед справка</h2>
+
+
+            <form action="{% url 'med_create' %}" method="post">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <input class="btn-primary" type="submit" value="Сохранить"/>
+                <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
+
+            </form>
+
+        </div>
+    {% endblock %}
+{% endblock %}
+
+
+
+
+

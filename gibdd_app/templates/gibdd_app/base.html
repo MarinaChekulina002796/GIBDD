@@ -36,8 +36,8 @@
 
                 <div id="navbar" class="navbar-collapse collapse" style="position:relative; left:1000px; top: 50px">
                     {% if user.is_authenticated %}
-                        <h1> Your login: {{ user.username }}</h1>
-                        <button id="signout" type="submit" class="btn btn-success button_style" >Sign out</button>
+{#                        <h1> Your login: {{ user.username }}</h1>#}
+                        <button id="signout" type="submit" class="btn btn-success button_style" >Sign out {{ user.username }}</button>
 
                     {% else %}
                         <button id="signin" type="submit" class="btn btn-success button_style">Sign in</button>

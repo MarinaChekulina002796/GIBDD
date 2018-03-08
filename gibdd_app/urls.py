@@ -7,6 +7,7 @@ from gibdd_app.views import login, logout, services, gibdd, participants, worker
 from gibdd_app.views import main
 # , item, new, registration
 from gibdd_application import settings
+from gibdd_app.views import MedicalCertificateCreate,MedicalCertificateUpdate,MedicalCertificateDelete
 
 urlpatterns = [
                   url(r'^$', main, name='main'),
@@ -23,7 +24,9 @@ urlpatterns = [
                   url(r'^workers/', workers, name='workers'),
                   url(r'^statistics/', statistics, name='statistics'),
                   url(r'^contacts/', contacts, name='contacts'),
-
+                  url(r'^med/create/$', MedicalCertificateCreate.as_view(), name='med_create'),
+                  url(r'^med/(?P<pk>\d+)/update/$', MedicalCertificateUpdate.as_view(), name='med_update'),
+                  url(r'^med/(?P<pk>\d+)/delete/$', MedicalCertificateDelete.as_view(), name='med_delete'),
                   # url(r'^rate', rate, name='rate'),
                   # url(r'^subscribe/(?P<id>\d+)', views.SubscribeView.as_view(), name='subscribe'),
                   # url(r'^add_content', views.AddContent.as_view(), name='add_content'),

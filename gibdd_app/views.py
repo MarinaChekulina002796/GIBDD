@@ -78,14 +78,15 @@ def logout(request):
 
 class MedicalCertificateCreate(CreateView):
     model = MedicalCertificate
-    # template_name = 'gibdd_app/MedicalCertificate_form.html'
+    template_name = 'gibdd_app/MedicalCertificate_form.html'
     fields = '__all__'
 
 
 class MedicalCertificateUpdate(UpdateView):
     model = MedicalCertificate
-    # template_name = 'gibdd_app/MedicalCertificate_form.html'
+    template_name = 'gibdd_app/MedicalCertidicateUpdate.html'
     fields = '__all__'
+    success_url = reverse_lazy('main')
 
 
 class MedicalCertificateDelete(DeleteView):

@@ -1,11 +1,99 @@
-{% extends 'gibdd_app/base.html' %}
+{#{% extends 'gibdd_app/base.html' %}#}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Сотрудникам</title>
-</head>
-<body>
 
-</body>
+{% block title %}Сотрудникам {% endblock %}
+
+{% block body %}
+
+
+<section id="services" class="service-item">
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2 style="height: 110px"></h2>
+
+            <h2>Доступные операции</h2>
+            <p class="lead">Описание действий</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services1.png'%}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading" href="{% url 'med_create' %}">med_create</h3>
+                        <p>med_create</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services2.png'%}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">SEO Marketing</h3>
+                        <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services3.png'%}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">SEO Marketing</h3>
+                        <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png'%}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">SEO Marketing</h3>
+                        <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services5.png'%}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">SEO Marketing</h3>
+                        <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services6.png'%}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">SEO Marketing</h3>
+                        <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#services-->
+
+
+{% endblock %}
 </html>

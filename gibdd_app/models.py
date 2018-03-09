@@ -25,7 +25,6 @@ class Driver(models.Model):
 class Category(models.Model):
     category_dr_license_id = models.AutoField(primary_key=True, verbose_name="Код категории")
     category_name = models.CharField(max_length=5, verbose_name="Название категории")
-    contents_category = models.TextField(verbose_name="Допустимые для управления ТС", blank=True,null=True)
     date_open_category = models.DateField(verbose_name="Дата открытия категории")
 
     def __str__(self):
@@ -53,17 +52,16 @@ class MedicalCertificate(models.Model):
     validity = models.CharField(max_length=11, verbose_name="Срок действия справки", choices=MEDICAL_CHOICES,
                                 blank=True, null=True, default='YEAR1')
     med_photo_1 = models.ImageField(upload_to='med_photo/',
-                                    default='med_photo/default.jpg',
                                     verbose_name="Скан медицинской справки, лицевая сторона", blank=True)
     med_photo_2 = models.ImageField(upload_to='med_photo/',
-                                    default='med_photo/default.jpg',
                                     verbose_name="Скан медицинской справки, обратная сторона", blank=True)
 
     def __str__(self):
         return self.medical_number
 
+
     def get_absolute_url(self):
-        return reverse('main')
+        return reverse('services')
 
 
 DISQAULIF_CHOICES = (

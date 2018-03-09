@@ -2,7 +2,10 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-from gibdd_app.models import MedicalCertificate
+
+
+from gibdd_app.models import MedicalCertificate, License, Category
+
 
 # форма для авторизации
 
@@ -23,3 +26,18 @@ class AuthorizationForm(forms.Form):
             raise forms.ValidationError('Неверный логин или пароль')
 
 
+class MedicalCertificateForm(forms.ModelForm):
+    class Meta:
+        model = MedicalCertificate
+        exclude = ()
+
+class LicenseForm(forms.ModelForm):
+    class Meta:
+        model = License
+        exclude = ()
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        exclude = ()

@@ -86,12 +86,10 @@ def logout(request):
 def add_med(request):
     if request.method == 'POST':
         form = MedicalCertificateForm(request.POST, request.FILES) #тут возвращается словарь вместе с csrf
-        print("form.errors",form.errors)
-        print("form.is_valid()", form.is_valid())
         if form.is_valid():
             med = MedicalCertificate(**form.cleaned_data)
             med.save()
-            messages.success(request, 'Your MedicalCertificate Post Was Successfully Saved')
+            messages.success(request, 'Your MedicalCertificate Was Successfully Saved')
             return redirect(reverse('workers'))
     else:
         form = MedicalCertificateForm()
@@ -105,6 +103,31 @@ def add_med(request):
     return render(request, template, context)
 
 
+@login_required
+def update_med(request, pk):
+    form_obj = get_object_or_404(MedicalCertificate, pk=pk)
+
+    if request.method == 'POST':
+        form = MedicalCertificateForm(request.POST, request.FILES, instance=form_obj)
+
+        try:
+            if form.is_valid():
+                med = MedicalCertificate(**form.cleaned_data)
+                med.save()
+                messages.success(request, "Your MedicalCertificate Was Successfully Updated")
+
+        except Exception as e:
+            messages.warning(request, 'Your MedicalCertificate Was Not Saved Due To An Error: {}'.format(e))
+
+    else:
+        form = MedicalCertificateForm(instance=form_obj)
+
+    template = 'gibdd_app/MedicalCertificate_form.html'
+    context = {
+        'form': form,
+        'form_obj': form_obj,
+    }
+    return render(request, template, context)
 
 # class MedicalCertificateCreate(CreateView):
 #     model = MedicalCertificate

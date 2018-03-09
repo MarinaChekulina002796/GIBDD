@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 
 from gibdd_app import views
 from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, \
-    medical_cert_all, add_med
+    medical_cert_all, add_med, update_med
 # , rate, add_channel
 from gibdd_app.views import main
 # , item, new, registration
@@ -27,7 +27,8 @@ urlpatterns = [
                   url(r'^workers/', workers, name='workers'),
                   url(r'^statistics/', statistics, name='statistics'),
                   url(r'^contacts/', contacts, name='contacts'),
-                  url(r'^med/create/$', add_med, name='med_create'),
+                  url(r'^med_create/$', add_med, name='med_create'),
+                  url(r'^med_update/(?P<pk>\d+)/$', update_med, name='med_update'),
                   # url(r'^med/create/$', MedicalCertificateCreate.as_view(), name='med_create'),
                   # url(r'^med/(?P<pk>\d+)/update/$', MedicalCertificateUpdate.as_view(), name='med_update'),
                   # url(r'^med/(?P<pk>\d+)/delete/$', MedicalCertificateDelete.as_view(), name='med_delete'),

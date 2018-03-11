@@ -34,6 +34,7 @@ def med_list(request):
     }
     return render(request, template, context)
 
+
 class MedicalCertificateList(ListView):
     model = MedicalCertificate
     template_name = 'gibdd_app/MedicalCertificate_list.html'

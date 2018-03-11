@@ -64,7 +64,15 @@ class MedicalCertificate(models.Model):
     #     # return reverse('main',args=[str(self.pk)])
     #     # return reverse('main',kwargs={'pk':self.pk})s
     #     return reverse('main')
+    @property
+    def image_url_1(self):
+        if self.med_photo_1 and hasattr(self.med_photo_1, 'url'):
+            return self.med_photo_1.url
 
+    @property
+    def image_url_2(self):
+        if self.med_photo_2 and hasattr(self.med_photo_2, 'url'):
+            return self.med_photo_2.url
 
 DISQAULIF_CHOICES = (
     ('type1', 'Действующие'),

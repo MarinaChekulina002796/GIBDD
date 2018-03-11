@@ -1,22 +1,22 @@
+{% extends 'gibdd_app/base.html' %}
 <title>Список</title>
 {% load staticfiles %}
+
 {% block content %}
     {% block form %}
-    <form>
-{% for obj in objects_list %}
-
-        <h1>{{obj.medical_number}}</h1>
-        <p>{{obj.medical_date}}</p>
-        <p>{{obj.diagnosis}}</p>
-        <p>{{obj.organization_give}}</p>
-        <p>{{obj.validity}}</p>
-{#        <p>{{obj.med_photo_1}}</p>#}
-{#   <p> <img src="{{ MEDIA_URL }}{{ obj.med_photo_1.url}}"  style="width: 100px">#}
-{#    <p><img src="{{ obj.med_photo_1.url }}"></p>#}
-{#    <img src="{{ MEDIA_URL }}{{ obj.med_photo_2.url}}"  style="width: 100px"></p>#}
-
-
-{% endfor %}
-      </form>
-        {% endblock %}
+        <form>
+            {% for obj in objects_list %}
+                <div class="col-sm-9 col-md-6" style="border: 3px solid darkblue">
+                    <h2>Медицинская справка №:{{ obj.medical_number }}</h2>
+                    <p>Дата выдачи справки:{{ obj.medical_date }}</p>
+                    <p>Диагноз:{{ obj.diagnosis }}</p>
+                    <p>Выдавшая организация:{{ obj.organization_give }}</p>
+                    <p>Срок действия справки:{{ obj.validity }}</p>
+                    <p> Сканы справки:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"
+                                           style="width: 100px">
+                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 100px"></p>
+                </div>
+            {% endfor %}
+        </form>
+    {% endblock %}
 {% endblock %}

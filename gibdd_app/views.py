@@ -26,6 +26,16 @@ def med_list(request):
     return render(request, template, context)
 
 
+def med_detail(request, pk):
+    template = 'gibdd_app/MedicalCertificate_detail.html'
+
+    obj = get_object_or_404(MedicalCertificate, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
 def delete_med(request, pk):
     template = 'gibdd_app/MedicalCertificate_form.html'
 

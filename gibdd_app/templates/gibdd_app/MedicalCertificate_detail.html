@@ -1,0 +1,31 @@
+{% extends 'gibdd_app/base.html' %}
+<title>med_detail</title>
+{% load staticfiles %}
+
+{% block content %}
+
+    {% block form %}
+        <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
+        <form>
+
+
+                <div class="col-sm-12 col-md-9" style="border: 3px solid darkblue">
+                <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'med_update' pk=obj.pk%}">Редактировать</a></li>
+                            <li class="active"><a href="{% url 'med_delete' pk=obj.pk %}">Удалить</a></li>
+                        </ul>
+                    </div>
+                    <h2>Медицинская справка №:{{ obj.medical_number }}</h2>
+                    <p>Дата выдачи справки:{{ obj.medical_date }}</p>
+                    <p>Диагноз:{{ obj.diagnosis }}</p>
+                    <p>Выдавшая организация:{{ obj.organization_give }}</p>
+                    <p>Срок действия справки:{{ obj.validity }}</p>
+                    <p> Сканы справки:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"
+                                           style="width: 100px">
+                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 100px"></p>
+                </div>
+
+        </form>
+    {% endblock %}
+{% endblock %}

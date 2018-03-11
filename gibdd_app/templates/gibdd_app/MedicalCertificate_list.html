@@ -3,10 +3,19 @@
 {% load staticfiles %}
 
 {% block content %}
+
     {% block form %}
+        <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
         <form>
+
             {% for obj in objects_list %}
                 <div class="col-sm-9 col-md-6" style="border: 3px solid darkblue">
+{#                <div class="collapse navbar-collapse navbar-right">#}
+{#                        <ul class="nav navbar-nav">#}
+{#                            <li class="active"><a href="{% url 'med_update'%}">Редактировать</a></li>#}
+{#                            <li class="active"><a href="{% url 'med_delete' %}">med_create</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
                     <h2>Медицинская справка №:{{ obj.medical_number }}</h2>
                     <p>Дата выдачи справки:{{ obj.medical_date }}</p>
                     <p>Диагноз:{{ obj.diagnosis }}</p>

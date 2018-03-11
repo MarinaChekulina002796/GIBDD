@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-
+from django.urls import reverse_lazy
 
 from gibdd_app.models import MedicalCertificate, License, Category
 
@@ -30,7 +30,7 @@ class MedicalCertificateForm(forms.ModelForm):
     class Meta:
         model = MedicalCertificate
         exclude = ()
-
+        success_url = reverse_lazy('main')
 
 class LicenseForm(forms.ModelForm):
     class Meta:

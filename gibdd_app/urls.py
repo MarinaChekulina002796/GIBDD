@@ -1,10 +1,10 @@
 from django.conf.urls import url
 from django.conf.urls.static import static
 from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, \
-    med_list
+    med_list, delete_med
 from gibdd_app.views import main
 from gibdd_application import settings
-from gibdd_app.views import MedicalCertificateCreate, MedicalCertificateUpdate, MedicalCertificateDelete, LicenseCreate
+from gibdd_app.views import MedicalCertificateCreate, MedicalCertificateUpdate, LicenseCreate
 
 urlpatterns = [
                   url(r'^$', main, name='main'),
@@ -19,6 +19,6 @@ urlpatterns = [
                   url(r'^med_list/$', med_list, name='med_list'),
                   url(r'^med/create/$', MedicalCertificateCreate.as_view(), name='med_create'),
                   url(r'^med/(?P<pk>\d+)/update/$', MedicalCertificateUpdate.as_view(), name='med_update'),
-                  url(r'^med_delete/(?P<pk>\d+)/$', MedicalCertificateDelete.as_view(), name='med_delete'),
+                  url(r'^med/delete/(?P<pk>\d+)/$', delete_med, name='med_delete'),
                   url(r'^license/create/$', LicenseCreate.as_view(), name='license_create'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,10 +1,13 @@
 from django.conf.urls import url
 from django.conf.urls.static import static
 from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, \
-    med_list, delete_med, med_detail
+    med_list, delete_med, med_detail, categ_list, categ_detail, CategoryCreate, CategoryUpdate, delete_categ, \
+    MedicalCertificateUpdate
+# med_search
 from gibdd_app.views import main
 from gibdd_application import settings
-from gibdd_app.views import MedicalCertificateCreate, MedicalCertificateUpdate, LicenseCreate
+from gibdd_app.views import MedicalCertificateCreate
+    # LicenseCreate
 
 urlpatterns = [
                   url(r'^$', main, name='main'),
@@ -21,5 +24,10 @@ urlpatterns = [
                   url(r'^med/create/$', MedicalCertificateCreate.as_view(), name='med_create'),
                   url(r'^med/(?P<pk>\d+)/update/$', MedicalCertificateUpdate.as_view(), name='med_update'),
                   url(r'^med/delete/(?P<pk>\d+)/$', delete_med, name='med_delete'),
-                  url(r'^license/create/$', LicenseCreate.as_view(), name='license_create'),
+                  url(r'^categ_list/$', categ_list, name='categ_list'),
+                  url(r'^categ/detail/(?P<pk>\d+)/$', categ_detail, name='categ_detail'),
+                  url(r'^categ/create/$', CategoryCreate.as_view(), name='categ_create'),
+                  url(r'^categ/(?P<pk>\d+)/update/$', CategoryUpdate.as_view(), name='categ_update'),
+                  url(r'^categ/delete/(?P<pk>\d+)/$', delete_categ, name='categ_delete'),
+                  # url(r'^med_results/$', med_search, name="med_search"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -32,6 +32,14 @@ class MedicalCertificateForm(forms.ModelForm):
         exclude = ()
         success_url = reverse_lazy('main')
 
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        exclude = ()
+        success_url = reverse_lazy('main')
+
+
 class LicenseForm(forms.ModelForm):
     class Meta:
         model = License

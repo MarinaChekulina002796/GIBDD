@@ -29,7 +29,7 @@ class Category(models.Model):
         return "%s от %s" % (self.category_name, self.date_open_category)
 
     def get_absolute_url(self):
-        return reverse('category_create')
+        return reverse('categ_list')
 
 
 MEDICAL_CHOICES = (

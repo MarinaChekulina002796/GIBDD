@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
-from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm
+from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification
@@ -40,6 +40,16 @@ def categ_list(request):
     return render(request, template, context)
 
 @login_required
+def license_list(request):
+    template = 'gibdd_app/License_list.html'
+    objects_list = License.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+@login_required
 def categ_detail(request, pk):
     template = 'gibdd_app/Category_detail.html'
 
@@ -54,6 +64,16 @@ def med_detail(request, pk):
     template = 'gibdd_app/MedicalCertificate_detail.html'
 
     obj = get_object_or_404(MedicalCertificate, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+@login_required
+def license_detail(request, pk):
+    template = 'gibdd_app/License_detail.html'
+
+    obj = get_object_or_404(License, pk=pk)
     context = {
         'obj': obj,
     }
@@ -86,6 +106,21 @@ def delete_categ(request, pk):
         return redirect(reverse('categ_list'))
     else:
         form = CategoryForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+@login_required
+def delete_license(request, pk):
+    template = 'gibdd_app/License_form.html'
+
+    obj = get_object_or_404(License, pk=pk)
+    if request.method == 'POST':
+        form = LicenseForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('license_list'))
+    else:
+        form = LicenseForm(instance=obj)
 
     return render(request, template, {'form': form})
 

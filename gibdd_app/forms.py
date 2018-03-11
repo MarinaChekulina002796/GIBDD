@@ -44,9 +44,4 @@ class LicenseForm(forms.ModelForm):
     class Meta:
         model = License
         exclude = ()
-
-
-class CategoryForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        exclude = ()
+        success_url = reverse_lazy('main')

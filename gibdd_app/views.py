@@ -1,30 +1,18 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls.base import reverse
-from django.views import View, generic
-from pandas.io import json
-from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm
-# from channel.forms import ChannelForm, RegistrationForm, AuthorizationForm
-# from channel.models import Channel, Comment, Like, Subscription
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from gibdd_app.forms import AuthorizationForm
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification
-from django.contrib import messages
-from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 
-
-# главная страница со списком каналов
+# главная страница ГИБДД
 def main(request):
     return render(request, 'gibdd_app/main.html')
 
-
+#список всех справок (по 2 шт в ряд)
 def med_list(request):
     template = 'gibdd_app/MedicalCertificate_list.html'
     objects_list = MedicalCertificate.objects.all()
@@ -35,22 +23,8 @@ def med_list(request):
     return render(request, template, context)
 
 
-class MedicalCertificateList(ListView):
-    model = MedicalCertificate
-    template_name = 'gibdd_app/MedicalCertificate_list.html'
-    fields = '__all__'
-
-    def get_context_data(self, **kwargs):
-        context = super(MedicalCertificateList, self).get_context_data(**kwargs)
-
-        return context
-
 def services(request):
     return render(request, 'gibdd_app/services_for_drivers.html')
-
-
-def medical_cert_all(request):
-    return render(request, 'gibdd_app/med_all.html')
 
 
 def gibdd(request):

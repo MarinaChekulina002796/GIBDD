@@ -80,14 +80,26 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/medic.PNG' %}" width="80" height="40">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/medic.PNG' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">
-                            <a href="{% url 'med_all' %}">Медицинская справка</a>
+                            {#                            <a href="{% url 'med_all' %}">Медицинская справка</a>#}
+                            <a>Медицинская справка</a>
                         </h3>
                     </div>
-{#                    <p>Сервис позволяет добавлять, редактировать и удалять данные о мед справках</p>#}
+
+
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'med_list' %}">med_list</a></li>
+                            <li class="active"><a href="{% url 'med_create' %}">med_create</a></li>
+                        </ul>
+                    </div>
+
+
+                    {#                    <p>Сервис позволяет добавлять, редактировать и удалять данные о мед справках</p>#}
                 </div>
             </div>
 
@@ -100,7 +112,7 @@
                         <h3 class="media-heading">Проверка водительского удостоверения</h3>
 
                     </div>
-{#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                    {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                 </div>
             </div>
 
@@ -113,7 +125,7 @@
                         <h3 class="media-heading">Проверка транспортного средства</h3>
 
                     </div>
-{#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                    {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                 </div>
             </div>
         </div><!--/.row-->

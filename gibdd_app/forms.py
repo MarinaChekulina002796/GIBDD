@@ -31,6 +31,7 @@ class MedicalCertificateForm(forms.ModelForm):
         model = MedicalCertificate
         exclude = ()
 
+
 class LicenseForm(forms.ModelForm):
     class Meta:
         model = License

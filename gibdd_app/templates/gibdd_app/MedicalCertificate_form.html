@@ -6,9 +6,9 @@
 {% block header %}
     Медицинская справка
 {% endblock %}
-
+{% block content %}
 {% block form %}
-    <form action="{% url 'med_create' %}" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{ form.as_table }}
@@ -16,5 +16,6 @@
         <button class="btn-primary" type="submit">Сохранить</button>
         <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
     </form>
+{% endblock %}
 {% endblock %}
 

@@ -16,25 +16,19 @@
                         <li class="active"><a href="{% url 'license_delete' pk=obj.pk %}">Удалить</a></li>
                     </ul>
                 </div>
-                <h2>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</h2>
+                <h2>Данные о водителе: {{ obj.driver_data }}</h2>
+                <p>Фото на ВУ: <img src="{{ MEDIA_URL }}{{ obj.image_url|default_if_none:'#' }}"
+                                           style="width: 100px"></p>
+                <p>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</p>
                 <p>Статус прав: {{ obj.status_dr_license }}</p>
                 <p>Дата выдачи ВУ: {{ obj.date_issue_dr_license }}</p>
                 <p>Дата окончания действия ВУ: {{ obj.date_end_dr_license }}</p>
+                <p>Подразделение ГИБДД, выдавшее ВУ: {{ obj.division_give_dr_license }}</p>
+                <p>Город выдачи ВУ: {{ obj.town_dr_license }}</p>
+                <p>Данные о доступных категорях: {{ obj.category_dr_license_data }}</p>
+                <p>Данные о мед. справках: {{ obj.medical_certificate_data }}</p>
             </div>
 
         </form>
     {% endblock %}
 {% endblock %}
-
-
-{#driver_data = models.OneToOneField(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")#}
-{#    category_dr_license_data = models.ForeignKey(Category, verbose_name="Данные о доступных категорях",on_delete=models.CASCADE,null=True)#}
-{#    medical_certificate_data = models.OneToOneField(MedicalCertificate, on_delete=models.CASCADE,#}
-{#                                                    verbose_name="Данные о мед. справках")#}
-{#    photo_dr_license = models.ImageField(upload_to='driving_license_photo/',#}
-{#                                         default='driving_license_photo/default_photo_dr_license.jpg',#}
-{#                                         verbose_name="Фото ВУ")#}
-{#    status_dr_license = models.OneToOneField(LicenseDisqualification, on_delete=models.CASCADE,#}
-{#                                             verbose_name="Статус прав")#}
-{#    division_give_dr_license = models.CharField(max_length=100, verbose_name="Подразделение ГИБДД, выдавшее ВУ")#}
-{#    town_dr_license = models.CharField(max_length=100, verbose_name="Город выдачи ВУ")#}

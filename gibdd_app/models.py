@@ -57,13 +57,8 @@ class MedicalCertificate(models.Model):
         return self.medical_number
 
     def get_absolute_url(self):
-            #     # return reverse('main',args=[str(self.pk)])
-            #     # return reverse('main',kwargs={'pk':self.pk})s
         return reverse('main')
-    # def get_absolute_url(self):
-    #     # return reverse('main',args=[str(self.pk)])
-    #     # return reverse('main',kwargs={'pk':self.pk})s
-    #     return reverse('main')
+
     @property
     def image_url_1(self):
         if self.med_photo_1 and hasattr(self.med_photo_1, 'url'):
@@ -117,7 +112,15 @@ class License(models.Model):
     # фото водителя
 
     def __str__(self):
-        return "%s %s от %s" % (self.series_dr_license, self.number_dr_license, self.date_issue_dr_license)
+        return "%s № %s от %s" % (self.series_dr_license, self.number_dr_license, self.date_issue_dr_license)
+
+    def get_absolute_url(self):
+        return reverse('main')
+
+    @property
+    def image_url(self):
+        if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
+            return self.photo_dr_license.url
 
 
 # Инспектор

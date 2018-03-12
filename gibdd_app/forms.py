@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
-from gibdd_app.models import MedicalCertificate, License, Category
+from gibdd_app.models import MedicalCertificate, License, Category, Driver
 
 
 # форма для авторизации
@@ -43,5 +43,12 @@ class CategoryForm(forms.ModelForm):
 class LicenseForm(forms.ModelForm):
     class Meta:
         model = License
+        exclude = ()
+        success_url = reverse_lazy('main')
+
+
+class DriverForm(forms.ModelForm):
+    class Meta:
+        model = Driver
         exclude = ()
         success_url = reverse_lazy('main')

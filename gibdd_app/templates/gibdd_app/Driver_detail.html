@@ -1,0 +1,27 @@
+{% extends 'gibdd_app/base.html' %}
+<title>Driver_detail</title>
+{% load staticfiles %}
+
+{% block content %}
+
+    {% block form %}
+        <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
+        <form>
+
+
+            <div class="col-sm-12 col-md-9" style="border: 3px solid darkblue">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'driver_update' pk=obj.pk %}">Редактировать</a></li>
+                        <li class="active"><a href="{% url 'driver_delete' pk=obj.pk %}">Удалить</a></li>
+                    </ul>
+                </div>
+                <h2>ФИО водителя:{{ obj.driver_surname }} {{ obj.driver_name }} {{ obj.driver_patronymic }}</h2>
+                <p>Номер паспорта:{{ obj.passport_number }}</p>
+                <p>Дата рождения водителя:{{ obj.driver_birth }}</p>
+                <p>Город проживания водителя:{{ obj.driver_town }}</p>
+            </div>
+
+        </form>
+    {% endblock %}
+{% endblock %}

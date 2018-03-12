@@ -16,8 +16,11 @@ class Driver(models.Model):
     driver_town = models.CharField(max_length=50, verbose_name="Город проживания водителя")
 
     def __str__(self):
-        return "%s %s %s %s %s" % (
+        return "%s %s %s, %s, паспорт: %s" % (
             self.driver_surname, self.driver_name, self.driver_patronymic, self.driver_birth, self.passport_number)
+
+    def get_absolute_url(self):
+        return reverse('main')
 
 
 # Категория прав
@@ -69,6 +72,7 @@ class MedicalCertificate(models.Model):
         if self.med_photo_2 and hasattr(self.med_photo_2, 'url'):
             return self.med_photo_2.url
 
+
 DISQAULIF_CHOICES = (
     ('type1', 'Действующие'),
     ('type2', 'Лишение'),
@@ -94,7 +98,8 @@ class LicenseDisqualification(models.Model):
 # Водительское удостоверение(ВУ)
 class License(models.Model):
     driver_data = models.OneToOneField(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")
-    category_dr_license_data = models.ForeignKey(Category, verbose_name="Данные о доступных категорях",on_delete=models.CASCADE,null=True)
+    category_dr_license_data = models.ForeignKey(Category, verbose_name="Данные о доступных категорях",
+                                                 on_delete=models.CASCADE, null=True)
     medical_certificate_data = models.OneToOneField(MedicalCertificate, on_delete=models.CASCADE,
                                                     verbose_name="Данные о мед. справках")
     photo_dr_license = models.ImageField(upload_to='driving_license_photo/',

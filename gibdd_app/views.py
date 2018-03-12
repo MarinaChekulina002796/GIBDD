@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
-from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm
+from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification
@@ -39,10 +39,22 @@ def categ_list(request):
     }
     return render(request, template, context)
 
+
 @login_required
 def license_list(request):
     template = 'gibdd_app/License_list.html'
     objects_list = License.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def driver_list(request):
+    template = 'gibdd_app/Driver_list.html'
+    objects_list = Driver.objects.all()
 
     context = {
         'objects_list': objects_list,
@@ -79,6 +91,18 @@ def license_detail(request, pk):
     }
     return render(request, template, context)
 
+
+@login_required
+def driver_detail(request, pk):
+    template = 'gibdd_app/Driver_detail.html'
+
+    obj = get_object_or_404(Driver, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
 @login_required
 def delete_med(request, pk):
     template = 'gibdd_app/MedicalCertificate_form.html'
@@ -109,6 +133,7 @@ def delete_categ(request, pk):
 
     return render(request, template, {'form': form})
 
+
 @login_required
 def delete_license(request, pk):
     template = 'gibdd_app/License_form.html'
@@ -124,6 +149,21 @@ def delete_license(request, pk):
 
     return render(request, template, {'form': form})
 
+
+@login_required
+def delete_driver(request, pk):
+    template = 'gibdd_app/Driver_form.html'
+
+    obj = get_object_or_404(Driver, pk=pk)
+    if request.method == 'POST':
+        form = DriverForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('driver_list'))
+    else:
+        form = DriverForm(instance=obj)
+
+    return render(request, template, {'form': form})
 
 # def med_search(request):
 #     template = 'gibdd_app/MedicalCertificate_list.html'
@@ -271,3 +311,12 @@ class LicenseUpdate(UpdateView):
     fields = ['photo_dr_license', 'series_dr_license', 'number_dr_license', 'status_dr_license',
               'date_issue_dr_license', 'date_end_dr_license', 'division_give_dr_license', 'town_dr_license']
 
+
+class DriverCreate(CreateView):
+    model = Driver
+    fields = '__all__'
+
+
+class DriverUpdate(UpdateView):
+    model = Driver
+    fields = '__all__'

@@ -2,12 +2,14 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, \
     med_list, delete_med, med_detail, categ_list, categ_detail, CategoryCreate, CategoryUpdate, delete_categ, \
-    MedicalCertificateUpdate, license_list, license_detail, LicenseCreate, LicenseUpdate, delete_license
+    MedicalCertificateUpdate, license_list, license_detail, LicenseCreate, LicenseUpdate, delete_license, delete_driver, \
+    driver_detail, DriverCreate, driver_list, DriverUpdate
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
 from gibdd_app.views import MedicalCertificateCreate
-    # LicenseCreate
+
+# LicenseCreate
 
 urlpatterns = [
                   url(r'^$', main, name='main'),
@@ -32,7 +34,12 @@ urlpatterns = [
                   url(r'^license_list/$', license_list, name='license_list'),
                   url(r'^license/detail/(?P<pk>\d+)/$', license_detail, name='license_detail'),
                   url(r'^license/create/$', LicenseCreate.as_view(), name='license_create'),
-                  url(r'^license/(?P<pk>\d+)/update/$',LicenseUpdate.as_view(), name='license_update'),
+                  url(r'^license/(?P<pk>\d+)/update/$', LicenseUpdate.as_view(), name='license_update'),
                   url(r'^license/delete/(?P<pk>\d+)/$', delete_license, name='license_delete'),
+                  url(r'^driver_list/$', driver_list, name='driver_list'),
+                  url(r'^driver/detail/(?P<pk>\d+)/$', driver_detail, name='driver_detail'),
+                  url(r'^driver/create/$', DriverCreate.as_view(), name='driver_create'),
+                  url(r'^driver/(?P<pk>\d+)/update/$', DriverUpdate.as_view(), name='driver_update'),
+                  url(r'^driver/delete/(?P<pk>\d+)/$', delete_driver, name='driver_delete'),
                   # url(r'^med_results/$', med_search, name="med_search"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

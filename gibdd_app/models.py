@@ -94,6 +94,9 @@ class LicenseDisqualification(models.Model):
     def __str__(self):
         return self.disqualif_status
 
+    def get_absolute_url(self):
+        return reverse('main')
+
 
 # Водительское удостоверение(ВУ)
 class License(models.Model):

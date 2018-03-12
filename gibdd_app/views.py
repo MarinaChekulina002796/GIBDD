@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
-from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm
+from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
+    LicenseDisqualificationForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification
@@ -61,6 +62,18 @@ def driver_list(request):
     }
     return render(request, template, context)
 
+
+@login_required
+def disq_list(request):
+    template = 'gibdd_app/LicenseDisqualification_list.html'
+    objects_list = LicenseDisqualification.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
 @login_required
 def categ_detail(request, pk):
     template = 'gibdd_app/Category_detail.html'
@@ -71,6 +84,7 @@ def categ_detail(request, pk):
     }
     return render(request, template, context)
 
+
 @login_required
 def med_detail(request, pk):
     template = 'gibdd_app/MedicalCertificate_detail.html'
@@ -80,6 +94,7 @@ def med_detail(request, pk):
         'obj': obj,
     }
     return render(request, template, context)
+
 
 @login_required
 def license_detail(request, pk):
@@ -104,6 +119,17 @@ def driver_detail(request, pk):
 
 
 @login_required
+def disq_detail(request, pk):
+    template = 'gibdd_app/LicenseDisqualification_detail.html'
+
+    obj = get_object_or_404(LicenseDisqualification, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def delete_med(request, pk):
     template = 'gibdd_app/MedicalCertificate_form.html'
 
@@ -117,6 +143,7 @@ def delete_med(request, pk):
         form = MedicalCertificateForm(instance=obj)
 
     return render(request, template, {'form': form})
+
 
 @login_required
 def delete_categ(request, pk):
@@ -165,6 +192,22 @@ def delete_driver(request, pk):
 
     return render(request, template, {'form': form})
 
+
+@login_required
+def delete_disq(request, pk):
+    template = 'gibdd_app/LicenseDisqualification_form.html'
+
+    obj = get_object_or_404(LicenseDisqualification, pk=pk)
+    if request.method == 'POST':
+        form = LicenseDisqualificationForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('disq_list'))
+    else:
+        form = LicenseDisqualificationForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
 # def med_search(request):
 #     template = 'gibdd_app/MedicalCertificate_list.html'
 #
@@ -195,6 +238,7 @@ def gibdd(request):
 
 def participants(request):
     return render(request, 'gibdd_app/participants.html')
+
 
 @login_required
 def workers(request):
@@ -289,7 +333,7 @@ class MedicalCertificateUpdate(UpdateView):
 class CategoryCreate(CreateView):
     model = Category
     template_name = 'gibdd_app/Category_form.html'
-    fields = ['category_name','date_open_category']
+    fields = ['category_name', 'date_open_category']
 
 
 class CategoryUpdate(UpdateView):
@@ -319,4 +363,14 @@ class DriverCreate(CreateView):
 
 class DriverUpdate(UpdateView):
     model = Driver
+    fields = '__all__'
+
+
+class LicenseDisqualificationCreate(CreateView):
+    model = LicenseDisqualification
+    fields = '__all__'
+
+
+class LicenseDisqualificationUpdate(UpdateView):
+    model = LicenseDisqualification
     fields = '__all__'

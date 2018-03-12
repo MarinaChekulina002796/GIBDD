@@ -1,0 +1,33 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список о статусе прав (лишение)</title>
+{% load staticfiles %}
+{% block header %}
+    {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
+    <h2><i><b>Список о статусе прав (лишение) </b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            {% for obj in objects_list %}
+                <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
+                    <h2>Статус прав: {{ obj.disqualif_status }}</h2>
+                    <p>Срок лишения прав: {{ obj.disqualif_time }}</p>
+                    <p>Дата лишения прав: {{ obj.disqualif_date_from }}</p>
+{#                    <p>Дата окончания лишения прав: {{ obj.disqualif_date_end }}</p>#}
+{#                    <p>Причина лишения: {{ obj.disqualif_cause }}</p>#}
+{#                    <p>Промилле алкоголя в крови: {{ obj.disqualif_alcohol_amount }}</p>#}
+{#                    <p>Комментарий: {{ obj.disqualif_comment }}</p>#}
+
+                    <button class="btn btn-info" type="button"><a href="{% url 'disq_detail' pk=obj.pk %}">Подробнее
+                        >></a></button>
+
+                </div>
+            {% endfor %}
+        </form>
+    {% endblock %}
+{% endblock %}
+
+

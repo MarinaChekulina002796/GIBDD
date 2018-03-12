@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, \
     med_list, delete_med, med_detail, categ_list, categ_detail, CategoryCreate, CategoryUpdate, delete_categ, \
     MedicalCertificateUpdate, license_list, license_detail, LicenseCreate, LicenseUpdate, delete_license, delete_driver, \
-    driver_detail, DriverCreate, driver_list, DriverUpdate
+    driver_detail, DriverCreate, driver_list, DriverUpdate, disq_list, disq_detail, LicenseDisqualificationCreate, \
+    LicenseDisqualificationUpdate, delete_disq
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
@@ -41,5 +42,10 @@ urlpatterns = [
                   url(r'^driver/create/$', DriverCreate.as_view(), name='driver_create'),
                   url(r'^driver/(?P<pk>\d+)/update/$', DriverUpdate.as_view(), name='driver_update'),
                   url(r'^driver/delete/(?P<pk>\d+)/$', delete_driver, name='driver_delete'),
+                  url(r'^disq_list/$', disq_list, name='disq_list'),
+                  url(r'^disq/detail/(?P<pk>\d+)/$', disq_detail, name='disq_detail'),
+                  url(r'^disq/create/$', LicenseDisqualificationCreate.as_view(), name='disq_create'),
+                  url(r'^disq/(?P<pk>\d+)/update/$', LicenseDisqualificationUpdate.as_view(), name='disq_update'),
+                  url(r'^disq/delete/(?P<pk>\d+)/$', delete_disq, name='disq_delete'),
                   # url(r'^med_results/$', med_search, name="med_search"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -74,22 +74,21 @@ class MedicalCertificate(models.Model):
 
 
 DISQAULIF_CHOICES = (
-    ('type1', 'Действующие'),
-    ('type2', 'Лишение'),
-    ('type3', 'Просрочены'),
+    ('Действующие', 'Действующие'),
+    ('Лишение', 'Лишение'),
+    ('Просрочены', 'Просрочены'),
 )
 
 
 class LicenseDisqualification(models.Model):
-    disqualif_status = models.CharField(verbose_name="Статус прав", max_length=20, choices=DISQAULIF_CHOICES,
-                                        default='type1')
+    disqualif_status = models.CharField(verbose_name="Статус прав", max_length=20, choices=DISQAULIF_CHOICES)
     disqualif_time = models.CharField(verbose_name="Срок лишения прав", max_length=10, help_text="18 месяцев")
-    disqualif_date_from = models.DateField(verbose_name="Дата лишения прав")
-    disqualif_date_end = models.DateField(verbose_name="Дата окончания лишение прав")
+    disqualif_date_from = models.DateField(verbose_name="Дата лишения прав", blank=True, null=True)
+    disqualif_date_end = models.DateField(verbose_name="Дата окончания лишение прав", blank=True, null=True)
     disqualif_cause = models.CharField(max_length=200, verbose_name="Причина лишения",
-                                       default="Вождение автомобиля под воздействием алкоголя")
-    disqualif_alcohol_amount = models.FloatField(verbose_name="Промилле алкоголя в крови")
-    disqualif_comment = models.TextField(verbose_name="Комментарий")
+                                       default="Вождение автомобиля под воздействием алкоголя", blank=True, null=True)
+    disqualif_alcohol_amount = models.FloatField(verbose_name="Промилле алкоголя в крови", blank=True, null=True)
+    disqualif_comment = models.TextField(verbose_name="Комментарий", blank=True, null=True)
 
     def __str__(self):
         return self.disqualif_status
@@ -101,7 +100,7 @@ class LicenseDisqualification(models.Model):
 # Водительское удостоверение(ВУ)
 class License(models.Model):
     driver_data = models.OneToOneField(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")
-    category_dr_license_data = models.ManyToManyField(Category, verbose_name="Данные о доступных категорях")
+    # category_dr_license_data = models.ManyToManyField(Category, verbose_name="Данные о доступных категорях")
     medical_certificate_data = models.OneToOneField(MedicalCertificate, on_delete=models.CASCADE,
                                                     verbose_name="Данные о мед. справках")
     photo_dr_license = models.ImageField(upload_to='driving_license_photo/',
@@ -128,6 +127,15 @@ class License(models.Model):
     def image_url(self):
         if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
             return self.photo_dr_license.url
+
+
+#дополнительная таблица для категории и ВУ (разбила связь М:М)
+class Lisense_Category(models.Model):
+    licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
+    categ = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Все категории")
+
+    def get_absolute_url(self):
+        return reverse('main')
 
 
 # Инспектор

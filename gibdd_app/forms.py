@@ -47,7 +47,9 @@ class LicenseForm(forms.ModelForm):
         success_url = reverse_lazy('main')
 
 
+
 class DriverForm(forms.ModelForm):
+
     class Meta:
         model = Driver
         exclude = ()

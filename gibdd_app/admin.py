@@ -22,5 +22,7 @@ admin.site.register(models.PDD)
 admin.site.register(models.KOAP)
 admin.site.register(models.CarHistory)
 admin.site.register(models.LicenseDisqualification)
+admin.site.register(models.Lisense_Category)
+
 
 

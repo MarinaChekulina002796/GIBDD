@@ -208,6 +208,7 @@ def delete_disq(request, pk):
 
     return render(request, template, {'form': form})
 
+
 # def med_search(request):
 #     template = 'gibdd_app/MedicalCertificate_list.html'
 #
@@ -272,6 +273,29 @@ def logout(request):
     auth_logout(request)
     return redirect(reverse('main'))
 
+
+@login_required
+def add_license(request):
+    if request.method == 'POST':
+        form = LicenseForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
+        if form.is_valid():
+            licen = License(**form.cleaned_data)
+            licen.save()
+            messages.success(request, 'Your License Was Successfully Saved')
+            return redirect(reverse('workers'), args=[licen.pk])
+    else:
+        form = LicenseForm()
+        messages.warning(request, "MedicalCertificate Failed To Save. Error")
+
+    template = 'gibdd_app/License_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+
     # @login_required
     # def add_med(request):
     #     if request.method == 'POST':
@@ -315,6 +339,27 @@ def logout(request):
     #     }
     #
     #     return render(request, template, context)
+
+
+@login_required
+def update_license(request, pk):
+    licen = get_object_or_404(License, pk=pk)
+    # med=MedicalCertificate.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = LicenseForm(request.POST, request.FILES, instance=licen)
+        if form.is_valid():
+            form.save()
+        return redirect('license_detail', pk)
+    else:
+        form = LicenseForm(instance=licen)
+
+    template = 'gibdd_app/License_form.html'
+    context = {
+        'form': form,
+        'licen': licen,
+    }
+
+    return render(request, template, context)
 
 
 class MedicalCertificateCreate(CreateView):

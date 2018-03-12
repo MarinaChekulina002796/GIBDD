@@ -101,8 +101,7 @@ class LicenseDisqualification(models.Model):
 # Водительское удостоверение(ВУ)
 class License(models.Model):
     driver_data = models.OneToOneField(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")
-    category_dr_license_data = models.ForeignKey(Category, verbose_name="Данные о доступных категорях",
-                                                 on_delete=models.CASCADE, null=True)
+    category_dr_license_data = models.ManyToManyField(Category, verbose_name="Данные о доступных категорях")
     medical_certificate_data = models.OneToOneField(MedicalCertificate, on_delete=models.CASCADE,
                                                     verbose_name="Данные о мед. справках")
     photo_dr_license = models.ImageField(upload_to='driving_license_photo/',

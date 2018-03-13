@@ -4,7 +4,7 @@ from gibdd_app.views import login, logout, services, gibdd, participants, worker
     med_list, delete_med, med_detail, categ_list, categ_detail, CategoryCreate, CategoryUpdate, delete_categ, \
     MedicalCertificateUpdate, license_list, license_detail, LicenseCreate, LicenseUpdate, delete_license, delete_driver, \
     driver_detail, DriverCreate, driver_list, DriverUpdate, disq_list, disq_detail, LicenseDisqualificationCreate, \
-    LicenseDisqualificationUpdate, delete_disq, update_license, add_license
+    LicenseDisqualificationUpdate, delete_disq, update_license, add_license, add_lic_cat, add_med
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
@@ -24,7 +24,7 @@ urlpatterns = [
                   url(r'^contacts/', contacts, name='contacts'),
                   url(r'^med_list/$', med_list, name='med_list'),
                   url(r'^med/detail/(?P<pk>\d+)/$', med_detail, name='med_detail'),
-                  url(r'^med/create/$', MedicalCertificateCreate.as_view(), name='med_create'),
+                  url(r'^med/create/$', add_med, name='med_create'),
                   url(r'^med/(?P<pk>\d+)/update/$', MedicalCertificateUpdate.as_view(), name='med_update'),
                   url(r'^med/delete/(?P<pk>\d+)/$', delete_med, name='med_delete'),
                   url(r'^categ_list/$', categ_list, name='categ_list'),
@@ -47,5 +47,6 @@ urlpatterns = [
                   url(r'^disq/create/$', LicenseDisqualificationCreate.as_view(), name='disq_create'),
                   url(r'^disq/(?P<pk>\d+)/update/$', LicenseDisqualificationUpdate.as_view(), name='disq_update'),
                   url(r'^disq/delete/(?P<pk>\d+)/$', delete_disq, name='disq_delete'),
+                  url(r'^lic_cat/create/$', add_lic_cat, name='lic_cat_create'),
                   # url(r'^med_results/$', med_search, name="med_search"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

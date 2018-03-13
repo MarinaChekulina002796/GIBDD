@@ -20,7 +20,7 @@ class Driver(models.Model):
             self.driver_surname, self.driver_name, self.driver_patronymic, self.driver_birth, self.passport_number)
 
     def get_absolute_url(self):
-        return reverse('main')
+        return reverse('license_create')
 
 
 # Категория прав
@@ -32,7 +32,7 @@ class Category(models.Model):
         return "%s от %s" % (self.category_name, self.date_open_category)
 
     def get_absolute_url(self):
-        return reverse('categ_list')
+        return reverse('lic_cat_create')
 
 
 MEDICAL_CHOICES = (
@@ -60,7 +60,7 @@ class MedicalCertificate(models.Model):
         return self.medical_number
 
     def get_absolute_url(self):
-        return reverse('main')
+        return reverse('license_create')
 
     @property
     def image_url_1(self):
@@ -94,7 +94,7 @@ class LicenseDisqualification(models.Model):
         return self.disqualif_status
 
     def get_absolute_url(self):
-        return reverse('main')
+        return reverse('license_create')
 
 
 # Водительское удостоверение(ВУ)
@@ -121,7 +121,7 @@ class License(models.Model):
         return "%s № %s от %s" % (self.series_dr_license, self.number_dr_license, self.date_issue_dr_license)
 
     def get_absolute_url(self):
-        return reverse('main')
+        return reverse('lic_cat_create')
 
     @property
     def image_url(self):
@@ -129,13 +129,16 @@ class License(models.Model):
             return self.photo_dr_license.url
 
 
-#дополнительная таблица для категории и ВУ (разбила связь М:М)
+# дополнительная таблица для категории и ВУ (разбила связь М:М)
 class Lisense_Category(models.Model):
     licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
     categ = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Все категории")
 
     def get_absolute_url(self):
-        return reverse('main')
+        return reverse('workers')
+
+    class Meta:
+        unique_together = ("licen", "categ")
 
 
 # Инспектор

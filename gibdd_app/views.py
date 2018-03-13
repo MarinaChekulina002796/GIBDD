@@ -6,10 +6,10 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
-    LicenseDisqualificationForm
+    LicenseDisqualificationForm, Licen_CatForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification
+from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category
 from django.shortcuts import render
 
 
@@ -293,6 +293,72 @@ def add_license(request):
     }
 
     return render(request, template, context)
+
+@login_required
+def add_med(request):
+    if request.method == 'POST':
+        form = MedicalCertificateForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
+        if form.is_valid():
+            med = MedicalCertificate(**form.cleaned_data)
+            med.save()
+            # messages.success(request, 'Your License Was Successfully Saved')
+            # success_url = redirect('license_create',License.pk)
+            return redirect(reverse('license_create'))
+    else:
+        form = MedicalCertificateForm()
+        messages.warning(request, "License Failed To Save. Error")
+
+    template = 'gibdd_app/MedicalCertificate_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_license(request):
+    if request.method == 'POST':
+        form = LicenseForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
+        if form.is_valid():
+            licen = License(**form.cleaned_data)
+            licen.save()
+            messages.success(request, 'Your License Was Successfully Saved')
+            return redirect(reverse('lic_cat_create'), args=[licen.pk])
+    else:
+        form = LicenseForm()
+        messages.warning(request, "License Failed To Save. Error")
+
+    template = 'gibdd_app/License_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_lic_cat(request):
+    if request.method == 'POST':
+        form = Licen_CatForm(request.POST, request.FILES)
+        if form.is_valid():
+            main_form = Lisense_Category(**form.cleaned_data)
+            # if Lisense_Category.objects.distinct('licen'):
+            main_form.save()
+            # messages.success(request, 'Your License Was Successfully Saved')
+            return redirect(reverse('workers'), args=[main_form.pk])
+    else:
+        form = Licen_CatForm()
+        messages.warning(request, "License Failed To Save. Error")
+
+    template = 'gibdd_app/Licen_CatForm.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
 
 
 

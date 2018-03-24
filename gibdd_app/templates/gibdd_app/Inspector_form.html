@@ -1,0 +1,32 @@
+{% extends 'gibdd_app/base.html' %}
+
+
+{% block title %}Инспектор{% endblock %}
+
+{% block header %}
+    Сотрудник ГИБДД
+{% endblock %}
+{% block content %}
+{% block form %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+{#        <button class="btn-primary" type="submit">Сохранить</button>#}
+        {% with url_name=request.resolver_match.url_name %}
+        {% if url_name == 'inspector_create' %}
+            <button class="btn btn-success" type="submit">Сохранить</button>
+            <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
+        {% elif url_name == 'inspector_update' %}
+            <button class="btn btn-warning" type="submit">Обновить</button>
+            <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+        {% else %}
+            <button class="btn btn-danger" type="submit">Удалить</button>
+            <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+        {% endif %}
+    {% endwith %}
+
+    </form>
+{% endblock %}
+{% endblock %}

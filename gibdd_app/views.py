@@ -6,11 +6,11 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
-    LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm
+    LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident
+    AccidentReport, Witness, Lisense_Accident, Inspector
 from django.shortcuts import render
 
 
@@ -401,6 +401,25 @@ def add_licen_accid(request):
         form = Lisense_AccidentForm()
 
     template = 'gibdd_app/Lisense_Accident_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_inspector(request):
+    if request.method == 'POST':
+        form = InspectorForm(request.POST, request.FILES)
+        if form.is_valid():
+            insp = Inspector(**form.cleaned_data)
+            insp.save()
+            return redirect(reverse('workers'), args=[insp.pk])
+    else:
+        form = InspectorForm()
+
+    template = 'gibdd_app/Inspector_form.html'
     context = {
         'form': form,
     }

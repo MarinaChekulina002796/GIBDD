@@ -7,11 +7,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
-    FineForm, CarForm, RegistrationCertificateForm
+    FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate
+    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing
 from django.shortcuts import render
 
 
@@ -484,6 +484,43 @@ def add_registr(request):
 
     return render(request, template, context)
 
+
+@login_required
+def add_owner(request):
+    if request.method == 'POST':
+        form = OwnerForm(request.POST, request.FILES)
+        if form.is_valid():
+            reg = Owner(**form.cleaned_data)
+            reg.save()
+            return redirect(reverse('workers'), args=[reg.pk])
+    else:
+        form = OwnerForm()
+
+    template = 'gibdd_app/Owner_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_steal(request):
+    if request.method == 'POST':
+        form = StealingForm(request.POST, request.FILES)
+        if form.is_valid():
+            steal = Stealing(**form.cleaned_data)
+            steal.save()
+            return redirect(reverse('workers'), args=[steal.pk])
+    else:
+        form = StealingForm()
+
+    template = 'gibdd_app/Stealing_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
     # @login_required
     # def add_med(request):

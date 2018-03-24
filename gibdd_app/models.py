@@ -153,6 +153,9 @@ class Inspector(models.Model):
     inspector_status = models.CharField(max_length=50, verbose_name="Звание инспектора")
     inspector_division = models.CharField(max_length=40, verbose_name="Номер отделения")
 
+    def __str__(self):
+        return "%s %s %s" % (self.inspector_number_token, self.inspector_surname, self.inspector_name)
+
 
 DECREE_CHOICES = (
     ('type1', 'Превышение скорости'),
@@ -227,6 +230,7 @@ class Camera(models.Model):
     camera_vertification_to = models.DateField(verbose_name="Дата действия поверки камеры до")
     camera_functions = models.CharField(max_length=100, verbose_name="Функции камеры", choices=CAMERA_CHOICES)
     camera_address = models.CharField(max_length=200, verbose_name="Расположение камеры(адрес)")
+
 
 
 class PDD(models.Model):
@@ -369,6 +373,7 @@ CAR_CHOICES = (
     ('type1', 'Стоит на учете'),
     ('type2', 'Снят на учете'),
     ('type3', 'Числится в угоне'),
+
 )
 
 
@@ -384,7 +389,7 @@ class Car(models.Model):
     car_registr_certificate = models.OneToOneField(RegistrationCertificate, verbose_name="Свидетельство о регистрации",
                                                    on_delete=models.CASCADE)
     car_owner = models.OneToOneField(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля")
-    car_stealing = models.OneToOneField(Stealing, on_delete=models.CASCADE, verbose_name="Угнанный автомобиль")
+    car_stealing = models.OneToOneField(Stealing, on_delete=models.CASCADE, verbose_name="Детали угона")
 
     def __str__(self):
         return "%s" % (self.car_number)

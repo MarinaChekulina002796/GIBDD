@@ -7,7 +7,7 @@
     {% block form %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-             <table>
+            <table>
                 {% for field in form %}
                     <div class="related-widget-wrapper">
                         {{ field.errors }}
@@ -23,7 +23,19 @@
                                     style="color:yellowgreen"
                                     title="Добавить СТС"> </span></a>
                         {% endif %}
+                        {% if field.name == "car_owner" %}
+                            <a class="related-widget-wrapper-link add-related" href="{% url 'owner_create' %}"> <span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить собственника"> </span></a>
+                        {% endif %}
 
+                    {% if field.name == "car_stealing_detail" %}
+                            <a class="related-widget-wrapper-link add-related" href="{% url 'steal_create' %}"> <span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить детали угона"> </span></a>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </table>

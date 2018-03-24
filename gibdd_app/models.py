@@ -123,10 +123,10 @@ class License(models.Model):
     def get_absolute_url(self):
         return reverse('lic_cat_create')
 
-    # @property
-    # def image_url(self):
-    #     if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
-    #         return self.photo_dr_license.url
+        # @property
+        # def image_url(self):
+        #     if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
+        #         return self.photo_dr_license.url
 
 
 # дополнительная таблица для категории и ВУ (разбила связь М:М)
@@ -386,6 +386,9 @@ class Car(models.Model):
     car_owner = models.OneToOneField(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля")
     car_stealing = models.OneToOneField(Stealing, on_delete=models.CASCADE, verbose_name="Угнанный автомобиль")
 
+    def __str__(self):
+        return "%s" % (self.car_number)
+
 
 # Постановление
 class Decree(models.Model):
@@ -417,7 +420,7 @@ class Fine(models.Model):
     fine_status = models.CharField(max_length=50, verbose_name="Статус штрафа")
     fine_license_data = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Данные о ВУ")
     fine_decree_data = models.OneToOneField(Decree, verbose_name="Данные о постановлении", on_delete=models.CASCADE)
-    fine_car_data = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Штраф для данного автомобиля")
+    fine_car_data = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Штраф для автомобиля")
 
 
 ACCIDENT_CHOICES = (
@@ -444,9 +447,8 @@ class AccidentReport(models.Model):
     accident_children = models.IntegerField(verbose_name="Из участвовавших в аварии-дети", default=0)
     accident_children_death = models.IntegerField(verbose_name="Смертельный исход, дети(количество)", default=0)
     accident_causer_person = models.OneToOneField(Driver, verbose_name="Виновник аварии", on_delete=models.CASCADE)
-    accident_cause = models.TextField(verbose_name="Причина аварии")
-    accident_comment = models.TextField(verbose_name="Комментарий к аварии")
-    accident_participants = models.ManyToManyField(License, verbose_name="Участники аварии")
+    accident_cause = models.CharField(max_length=250, verbose_name="Причина аварии")
+    # accident_participants = models.ManyToManyField(License, verbose_name="Участники аварии")
     accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
     accident_inspector = models.ForeignKey(Inspector, verbose_name="Инспектор, оформивший ДТП",
                                            on_delete=models.CASCADE)
@@ -456,6 +458,7 @@ class AccidentReport(models.Model):
     accident_photo_2 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
                                          verbose_name="Второе фото аварии", blank=True)
+    accident_comment = models.TextField(verbose_name="Комментарий к аварии")
 
 
 # свидетель
@@ -483,7 +486,8 @@ INSURANCE_CHOICES2 = (
 
 )
 
-# дополнительная таблица для категории и ВУ (разбила связь М:М)
+
+# дополнительная таблица для аварии и ВУ (участники аварии) (разбила связь М:М)
 class Lisense_Accident(models.Model):
     licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
     accid = models.ForeignKey(AccidentReport, on_delete=models.CASCADE, verbose_name="Список ДТП")
@@ -493,6 +497,7 @@ class Lisense_Accident(models.Model):
 
     class Meta:
         unique_together = ("licen", "accid")
+
 
 # Диагностическая карта
 class DiagnosticCard(models.Model):

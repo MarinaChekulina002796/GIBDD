@@ -11,7 +11,26 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
-            {{ form.as_table }}
+
+                {% for field in form %}
+                    <div class="related-widget-wrapper">
+                        {{ field.errors }}
+                        <label >
+                            {{ field.label_tag }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.name == "witness_accident" %}
+                            <a class="related-widget-wrapper-link add-related" href="{% url 'accident_create' %}"> <span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить ДТП"> </span></a>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+
         </table>
 {#        <button class="btn-primary" type="submit">Сохранить</button>#}
         {% with url_name=request.resolver_match.url_name %}

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident, Inspector
+    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate
 
 
 # форма для авторизации
@@ -84,4 +84,22 @@ class Lisense_AccidentForm(forms.ModelForm):
 class InspectorForm(forms.ModelForm):
     class Meta:
         model = Inspector
+        exclude = ()
+
+
+class FineForm(forms.ModelForm):
+    class Meta:
+        model = Fine
+        exclude = ()
+
+
+class CarForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        exclude = ()
+
+
+class RegistrationCertificateForm(forms.ModelForm):
+    class Meta:
+        model = RegistrationCertificate
         exclude = ()

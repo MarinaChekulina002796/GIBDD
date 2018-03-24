@@ -6,11 +6,12 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
-    LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm
+    LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
+    FineForm, CarForm, RegistrationCertificateForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident, Inspector
+    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate
 from django.shortcuts import render
 
 
@@ -425,6 +426,64 @@ def add_inspector(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def add_fine(request):
+    if request.method == 'POST':
+        form = FineForm(request.POST, request.FILES)
+        if form.is_valid():
+            fine = Fine(**form.cleaned_data)
+            fine.save()
+            return redirect(reverse('workers'), args=[fine.pk])
+    else:
+        form = FineForm()
+
+    template = 'gibdd_app/Fine_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_car(request):
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES)
+        if form.is_valid():
+            car = Car(**form.cleaned_data)
+            car.save()
+            return redirect(reverse('workers'), args=[car.pk])
+    else:
+        form = CarForm()
+
+    template = 'gibdd_app/Car_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_registr(request):
+    if request.method == 'POST':
+        form = RegistrationCertificateForm(request.POST, request.FILES)
+        if form.is_valid():
+            reg = RegistrationCertificate(**form.cleaned_data)
+            reg.save()
+            return redirect(reverse('workers'), args=[reg.pk])
+    else:
+        form = RegistrationCertificateForm()
+
+    template = 'gibdd_app/RegistrationCertificate_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
 
     # @login_required
     # def add_med(request):

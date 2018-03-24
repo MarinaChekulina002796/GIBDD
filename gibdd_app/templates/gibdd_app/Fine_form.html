@@ -1,9 +1,9 @@
 {% extends 'gibdd_app/base.html' %}
 
-{% block title %} ВУ_ДТП{% endblock %}
+{% block title %} Штраф{% endblock %}
 
 {% block header %}
-    Добавление ВУ, участвовавших  в ДТП
+    Добавление штрафа
 {% endblock %}
 {% block content %}
     {% block form %}
@@ -20,11 +20,11 @@
 
                         {{ field }}
 
-                        {% if field.name == "accid" %}
-                            <a class="related-widget-wrapper-link add-related" href="{% url 'accident_create' %}"> <span
+                        {% if field.name == "fine_license_data" %}
+                            <a class="related-widget-wrapper-link add-related" href="{% url 'license_create' %}"> <span
                                     class="glyphicon glyphicon-plus"
                                     style="color:yellowgreen"
-                                    title="Добавить ДТП"> </span></a>
+                                    title="Добавить ВУ"> </span></a>
                         {% endif %}
 
                     </div>
@@ -32,8 +32,8 @@
             </table>
 
             {% with url_name=request.resolver_match.url_name %}
-                {% if url_name == 'licen_accid_create' %}
-                    <button class="btn btn-success" type="submit">Save</button>
+                {% if url_name == 'fine_create' %}
+                    <button class="btn btn-success" type="submit">Сохранить</button>
                     <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
                     {#        {% elif url_name == 'license_update' %}#}
                     {#            <button class="btn btn-warning" type="submit">Update</button>#}

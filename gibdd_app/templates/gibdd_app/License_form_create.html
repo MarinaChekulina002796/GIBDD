@@ -1,0 +1,100 @@
+{% extends 'gibdd_app/base.html' %}
+
+
+{% block title %}ВУ{% endblock %}
+
+{% block header %}
+    Водительское удостоверение
+{% endblock %}
+{% block content %}
+    {% block form %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table>
+
+                <div class="field">
+
+                    <label for="id_driver_data">Данные о водителе:</label>
+                                        {{ form.driver_data }}
+                    <a href="{% url 'driver_create' %}"><span class="glyphicon glyphicon-plus"
+                                                              style="color:yellowgreen" title="Добавить водителя"
+                    > </span> </a>
+                </div>
+
+                <div class="field">
+
+                    <label for="id_medical_certificate_data">Данные о медицинских справках:</label>
+                    {{ form.medical_certificate_data }}
+                    <a href="{% url 'med_create' %}"><span class="glyphicon glyphicon-plus"
+                                                           style="color:yellowgreen" title="Добавить мед.справку"
+                    > </span> </a>
+                </div>
+
+                <div class="field">
+                    <label for="id_photo_dr_license">Фото ВУ:</label>
+                    {{ form.photo_dr_license }}
+                </div>
+
+                <div class="field">
+                    <label for="id_series_dr_license">Серия ВУ:</label>
+                    {{ form.series_dr_license }}
+                </div>
+
+                <div class="field">
+                    <label for="id_number_dr_license">Номер ВУ:</label>
+                    {{ form.number_dr_license }}
+                </div>
+
+
+                <div class="field">
+                    <label for="id_status_dr_license">Статус прав:</label>
+                    {{ form.status_dr_license }}
+                    <a href="{% url 'disq_create' %}"><span class="glyphicon glyphicon-plus"
+                                                           style="color:yellowgreen" title="Добавить статус прав"
+                    > </span> </a>
+                </div>
+
+                <div class="field">
+                    <label for="id_date_issue_dr_license">Дата выдачи ВУ:</label>
+                    {{ form.date_issue_dr_license }}
+                </div>
+
+                <div class="field">
+                    <label for="id_date_end_dr_license">Дата окончания действия ВУ:</label>
+                    {{ form.date_end_dr_license }}
+                </div>
+
+                <div class="field">
+                    <label for="id_division_give_dr_license">Подразделение ГИБДД, выдавшее ВУ:</label>
+                    {{ form.division_give_dr_license }}
+                </div>
+
+                <div class="field">
+                    <label for="id_town_dr_license">Город выдачи ВУ:</label>
+                    {{ form.town_dr_license }}
+                </div>
+
+
+            </table>
+
+
+
+
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'license_create' %}
+                    <button class="btn btn-success" type="submit">Save</button>
+                    <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
+                {% elif url_name == 'license_update' %}
+                    <button class="btn btn-warning" type="submit">Update</button>
+                    <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+                {% else %}
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+                {% endif %}
+            {% endwith %}
+
+        </form>
+    {% endblock %}
+{% endblock %}

@@ -6,10 +6,11 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
-    LicenseDisqualificationForm, Licen_CatForm
+    LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category
+from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
+    AccidentReport, Witness, Lisense_Accident
 from django.shortcuts import render
 
 
@@ -281,18 +282,36 @@ def add_license(request):
         if form.is_valid():
             licen = License(**form.cleaned_data)
             licen.save()
-            messages.success(request, 'Your License Was Successfully Saved')
-            return redirect(reverse('workers'), args=[licen.pk])
+            return reverse('lic_cat_create')
     else:
         form = LicenseForm()
-        messages.warning(request, "MedicalCertificate Failed To Save. Error")
-
     template = 'gibdd_app/License_form.html'
     context = {
         'form': form,
     }
 
     return render(request, template, context)
+
+
+@login_required
+def update_license(request, pk):
+    licen = get_object_or_404(License, pk=pk)
+    if request.method == 'POST':
+        form = LicenseForm(request.POST, request.FILES, instance=licen)
+        if form.is_valid():
+            form.save()
+        return redirect('license_detail', pk)
+    else:
+        form = LicenseForm(instance=licen)
+
+    template = 'gibdd_app/License_form.html'
+    context = {
+        'form': form,
+        'licen': licen,
+    }
+
+    return render(request, template, context)
+
 
 @login_required
 def add_med(request):
@@ -301,35 +320,11 @@ def add_med(request):
         if form.is_valid():
             med = MedicalCertificate(**form.cleaned_data)
             med.save()
-            # messages.success(request, 'Your License Was Successfully Saved')
-            # success_url = redirect('license_create',License.pk)
             return redirect(reverse('license_create'))
     else:
         form = MedicalCertificateForm()
-        messages.warning(request, "License Failed To Save. Error")
 
     template = 'gibdd_app/MedicalCertificate_form.html'
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
-
-
-@login_required
-def add_license(request):
-    if request.method == 'POST':
-        form = LicenseForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
-        if form.is_valid():
-            licen = License(**form.cleaned_data)
-            licen.save()
-            messages.success(request, 'Your License Was Successfully Saved')
-            return redirect(reverse('lic_cat_create'), args=[licen.pk])
-    else:
-        form = LicenseForm()
-        messages.warning(request, "License Failed To Save. Error")
-
-    template = 'gibdd_app/License_form.html'
     context = {
         'form': form,
     }
@@ -343,13 +338,10 @@ def add_lic_cat(request):
         form = Licen_CatForm(request.POST, request.FILES)
         if form.is_valid():
             main_form = Lisense_Category(**form.cleaned_data)
-            # if Lisense_Category.objects.distinct('licen'):
             main_form.save()
-            # messages.success(request, 'Your License Was Successfully Saved')
             return redirect(reverse('workers'), args=[main_form.pk])
     else:
         form = Licen_CatForm()
-        messages.warning(request, "License Failed To Save. Error")
 
     template = 'gibdd_app/Licen_CatForm.html'
     context = {
@@ -359,8 +351,61 @@ def add_lic_cat(request):
     return render(request, template, context)
 
 
+@login_required
+def add_accident(request):
+    if request.method == 'POST':
+        form = AccidentReportForm(request.POST, request.FILES)
+        if form.is_valid():
+            accid = AccidentReport(**form.cleaned_data)
+            accid.save()
+            return redirect(reverse('workers'), args=[accid.pk])
+    else:
+        form = AccidentReportForm()
+
+    template = 'gibdd_app/AccidentReport_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
 
+@login_required
+def add_witness(request):
+    if request.method == 'POST':
+        form = WitnessForm(request.POST, request.FILES)
+        if form.is_valid():
+            wit = Witness(**form.cleaned_data)
+            wit.save()
+            return redirect(reverse('workers'), args=[wit.pk])
+    else:
+        form = WitnessForm()
+
+    template = 'gibdd_app/Witness_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_licen_accid(request):
+    if request.method == 'POST':
+        form = Lisense_AccidentForm(request.POST, request.FILES)
+        if form.is_valid():
+            l_a = Lisense_Accident(**form.cleaned_data)
+            l_a.save()
+            return redirect(reverse('workers'), args=[l_a.pk])
+    else:
+        form = Lisense_AccidentForm()
+
+    template = 'gibdd_app/Lisense_Accident_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
     # @login_required
     # def add_med(request):
@@ -405,27 +450,6 @@ def add_lic_cat(request):
     #     }
     #
     #     return render(request, template, context)
-
-
-@login_required
-def update_license(request, pk):
-    licen = get_object_or_404(License, pk=pk)
-    # med=MedicalCertificate.objects.get(pk=pk)
-    if request.method == 'POST':
-        form = LicenseForm(request.POST, request.FILES, instance=licen)
-        if form.is_valid():
-            form.save()
-        return redirect('license_detail', pk)
-    else:
-        form = LicenseForm(instance=licen)
-
-    template = 'gibdd_app/License_form.html'
-    context = {
-        'form': form,
-        'licen': licen,
-    }
-
-    return render(request, template, context)
 
 
 class MedicalCertificateCreate(CreateView):

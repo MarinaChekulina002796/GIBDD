@@ -7,5 +7,33 @@
 </head>
 <body>
 
+{% block content %}
+    <h2><b> <i> Контакты:</i> </b></h2>
+    <p> Код подразделения: 1100001</p>
+    <p> Адрес подразделения: г. Москва, ул. Житная, д. 16</p>
+    <p> Отделение делопроизводства: (495) 214-08-77, (495) 214-08-71 </p>
+    <p> Отдел по работе с обращениями граждан: (495) 214-09-66</p>
+    <p> ДЕЖУРНАЯ ЧАСТЬ:(495) 623-70-70</p>
+    <a class="dg-widget-link"
+       href="http://2gis.ru/moscow/firm/4504127908683445/center/37.614385,55.730718/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть
+        на карте Москвы</a>
+    <div class="dg-widget-link"><a
+            href="http://2gis.ru/moscow/center/37.614385,55.730718/zoom/16/routeTab/rsType/bus/to/37.614385,55.730718╎Главное управление МВД РФ?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти
+        проезд до Главное управление МВД РФ</a></div>
+    <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+    <script charset="utf-8">new DGWidgetLoader({
+        "width": 640,
+        "height": 600,
+        "borderColor": "#a3a3a3",
+        "pos": {"lat": 55.730718, "lon": 37.614385, "zoom": 16},
+        "opt": {"city": "moscow"},
+        "org": [{"id": "4504127908683445"}]
+    });</script>
+    <noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в
+        настройках вашего браузера.
+    </noscript>
+{% endblock %}
 </body>
 </html>
+
+

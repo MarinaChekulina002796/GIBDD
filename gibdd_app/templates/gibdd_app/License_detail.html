@@ -16,7 +16,7 @@
                         <li class="active"><a href="{% url 'license_delete' pk=obj.pk %}">Удалить</a></li>
                     </ul>
                 </div>
-                <h2>Данные о водителе: {{ obj.driver_data }}</h2>
+                <h2>Данные о водителе: {{ obj.driver_data }} </h2>
                 <p>Фото на ВУ: <img src="{{ MEDIA_URL }}{{ obj.image_url|default_if_none:'#' }}"
                                            style="width: 100px"></p>
                 <p>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</p>

@@ -4,7 +4,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
-from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category
+from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
+    AccidentReport, Witness, Lisense_Accident
 
 
 # форма для авторизации
@@ -62,6 +63,19 @@ class Licen_CatForm(forms.ModelForm):
         exclude = ()
 
 
-        # def __init__(self, *args, **kwargs):
-        #     super(Licen_CatForm, self).__init__(*args, **kwargs)
-        #     self.fields['categ'].queryset = Category.objects.get()
+class AccidentReportForm(forms.ModelForm):
+    class Meta:
+        model = AccidentReport
+        exclude = ()
+
+
+class WitnessForm(forms.ModelForm):
+    class Meta:
+        model = Witness
+        exclude = ()
+
+
+class Lisense_AccidentForm(forms.ModelForm):
+    class Meta:
+        model = Lisense_Accident
+        exclude = ()

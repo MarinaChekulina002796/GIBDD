@@ -102,7 +102,7 @@ class License(models.Model):
     driver_data = models.OneToOneField(Driver, on_delete=models.CASCADE, verbose_name="Данные о водителе")
     # category_dr_license_data = models.ManyToManyField(Category, verbose_name="Данные о доступных категорях")
     medical_certificate_data = models.OneToOneField(MedicalCertificate, on_delete=models.CASCADE,
-                                                    verbose_name="Данные о мед. справках")
+                                                    verbose_name="Данные о мед.справках")
     photo_dr_license = models.ImageField(upload_to='driving_license_photo/',
                                          default='driving_license_photo/default_photo_dr_license.jpg',
                                          verbose_name="Фото ВУ")
@@ -123,10 +123,10 @@ class License(models.Model):
     def get_absolute_url(self):
         return reverse('lic_cat_create')
 
-    @property
-    def image_url(self):
-        if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
-            return self.photo_dr_license.url
+    # @property
+    # def image_url(self):
+    #     if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
+    #         return self.photo_dr_license.url
 
 
 # дополнительная таблица для категории и ВУ (разбила связь М:М)
@@ -362,7 +362,7 @@ class AutoSchool(models.Model):
     school_date_from = models.DateField(verbose_name="Дата начала обучения")
     school_date_to = models.DateField(verbose_name="Дата окончания обучения")
     school_category_dr_license = models.CharField(max_length=20,
-                                                  verbose_name="Обучение на данную категорию прав в автошколе")
+                                                  verbose_name="Обучение на категорию")
 
 
 CAR_CHOICES = (
@@ -483,6 +483,16 @@ INSURANCE_CHOICES2 = (
 
 )
 
+# дополнительная таблица для категории и ВУ (разбила связь М:М)
+class Lisense_Accident(models.Model):
+    licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
+    accid = models.ForeignKey(AccidentReport, on_delete=models.CASCADE, verbose_name="Список ДТП")
+
+    def get_absolute_url(self):
+        return reverse('workers')
+
+    class Meta:
+        unique_together = ("licen", "accid")
 
 # Диагностическая карта
 class DiagnosticCard(models.Model):

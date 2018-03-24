@@ -7,6 +7,7 @@
     {#    <title>{% block title %}{% endblock %}</title>#}
     <link href="{% static 'gibdd_app/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'gibdd_app/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'gibdd_app/fonts/glyphicons-halflings-regular.svg' %}">
     <link href="{% static 'gibdd_app/css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'gibdd_app/css/prettyPhoto.css' %}" rel="stylesheet">
     <link href="{% static 'gibdd_app/css/main.css' %}" rel="stylesheet">
@@ -78,7 +79,13 @@
             </h2>
         </header>
 
-        {% block form %} {% endblock %}
+        {% block content %}
+
+            {% block form %}
+
+            {% endblock %}
+
+        {% endblock %}
         {#        </form>#}
     </div>
 </div>

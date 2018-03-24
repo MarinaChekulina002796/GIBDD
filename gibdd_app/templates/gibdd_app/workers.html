@@ -93,8 +93,14 @@
 
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'med_list' %}">med_list</a></li>
-                            <li class="active"><a href="{% url 'med_create' %}">med_create</a></li>
+                            <li class="active"><a href="{% url 'med_list' %}"><span class="glyphicon glyphicon-list-alt"
+                                                                                    style="color:darkblue"
+                                                                                    title="Список мед.справок"> </span></a>
+                            </li>
+                            <li class="active"><a href="{% url 'med_create' %}"><span class="glyphicon glyphicon-plus"
+                                                                                      style="color:yellowgreen"
+                                                                                      title="Добавить мед. справку"> </span></a>
+                            </li>
                         </ul>
                     </div>
 
@@ -109,14 +115,22 @@
                         <img class="img-responsive" src="{% static 'gibdd_app/images/services/services3.png' %}">
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading"><a href="{% url 'categ_list' %}">Категории водительского удостоверения</a></h3>
+                        <h3 class="media-heading"><a href="{% url 'categ_list' %}">Категории
+                            <ol>ВУ</ol>
+                        </a></h3>
 
                     </div>
                     {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'categ_list' %}">categ_list</a></li>
-                            <li class="active"><a href="{% url 'categ_create' %}">categ_create</a></li>
+                            <li class="active"><a href="{% url 'categ_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список категорий"> </span></a></li>
+                            <li class="active"><a href="{% url 'categ_create' %}"><span class="glyphicon glyphicon-plus"
+                                                                                        style="color:yellowgreen"
+                                                                                        title="Добавить категорию"> </span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -134,8 +148,14 @@
                     {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'license_list' %}">lic_list</a></li>
-                            <li class="active"><a href="{% url 'license_create' %}">liс_create</a></li>
+                            <li class="active"><a href="{% url 'license_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список ВУ"> </span></a></li>
+                            <li class="active"><a href="{% url 'license_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить ВУ"> </span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,8 +173,14 @@
                     {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'driver_list' %}">dr_list</a></li>
-                            <li class="active"><a href="{% url 'driver_create' %}">dr_create</a></li>
+                            <li class="active"><a href="{% url 'driver_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список водителей"> </span></a></li>
+                            <li class="active"><a href="{% url 'driver_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить водителя"> </span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -172,8 +198,14 @@
                     {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'disq_list' %}">disq_list</a></li>
-                            <li class="active"><a href="{% url 'disq_create' %}">disq_create</a></li>
+                            <li class="active"><a href="{% url 'disq_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список статусов прав"> </span></a></li>
+                            <li class="active"><a href="{% url 'disq_create' %}"><span class="glyphicon glyphicon-plus"
+                                                                                       style="color:yellowgreen"
+                                                                                       title="Добавить статус прав"> </span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -185,18 +217,85 @@
                         <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">ВУ_категория(связ табл)</h3>
+                        <h3 class="media-heading">Добавление новой категории в ВУ</h3>
 
                     </div>
                     {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'lic_cat_create' %}">lic_cat_create</a></li>
-{#                            <li class="active"><a href="{% url 'disq_create' %}">disq_create</a></li>#}
+                            <li class="active"><a href="{% url 'lic_cat_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить новую категорию в ВУ"> </span></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">Составление протокола ДТП</h3>
+
+                    </div>
+                    {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'accident_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить протокол ДТП"> </span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">Свидетели ДТП</h3>
+
+                    </div>
+                    {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'witness_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить свидетеля"> </span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">ВУ, участвовавшие в ДТП</h3>
+
+                    </div>
+                    {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'licen_accid_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить ВУ, участвовавшее в ДТП"> </span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
 
         </div><!--/.row-->
     </div><!--/.container-->

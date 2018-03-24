@@ -1,0 +1,63 @@
+{% extends 'gibdd_app/base.html' %}
+{% block title %}Протокол аварии{% endblock %}
+{% block header %}
+    Протокол аварии
+{% endblock %}
+{% block content %}
+    {% block form %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table>
+                {% for field in form %}
+                    <div class="related-widget-wrapper">
+                        {{ field.errors }}
+                        <label>
+                            {{ field.label_tag }}
+                        </label>
+
+                        {{ field }}
+
+{#                        {% if field.name == "driver_data" %}#}
+{#                            <a class="related-widget-wrapper-link add-related" href="{% url 'driver_create' %}"> <span#}
+{#                                    class="glyphicon glyphicon-plus"#}
+{#                                    style="color:yellowgreen"#}
+{#                                    title="Добавить водителя"> </span></a>#}
+{#                        {% endif %}#}
+{##}
+{#                        {% if field.name == "medical_certificate_data" %}#}
+{#                            <a class="related-widget-wrapper-link add-related" href="{% url 'med_create' %}"> <span#}
+{#                                    class="glyphicon glyphicon-plus"#}
+{#                                    style="color:yellowgreen"#}
+{#                                    title="Добавить справку"> </span></a>#}
+{#                        {% endif %}#}
+{##}
+{#                        {% if field.name == "status_dr_license" %}#}
+{#                            <a class="related-widget-wrapper-link add-related" href="{% url 'disq_create' %}"> <span#}
+{#                                    class="glyphicon glyphicon-plus"#}
+{#                                    style="color:yellowgreen"#}
+{#                                    title="Добавить статус прав"> </span></a>#}
+{#                        {% endif %}#}
+
+                    </div>
+                {% endfor %}
+            </table>
+
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'accident_create' %}
+                    <button class="btn btn-success" type="submit">Save</button>
+                    <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
+                {% elif url_name == 'accident_update' %}
+                    <button class="btn btn-warning" type="submit">Update</button>
+                    <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+                {% else %}
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+                {% endif %}
+            {% endwith %}
+
+        </form>
+    {% endblock %}
+{% endblock %}
+

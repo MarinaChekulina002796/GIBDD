@@ -27,11 +27,11 @@
                                     title="Добавить ВУ"> </span></a>
                         {% endif %}
 
-                        {% if field.name == "categ" %}
-                            <a class="related-widget-wrapper-link add-related" href="{% url 'categ_create' %}"> <span
+                        {% if field.name == "accid" %}
+                            <a class="related-widget-wrapper-link add-related" href="{% url 'accidents_create' %}"> <span
                                     class="glyphicon glyphicon-plus"
                                     style="color:yellowgreen"
-                                    title="Добавить категорию"> </span></a>
+                                    title="Добавить ДТП"> </span></a>
                         {% endif %}
 
                     </div>
@@ -39,7 +39,7 @@
             </table>
 
             {% with url_name=request.resolver_match.url_name %}
-                {% if url_name == 'lic_cat_create' %}
+                {% if url_name == 'licen_accid_create' %}
                     <button class="btn btn-success" type="submit">Save</button>
                     <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
                     {#        {% elif url_name == 'license_update' %}#}

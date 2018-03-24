@@ -7,11 +7,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
-    FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm
+    FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing
+    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
+    Camera
 from django.shortcuts import render
 
 
@@ -521,6 +522,45 @@ def add_steal(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def add_decree(request):
+    if request.method == 'POST':
+        form = DecreeForm(request.POST, request.FILES)
+        if form.is_valid():
+            decree = Decree(**form.cleaned_data)
+            decree.save()
+            return redirect(reverse('workers'), args=[decree.pk])
+    else:
+        form = DecreeForm()
+
+    template = 'gibdd_app/Decree_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_camera(request):
+    if request.method == 'POST':
+        form = CameraForm(request.POST, request.FILES)
+        if form.is_valid():
+            cam = Camera(**form.cleaned_data)
+            cam.save()
+            return redirect(reverse('workers'), args=[cam.pk])
+    else:
+        form = CameraForm()
+
+    template = 'gibdd_app/Camera_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
 
     # @login_required
     # def add_med(request):

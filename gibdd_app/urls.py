@@ -5,7 +5,8 @@ from gibdd_app.views import login, logout, services, gibdd, participants, worker
     MedicalCertificateUpdate, license_list, license_detail, LicenseCreate, LicenseUpdate, delete_license, delete_driver, \
     driver_detail, DriverCreate, driver_list, DriverUpdate, disq_list, disq_detail, LicenseDisqualificationCreate, \
     LicenseDisqualificationUpdate, delete_disq, update_license, add_license, add_lic_cat, add_med, add_accident, \
-    add_witness, add_licen_accid, add_inspector, add_fine, add_car, add_registr, add_owner, add_steal
+    add_witness, add_licen_accid, add_inspector, add_fine, add_car, add_registr, add_owner, add_steal, add_decree, \
+    add_camera
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
@@ -59,5 +60,7 @@ urlpatterns = [
                   url(r'^reg/create/$', add_registr, name='registr_create'),
                   url(r'^owner/create/$', add_owner, name='owner_create'),
                   url(r'^steal/create/$', add_steal, name='steal_create'),
+                  url(r'^decree/create/$', add_decree, name='decree_create'),
+                  url(r'^camera/create/$', add_camera, name='camera_create'),
                   # url(r'^med_results/$', med_search, name="med_search"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

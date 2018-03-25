@@ -29,7 +29,7 @@ def main(request):
 @login_required
 def med_list(request):
     template = 'gibdd_app/MedicalCertificate_list.html'
-    objects_list = MedicalCertificate.objects.all()
+    objects_list = MedicalCertificate.objects.all().order_by('medical_number','medical_date')
 
     context = {
         'objects_list': objects_list,

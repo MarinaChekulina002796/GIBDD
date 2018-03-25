@@ -12,9 +12,12 @@
         <form method="GET" action="{% url 'med_search' %}">
             <p>Вы ищете справку №: <strong><input name="q" value="{{ request.GET.q }}"
                                                   placeholder="Search..."></strong>
-                <button class="btn btn-success" type="submit">
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск мед.справок"> </span>
                     Поиск
                 </button>
+
             </p>
 
             {% if meds %}
@@ -43,21 +46,28 @@
                 <p>Нет справок по заданному критерию.</p>
             {% endif %}
         </form>
-        {% for obj in objects_list %}
 
-            <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
-                <h2>Медицинская справка №:{{ obj.medical_number }}</h2>
-                <p>Дата выдачи справки:{{ obj.medical_date }}</p>
-                <p>Диагноз:{{ obj.diagnosis }}</p>
-                <button class="btn btn-info" type="button"><a href="{% url 'med_detail' pk=obj.pk %}">Подробнее
-                    >></a></button>
-                {#                    <p>Выдавшая организация:{{ obj.organization_give }}</p>#}
-                {#                    <p>Срок действия справки:{{ obj.validity }}</p>#}
-                {#                    <p> Сканы справки:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"#}
-                {#                                           style="width: 100px">#}
-                {#                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 100px"></p>#}
-            </div>
-        {% endfor %}
+        <table border="2">
+            <caption>Таблица медицинских справок</caption>
+            <th> № справки     </th>
+            <th> Дата выдачи    </th>
+            <th> Диагноз        </th>
+            <th> Подробнее...   </th>
+            {% for obj in objects_list %}
+                <tr>
+                    <div>
+                        <td><p>{{ obj.medical_number }}</p></td>
+                        <td><p>{{ obj.medical_date }}</p></td>
+                        <td><p>{{ obj.diagnosis }}</p></td>
+                        <td>
+                            <button class="btn-info" type="button"><a href="{% url 'med_detail' pk=obj.pk %}">Подробнее
+                                >></a></button>
+                        </td>
+
+                    </div>
+                </tr>
+            {% endfor %}
+        </table>
 
     {% endblock %}
 {% endblock %}

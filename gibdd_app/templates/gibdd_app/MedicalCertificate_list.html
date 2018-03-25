@@ -2,35 +2,62 @@
 <title>Список</title>
 {% load staticfiles %}
 {% block header %}
-{#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
+    {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
     <h2><i><b>Список медицинских полисов</b></i></h2>
 {% endblock %}
 {% block content %}
 
     {% block form %}
 
-        <form>
-{#<form method="GET" action="{% url 'med_search' %}">#}
-{#        <input name="q" value="{{request.GET.q}}" placeholder="Search...">#}
-{#        <span class="input-group-btn">#}
-{#                <button class="btn btn-success" type="submit">#}
-{#                    Search#}
-{#                </button>#}
-{#        </span>#}
-{#</form>#}
-            {% for obj in objects_list %}
-                <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
-                    <h2>Медицинская справка №:{{ obj.medical_number }}</h2>
-                    <p>Дата выдачи справки:{{ obj.medical_date }}</p>
-                    <p>Диагноз:{{ obj.diagnosis }}</p>
-                    <button class="btn btn-info" type="button"><a href="{% url 'med_detail' pk=obj.pk%}">Подробнее >></a></button>
-{#                    <p>Выдавшая организация:{{ obj.organization_give }}</p>#}
-{#                    <p>Срок действия справки:{{ obj.validity }}</p>#}
-{#                    <p> Сканы справки:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"#}
-{#                                           style="width: 100px">#}
-{#                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 100px"></p>#}
-                </div>
-            {% endfor %}
+        <form method="GET" action="{% url 'med_search' %}">
+            <p>Вы ищете справку №: <strong><input name="q" value="{{ request.GET.q }}"
+                                                  placeholder="Search..."></strong>
+                <button class="btn btn-success" type="submit">
+                    Поиск
+                </button>
+            </p>
+
+            {% if meds %}
+                <p>Результат поиска: {{ meds|length }} шт.
+                    {#                    {{ meds|pluralize }}.#}
+                </p>
+                <table border="2">
+                    <caption>Таблица найденных справок</caption>
+                    <th> № справки:</th>
+                    <th> Дата выдачи:</th>
+                    <th> Диагноз:</th>
+                    <th> Срок действия:</th>
+
+                    {% for med in meds %}
+
+                        <tr>
+                            <td> {{ med.medical_number }}</td>
+                            <td>{{ med.medical_date }}</td>
+                            <td>{{ med.diagnosis }}</td>
+                            <td> {{ med.validity }}</td>
+
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Нет справок по заданному критерию.</p>
+            {% endif %}
         </form>
+        {% for obj in objects_list %}
+
+            <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
+                <h2>Медицинская справка №:{{ obj.medical_number }}</h2>
+                <p>Дата выдачи справки:{{ obj.medical_date }}</p>
+                <p>Диагноз:{{ obj.diagnosis }}</p>
+                <button class="btn btn-info" type="button"><a href="{% url 'med_detail' pk=obj.pk %}">Подробнее
+                    >></a></button>
+                {#                    <p>Выдавшая организация:{{ obj.organization_give }}</p>#}
+                {#                    <p>Срок действия справки:{{ obj.validity }}</p>#}
+                {#                    <p> Сканы справки:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"#}
+                {#                                           style="width: 100px">#}
+                {#                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 100px"></p>#}
+            </div>
+        {% endfor %}
+
     {% endblock %}
 {% endblock %}

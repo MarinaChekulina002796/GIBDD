@@ -50,7 +50,7 @@ class MedicalCertificate(models.Model):
     diagnosis = models.CharField(max_length=200, verbose_name="Диагноз")
     organization_give = models.CharField(max_length=300, verbose_name="Выдавшая организация")
     validity = models.CharField(max_length=11, verbose_name="Срок действия справки", choices=MEDICAL_CHOICES,
-                                blank=True, null=True, default='YEAR1')
+                                blank=True, null=True, default='1 год')
     med_photo_1 = models.ImageField(upload_to='med_photo/',
                                     verbose_name="Скан медицинской справки, лицевая сторона", blank=True)
     med_photo_2 = models.ImageField(upload_to='med_photo/',
@@ -71,6 +71,7 @@ class MedicalCertificate(models.Model):
     def image_url_2(self):
         if self.med_photo_2 and hasattr(self.med_photo_2, 'url'):
             return self.med_photo_2.url
+
 
 
 DISQAULIF_CHOICES = (

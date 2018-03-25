@@ -1,9 +1,13 @@
 # Create your views here.
+import operator
+from functools import reduce
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.urls.base import reverse
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
@@ -31,6 +35,17 @@ def med_list(request):
         'objects_list': objects_list,
     }
     return render(request, template, context)
+
+
+def med_search(request):
+    template = 'gibdd_app/MedicalCertificate_list.html'
+    query = request.GET.get('q')
+    if query:
+        meds = MedicalCertificate.objects.filter(Q(medical_number__icontains=query))
+    else:
+        return HttpResponse('Please submit a search term.')
+    return render(request, template,
+                  {'meds': meds, 'query': query})
 
 
 @login_required
@@ -210,26 +225,6 @@ def delete_disq(request, pk):
         form = LicenseDisqualificationForm(instance=obj)
 
     return render(request, template, {'form': form})
-
-
-# def med_search(request):
-#     template = 'gibdd_app/MedicalCertificate_list.html'
-#
-#     query = request.GET.get('q')
-#
-#     if query:
-#         results = MedicalCertificate.objects.filter(Q(medical_number__icontains=query) | Q(medical_number__icontains=query))
-#     else:
-#         results = MedicalCertificate.objects.filter('medical_number')
-#
-#     # pages = pagination(request, results, num=1)
-#
-#     context = {
-#         # 'items': pages[0],
-#         # 'page_range': pages[1],
-#         'query': query,
-#     }
-#     return render(request, template, context)
 
 
 def services(request):

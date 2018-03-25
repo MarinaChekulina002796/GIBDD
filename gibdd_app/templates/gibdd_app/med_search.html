@@ -1,0 +1,12 @@
+<p>Вы ищете: <strong>{{ query }}</strong></p>
+
+{% if meds %}
+    <p>Found {{ meds|length }} med{{ meds|pluralize }}.</p>
+    <ul>
+        {% for med in meds %}
+        <li>{{ med.medical_number }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Нет справок по заданному критерию.</p>
+{% endif %}

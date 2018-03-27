@@ -69,8 +69,17 @@ def mix_search(request):
     template = 'gibdd_app/Mix.html'
     query = request.GET.get('q')
     if query:
-        regs = RegistrationCertificate.objects.filter(
-            Q(registr_certificate_number__icontains=query) | Q(registr_certificate_registr_sign__contains=query))
+        # regs = RegistrationCertificate.objects.filter(
+        list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
+                'fine_amount', 'fine_discount',
+                'fine_car_data__car_registr_certificate__registr_certificate_number',
+                'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
+                'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
+        regs = Fine.objects.filter(
+            Q(fine_decree_data__decree_number__icontains=query)).values(*list)
+
+            # Q(fine_decree_data__decree_number__icontains=query))
+
         # regs.get(pk=1)
     else:
         return HttpResponse('Please submit a search term.')

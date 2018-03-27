@@ -283,12 +283,12 @@ REGISTRATION_CHOICES3 = (
 
 # СТС: Свидетельство о регистрации
 class RegistrationCertificate(models.Model):
-    registr_certificate_number = models.CharField(max_length=11, verbose_name="Номер СТС",
+    registr_certificate_number = models.CharField(max_length=11, verbose_name="Номер СТС", unique=True,
                                                   help_text="Например, 1234№123456")
     registr_certificate_registr_sign = models.CharField(max_length=9, help_text="А111АА777",
                                                         verbose_name="Регистрационный знак")
     registr_certificate_VIN = models.CharField(max_length=17, verbose_name="VIN",
-                                               help_text="Например,SAFDYUH12R1234567")
+                                               help_text="Например,SAFDYUH12R1234567", unique=True)
     registr_certificate_car_model = models.CharField(max_length=50, verbose_name="Марка, модель")
     registr_certificate_type_car = models.CharField(max_length=60, verbose_name="Тип ТС", choices=REGISTRATION_CHOICES,
                                                     default='легковой')
@@ -312,7 +312,7 @@ class RegistrationCertificate(models.Model):
 
 # Собственник
 class Owner(models.Model):
-    owner_number = models.CharField(max_length=10, verbose_name="Номер свидетельства собственника")
+    owner_number = models.CharField(max_length=10, verbose_name="Номер свидетельства собственника", unique=True)
     owner_surname = models.CharField(max_length=50, verbose_name="Фамилия собственника")
     owner_name = models.CharField(max_length=50, verbose_name="Имя собственника")
     owner_patronymic = models.CharField(max_length=50, verbose_name="Отчество собственника")
@@ -345,7 +345,7 @@ class AutoSchool(models.Model):
     school_name = models.CharField(max_length=100, verbose_name="Название автошколы")
     school_photo = models.ImageField(upload_to='autoschool_photo/',
                                      default='autoschool_photo/default.jpg',
-                                     verbose_name="Фото автошколы", blank=True,null=True)
+                                     verbose_name="Фото автошколы", blank=True, null=True)
     school_address = models.CharField(max_length=100, verbose_name="Адрес автошколы")
     school_phone = models.CharField(max_length=100, verbose_name="Телефон автошколы")
     school_category_dr_license = models.CharField(max_length=20,
@@ -370,7 +370,7 @@ class Car(models.Model):
     car_colour = models.CharField(max_length=50, verbose_name="Цвет автомобиля")
     car_number = models.CharField(max_length=9, verbose_name="Номер автомобиля", null=True, blank=True)
     car_registr_certificate = models.OneToOneField(RegistrationCertificate, verbose_name="Свидетельство о регистрации",
-                                                   on_delete=models.CASCADE)
+                                                   on_delete=models.CASCADE, unique=True)
     car_owner = models.OneToOneField(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля")
     car_stealing = models.OneToOneField(Stealing, on_delete=models.CASCADE, verbose_name="Детали угона")
 
@@ -398,12 +398,13 @@ class Decree(models.Model):
     decree_number = models.CharField(max_length=25, verbose_name="Номер постановления")
     decree_date = models.DateField(verbose_name="Дата постановления")
     decree_inspector = models.ForeignKey(Inspector, verbose_name="Инспектор, выписавший постановление", null=True,
-                                         blank=True, on_delete=models.CASCADE)
+                                         blank=True, on_delete=models.CASCADE, unique=False)
     decree_camera = models.ForeignKey(Camera, verbose_name="Средство фиксации нарушения", on_delete=models.CASCADE,
-                                      null=True, blank=True, )
+                                      null=True, blank=True, unique=False)
     decree_license_data = models.ForeignKey(License, verbose_name="Данные ВУ для вынесения постановления",
-                                            on_delete=models.CASCADE)
-    decree_car = models.ForeignKey(Car, verbose_name="Данные о нарушевшем автомобиле", on_delete=models.CASCADE)
+                                            on_delete=models.CASCADE, unique=False)
+    decree_car = models.ForeignKey(Car, verbose_name="Данные о нарушевшем автомобиле", on_delete=models.CASCADE,
+                                   unique=False)
     decree_violation = models.CharField(max_length=200, verbose_name="Нарушение(смысл)", choices=DECREE_CHOICES,
                                         null=True)
     decree_violation_text = models.TextField(verbose_name="Полное описание нарушения", blank=True)
@@ -415,6 +416,9 @@ class Decree(models.Model):
                                    default='Административный штраф', verbose_name="Нарушенные пункты КОАП")
     decree_PDD = models.CharField(max_length=50, verbose_name="Нарушенные пункты ПДД")
 
+    def __str__(self):
+        return "%s" % (self.decree_number)
+
 
 # штраф
 class Fine(models.Model):
@@ -425,6 +429,12 @@ class Fine(models.Model):
     fine_license_data = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Данные о ВУ")
     fine_decree_data = models.OneToOneField(Decree, verbose_name="Данные о постановлении", on_delete=models.CASCADE)
     fine_car_data = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Штраф для автомобиля")
+
+    class Meta:
+        unique_together = ("fine_license_data", "fine_decree_data")
+
+    def __str__(self):
+        return "%s" % (Fine.fine_decree_data.decree_number)
 
 
 ACCIDENT_CHOICES = (
@@ -450,10 +460,11 @@ class AccidentReport(models.Model):
     accident_death = models.IntegerField(verbose_name="Смертельный исход, взрослые (количество)", default=0)
     accident_children = models.IntegerField(verbose_name="Из участвовавших в аварии-дети", default=0)
     accident_children_death = models.IntegerField(verbose_name="Смертельный исход, дети(количество)", default=0)
-    accident_causer_person = models.OneToOneField(Driver, verbose_name="Виновник аварии", on_delete=models.CASCADE)
+    accident_causer_person = models.OneToOneField(Driver, verbose_name="Виновник аварии", on_delete=models.CASCADE,
+                                                  unique=False)
     accident_cause = models.CharField(max_length=250, verbose_name="Причина аварии")
     # accident_participants = models.ManyToManyField(License, verbose_name="Участники аварии")
-    accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
+    # accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
     accident_inspector = models.ForeignKey(Inspector, verbose_name="Инспектор, оформивший ДТП",
                                            on_delete=models.CASCADE)
     accident_photo_1 = models.ImageField(upload_to='accident_photo/',
@@ -463,6 +474,18 @@ class AccidentReport(models.Model):
                                          default='accident_photo/default.jpg',
                                          verbose_name="Второе фото аварии", blank=True)
     accident_comment = models.TextField(verbose_name="Комментарий к аварии")
+
+
+class Accident_Car(models.Model):
+    accid = models.ForeignKey(AccidentReport, on_delete=models.CASCADE,
+                              verbose_name="Все аварии с участием данного автомобиля")
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Автомобили, участвовавшие в ДТП")
+
+    def get_absolute_url(self):
+        return reverse('workers')
+
+    class Meta:
+        unique_together = ("accid", "car")
 
 
 # свидетель
@@ -505,7 +528,7 @@ class Lisense_Accident(models.Model):
 
 # Диагностическая карта
 class DiagnosticCard(models.Model):
-    diagnostic_number = models.CharField(max_length=15, verbose_name="Регистрационный номер")
+    diagnostic_number = models.CharField(max_length=15, verbose_name="Регистрационный номер", unique=True)
     diagnostic_car = models.ForeignKey(Car, verbose_name="Автомобиль для диагностики", on_delete=models.CASCADE)
     diagnostic_date_from = models.DateField(verbose_name="Дата выдачи")
     diagnostic_date_to = models.DateField(verbose_name="Срок действия до")
@@ -525,11 +548,24 @@ class Insurance(models.Model):
                                           default='type1')
     insurance_diagnostic_card = models.OneToOneField(DiagnosticCard,
                                                      verbose_name="Диагностическая карта (ТО) о состоянии автомобиля",
-                                                     on_delete=models.CASCADE)
-    insurance_driving_license = models.ManyToManyField(License,
-                                                       verbose_name="Допущенные к управления автомобилем по полису")
+                                                     on_delete=models.CASCADE, unique=True)
+    # insurance_driving_license = models.ManyToManyField(License,
+    #                                                    verbose_name="Допущенные к управления автомобилем по полису")
     insurance_car = models.ForeignKey(Car, verbose_name="Полис на автомобиль", on_delete=models.CASCADE)
     insurance_comments = models.TextField(verbose_name="Комментарий к полису")
+
+
+class InsuranceLicense(models.Model):
+    insur = models.ForeignKey(Insurance, on_delete=models.CASCADE,
+                              verbose_name="Все страховки для данного автомобиля (ОСАГО, КАСКО)")
+    licen = models.ForeignKey(License, on_delete=models.CASCADE,
+                              verbose_name="ВУ, допущенные к управлению автомобилем по полису")
+
+    def get_absolute_url(self):
+        return reverse('workers')
+
+    class Meta:
+        unique_together = ("insur", "licen")
 
 
 # История владения автомобилем

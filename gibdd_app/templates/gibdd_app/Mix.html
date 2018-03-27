@@ -9,83 +9,101 @@
 
     {% block form %}
 
-        {#        <form method="GET" action="{% url 'med_search' %}">#}
-        {#            <p>Вы ищете справку №: <strong><input name="q" value="{{ request.GET.q }}"#}
-        {#                                                  placeholder="Search..."></strong>#}
-        {#                <button type="submit"><span class="glyphicon glyphicon-search"#}
-        {#                                            style="color:grey"#}
-        {#                                            title="Поиск мед.справок"> </span>#}
-        {#                    Поиск#}
-        {#                </button>#}
-        {##}
-        {#            </p>#}
-        {#            {% with url_name=request.resolver_match.url_name %}#}
-        {#                {% if url_name == 'med_search' %}#}
-        {#                    {% if meds %}#}
-        {#                        <p>Результат поиска: {{ meds|length }} шт.#}
-        {#                    {{ meds|pluralize }}.#}
-        {#                        </p>#}
-        {#                        <table border="2">#}
-        {#                            <caption>Таблица найденных справок</caption>#}
-        {#                            <th> № справки:</th>#}
-        {#                            <th> Дата выдачи:</th>#}
-        {#                            <th> Диагноз:</th>#}
-        {#                            <th> Срок действия:</th>#}
-        {##}
-        {#                            {% for med in meds %}#}
-        {##}
-        {#                                <tr>#}
-        {#                                    <td> {{ med.medical_number }}</td>#}
-        {#                                    <td>{{ med.medical_date }}</td>#}
-        {#                                    <td>{{ med.diagnosis }}</td>#}
-        {#                                    <td> {{ med.validity }}</td>#}
-        {##}
-        {#                                </tr>#}
-        {#                            {% endfor %}#}
-        {#                        </table>#}
-        {#                    {% else %}#}
-        {#                        <p>Нет справок по заданному критерию.</p>#}
-        {#                    {% endif %}#}
-        {#                    </form>#}
-        {##}
-        {#                {% else %}#}
-        <table border="2">
-            <caption>Таблица штрафов с личными даннымиы</caption>
-            <th> №</th>
-            <th> № пост-я</th>
-            <th> Дата пост-я</th>
-            <th> Статус штрафа</th>
-            <th> Сумма</th>
-            <th> Скидка</th>
-            <th> № СТС</th>
-            <th> № авто</th>
-            <th> Серия ВУ</th>
-            <th> № ВУ</th>
-            {% for obj in objects_list %}
-                <tr>
-                    <div>
-                        <td><p>{{ obj.pk }}</p></td>
-                        <td><p>{{ obj.fine_decree_data__decree_number }}</p></td>
-                        <td><p>{{ obj.fine_status }}</p></td>
-                        <td><p>{{ obj.fine_decree_data__decree_date }}</p></td>
-                        <td><p>{{ obj.fine_amount }}</p></td>
-                        <td><p>{{ obj.fine_discount }}</p></td>
-                        <td><p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_number }}</p></td>
-                        <td><p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_registr_sign }}</p>
-                        </td>
-                        <td><p>{{ obj.fine_license_data__series_dr_license }}</p></td>
-                        <td><p>{{ obj.fine_license_data__number_dr_license }}</p></td>
+        <form method="GET" action="{% url 'mix_search' %}">
+            <p>Вы ищете штрафы по следующим критериям: <strong><input name="q" value="{{ request.GET.q }}"
+                                                  placeholder="Search..."></strong>
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск штрафов"> </span>
+                    Поиск
+                </button>
 
-                        {#                            <button class="btn-info" type="button"><a#}
-                        {#                                    href="{% url 'med_detail' pk=obj.pk %}">Подробнее#}
-                        {#                                >></a></button>#}
+            </p>
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'mix_search' %}
+                    {% if regs %}
+                        <p>Результат поиска: {{ regs|length }} шт.
+                            {{ regs|pluralize }}.
+                        </p>
+                        <table border="2">
+                            <caption>Таблица штрафов с личными даннымиы</caption>
+                            <th> №</th>
+                            <th> № пост-я</th>
+                            <th> Дата пост-я</th>
+                            <th> Статус штрафа</th>
+                            <th> Сумма</th>
+                            <th> Скидка</th>
+                            <th> № СТС</th>
+                            <th> № авто</th>
+                            <th> Серия ВУ</th>
+                            <th> № ВУ</th>
+
+                            {% for obj in regs %}
+
+                                <tr>
+                                    <td><p>{{ obj.pk }}</p></td>
+                                    <td><p>{{ obj.fine_decree_data__decree_number }}</p></td>
+                                    <td><p>{{ obj.fine_status }}</p></td>
+                                    <td><p>{{ obj.fine_decree_data__decree_date }}</p></td>
+                                    <td><p>{{ obj.fine_amount }}</p></td>
+                                    <td><p>{{ obj.fine_discount }}</p></td>
+                                    <td>
+                                        <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_number }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_registr_sign }}</p>
+                                    </td>
+                                    <td><p>{{ obj.fine_license_data__series_dr_license }}</p></td>
+                                    <td><p>{{ obj.fine_license_data__number_dr_license }}</p></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>Нет штрафов по заданному критерию.</p>
+                    {% endif %}
+                    </form>
+
+                {% else %}
+                    <table border="2">
+                        <caption>Таблица штрафов с личными даннымиы</caption>
+                        <th> №</th>
+                        <th> № пост-я</th>
+                        <th> Дата пост-я</th>
+                        <th> Статус штрафа</th>
+                        <th> Сумма</th>
+                        <th> Скидка</th>
+                        <th> № СТС</th>
+                        <th> № авто</th>
+                        <th> Серия ВУ</th>
+                        <th> № ВУ</th>
+                        {% for obj in objects_list %}
+                            <tr>
+                                <div>
+                                    <td><p>{{ obj.pk }}</p></td>
+                                    <td><p>{{ obj.fine_decree_data__decree_number }}</p></td>
+                                    <td><p>{{ obj.fine_status }}</p></td>
+                                    <td><p>{{ obj.fine_decree_data__decree_date }}</p></td>
+                                    <td><p>{{ obj.fine_amount }}</p></td>
+                                    <td><p>{{ obj.fine_discount }}</p></td>
+                                    <td>
+                                        <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_number }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_registr_sign }}</p>
+                                    </td>
+                                    <td><p>{{ obj.fine_license_data__series_dr_license }}</p></td>
+                                    <td><p>{{ obj.fine_license_data__number_dr_license }}</p></td>
+
+                                    {#                            <button class="btn-info" type="button"><a#}
+                                    {#                                    href="{% url 'med_detail' pk=obj.pk %}">Подробнее#}
+                                    {#                                >></a></button>#}
 
 
-                    </div>
-                </tr>
-            {% endfor %}
-        </table>
-        {#                {% endif %}#}
-        {#            {% endwith %}#}
+                                </div>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            {% endwith %}
     {% endblock %}
 {% endblock %}

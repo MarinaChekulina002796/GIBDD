@@ -40,17 +40,11 @@ def med_list(request):
 @login_required
 def mix_list(request):
     template = 'gibdd_app/Mix.html'
-    # objects_list = Fine.objects.all().order_by('fine_decree_data__decree_date', 'fine_status', ).distinct(
-    #     'pk').values_list('fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
-    #                       'fine_amount', 'fine_discount',
-    #                       'fine_car_data__car_registr_certificate__registr_certificate_number',
-    #                       'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
-    #                       'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license')
-    list = ['pk','fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
-                          'fine_amount', 'fine_discount',
-                          'fine_car_data__car_registr_certificate__registr_certificate_number',
-                          'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
-                          'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
+    list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
+            'fine_amount', 'fine_discount',
+            'fine_car_data__car_registr_certificate__registr_certificate_number',
+            'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
+            'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
 
     objects_list = Fine.objects.all().values(*list)
 
@@ -71,13 +65,13 @@ def med_search(request):
                   {'meds': meds, 'query': query})
 
 
-def search(request):
-    template = 'gibdd_app/MedicalCertificate_list.html'
+def mix_search(request):
+    template = 'gibdd_app/Mix.html'
     query = request.GET.get('q')
     if query:
         regs = RegistrationCertificate.objects.filter(
-            Q(registr_certificate_number__icontains=query) & Q(registr_certificate_registr_sign__contains=query))
-        regs.get(pk=1)
+            Q(registr_certificate_number__icontains=query) | Q(registr_certificate_registr_sign__contains=query))
+        # regs.get(pk=1)
     else:
         return HttpResponse('Please submit a search term.')
     return render(request, template,

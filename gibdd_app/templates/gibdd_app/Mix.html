@@ -11,7 +11,7 @@
 
         <form method="GET" action="{% url 'mix_search' %}">
             <p>Вы ищете штрафы по следующим критериям: <strong><input name="q" value="{{ request.GET.q }}"
-                                                  placeholder="Search..."></strong>
+                                                                      placeholder="Search..."></strong>
                 <button type="submit"><span class="glyphicon glyphicon-search"
                                             style="color:grey"
                                             title="Поиск штрафов"> </span>
@@ -29,8 +29,8 @@
                             <caption>Таблица штрафов с личными даннымиы</caption>
                             <th> №</th>
                             <th> № пост-я</th>
-                            <th> Дата пост-я</th>
                             <th> Статус штрафа</th>
+                            <th> Дата пост-я</th>
                             <th> Сумма</th>
                             <th> Скидка</th>
                             <th> № СТС</th>

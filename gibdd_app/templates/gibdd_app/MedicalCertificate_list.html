@@ -19,55 +19,59 @@
                 </button>
 
             </p>
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'med_search' %}
+                    {% if meds %}
+                        <p>Результат поиска: {{ meds|length }} шт.
+                            {#                    {{ meds|pluralize }}.#}
+                        </p>
+                        <table border="2">
+                            <caption>Таблица найденных справок</caption>
+                            <th> № справки:</th>
+                            <th> Дата выдачи:</th>
+                            <th> Диагноз:</th>
+                            <th> Срок действия:</th>
 
-            {% if meds %}
-                <p>Результат поиска: {{ meds|length }} шт.
-                    {#                    {{ meds|pluralize }}.#}
-                </p>
-                <table border="2">
-                    <caption>Таблица найденных справок</caption>
-                    <th> № справки:</th>
-                    <th> Дата выдачи:</th>
-                    <th> Диагноз:</th>
-                    <th> Срок действия:</th>
+                            {% for med in meds %}
 
-                    {% for med in meds %}
+                                <tr>
+                                    <td> {{ med.medical_number }}</td>
+                                    <td>{{ med.medical_date }}</td>
+                                    <td>{{ med.diagnosis }}</td>
+                                    <td> {{ med.validity }}</td>
 
-                        <tr>
-                            <td> {{ med.medical_number }}</td>
-                            <td>{{ med.medical_date }}</td>
-                            <td>{{ med.diagnosis }}</td>
-                            <td> {{ med.validity }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>Нет справок по заданному критерию.</p>
+                    {% endif %}
+                    </form>
 
-                        </tr>
-                    {% endfor %}
-                </table>
-            {% else %}
-                <p>Нет справок по заданному критерию.</p>
-            {% endif %}
-        </form>
+                {% else %}
+                    <table border="2">
+                        <caption>Таблица штрафов</caption>
+                        <th> № справки</th>
+                        <th> Дата выдачи</th>
+                        <th> Диагноз</th>
+                        <th> Подробнее...</th>
+                        {% for obj in objects_list %}
+                            <tr>
+                                <div>
+                                    <td><p>{{ obj.medical_number }}</p></td>
+                                    <td><p>{{ obj.medical_date }}</p></td>
+                                    <td><p>{{ obj.diagnosis }}</p></td>
+                                    <td>
+{#                                        <button class="btn-info" type="button"><a#}
+{#                                                href="{% url 'med_detail' pk=obj.pk %}">Подробнее#}
+{#                                            >></a></button>#}
+                                    </td>
 
-        <table border="2">
-            <caption>Таблица медицинских справок</caption>
-            <th> № справки     </th>
-            <th> Дата выдачи    </th>
-            <th> Диагноз        </th>
-            <th> Подробнее...   </th>
-            {% for obj in objects_list %}
-                <tr>
-                    <div>
-                        <td><p>{{ obj.medical_number }}</p></td>
-                        <td><p>{{ obj.medical_date }}</p></td>
-                        <td><p>{{ obj.diagnosis }}</p></td>
-                        <td>
-                            <button class="btn-info" type="button"><a href="{% url 'med_detail' pk=obj.pk %}">Подробнее
-                                >></a></button>
-                        </td>
-
-                    </div>
-                </tr>
-            {% endfor %}
-        </table>
-
+                                </div>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            {% endwith %}
     {% endblock %}
 {% endblock %}

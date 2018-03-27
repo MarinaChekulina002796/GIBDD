@@ -36,10 +36,10 @@ class Category(models.Model):
 
 
 MEDICAL_CHOICES = (
-    ('MONTH6', '6 месяцев'),
-    ('YEAR1', '1 год'),
-    ('YEAR2', '2 года'),
-    ('other', 'другое'),
+    ('6 месяцев', '6 месяцев'),
+    ('1 год', '1 год'),
+    ('2 года', '2 года'),
+    ('другое', 'другое'),
 )
 
 
@@ -71,7 +71,6 @@ class MedicalCertificate(models.Model):
     def image_url_2(self):
         if self.med_photo_2 and hasattr(self.med_photo_2, 'url'):
             return self.med_photo_2.url
-
 
 
 DISQAULIF_CHOICES = (
@@ -233,35 +232,20 @@ class Camera(models.Model):
     camera_address = models.CharField(max_length=200, verbose_name="Расположение камеры(адрес)")
 
 
-
-class PDD(models.Model):
-    PDD_paragraph = models.CharField(max_length=8, verbose_name="Пункт ПДД")
-    PDD_paragraph_contents = models.CharField(max_length=300, verbose_name="Содержание пункта ПДД")
-
-
-KOAP_CHOICES = (
-    ('k1', 'Предупреждение'),
-    ('k2', 'Административный штраф'),
-    ('k3', 'Конфискация орудия совершения или предмета административного нарушения'),
-    ('k4', 'Лишение специального права, предоставленного лицу'),
-    ('k5', 'Административный арест'),
-    ('k6', 'Дисквалификация'),
-    ('k7', 'Административное приостановление деятельности'),
-    ('k8', 'Обязательные работы'),
-    ('k9',
-     'Административный запрет на посещение мест проведения официальных спортивных соревнований в дни их проведения'),
-)
+# class PDD(models.Model):
+#     PDD_paragraph = models.CharField(max_length=8, verbose_name="Пункт ПДД")
+#     PDD_paragraph_contents = models.CharField(max_length=300, verbose_name="Содержание пункта ПДД")
 
 
-class KOAP(models.Model):
-    KOAP_paragraph = models.CharField(max_length=8, verbose_name="Пункт КОАП")
-    KOAP_paragraph_contents = models.CharField(max_length=300, verbose_name="Содержание пункта КОАП")
-    KOAP_type_of_violation = models.CharField(max_length=50, verbose_name="Вид нарушения", choices=KOAP_CHOICES,
-                                              default='k2')
+# class KOAP(models.Model):
+#     KOAP_paragraph = models.CharField(max_length=8, verbose_name="Пункт КОАП")
+#     KOAP_paragraph_contents = models.CharField(max_length=300, verbose_name="Содержание пункта КОАП")
+#     KOAP_type_of_violation = models.CharField(max_length=50, verbose_name="Вид нарушения", choices=KOAP_CHOICES,
+#                                               default='k2')
 
 
 REGISTRATION_CHOICES = (
-    ('type1', 'легковой'),
+    ('легковой', 'легковой'),
     ('type2', 'грузовой'),
     ('type3', 'автобус'),
     ('type4', 'мотоцикл'),
@@ -283,17 +267,17 @@ REGISTRATION_CHOICES2 = (
     ('B', 'B'),
     ('C', 'C'),
     ('D', 'D'),
-    ('pricep', 'прицеп'),
+    ('прицеп', 'прицеп'),
 )
 
 REGISTRATION_CHOICES3 = (
-    ('class1', 'первый'),
-    ('class2', 'второй'),
-    ('class3', 'третий'),
-    ('class4', 'четвертый'),
-    ('class5', 'пятый'),
-    ('class6', 'шестой'),
-    ('class7', 'седьмой')
+    ('первый', 'первый'),
+    ('второй', 'второй'),
+    ('третий', 'третий'),
+    ('четвертый', 'четвертый'),
+    ('пятый', 'пятый'),
+    ('шестой', 'шестой'),
+    ('седьмой', 'седьмой')
 )
 
 
@@ -307,7 +291,7 @@ class RegistrationCertificate(models.Model):
                                                help_text="Например,SAFDYUH12R1234567")
     registr_certificate_car_model = models.CharField(max_length=50, verbose_name="Марка, модель")
     registr_certificate_type_car = models.CharField(max_length=60, verbose_name="Тип ТС", choices=REGISTRATION_CHOICES,
-                                                    default='type1')
+                                                    default='легковой')
     registr_certificate_category = models.CharField(max_length=5, verbose_name="Категория ТС",
                                                     choices=REGISTRATION_CHOICES2)
     registr_certificate_year = models.IntegerField(verbose_name="Год выпуска ТС",
@@ -319,7 +303,7 @@ class RegistrationCertificate(models.Model):
     registr_certificate_power = models.CharField(max_length=12, verbose_name="Мощность двигателя,кВт/л.с",
                                                  help_text="Например,86(117)")
     registr_certificate_ecology_class = models.CharField(max_length=20, verbose_name="Экологический класс",
-                                                         choices=REGISTRATION_CHOICES3, default='class4')
+                                                         choices=REGISTRATION_CHOICES3, default='четвертый')
     registr_certificate_passport = models.CharField(max_length=11, verbose_name="Паспорт ТС серия",
                                                     help_text="Например, 12УУ№123456")
     registr_certificate_max_weight = models.IntegerField(verbose_name="Разрешенная max масса,kg")
@@ -341,15 +325,15 @@ class Owner(models.Model):
 
 
 STEALING_CHOICES = (
-    ('not_steal', 'Не числится в угоне'),
-    ('steal', 'Числится в угоне'),
+    ('Не числится в угоне', 'Не числится в угоне'),
+    ('Числится в угоне', 'Числится в угоне'),
 )
 
 
 # Угон
 class Stealing(models.Model):
     stealing_status = models.CharField(max_length=25, verbose_name="Статус", choices=STEALING_CHOICES, blank=True,
-                                       null=True, default='not_steal')
+                                       null=True, default='Не числится в угоне')
     stealing_date = models.DateField(verbose_name="Дата угона", blank=True, null=True)
     stealing_town = models.CharField(max_length=50, verbose_name="Город угона", blank=True, null=True)
     stealing_comment = models.TextField(verbose_name="Комментарий об угоне", blank=True, null=True)
@@ -361,11 +345,9 @@ class AutoSchool(models.Model):
     school_name = models.CharField(max_length=100, verbose_name="Название автошколы")
     school_photo = models.ImageField(upload_to='autoschool_photo/',
                                      default='autoschool_photo/default.jpg',
-                                     verbose_name="Фото автошколы", blank=True)
+                                     verbose_name="Фото автошколы", blank=True,null=True)
     school_address = models.CharField(max_length=100, verbose_name="Адрес автошколы")
     school_phone = models.CharField(max_length=100, verbose_name="Телефон автошколы")
-    school_date_from = models.DateField(verbose_name="Дата начала обучения")
-    school_date_to = models.DateField(verbose_name="Дата окончания обучения")
     school_category_dr_license = models.CharField(max_length=20,
                                                   verbose_name="Обучение на категорию")
 
@@ -396,6 +378,21 @@ class Car(models.Model):
         return "%s" % (self.car_number)
 
 
+KOAP_CHOICES = (
+    ('Предупреждение', 'Предупреждение'),
+    ('Административный штраф', 'Административный штраф'),
+    ('Конфискация орудия совершения или предмета административного нарушения',
+     'Конфискация орудия совершения или предмета административного нарушения'),
+    ('Лишение специального права, предоставленного лицу', 'Лишение специального права, предоставленного лицу'),
+    ('Административный арест', 'Административный арест'),
+    ('Дисквалификация', 'Дисквалификация'),
+    ('Административное приостановление деятельности', 'Административное приостановление деятельности'),
+    ('Обязательные работы', 'Обязательные работы'),
+    ('Административный запрет на посещение мест проведения официальных спортивных соревнований в дни их проведения',
+     'Административный запрет на посещение мест проведения официальных спортивных соревнований в дни их проведения'),
+)
+
+
 # Постановление
 class Decree(models.Model):
     decree_number = models.CharField(max_length=25, verbose_name="Номер постановления")
@@ -414,8 +411,9 @@ class Decree(models.Model):
     decree_photo = models.ImageField(upload_to='decree_photo/',
                                      default='decree_photo/default.jpg',
                                      verbose_name="Фото нарушения")
-    decree_KOAP = models.ManyToManyField(KOAP, verbose_name="Нарушенные пункты КОАП")
-    decree_PDD = models.ManyToManyField(PDD, verbose_name="Нарушенные пункты ПДД")
+    decree_KOAP = models.CharField(max_length=110, choices=KOAP_CHOICES,
+                                   default='Административный штраф', verbose_name="Нарушенные пункты КОАП")
+    decree_PDD = models.CharField(max_length=50, verbose_name="Нарушенные пункты ПДД")
 
 
 # штраф

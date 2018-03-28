@@ -10,8 +10,9 @@
     {% block form %}
 
         <form method="GET" action="{% url 'mix_search' %}">
-            <p>Вы ищете штрафы по следующим критериям: <strong><input name="q" value="{{ request.GET.q }}"
-                                                                      placeholder="Search..."></strong>
+            <p>№ СТС или № а/м <strong><input name="q" value="{{ request.GET.q }}"
+                                              placeholder="Search..."></strong>
+
                 <button type="submit"><span class="glyphicon glyphicon-search"
                                             style="color:grey"
                                             title="Поиск штрафов"> </span>
@@ -23,10 +24,10 @@
                 {% if url_name == 'mix_search' %}
                     {% if regs %}
                         <p>Результат поиска: {{ regs|length }} шт.
-{#                            {{ regs|pluralize }}.#}
+                            {#                            {{ regs|pluralize }}.#}
                         </p>
                         <table border="2">
-                            <caption>Таблица штрафов с личными даннымиы</caption>
+                            <caption>Таблица штрафов с личными данными</caption>
                             <th> №</th>
                             <th> № постановления</th>
                             <th> Статус штрафа</th>
@@ -64,45 +65,47 @@
                     </form>
 
                 {% else %}
-                    <table border="2">
-                        <caption>Таблица штрафов с личными даннымиы</caption>
-                        <th> №</th>
-                        <th> № постановленияя</th>
-                        <th> Дата постановленияя</th>
-                        <th> Статус штрафа</th>
-                        <th> Сумма</th>
-                        <th> Скидка</th>
-                        <th> № СТС</th>
-                        <th> № авто</th>
-                        <th> Серия ВУ</th>
-                        <th> № ВУ</th>
-                        {% for obj in objects_list %}
-                            <tr>
-                                <div>
-                                    <td><p>{{ obj.pk }}</p></td>
-                                    <td><p>{{ obj.fine_decree_data__decree_number }}</p></td>
-                                    <td><p>{{ obj.fine_status }}</p></td>
-                                    <td><p>{{ obj.fine_decree_data__decree_date }}</p></td>
-                                    <td><p>{{ obj.fine_amount }}</p></td>
-                                    <td><p>{{ obj.fine_discount }}</p></td>
-                                    <td>
-                                        <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_number }}</p>
-                                    </td>
-                                    <td>
-                                        <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_registr_sign }}</p>
-                                    </td>
-                                    <td><p>{{ obj.fine_license_data__series_dr_license }}</p></td>
-                                    <td><p>{{ obj.fine_license_data__number_dr_license }}</p></td>
+                    {% if user.is_authenticated %}
+                        <table border="2">
+                            <caption>Таблица штрафов с личными даннымиы</caption>
+                            <th> №</th>
+                            <th> № постановленияя</th>
+                            <th> Дата постановленияя</th>
+                            <th> Статус штрафа</th>
+                            <th> Сумма</th>
+                            <th> Скидка</th>
+                            <th> № СТС</th>
+                            <th> № авто</th>
+                            <th> Серия ВУ</th>
+                            <th> № ВУ</th>
+                            {% for obj in objects_list %}
+                                <tr>
+                                    <div>
+                                        <td><p>{{ obj.pk }}</p></td>
+                                        <td><p>{{ obj.fine_decree_data__decree_number }}</p></td>
+                                        <td><p>{{ obj.fine_status }}</p></td>
+                                        <td><p>{{ obj.fine_decree_data__decree_date }}</p></td>
+                                        <td><p>{{ obj.fine_amount }}</p></td>
+                                        <td><p>{{ obj.fine_discount }}</p></td>
+                                        <td>
+                                            <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_number }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ obj.fine_car_data__car_registr_certificate__registr_certificate_registr_sign }}</p>
+                                        </td>
+                                        <td><p>{{ obj.fine_license_data__series_dr_license }}</p></td>
+                                        <td><p>{{ obj.fine_license_data__number_dr_license }}</p></td>
 
-                                    {#                            <button class="btn-info" type="button"><a#}
-                                    {#                                    href="{% url 'med_detail' pk=obj.pk %}">Подробнее#}
-                                    {#                                >></a></button>#}
+                                        {#                            <button class="btn-info" type="button"><a#}
+                                        {#                                    href="{% url 'med_detail' pk=obj.pk %}">Подробнее#}
+                                        {#                                >></a></button>#}
 
 
-                                </div>
-                            </tr>
-                        {% endfor %}
-                    </table>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
                 {% endif %}
             {% endwith %}
     {% endblock %}

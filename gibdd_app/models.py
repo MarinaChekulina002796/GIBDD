@@ -329,6 +329,11 @@ class RegistrationCertificate(models.Model):
         return "№ %s для %s, %s" % (
             self.registr_certificate_number, self.registr_certificate_registr_sign, self.registr_certificate_car_model)
 
+    # def concatenat(self, arg1, arg2):
+    #     arg1 = self.registr_certificate_number
+    #     arg2 = self.registr_certificate_registr_sign
+    #     return arg1 + " " + arg2
+
 
 # Собственник
 class Owner(models.Model):
@@ -337,9 +342,9 @@ class Owner(models.Model):
     owner_name = models.CharField(max_length=50, verbose_name="Имя собственника")
     owner_patronymic = models.CharField(max_length=50, verbose_name="Отчество собственника")
     owner_town = models.CharField(max_length=50, verbose_name="Республика,край,область")
-    owner_district = models.CharField(max_length=50, verbose_name="Район", blank=True,null=True)
+    owner_district = models.CharField(max_length=50, verbose_name="Район", blank=True, null=True)
     owner_address = models.CharField(max_length=100, verbose_name="Адрес собственника")
-    owner_comment = models.CharField(max_length=400, verbose_name="Особые отметки", blank=True,null=True)
+    owner_comment = models.CharField(max_length=400, verbose_name="Особые отметки", blank=True, null=True)
     owner_who_give = models.CharField(max_length=200, verbose_name="Выдано ГИБДД")
     owner_date_give = models.DateField(verbose_name="Дата выдачи свидетельства собственника")
 
@@ -443,8 +448,8 @@ class Decree(models.Model):
                                    unique=False)
     decree_violation = models.CharField(max_length=200, verbose_name="Нарушение(смысл)", choices=DECREE_CHOICES,
                                         null=True)
-    decree_violation_text = models.TextField(verbose_name="Полное описание нарушения", blank=True,null=True)
-    decree_total_speed = models.IntegerField(verbose_name="Скорость движения в момент нарушения", blank=True,null=True)
+    decree_violation_text = models.TextField(verbose_name="Полное описание нарушения", blank=True, null=True)
+    decree_total_speed = models.IntegerField(verbose_name="Скорость движения в момент нарушения", blank=True, null=True)
     decree_photo = models.ImageField(upload_to='decree_photo/',
                                      default='decree_photo/default.jpg',
                                      verbose_name="Фото нарушения")
@@ -460,7 +465,7 @@ class Decree(models.Model):
 class Fine(models.Model):
     fine_amount = models.IntegerField(verbose_name="Первоначальная сумма штрафа")
     fine_discount = models.FloatField(verbose_name="Скидка")
-    date_of_payment_fine = models.DateTimeField(verbose_name="Дата оплаты штрафа",blank=True,null=True)
+    date_of_payment_fine = models.DateTimeField(verbose_name="Дата оплаты штрафа", blank=True, null=True)
     fine_status = models.CharField(max_length=50, verbose_name="Статус штрафа")
     fine_license_data = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Данные о ВУ", unique=False)
     fine_decree_data = models.OneToOneField(Decree, verbose_name="Данные о постановлении", on_delete=models.CASCADE)

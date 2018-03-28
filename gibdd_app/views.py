@@ -5,10 +5,15 @@ from functools import reduce
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.postgres.aggregates import StringAgg
+from django.contrib.postgres.search import SearchVector, SearchRank
 from django.db.models import Q
+from django.db.models.functions import Concat
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.urls.base import reverse
+from django.db.models import Value as V
+
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
     FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm
@@ -37,7 +42,7 @@ def med_list(request):
     return render(request, template, context)
 
 
-@login_required
+
 def mix_list(request):
     template = 'gibdd_app/Mix.html'
     list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
@@ -68,19 +73,36 @@ def med_search(request):
 def mix_search(request):
     template = 'gibdd_app/Mix.html'
     query = request.GET.get('q')
+    # query_list = query.split(" ")
+
     if query:
-        # regs = RegistrationCertificate.objects.filter(
         list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
                 'fine_amount', 'fine_discount',
                 'fine_car_data__car_registr_certificate__registr_certificate_number',
                 'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
                 'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
-        regs = Fine.objects.filter(
-            Q(fine_decree_data__decree_number__icontains=query)).values(*list)
 
-            # Q(fine_decree_data__decree_number__icontains=query))
+        # regs=Fine.objects.annotate(search=Concat('fine_car_data__car_registr_certificate__registr_certificate_number',
+        #                                   'fine_car_data__car_registr_certificate__registr_certificate_registr_sign')).filter(
+        #     Q(fine_car_data__car_registr_certificate__registr_certificate_number__icontains=query) &
+        #     Q(fine_car_data__car_registr_certificate__registr_certificate_registr_sign__icontains=query)).values(*list)
 
-        # regs.get(pk=1)
+
+        # queryset = Fine.objects.annotate(
+        #     search_name=Concat('fine_car_data__car_registr_certificate__registr_certificate_number' , Value(',') ,
+        #                        'fine_car_data__car_registr_certificate__registr_certificate_registr_sign'))
+
+        regs = Fine.objects.annotate(
+            search_name=Concat('fine_car_data__car_registr_certificate__registr_certificate_number', V(' '),
+                               'fine_car_data__car_registr_certificate__registr_certificate_registr_sign'
+                               )).filter(search_name__icontains=query).values(*list)
+
+        # regs = Fine.objects.filter(
+        #     Q(fine_car_data__car_registr_certificate__registr_certificate_number__icontains=query) |
+        #     Q(fine_car_data__car_registr_certificate__registr_certificate_registr_sign__icontains=query)).values(
+        #     *list)
+        # regs = queryset.filter(search_name__icontains=query)
+
     else:
         return HttpResponse('Please submit a search term.')
     return render(request, template,

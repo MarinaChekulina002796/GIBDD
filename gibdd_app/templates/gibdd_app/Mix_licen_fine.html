@@ -3,18 +3,18 @@
 {% load staticfiles %}
 {% block header %}
     {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
-    <h2><i><b>Поиск штрафов, числящихся на автомобиле.</b></i></h2>
+    <h2><i><b>Поиск штрафов, числящихся на водительском удостоверении.</b></i></h2>
 {% endblock %}
 {% block content %}
 
     {% block form %}
 
-        <form method="GET" action="{% url 'mix_search' %}">
-            <p><i>Для поиска штрафов введите № СТС и № а/м через <b>один пробел</b>. Русские буквы могут быть введены как
+        <form method="GET" action="{% url 'mix_search_licen_fine' %}">
+            <p><i>Для поиска штрафов введите слитно серию и № ВУ. Русские буквы могут быть введены как
                 строчные, так и заглавные.</i></p>
-            <p><b><i>Например,</i></b> 1234№123456 А111АА777 <i> или</i> 1234№123456 а111аа777. </p>
+            <p><b><i>Например,</i></b> 1234123456 <i> или</i> 12АА123456. </p>
             <p> Поиск штрафов: <strong><input name="q" value="{{ request.GET.q }}"
-                                              placeholder="1234№123456 А111АА777"></strong>
+                                              placeholder="12АА123456"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"
                                             style="color:grey"
@@ -24,7 +24,7 @@
 
             </p>
             {% with url_name=request.resolver_match.url_name %}
-                {% if url_name == 'mix_search' %}
+                {% if url_name == 'mix_search_licen_fine' %}
                     {% if regs %}
                         <p>Результат поиска: {{ regs|length }} шт.
                             {#                            {{ regs|pluralize }}.#}

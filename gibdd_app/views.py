@@ -42,9 +42,24 @@ def med_list(request):
     return render(request, template, context)
 
 
-
-def mix_list(request):
+def mix_list_reg_auto_fine(request):
     template = 'gibdd_app/Mix.html'
+    list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
+            'fine_amount', 'fine_discount',
+            'fine_car_data__car_registr_certificate__registr_certificate_number',
+            'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
+            'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
+
+    objects_list = Fine.objects.all().values(*list)
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+def mix_list_licen_fine(request):
+    template = 'gibdd_app/Mix_licen_fine.html'
     list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
             'fine_amount', 'fine_discount',
             'fine_car_data__car_registr_certificate__registr_certificate_number',
@@ -65,7 +80,7 @@ def med_search(request):
     if query:
         meds = MedicalCertificate.objects.filter(Q(medical_number__icontains=query))
     else:
-        return HttpResponse('Please submit a search term.')
+        return HttpResponse('Пожалуйста, заполните строку поиска.')
     return render(request, template,
                   {'meds': meds, 'query': query})
 
@@ -104,7 +119,35 @@ def mix_search(request):
         # regs = queryset.filter(search_name__icontains=query)
 
     else:
-        return HttpResponse('Please submit a search term.')
+        text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+        button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+        tex = (text, button)
+        return HttpResponse(tex)
+    return render(request, template,
+                  {'regs': regs, 'query': query})
+
+
+def mix_search_licen_fine(request):
+    template = 'gibdd_app/Mix_licen_fine.html'
+    query = request.GET.get('q')
+
+    if query:
+        list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
+                'fine_amount', 'fine_discount',
+                'fine_car_data__car_registr_certificate__registr_certificate_number',
+                'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
+                'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
+
+        regs = Fine.objects.annotate(
+            search_name=Concat('fine_license_data__series_dr_license',
+                               'fine_license_data__number_dr_license'
+                               )).filter(search_name__icontains=query).values(*list)
+
+    else:
+        text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+        button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+        tex = (text, button)
+        return HttpResponse(tex)
     return render(request, template,
                   {'regs': regs, 'query': query})
 

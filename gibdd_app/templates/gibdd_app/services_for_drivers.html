@@ -83,14 +83,17 @@
                         <img class="img-responsive" src="{% static 'gibdd_app/images/services/services1.png' %}">
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">Проверка неуплаченных штрафов</h3>
+                        <a href="{% url 'mix_list_reg_auto_fine' %}"><h3 class="media-heading">Проверка неуплаченных
+                            штрафов</h3></a>
 
                     </div>
-                    <p>Сервис позволяет в режиме реального времени получить информацию о неуплаченных административных
-                        штрафах</p>
+
+                    <p>Сервис позволяет в режиме реального времени получить
+                        информацию о неуплаченных административных штрафах по № а/м и № СТС</p>
+
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'mix_list' %}"><span
+                            <li class="active"><a href="{% url 'mix_list_reg_auto_fine' %}"><span
                                     class="glyphicon glyphicon-list-alt"
                                     style="color:darkblue"
                                     title="Проверка штрафов (список)"> </span></a></li>
@@ -106,10 +109,20 @@
                         <img class="img-responsive" src="{% static 'gibdd_app/images/services/services3.png' %}">
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">Проверка водительского удостоверения</h3>
+                        <a href="{% url 'mix_list_licen_fine' %}"><h3 class="media-heading">Проверка водительского удостоверения</h3></a>
 
                     </div>
-                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                    <p>Сервис позволяет в режиме реального времени получить информацию о неуплаченных административных
+                        штрафах по данным ВУ</p>
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'mix_list_licen_fine' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Проверка штрафов по ВУ"> </span></a></li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
 

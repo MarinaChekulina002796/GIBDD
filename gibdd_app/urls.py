@@ -8,7 +8,7 @@ from gibdd_app.views import login, logout, services, gibdd, participants, worker
     add_witness, add_licen_accid, add_inspector, add_fine, add_car, add_registr, add_owner, add_steal, add_decree, \
     add_camera, med_search, mix_search, mix_list_reg_auto_fine, mix_list_licen_fine, mix_search_licen_fine, \
     mix_list_VIN_stealing, mix_search_VIN_stealing, mix_list_VIN_history, mix_search_VIN_history, mix_list_VIN_accident, \
-    mix_search_VIN_accident, add_autoschool, add_history
+    mix_search_VIN_accident, add_autoschool, add_history, add_diagnostic_card, add_insurance
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
@@ -66,6 +66,8 @@ urlpatterns = [
                   url(r'^camera/create/$', add_camera, name='camera_create'),
                   url(r'^autoschool/create/$', add_autoschool, name='autoschool_create'),
                   url(r'^history/create/$', add_history, name='history_create'),
+                  url(r'^diagnostic_card/create/$', add_diagnostic_card, name='diagnostic_card_create'),
+                  url(r'^insurance/create/$', add_insurance, name='insurance_create'),
                   url(r'^med_search/$', med_search, name="med_search"),
                   url(r'^mix_list_reg_auto_fine/$', mix_list_reg_auto_fine, name='mix_list_reg_auto_fine'),
                   url(r'^mix_list_licen_fine/$', mix_list_licen_fine, name='mix_list_licen_fine'),

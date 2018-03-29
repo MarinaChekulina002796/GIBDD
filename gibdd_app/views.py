@@ -17,12 +17,12 @@ from django.db.models import Value as V
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
     FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm, AutoschoolForm, \
-    HistoryForm
+    HistoryForm, DiagnosticCardForm, InsuranceForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
     AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
-    Camera, CarHistory, Accident_Car, AutoSchool
+    Camera, CarHistory, Accident_Car, AutoSchool, DiagnosticCard, Insurance
 from django.shortcuts import render
 
 
@@ -799,6 +799,45 @@ def add_history(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def add_diagnostic_card(request):
+    if request.method == 'POST':
+        form = DiagnosticCardForm(request.POST, request.FILES)
+        if form.is_valid():
+            cam = DiagnosticCard(**form.cleaned_data)
+            cam.save()
+            return redirect(reverse('workers'), args=[cam.pk])
+    else:
+        form = DiagnosticCardForm()
+
+    template = 'gibdd_app/DiagnosticCard_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_insurance(request):
+    if request.method == 'POST':
+        form = InsuranceForm(request.POST, request.FILES)
+        if form.is_valid():
+            cam = Insurance(**form.cleaned_data)
+            cam.save()
+            return redirect(reverse('workers'), args=[cam.pk])
+    else:
+        form = InsuranceForm()
+
+    template = 'gibdd_app/Insurance_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
 
 
     # @login_required

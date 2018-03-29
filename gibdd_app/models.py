@@ -588,7 +588,7 @@ class DiagnosticCard(models.Model):
                                        unique_for_year=True)
     diagnostic_date_from = models.DateField(verbose_name="Дата выдачи")
     diagnostic_date_to = models.DateField(verbose_name="Срок действия до")
-    diagnostic_company = models.TextField(verbose_name="Пункт технического осмотра")
+    diagnostic_company = models.CharField(max_length=200,verbose_name="Пункт технического осмотра")
     diagnostic_results = models.TextField(verbose_name="Результаты диагностирования")
 
     def __str__(self):

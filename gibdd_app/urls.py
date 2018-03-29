@@ -7,7 +7,7 @@ from gibdd_app.views import login, logout, services, gibdd, participants, worker
     LicenseDisqualificationUpdate, delete_disq, update_license, add_license, add_lic_cat, add_med, add_accident, \
     add_witness, add_licen_accid, add_inspector, add_fine, add_car, add_registr, add_owner, add_steal, add_decree, \
     add_camera, med_search, mix_search, mix_list_reg_auto_fine, mix_list_licen_fine, mix_search_licen_fine, \
-    mix_list_VIN_stealing, mix_search_VIN_stealing
+    mix_list_VIN_stealing, mix_search_VIN_stealing, mix_list_VIN_history, mix_search_VIN_history
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
@@ -70,5 +70,7 @@ urlpatterns = [
                   url(r'^mix_search_licen_fine/$', mix_search_licen_fine, name="mix_search_licen_fine"),
                   url(r'^mix_list_VIN_stealing/$', mix_list_VIN_stealing, name='mix_list_VIN_stealing'),
                   url(r'^mix_search_VIN_stealing/$', mix_search_VIN_stealing, name="mix_search_VIN_stealing"),
+                  url(r'^mix_list_VIN_history/$', mix_list_VIN_history, name='mix_list_VIN_history'),
+                  url(r'^mix_search_VIN_history/$', mix_search_VIN_history, name="mix_search_VIN_history"),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

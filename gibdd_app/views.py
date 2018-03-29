@@ -21,7 +21,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
     AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
-    Camera
+    Camera, CarHistory
 from django.shortcuts import render
 
 
@@ -103,6 +103,45 @@ def mix_search_VIN_stealing(request):
                 'car_stealing__stealing_status', 'car_stealing__stealing_date', 'car_stealing__stealing_town']
 
         regs = Car.objects.filter(car_registr_certificate__registr_certificate_VIN__icontains=query).values(*list)
+
+    else:
+        text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+        button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+        tex = (text, button)
+        return HttpResponse(tex)
+    return render(request, template, {'regs': regs, 'query': query})
+
+
+def mix_list_VIN_history(request):
+    template = 'gibdd_app/Mix_VIN_CarHistory.html'
+    list = ['pk', 'car_item__car_registr_certificate__registr_certificate_VIN',
+            'car_item__car_registr_certificate__registr_certificate_car_model',
+            'car_item__car_registr_certificate__registr_certificate_colour',
+            'car_item__car_registr_certificate__registr_certificate_year',
+            'history_date_from','history_date_to','history_country','history_town'
+            ]
+    objects_list = CarHistory.objects.all().values(*list)
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+def mix_search_VIN_history(request):
+    template = 'gibdd_app/Mix_VIN_CarHistory.html'
+    query = request.GET.get('q')
+
+    if query:
+        list = ['pk', 'car_item__car_registr_certificate__registr_certificate_VIN',
+                'car_item__car_registr_certificate__registr_certificate_car_model',
+                'car_item__car_registr_certificate__registr_certificate_colour',
+                'car_item__car_registr_certificate__registr_certificate_year',
+                'history_date_from', 'history_date_to', 'history_country', 'history_town'
+                ]
+
+        regs = CarHistory.objects.filter(car_item__car_registr_certificate__registr_certificate_VIN__icontains=query).values(
+            *list)
 
     else:
         text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '

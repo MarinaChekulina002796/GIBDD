@@ -10,10 +10,10 @@
     {% block form %}
 
         <form method="GET" action="{% url 'mix_search_VIN_stealing' %}">
-            <p><i>Для поиска штрафов введите VIN автомобиля, состоящий из 17 знаков. Английские буквы могут быть введены как
+            <p><i>Для поиска введите VIN автомобиля, состоящий из 17 знаков. Английские буквы могут быть введены как
                 строчные, так и заглавные.</i></p>
             <p><b><i>Например,</i></b> ABCDEFG11A1234567 <i> или</i> abcdefg11a1234567. </p>
-            <p> Поиск штрафов: <strong><input maxlength="17" minlength="17" name="q" value="{{ request.GET.q }}"
+            <p> Поиск: <strong><input maxlength="17" minlength="17" name="q" value="{{ request.GET.q }}"
                                               placeholder="ABCDEFG11A1234567"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"

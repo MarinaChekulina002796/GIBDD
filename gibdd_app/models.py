@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 from django.db import models
 import datetime
 from django.contrib.auth.models import User
@@ -329,10 +330,10 @@ class RegistrationCertificate(models.Model):
         return "№ %s для %s, %s" % (
             self.registr_certificate_number, self.registr_certificate_registr_sign, self.registr_certificate_car_model)
 
-    # def concatenat(self, arg1, arg2):
-    #     arg1 = self.registr_certificate_number
-    #     arg2 = self.registr_certificate_registr_sign
-    #     return arg1 + " " + arg2
+        # def concatenat(self, arg1, arg2):
+        #     arg1 = self.registr_certificate_number
+        #     arg2 = self.registr_certificate_registr_sign
+        #     return arg1 + " " + arg2
 
 
 # Собственник

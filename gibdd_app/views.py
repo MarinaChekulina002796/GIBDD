@@ -74,6 +74,44 @@ def mix_list_licen_fine(request):
     return render(request, template, context)
 
 
+def mix_list_VIN_stealing(request):
+    template = 'gibdd_app/Mix_VIN_stealing.html'
+    list = ['pk', 'car_registr_certificate__registr_certificate_VIN',
+            'car_registr_certificate__registr_certificate_number',
+            'car_registr_certificate__registr_certificate_car_model',
+            'car_registr_certificate__registr_certificate_colour',
+            'car_owner__owner_surname', 'car_owner__owner_name',
+            'car_stealing__stealing_status', 'car_stealing__stealing_date', 'car_stealing__stealing_town']
+    objects_list = Car.objects.all().values(*list)
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+def mix_search_VIN_stealing(request):
+    template = 'gibdd_app/Mix_VIN_stealing.html'
+    query = request.GET.get('q')
+
+    if query:
+        list = ['pk', 'car_registr_certificate__registr_certificate_VIN',
+                'car_registr_certificate__registr_certificate_number',
+                'car_registr_certificate__registr_certificate_car_model',
+                'car_registr_certificate__registr_certificate_colour',
+                'car_owner__owner_surname', 'car_owner__owner_name',
+                'car_stealing__stealing_status', 'car_stealing__stealing_date', 'car_stealing__stealing_town']
+
+        regs = Car.objects.filter(car_registr_certificate__registr_certificate_VIN__icontains=query).values(*list)
+
+    else:
+        text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+        button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+        tex = (text, button)
+        return HttpResponse(tex)
+    return render(request, template, {'regs': regs, 'query': query})
+
+
 def med_search(request):
     template = 'gibdd_app/MedicalCertificate_list.html'
     query = request.GET.get('q')
@@ -81,14 +119,12 @@ def med_search(request):
         meds = MedicalCertificate.objects.filter(Q(medical_number__icontains=query))
     else:
         return HttpResponse('Пожалуйста, заполните строку поиска.')
-    return render(request, template,
-                  {'meds': meds, 'query': query})
+    return render(request, template, {'meds': meds, 'query': query})
 
 
 def mix_search(request):
     template = 'gibdd_app/Mix.html'
     query = request.GET.get('q')
-    # query_list = query.split(" ")
 
     if query:
         list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
@@ -97,34 +133,21 @@ def mix_search(request):
                 'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
                 'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
 
-        # regs=Fine.objects.annotate(search=Concat('fine_car_data__car_registr_certificate__registr_certificate_number',
-        #                                   'fine_car_data__car_registr_certificate__registr_certificate_registr_sign')).filter(
-        #     Q(fine_car_data__car_registr_certificate__registr_certificate_number__icontains=query) &
-        #     Q(fine_car_data__car_registr_certificate__registr_certificate_registr_sign__icontains=query)).values(*list)
-
-
-        # queryset = Fine.objects.annotate(
-        #     search_name=Concat('fine_car_data__car_registr_certificate__registr_certificate_number' , Value(',') ,
-        #                        'fine_car_data__car_registr_certificate__registr_certificate_registr_sign'))
-
         regs = Fine.objects.annotate(
             search_name=Concat('fine_car_data__car_registr_certificate__registr_certificate_number', V(' '),
                                'fine_car_data__car_registr_certificate__registr_certificate_registr_sign'
                                )).filter(search_name__icontains=query).values(*list)
-
         # regs = Fine.objects.filter(
         #     Q(fine_car_data__car_registr_certificate__registr_certificate_number__icontains=query) |
         #     Q(fine_car_data__car_registr_certificate__registr_certificate_registr_sign__icontains=query)).values(
         #     *list)
-        # regs = queryset.filter(search_name__icontains=query)
 
     else:
         text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
         button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
         tex = (text, button)
         return HttpResponse(tex)
-    return render(request, template,
-                  {'regs': regs, 'query': query})
+    return render(request, template, {'regs': regs, 'query': query})
 
 
 def mix_search_licen_fine(request):
@@ -148,8 +171,7 @@ def mix_search_licen_fine(request):
         button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
         tex = (text, button)
         return HttpResponse(tex)
-    return render(request, template,
-                  {'regs': regs, 'query': query})
+    return render(request, template, {'regs': regs, 'query': query})
 
 
 @login_required

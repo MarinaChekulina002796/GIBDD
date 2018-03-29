@@ -10,10 +10,11 @@
     {% block form %}
 
         <form method="GET" action="{% url 'mix_search' %}">
-            <p><i>Для поиска штрафов введите № СТС и № а/м через <b>один пробел</b>. Русские буквы могут быть введены как
+            <p><i>Для поиска штрафов введите № СТС и № а/м через <b>один пробел</b>. Русские буквы могут быть введены
+                как
                 строчные, так и заглавные.</i></p>
             <p><b><i>Например,</i></b> 1234№123456 А111АА777 <i> или</i> 1234№123456 а111аа777. </p>
-            <p> Поиск штрафов: <strong><input name="q" value="{{ request.GET.q }}"
+            <p> Поиск штрафов: <strong><input minlength="20" maxlength="21" name="q" value="{{ request.GET.q }}"
                                               placeholder="1234№123456 А111АА777"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"

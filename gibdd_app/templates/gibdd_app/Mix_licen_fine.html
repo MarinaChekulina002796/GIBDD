@@ -13,7 +13,7 @@
             <p><i>Для поиска штрафов введите слитно серию и № ВУ. Русские буквы могут быть введены как
                 строчные, так и заглавные.</i></p>
             <p><b><i>Например,</i></b> 1234123456 <i> или</i> 12АА123456. </p>
-            <p> Поиск штрафов: <strong><input name="q" value="{{ request.GET.q }}"
+            <p> Поиск штрафов: <strong><input minlength="10" maxlength="10" name="q" value="{{ request.GET.q }}"
                                               placeholder="12АА123456"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"

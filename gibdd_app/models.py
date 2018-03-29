@@ -492,7 +492,7 @@ ACCIDENT_CHOICES = (
 class AccidentReport(models.Model):
     accident_date = models.DateField(verbose_name="Дата аварии")
     accident_time = models.TimeField(verbose_name="Время аварии")
-    number_accident = models.CharField(max_length=40, verbose_name="Номер протокола аварии", unique_for_date=True)
+    number_accident = models.CharField(max_length=40, verbose_name="Номер протокола аварии")
     accident_paper_date = models.DateField(verbose_name="Дата составления протокола")
     accident_paper_time = models.TimeField(verbose_name="Время составления протокола")
     accident_address = models.CharField(max_length=200, verbose_name="Адрес аварии")
@@ -511,10 +511,10 @@ class AccidentReport(models.Model):
                                            on_delete=models.CASCADE, unique=False)
     accident_photo_1 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
-                                         verbose_name="Первое фото аварии", blank=True)
+                                         verbose_name="Первое фото аварии", blank=True,null=True)
     accident_photo_2 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
-                                         verbose_name="Второе фото аварии", blank=True)
+                                         verbose_name="Второе фото аварии", blank=True,null=True)
     accident_comment = models.TextField(verbose_name="Комментарий к аварии")
 
     def __str__(self):

@@ -23,6 +23,7 @@ admin.site.register(models.Decree)
 admin.site.register(models.CarHistory)
 admin.site.register(models.LicenseDisqualification)
 admin.site.register(models.Lisense_Category)
-
+admin.site.register(models.Accident_Car)
+admin.site.register(models.InsuranceLicense)
 
 

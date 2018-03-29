@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
     AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
-    Camera, AutoSchool
+    Camera, AutoSchool, CarHistory
 
 
 # форма для авторизации
@@ -135,4 +135,10 @@ class CameraForm(forms.ModelForm):
 class AutoschoolForm(forms.ModelForm):
     class Meta:
         model = AutoSchool
+        exclude = ()
+
+
+class HistoryForm(forms.ModelForm):
+    class Meta:
+        model = CarHistory
         exclude = ()

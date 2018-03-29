@@ -16,7 +16,8 @@ from django.db.models import Value as V
 
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
-    FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm, AutoschoolForm
+    FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm, AutoschoolForm, \
+    HistoryForm
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
@@ -774,6 +775,25 @@ def add_autoschool(request):
         form = AutoschoolForm()
 
     template = 'gibdd_app/AutoSchool_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_history(request):
+    if request.method == 'POST':
+        form = HistoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            cam = CarHistory(**form.cleaned_data)
+            cam.save()
+            return redirect(reverse('workers'), args=[cam.pk])
+    else:
+        form = HistoryForm()
+
+    template = 'gibdd_app/History_form.html'
     context = {
         'form': form,
     }

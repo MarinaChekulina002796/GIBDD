@@ -4,8 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Статистика</title>
+    {% load static %}
+{#    <script type="text/javascript" src="{% static "gibdd_app/js/fusioncharts.js" %}"></script>#}
+{#    <script type="text/javascript" src="{% static "gibdd_app/js/fusioncharts.theme.fint.js" %}"></script>#}
 </head>
 <body>
+<html>
 
+<body>
+<div id="chart-1">{{ output|safe }}</div>
+</body>
+</html>
 </body>
 </html>

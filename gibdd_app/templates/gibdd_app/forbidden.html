@@ -1,0 +1,7 @@
+{% extends 'gibdd_app/base.html' %}
+
+{% block title %}Запрещено{% endblock %}
+{% block content %}
+<p><i><b>{{ user.username }}</b>, вам запрещен доступ к данной функции.</i></p>
+<button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+{% endblock %}

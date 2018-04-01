@@ -4,7 +4,7 @@ from functools import reduce
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.postgres.aggregates import StringAgg
 from django.contrib.postgres.search import SearchVector, SearchRank
 from django.db.models import Q
@@ -13,7 +13,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.urls.base import reverse
 from django.db.models import Value as V
-
+from dateutil.relativedelta import *
+import datetime
+from datetime import timedelta
+import gibdd_app
 from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
     LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
     FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm, AutoschoolForm, \
@@ -29,6 +32,10 @@ from django.shortcuts import render
 # главная страница ГИБДД
 def main(request):
     return render(request, 'gibdd_app/main.html')
+
+
+def forbidden(request):
+    return render(request, 'gibdd_app/forbidden.html')
 
 
 # список всех справок (по 2 шт в ряд)
@@ -535,6 +542,7 @@ def add_med(request):
     return render(request, template, context)
 
 
+@permission_required("can_add_lisense_category", login_url='forbidden')
 @login_required
 def add_lic_cat(request):
     if request.method == 'POST':
@@ -813,6 +821,25 @@ def add_diagnostic_card(request):
         form = DiagnosticCardForm()
 
     template = 'gibdd_app/DiagnosticCard_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_driver(request):
+    if request.method == 'POST':
+        form = DriverForm(request.POST, request.FILES)
+        if form.is_valid():
+            cam = Driver(**form.cleaned_data)
+            cam.save()
+            return redirect(reverse('workers'), args=[cam.pk])
+    else:
+        form = DriverForm()
+
+    template = 'gibdd_app/Driver_form.html'
     context = {
         'form': form,
     }

@@ -1,15 +1,6 @@
 from django.conf.urls import url
 from django.conf.urls.static import static
-from gibdd_app.views import login, logout, services, gibdd, participants, workers, statistics, contacts, \
-    med_list, delete_med, med_detail, categ_list, categ_detail, CategoryCreate, CategoryUpdate, delete_categ, \
-    MedicalCertificateUpdate, license_list, license_detail, LicenseCreate, LicenseUpdate, delete_license, delete_driver, \
-    driver_detail, DriverCreate, driver_list, DriverUpdate, disq_list, disq_detail, LicenseDisqualificationCreate, \
-    LicenseDisqualificationUpdate, delete_disq, update_license, add_license, add_lic_cat, add_med, add_accident, \
-    add_witness, add_licen_accid, add_inspector, add_fine, add_car, add_registr, add_owner, add_steal, add_decree, \
-    add_camera, med_search, mix_search, mix_list_reg_auto_fine, mix_list_licen_fine, mix_search_licen_fine, \
-    mix_list_VIN_stealing, mix_search_VIN_stealing, mix_list_VIN_history, mix_search_VIN_history, mix_list_VIN_accident, \
-    mix_search_VIN_accident, add_autoschool, add_history, add_diagnostic_card, add_insurance, add_insurance_license, \
-    add_accident_car
+from gibdd_app.views import *
 # med_search
 from gibdd_app.views import main
 from gibdd_application import settings
@@ -20,6 +11,7 @@ from gibdd_app.views import MedicalCertificateCreate
 urlpatterns = [
                   url(r'^$', main, name='main'),
                   url(r'^login/', login, name='login'),
+                  url(r'^forbidden/', forbidden, name='forbidden'),
                   url(r'^logout/', logout, name='logout'),
                   url(r'^gibdd/', gibdd, name='gibdd'),
                   url(r'^participants/', participants, name='participants'),
@@ -45,7 +37,7 @@ urlpatterns = [
                   url(r'^license/delete/(?P<pk>\d+)/$', delete_license, name='license_delete'),
                   url(r'^driver_list/$', driver_list, name='driver_list'),
                   url(r'^driver/detail/(?P<pk>\d+)/$', driver_detail, name='driver_detail'),
-                  url(r'^driver/create/$', DriverCreate.as_view(), name='driver_create'),
+                  url(r'^driver/create/$', add_driver, name='driver_create'),
                   url(r'^driver/(?P<pk>\d+)/update/$', DriverUpdate.as_view(), name='driver_update'),
                   url(r'^driver/delete/(?P<pk>\d+)/$', delete_driver, name='driver_delete'),
                   url(r'^disq_list/$', disq_list, name='disq_list'),

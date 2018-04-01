@@ -170,7 +170,7 @@ body > section {
 *******Header******
 **************************/
 .navbar-fixed-top .navbar-toggle .icon-bar {
-    background-color: #fff;
+    background-color: cornflowerblue;
 }
 
 .navbar > .container .navbar-brand {
@@ -179,8 +179,8 @@ body > section {
 
 .top-bar {
     padding: 10px 0;
-    background: darkblue;
-    border-bottom: 1px solid darkblue;
+    background: cornflowerblue;
+    border-bottom: 1px solid cornflowerblue;
     line-height: 28px;
 }
 
@@ -228,7 +228,7 @@ ul.social-share li a:hover {
 .navbar {
     border-radius: 0;
     margin-bottom: 0;
-    background: darkblue;
+    background: cornflowerblue;
     padding: 15px 0;
     padding-bottom: 0;
 }
@@ -246,7 +246,7 @@ ul.social-share li a:hover {
     padding: 5px 12px;
     margin: 0;
     border-radius: 3px;
-    color: #fff;
+    color: cornflowerblue;
     line-height: 24px;
     display: inline-block;
 }
@@ -277,7 +277,7 @@ ul.social-share li a:hover {
 }
 
 .navbar-fixed-top .navbar-nav .dropdown-menu {
-    background-color: rgba(0, 0, 255, 0.85);
+    background-color: rgba(0, 0, 251, 0.85);
     -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
     -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
@@ -673,7 +673,7 @@ ul.social-share li a:hover {
 }
 
 .panel-heading.active {
-    background: darkblue;
+    background: cornflowerblue;
 }
 
 .panel-heading.active .panel-title > a {

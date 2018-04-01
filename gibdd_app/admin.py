@@ -1,7 +1,10 @@
 from django.contrib import admin
 from gibdd_app import models
+from django.contrib.auth.models import Permission
 # Register your models here.
 
+
+admin.site.register(Permission)
 admin.site.register(models.Driver)
 admin.site.register(models.Category)
 admin.site.register(models.License)

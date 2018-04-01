@@ -18,7 +18,7 @@
                 </div>
                 <h2>Данные о водителе: {{ obj.driver_data }} </h2>
                 <p>Фото на ВУ: <img src="{{ MEDIA_URL }}{{ obj.image_url|default_if_none:'#' }}"
-                                           style="width: 100px"></p>
+                                    style="width: 100px"></p>
                 <p>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</p>
                 <p>Статус прав: {{ obj.status_dr_license }}</p>
                 <p>Дата выдачи ВУ: {{ obj.date_issue_dr_license }}</p>

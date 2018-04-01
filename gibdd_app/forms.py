@@ -1,10 +1,15 @@
+import datetime
 from django import forms
+from datetime import date
+from django.contrib.admin.widgets import AdminDateWidget
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.urls import reverse_lazy
+from datetime import timedelta
+from dateutil.relativedelta import *
 
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
     AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
@@ -35,6 +40,14 @@ class MedicalCertificateForm(forms.ModelForm):
         model = MedicalCertificate
         exclude = ()
 
+    def clean_driver_birth(self):
+        data = self.cleaned_data['medical_date']
+        medical_date_delta = timezone.now()
+        if data > medical_date_delta:
+            raise forms.ValidationError("Справка не может быть выдана будущим числомы")
+        else:
+            return data
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -45,13 +58,44 @@ class CategoryForm(forms.ModelForm):
 class LicenseForm(forms.ModelForm):
     class Meta:
         model = License
-        exclude = ()
+        exclude = ('date_end_dr_license',)
+
+
+# class MonthDateYearOrYearField(forms.DateField):
+#     def clean(self, value):
+#         date_length = len(value)
+#
+#         if date_length == 4:  # 2003
+#             raise forms.ValidationError('Дата должна быть в формате "мм-дд-гггг"')
+#         elif 8 <= date_length <= 10:  # 5/10/2003, 05/10/2003, 5/9/2009
+#             pass
+#         else:
+#             raise forms.ValidationError('Дата должна быть в формате "мм-дд-гггг"')
+#
+#         return super(MonthDateYearOrYearField, self).clean(value)
+
+from django.utils import timezone
 
 
 class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
         exclude = ()
+
+    # проверка на водителя на 18 лет
+
+    def clean_driver_birth(self):
+        data = self.cleaned_data['driver_birth']
+        birth_date_delta = timezone.now() - relativedelta(years=18)
+        birth_date_old = timezone.now() - relativedelta(years=100)
+        if data > birth_date_delta:
+            raise forms.ValidationError("Водитель не может быть младше 18 лет")
+        # elif data > timezone.now():
+        #     raise forms.ValidationError("Водитель еще не родился")
+        elif data < birth_date_old:
+            raise forms.ValidationError("Водитель не может быть старше 100 лет")
+        else:
+            return data
 
 
 class LicenseDisqualificationForm(forms.ModelForm):

@@ -1,11 +1,18 @@
 from dateutil.relativedelta import relativedelta
 from django.db import models
-import datetime
 from django.contrib.auth.models import User
-
+from datetime import timedelta
+from dateutil.relativedelta import *
+import datetime
+from django.utils.timezone import now
 # Create your models here.
 # Водитель
 from django.urls import reverse
+
+
+#
+# def age_check():
+#     now = datetime.datetime.now
 
 
 class Driver(models.Model):
@@ -13,7 +20,7 @@ class Driver(models.Model):
     driver_surname = models.CharField(max_length=50, verbose_name="Фамилия водителя")
     driver_name = models.CharField(max_length=50, verbose_name="Имя водителя")
     driver_patronymic = models.CharField(max_length=50, verbose_name="Отчество водителя")
-    driver_birth = models.DateField(verbose_name="Дата рождения водителя")
+    driver_birth = models.DateTimeField(verbose_name="Дата рождения водителя")
     driver_town = models.CharField(max_length=50, verbose_name="Город проживания водителя")
 
     def __str__(self):
@@ -106,6 +113,10 @@ DR_STATUS_CHOICES = (
 )
 
 
+def get_deadline():
+    return datetime.datetime.today() + timedelta(days=8 * 365) + timedelta(days=2 * 366) + timedelta(days=1)
+
+
 # Водительское удостоверение(ВУ)
 class License(models.Model):
     short_status_license = models.CharField(max_length=50, verbose_name="Статус прав", choices=DR_STATUS_CHOICES,
@@ -121,10 +132,19 @@ class License(models.Model):
     number_dr_license = models.CharField(max_length=6, verbose_name="Номер ВУ")
     status_dr_license = models.OneToOneField(LicenseDisqualification, on_delete=models.CASCADE,
                                              verbose_name="Подробности лишения прав", blank=True, null=True)
-    date_issue_dr_license = models.DateField(verbose_name="Дата выдачи ВУ")
-    date_end_dr_license = models.DateField(verbose_name="Дата окончания действия ВУ")
+    date_issue_dr_license = models.DateField(verbose_name="Дата выдачи ВУ", default=datetime.datetime.now,
+                                             editable=False)
+    date_end_dr_license = models.DateField(verbose_name="Дата окончания действия ВУ", blank=True, null=True,
+                                           default=get_deadline, editable=False)
     division_give_dr_license = models.CharField(max_length=100, verbose_name="Подразделение ГИБДД, выдавшее ВУ")
     town_dr_license = models.CharField(max_length=100, verbose_name="Город выдачи ВУ")
+
+    # def save(self):
+    #     from datetime import datetime, timedelta
+    #     d = timedelta(days=8 * 365) + timedelta(days=2 * 366)
+    #     if not self.id:
+    #         self.datetime = self.date_issue_dr_license + d
+    #         super(License,self.save())
 
     # фото водителя
 
@@ -135,9 +155,10 @@ class License(models.Model):
         return reverse('lic_cat_create')
 
         # @property
-        # def image_url(self):
-        #     if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
-        #         return self.photo_dr_license.url
+        # def date_end_license(self):
+        #     if self.date_end_dr_license:
+        #         # return self.date_issue_dr_license + datetime.timedelta(days=8 * 365) + datetime.timedelta(days=2 * 364)
+        #         # return self.date_issue_dr_license+relativedelta(years=10)
 
 
 # дополнительная таблица для категории и ВУ (разбила связь М:М)
@@ -511,10 +532,10 @@ class AccidentReport(models.Model):
                                            on_delete=models.CASCADE, unique=False)
     accident_photo_1 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
-                                         verbose_name="Первое фото аварии", blank=True,null=True)
+                                         verbose_name="Первое фото аварии", blank=True, null=True)
     accident_photo_2 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
-                                         verbose_name="Второе фото аварии", blank=True,null=True)
+                                         verbose_name="Второе фото аварии", blank=True, null=True)
     accident_comment = models.TextField(verbose_name="Комментарий к аварии")
 
     def __str__(self):
@@ -588,7 +609,7 @@ class DiagnosticCard(models.Model):
                                        unique_for_year=True)
     diagnostic_date_from = models.DateField(verbose_name="Дата выдачи")
     diagnostic_date_to = models.DateField(verbose_name="Срок действия до")
-    diagnostic_company = models.CharField(max_length=200,verbose_name="Пункт технического осмотра")
+    diagnostic_company = models.CharField(max_length=200, verbose_name="Пункт технического осмотра")
     diagnostic_results = models.TextField(verbose_name="Результаты диагностирования")
 
     def __str__(self):
@@ -651,3 +672,18 @@ class CarHistory(models.Model):
 
     def __str__(self):
         return "%s, %s до %s" % (self.car_item, self.history_FIO, self.history_date_to)
+
+
+USER_ROLE = (
+    ('Администратор', 'Администратор'),
+    ('Инспектор', 'Инспектор'),
+    ('Регистрирующий оператор', 'Регистрирующий оператор'),
+    ('Основной оператор', 'Основной оператор'),
+    ('Справочная', 'Справочная'),
+    ('Страховщик', 'Страховщик'),
+)
+
+
+class Profile(models.Model):
+    member = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.CharField(max_length=25, choices=USER_ROLE)

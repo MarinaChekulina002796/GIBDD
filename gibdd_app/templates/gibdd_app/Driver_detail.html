@@ -25,9 +25,10 @@
 
                 <h2>{{ obj.driver_surname }} {{ obj.driver_name }} {{ obj.driver_patronymic }}</h2>
 
-                    <p>Номер паспорта: {{ obj.passport_number }}</p>
-                    <p>Дата рождения водителя: {{ obj.driver_birth }}</p>
-                    <p>Город проживания водителя: {{ obj.driver_town }}</p>
+                <p>Номер паспорта: {{ obj.passport_number }}</p>
+                <p>Дата рождения водителя: {{ obj.driver_birth }}</p>
+                <p> Возраст: {{ obj.age }}</p>
+                <p>Город проживания водителя: {{ obj.driver_town }}</p>
 
                 <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
             </div>

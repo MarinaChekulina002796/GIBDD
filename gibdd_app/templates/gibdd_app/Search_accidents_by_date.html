@@ -56,14 +56,12 @@
                                     <td>
                                         <p>{{ obj.accid__accident_severity }}</p>
                                     </td>
-                                    {#                                    <td><p>{{ obj.car_stealing__stealing_date }}</p></td>#}
-                                    {#                                    <td><p>{{ obj.car_stealing__stealing_town }}</p></td>#}
 
                                 </tr>
                             {% endfor %}
                         </table>
                     {% else %}
-                        <p>Данный автомобиль не числится в базе.</p>
+                        <p>В данный интервал дат ДТП не было.</p>
                     {% endif %}
                     </form>
 

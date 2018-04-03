@@ -501,11 +501,11 @@ class Fine(models.Model):
 
 
 ACCIDENT_CHOICES = (
-    ('light', 'легкая'),
-    ('middle', 'средней тяжести'),
-    ('hard', 'тяжкий вред'),
-    ('without', 'без вреда здоровью'),
-    ('not_define', 'не указано'),
+    ('легкая', 'легкая'),
+    ('средней тяжести', 'средней тяжести'),
+    ('тяжкий вред', 'тяжкий вред'),
+    ('без вреда здоровью', 'без вреда здоровью'),
+    ('не указано', 'не указано'),
 )
 
 
@@ -518,7 +518,7 @@ class AccidentReport(models.Model):
     accident_paper_time = models.TimeField(verbose_name="Время составления протокола")
     accident_address = models.CharField(max_length=200, verbose_name="Адрес аварии")
     accident_severity = models.CharField(max_length=50, verbose_name="Тяжесть аварии", choices=ACCIDENT_CHOICES,
-                                         blank=True, null=True, default='not_define')
+                                         blank=True, null=True, default='не указано')
     accident_number_of_people = models.IntegerField(verbose_name="Количество людей в аварии")
     accident_death = models.IntegerField(verbose_name="Смертельный исход, взрослые (количество)", default=0)
     accident_children = models.IntegerField(verbose_name="Из участвовавших в аварии-дети", default=0)

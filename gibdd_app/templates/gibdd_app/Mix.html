@@ -14,8 +14,10 @@
                 как
                 строчные, так и заглавные.</i></p>
             <p><b><i>Например,</i></b> 1234№123456 А111АА777 <i> или</i> 1234№123456 а111аа777. </p>
-            <p> Поиск штрафов: <strong><input minlength="20" maxlength="21" name="q" value="{{ request.GET.q }}"
-                                              placeholder="1234№123456 А111АА777"></strong>
+            <p> Поиск штрафов: <strong><input minlength="11" maxlength="11" name="q" value="{{ request.GET.q }}"
+                                              placeholder="1234№123456"></strong>
+                <strong><input minlength="8" maxlength="9" name="p" value="{{ request.GET.p }}"
+                               placeholder="А111АА777"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"
                                             style="color:grey"

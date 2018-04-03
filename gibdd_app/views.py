@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.postgres.aggregates import StringAgg
 from django.contrib.postgres.search import SearchVector, SearchRank
-from django.db.models import Q
+from django.db.models import Q, F
 from django.db.models.functions import Concat
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -237,6 +237,27 @@ def mix_search(request):
     return render(request, template, {'regs': regs, 'query': query})
 
 
+def search_accidents_by_date(request):
+    template = 'gibdd_app/Search_accidents_by_date.html'
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+
+    list = ['pk', 'car__car_registr_certificate__registr_certificate_VIN',
+            'car__car_registr_certificate__registr_certificate_number',
+            'car__car_registr_certificate__registr_certificate_car_model',
+            'car__car_registr_certificate__registr_certificate_colour',
+            'accid__accident_date', 'accid__accident_severity']
+    # if query1 and query2:
+    regs = Accident_Car.objects.all().order_by('accid__accident_date')
+    regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
+    return render(request, template, {'regs': regs})
+    # else:
+    #     text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+    #     button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+    #     tex = (text, button)
+    #     return HttpResponse(tex)
+
+
 def mix_search_licen_fine(request):
     template = 'gibdd_app/Mix_licen_fine.html'
     query = request.GET.get('q')
@@ -259,6 +280,43 @@ def mix_search_licen_fine(request):
         tex = (text, button)
         return HttpResponse(tex)
     return render(request, template, {'regs': regs, 'query': query})
+
+
+# def mix_search_licen_fine(request):
+#     template = 'gibdd_app/Mix_licen_fine.html'
+#     query1 = request.GET.get('q')
+#     query2 = request.GET.get('t')
+#
+#     if query1 and query2:
+#         if query2.exists():
+#             list = ['pk', 'fine_decree_data__decree_number', 'fine_status', 'fine_decree_data__decree_date',
+#                     'fine_amount', 'fine_discount',
+#                     'fine_car_data__car_registr_certificate__registr_certificate_number',
+#                     'fine_car_data__car_registr_certificate__registr_certificate_registr_sign',
+#                     'fine_license_data__series_dr_license', 'fine_license_data__number_dr_license']
+#             criterion1 = Q(fine_license_data__series_dr_license__icontains=query1) & \
+#                          Q(fine_license_data__series_dr_license__isnull=False)
+#             criterion2 = Q(fine_license_data__number_dr_license__isnull=False) & \
+#                          Q(fine_license_data__number_dr_license__icontains=query2)
+#
+#             regs = Fine.objects.all().filter(criterion1 & criterion2)
+#             regs = regs.values(*list)
+#             # regs = a.filter(Q(fine_license_data__number_dr_license__icontains=query2)).values(*list)
+#
+#             # search_name = Concat('fine_license_data__series_dr_license',
+#             #                      'fine_license_data__number_dr_license'
+#             #                      )).filter(search_name__icontains=query).values(*list)
+#         else:
+#             text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+#             button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+#             tex = (text, button)
+#             return HttpResponse(tex)
+#     else:
+#         text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+#         button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+#         tex = (text, button)
+#         return HttpResponse(tex)
+#     return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2})
 
 
 @login_required

@@ -74,5 +74,6 @@ urlpatterns = [
                   url(r'^mix_search_VIN_history/$', mix_search_VIN_history, name="mix_search_VIN_history"),
                   url(r'^mix_list_VIN_accident/$', mix_list_VIN_accident, name='mix_list_VIN_accident'),
                   url(r'^mix_search_VIN_accident/$', mix_search_VIN_accident, name="mix_search_VIN_accident"),
+                  url(r'^search_accidents_by_date/$', search_accidents_by_date, name="search_accidents_by_date"),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

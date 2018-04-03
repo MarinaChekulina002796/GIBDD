@@ -1,0 +1,111 @@
+{% extends 'gibdd_app/base.html' %}
+<title>ДТП по датам</title>
+{% load staticfiles %}
+{% block header %}
+    {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
+    <h2><i><b>Поиск ДТП по датам</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form method="GET" action="{% url 'search_accidents_by_date' %}">
+            <p><i>Для поиска введите начальную и конечную даты поиска.</i></p>
+            <p><b><i>Например,</i></b>с 2018-01-20 <i> по </i> 2018-01-30. </p>
+            <p> Поиск: <strong><input maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
+                                      placeholder="2018-01-21"></strong>
+                <strong><input maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
+                               placeholder="2018-01-30"></strong>
+
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск аварий по дате"> </span>
+                    Поиск
+                </button>
+
+            </p>
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'search_accidents_by_date' %}
+                    {% if regs %}
+                        <p>Результат поиска: {{ regs|length }} шт.
+                            {#                            {{ regs|pluralize }}.#}
+                        </p>
+                        <table border="2">
+                            <caption>Таблица с историей ДТП</caption>
+                            <th> №</th>
+                            <th> VIN</th>
+                            <th>№ СТС</th>
+                            <th>Модель автомобиля</th>
+                            <th>Цвет автомобиля</th>
+                            <th>Дата ДТП</th>
+                            <th>Тяжесть аварии</th>
+                            {#                            <th>Дата угона</th>#}
+                            {#                            <th>Город угона</th>#}
+
+                            {% for obj in regs %}
+
+                                <tr>
+                                    <td><p>{{ obj.pk }}</p></td>
+                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>
+                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_number }}</p></td>
+                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
+                                    </td>
+                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p></td>
+                                    <td><p>{{ obj.accid__accident_date }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ obj.accid__accident_severity }}</p>
+                                    </td>
+                                    {#                                    <td><p>{{ obj.car_stealing__stealing_date }}</p></td>#}
+                                    {#                                    <td><p>{{ obj.car_stealing__stealing_town }}</p></td>#}
+
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>Данный автомобиль не числится в базе.</p>
+                    {% endif %}
+                    </form>
+
+                    {#                {% else %}#}
+                    {#                    {% if user.is_authenticated %}#}
+                    {#                        <table border="2">#}
+                    {#                            <caption>Таблица с историей ДТП</caption>#}
+                    {#                            <th> №</th>#}
+                    {#                            <th> VIN</th>#}
+                    {#                            <th>№ СТС</th>#}
+                    {#                            <th>Модель автомобиля</th>#}
+                    {#                            <th>Цвет автомобиля</th>#}
+                    {#                            <th> Фамилия и имя собственника</th>#}
+                    {#                            <th>Статус автомобиля</th>#}
+                    {#                            <th>Дата угона</th>#}
+                    {#                            <th>Город угона</th>#}
+                    {#                            {% for obj in objects_list %}#}
+                    {#                                <tr>#}
+                    {#                                    <div>#}
+                    {#                                        <td><p>{{ obj.pk }}</p></td>#}
+                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>#}
+                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_number }}</p>#}
+                    {#                                        </td>#}
+                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>#}
+                    {#                                        </td>#}
+                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p>#}
+                    {#                                        </td>#}
+                    {#                                        <td><p>{{ obj.car_owner__owner_surname }} {{ obj.car_owner__owner_name }}</p>#}
+                    {#                                        </td>#}
+                    {#                                        <td>#}
+                    {#                                            <p>{{ obj.car_stealing__stealing_status }}</p>#}
+                    {#                                        </td>#}
+                    {#                                        <td><p>{{ obj.car_stealing__stealing_date }}</p></td>#}
+                    {#                                        <td><p>{{ obj.car_stealing__stealing_town }}</p></td>#}
+                    {##}
+                    {##}
+                    {#                                    </div>#}
+                    {#                                </tr>#}
+                    {#                            {% endfor %}#}
+                    {#                        </table>#}
+                    {#                    {% endif %}#}
+                {% endif %}
+            {% endwith %}
+    {% endblock %}
+{% endblock %}

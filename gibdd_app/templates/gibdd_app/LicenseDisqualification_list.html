@@ -11,21 +11,27 @@
     {% block form %}
 
         <form>
-            {% for obj in objects_list %}
-                <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
-                    <h2>Статус прав: {{ obj.disqualif_status }}</h2>
-                    <p>Срок лишения прав: {{ obj.disqualif_time }}</p>
-                    <p>Дата лишения прав: {{ obj.disqualif_date_from }}</p>
-{#                    <p>Дата окончания лишения прав: {{ obj.disqualif_date_end }}</p>#}
-{#                    <p>Причина лишения: {{ obj.disqualif_cause }}</p>#}
-{#                    <p>Промилле алкоголя в крови: {{ obj.disqualif_alcohol_amount }}</p>#}
-{#                    <p>Комментарий: {{ obj.disqualif_comment }}</p>#}
+            <table border="2">
+                <caption>Таблица о лишениях прав</caption>
+                <th>Статус прав</th>
+                <th> Срок лишения прав</th>
+                <th> Дата лишения прав</th>
+                <th>Подробнее>></th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p> {{ obj.disqualif_status }}</p></td>
+                            <td><p> {{ obj.disqualif_time }}</p></td>
+                            <td><p> {{ obj.disqualif_date_from }}</p></td>
+                            <td>
+                                <button class="btn btn-info" type="button"><a href="{% url 'disq_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
 
-                    <button class="btn btn-info" type="button"><a href="{% url 'disq_detail' pk=obj.pk %}">Подробнее
-                        >></a></button>
-
-                </div>
-            {% endfor %}
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
         </form>
     {% endblock %}
 {% endblock %}

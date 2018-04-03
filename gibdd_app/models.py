@@ -89,6 +89,7 @@ DISQAULIF_CHOICES = (
 
 
 class LicenseDisqualification(models.Model):
+    # заменить статус на номер
     disqualif_status = models.CharField(verbose_name="Статус прав", max_length=20, choices=DISQAULIF_CHOICES)
     disqualif_time = models.CharField(verbose_name="Срок лишения прав", max_length=10, help_text="18 месяцев",
                                       blank=True, null=True)
@@ -154,11 +155,16 @@ class License(models.Model):
     def get_absolute_url(self):
         return reverse('lic_cat_create')
 
-        # @property
-        # def date_end_license(self):
-        #     if self.date_end_dr_license:
-        #         # return self.date_issue_dr_license + datetime.timedelta(days=8 * 365) + datetime.timedelta(days=2 * 364)
-        #         # return self.date_issue_dr_license+relativedelta(years=10)
+    @property
+    def image_url(self):
+        if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
+            return self.photo_dr_license.url
+
+            # @property
+            # def date_end_license(self):
+            #     if self.date_end_dr_license:
+            #         # return self.date_issue_dr_license + datetime.timedelta(days=8 * 365) + datetime.timedelta(days=2 * 364)
+            #         # return self.date_issue_dr_license+relativedelta(years=10)
 
 
 # дополнительная таблица для категории и ВУ (разбила связь М:М)
@@ -246,15 +252,15 @@ CAMERA_CHOICES = (
 )
 
 CAMERA_CHOICES1 = (
-    ('n1', 'Радар Стрелка СТ/М'),
-    ('n2', 'Система Автодория'),
-    ('n3', 'Фоторадарные комплексы КРИС С'),
-    ('n4', 'Фоторадарные комплексы КРИС П'),
-    ('n5', 'Радар Кречет-С'),
-    ('n6', 'Радар Перекресток'),
-    ('n7', 'Комплекс фотовидеофиксации "Сова"'),
-    ('n8', 'Комплекс фотовидеофиксации "Одиссей"'),
-    ('n9', 'Паркон'),
+    ('Радар Стрелка СТ/М', 'Радар Стрелка СТ/М'),
+    ('Система Автодория', 'Система Автодория'),
+    ('Фоторадарные комплексы КРИС С', 'Фоторадарные комплексы КРИС С'),
+    ('Фоторадарные комплексы КРИС П', 'Фоторадарные комплексы КРИС П'),
+    ('Радар Кречет-С', 'Радар Кречет-С'),
+    ('Радар Перекресток', 'Радар Перекресток'),
+    ('Комплекс фотовидеофиксации "Сова"', 'Комплекс фотовидеофиксации "Сова"'),
+    ('Комплекс фотовидеофиксации "Одиссей"', 'Комплекс фотовидеофиксации "Одиссей"'),
+    ('Паркон', 'Паркон'),
 )
 
 
@@ -284,20 +290,20 @@ class Camera(models.Model):
 
 REGISTRATION_CHOICES = (
     ('легковой', 'легковой'),
-    ('type2', 'грузовой'),
-    ('type3', 'автобус'),
-    ('type4', 'мотоцикл'),
-    ('type5', 'прицеп'),
-    ('type6', 'полуприцеп'),
-    ('type7', 'универсал легковой'),
-    ('type8', 'хэтчбек(комби) легковой '),
-    ('type9', 'легковой прочие'),
-    ('type10', 'бортовой с тентом грузовой'),
-    ('type11', 'грузовой фургон'),
-    ('type12', 'легковой минивэн'),
-    ('type13', 'грузовой бортовой'),
-    ('type14', 'легковой седан'),
-    ('type15', 'легковой купе'),
+    ('грузовой', 'грузовой'),
+    ('автобус', 'автобус'),
+    ('мотоцикл', 'мотоцикл'),
+    ('прицеп', 'прицеп'),
+    ('полуприцеп', 'полуприцеп'),
+    ('универсал легковой', 'универсал легковой'),
+    ('хэтчбек(комби) легковой', 'хэтчбек(комби) легковой'),
+    ('легковой прочие', 'легковой прочие'),
+    ('бортовой с тентом грузовой', 'бортовой с тентом грузовой'),
+    ('грузовой фургон', 'грузовой фургон'),
+    ('легковой минивэн', 'легковой минивэн'),
+    ('грузовой бортовой', 'грузовой бортовой'),
+    ('легковой седан', 'легковой седан'),
+    ('легковой купе', 'легковой купе'),
 )
 
 REGISTRATION_CHOICES2 = (
@@ -331,7 +337,7 @@ class RegistrationCertificate(models.Model):
     registr_certificate_type_car = models.CharField(max_length=60, verbose_name="Тип ТС", choices=REGISTRATION_CHOICES,
                                                     default='легковой')
     registr_certificate_category = models.CharField(max_length=5, verbose_name="Категория ТС",
-                                                    choices=REGISTRATION_CHOICES2)
+                                                    choices=REGISTRATION_CHOICES2, default='B')
     registr_certificate_year = models.IntegerField(verbose_name="Год выпуска ТС",
                                                    help_text="Например,2018")
     registr_certificate_chassis = models.CharField(verbose_name="Шасси №", max_length=30)
@@ -414,16 +420,17 @@ class AutoSchool(models.Model):
 
 
 CAR_CHOICES = (
-    ('type1', 'Стоит на учете'),
-    ('type2', 'Снят на учете'),
-    ('type3', 'Числится в угоне'),
+    ('Стоит на учете', 'Стоит на учете'),
+    ('Снят на учете', 'Снят на учете'),
+    ('Числится в угоне', 'Числится в угоне'),
 
 )
 
 
 # Автомобиль
 class Car(models.Model):
-    car_status = models.CharField(max_length=20, verbose_name="Статус автомобиля", choices=CAR_CHOICES, default="type1")
+    car_status = models.CharField(max_length=20, verbose_name="Статус автомобиля", choices=CAR_CHOICES,
+                                  default="Стоит на учете")
     car_photo = models.ImageField(upload_to='car_photo/',
                                   default='car_photo/default_car.jpg',
                                   verbose_name="Фото автомобиля")
@@ -673,17 +680,16 @@ class CarHistory(models.Model):
     def __str__(self):
         return "%s, %s до %s" % (self.car_item, self.history_FIO, self.history_date_to)
 
-
-USER_ROLE = (
-    ('Администратор', 'Администратор'),
-    ('Инспектор', 'Инспектор'),
-    ('Регистрирующий оператор', 'Регистрирующий оператор'),
-    ('Основной оператор', 'Основной оператор'),
-    ('Справочная', 'Справочная'),
-    ('Страховщик', 'Страховщик'),
-)
-
-
-class Profile(models.Model):
-    member = models.ForeignKey(User, on_delete=models.CASCADE)
-    group = models.CharField(max_length=25, choices=USER_ROLE)
+# USER_ROLE = (
+#     ('Администратор', 'Администратор'),
+#     ('Инспектор', 'Инспектор'),
+#     ('Регистрирующий оператор', 'Регистрирующий оператор'),
+#     ('Основной оператор', 'Основной оператор'),
+#     ('Справочная', 'Справочная'),
+#     ('Страховщик', 'Страховщик'),
+# )
+#
+#
+# class Profile(models.Model):
+#     member = models.ForeignKey(User, on_delete=models.CASCADE)
+#     group = models.CharField(max_length=25, choices=USER_ROLE)

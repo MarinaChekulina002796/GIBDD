@@ -347,7 +347,7 @@ def license_list(request):
 @login_required
 def driver_list(request):
     template = 'gibdd_app/Driver_list.html'
-    objects_list = Driver.objects.all()
+    objects_list = Driver.objects.all().order_by('driver_surname', 'driver_name', 'driver_patronymic')
 
     context = {
         'objects_list': objects_list,
@@ -551,6 +551,10 @@ def add_license(request):
     if request.method == 'POST':
         form = LicenseForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
         if form.is_valid():
+            # licen = form.save(commit=False)
+            # licen.driver_data = request.driver_data
+            # licen.medical_certificate_data = request.medical_certificate_data
+            # licen.status_dr_license = request.status_dr_license
             licen = License(**form.cleaned_data)
             licen.save()
             return reverse('lic_cat_create')
@@ -896,7 +900,7 @@ def add_driver(request):
         if form.is_valid():
             cam = Driver(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('license_create'), args=[cam.pk])
     else:
         form = DriverForm()
 
@@ -963,52 +967,6 @@ def add_accident_car(request):
     }
 
     return render(request, template, context)
-
-
-
-    # @login_required
-    # def add_med(request):
-    #     if request.method == 'POST':
-    #         form = MedicalCertificateForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
-    #         if form.is_valid():
-    #             med = MedicalCertificate(**form.cleaned_data)
-    #             med.save()
-    #             messages.success(request, 'Your MedicalCertificate Was Successfully Saved')
-    #             return redirect(reverse('workers'), args=[med.pk])
-    #     else:
-    #         form = MedicalCertificateForm()
-    #         messages.warning(request, "MedicalCertificate Failed To Save. Error")
-    #
-    #     template = 'gibdd_app/MedicalCertificate_form.html'
-    #     context = {
-    #         'form': form,
-    #     }
-    #
-    #     return render(request, template, context)
-
-    #
-    # @login_required
-    # def update_med(request, pk):
-    #     med = get_object_or_404(MedicalCertificate, pk=pk)
-    #     # med=MedicalCertificate.objects.get(pk=pk)
-    #     if request.method == 'POST':
-    #         form = MedicalCertificateForm(request.POST, request.FILES, instance=med)
-    #         if form.is_valid():
-    #             form.save()
-    #     else:
-    #         form = MedicalCertificateForm(instance=med)
-    #
-    #     template = 'gibdd_app/MedicalCertificate_form.html'
-    #     # context = {
-    #     #     'form': form,
-    #     #     'med': med,}
-    #     #
-    #     context={
-    #         'form':form,
-    #         'med':med,
-    #     }
-    #
-    #     return render(request, template, context)
 
 
 class MedicalCertificateCreate(CreateView):

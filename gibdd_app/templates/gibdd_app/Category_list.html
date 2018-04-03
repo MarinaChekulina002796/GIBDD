@@ -2,7 +2,7 @@
 <title>Список категорий</title>
 {% load staticfiles %}
 {% block header %}
-{#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
+    {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
     <h2><i><b>Список категорий ВУ</b></i></h2>
 {% endblock %}
 {% block content %}
@@ -10,14 +10,25 @@
     {% block form %}
 
         <form>
-            {% for obj in objects_list %}
-                <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
-                    <h2>Категория ВУ:{{ obj.category_name }}</h2>
-                    <p>Дата открытия категории:{{ obj.date_open_category }}</p>
-                    <button class="btn btn-info" type="button"><a href="{% url 'categ_detail' pk=obj.pk%}">Подробнее >></a></button>
+            <table border="2">
+                <caption>Таблица категорий</caption>
+                <th> Категория ВУ</th>
+                <th> Дата открытия</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p>{{ obj.category_name }}</p></td>
+                            <td><p>{{ obj.date_open_category }}</p></td>
+                            <td>
+                                <button class="btn btn-info" type="button"><a href="{% url 'categ_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
 
-                </div>
-            {% endfor %}
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
         </form>
     {% endblock %}
 {% endblock %}

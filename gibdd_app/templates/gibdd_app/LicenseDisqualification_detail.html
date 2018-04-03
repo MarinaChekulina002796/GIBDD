@@ -5,25 +5,31 @@
 {% block content %}
 
     {% block form %}
-        <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
         <form>
-
-
-                <div class="col-sm-12 col-md-9" style="border: 3px solid darkblue">
+            <div class="col-sm-12 col-md-9">
                 <div class="collapse navbar-collapse navbar-right">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'disq_update' pk=obj.pk%}">Редактировать</a></li>
-                            <li class="active"><a href="{% url 'disq_delete' pk=obj.pk %}">Удалить</a></li>
-                        </ul>
-                    </div>
-                    <h2>Статус прав: {{ obj.disqualif_status }}</h2>
-                    <p>Срок лишения прав: {{ obj.disqualif_time }}</p>
-                    <p>Дата лишения прав: {{ obj.disqualif_date_from }}</p>
-                    <p>Дата окончания лишения прав: {{ obj.disqualif_date_end }}</p>
-                    <p>Причина лишения: {{ obj.disqualif_cause }}</p>
-                    <p>Промилле алкоголя в крови: {{ obj.disqualif_alcohol_amount }}</p>
-                    <p>Комментарий: {{ obj.disqualif_comment }}</p>
+                    <button type="button" onclick="history.back()"><span
+                            class="glyphicon glyphicon-arrow-left"
+                            style="color:blue"
+                            title="Назад"> </span>
+                    </button>
+                    <div class="active"><a href="{% url 'disq_update' pk=obj.pk %}"><span
+                            class="glyphicon glyphicon-pencil"
+                            style="color:darkorange"
+                            title="Редактировать лишение прав"> </span></a></div>
+                    <div class="active"><a href="{% url 'disq_delete' pk=obj.pk %}"><span
+                            class="glyphicon glyphicon-trash"
+                            style="color:red"
+                            title="Удалить лишение прав"> </span></a></div>
                 </div>
+                <h2>Статус прав: {{ obj.disqualif_status }}</h2>
+                <p>Срок лишения прав: {{ obj.disqualif_time }}</p>
+                <p>Дата лишения прав: {{ obj.disqualif_date_from }}</p>
+                <p>Дата окончания лишения прав: {{ obj.disqualif_date_end }}</p>
+                <p>Причина лишения: {{ obj.disqualif_cause }}</p>
+                <p>Промилле алкоголя в крови: {{ obj.disqualif_alcohol_amount }}</p>
+                <p>Комментарий: {{ obj.disqualif_comment }}</p>
+            </div>
 
         </form>
     {% endblock %}

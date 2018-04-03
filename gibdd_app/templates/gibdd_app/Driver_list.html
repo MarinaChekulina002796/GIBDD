@@ -2,7 +2,7 @@
 <title>Список водителей</title>
 {% load staticfiles %}
 {% block header %}
-{#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
+    {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
     <h2><i><b>Список водителей</b></i></h2>
 {% endblock %}
 {% block content %}
@@ -10,16 +10,27 @@
     {% block form %}
 
         <form>
-            {% for obj in objects_list %}
-                <div class="col-sm-9 col-md-5 col-md-offset-1" style="border: 3px solid darkblue">
-                    <h2>ФИО водителя:{{ obj.driver_surname }}  {{ obj.driver_name }}  {{ obj.driver_patronymic }}</h2>
-                    <p>Номер паспорта:{{ obj.passport_number }}</p>
-                     <p>Дата рождения водителя:{{ obj.driver_birth }}</p>
-{#                     <p>Город проживания водителя:{{ obj.driver_town }}</p>#}
-                    <button class="btn btn-info" type="button"><a href="{% url 'driver_detail' pk=obj.pk%}">Подробнее >></a></button>
+            <table border="2">
+                <caption>Таблица водителей</caption>
+                <th> ФИО водителя</th>
+                <th> Дата рождения водителя</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p>{{ obj.driver_surname }} {{ obj.driver_name }} {{ obj.driver_patronymic }}</p></td>
+                            <td><p>{{ obj.driver_birth }}</p></td>
 
-                </div>
-            {% endfor %}
+                            <td>
+                                <button class="btn btn-info" type="button"><a
+                                        href="{% url 'driver_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
         </form>
     {% endblock %}
 {% endblock %}

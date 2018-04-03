@@ -9,17 +9,22 @@
         <form>
 
 
-            <div class="col-sm-12 col-md-9" style="border: 3px solid darkblue">
+            <div class="col-sm-12 col-md-9">
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="{% url 'driver_update' pk=obj.pk %}"><span
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'driver_update' pk=obj.pk %}"><span
                                 class="glyphicon glyphicon-pencil"
-                                style="color:orange"
-                                title="Редактировать водителя"> </span></a></li>
-                        <li class="active"><a href="{% url 'driver_delete' pk=obj.pk %}"><span
+                                style="color:darkorange"
+                                title="Редактировать водителя"> </span></a></div>
+                        <div class="active"><a href="{% url 'driver_delete' pk=obj.pk %}"><span
                                 class="glyphicon glyphicon-trash"
                                 style="color:red"
-                                title="Удалить водителя"> </span></a></li>
+                                title="Удалить водителя"> </span></a></div>
                     </ul>
                 </div>
 
@@ -27,7 +32,6 @@
 
                 <p>Номер паспорта: {{ obj.passport_number }}</p>
                 <p>Дата рождения водителя: {{ obj.driver_birth }}</p>
-                <p> Возраст: {{ obj.age }}</p>
                 <p>Город проживания водителя: {{ obj.driver_town }}</p>
 
                 <button class="btn-primary" type="button" onclick="history.back()">Назад</button>

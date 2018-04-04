@@ -6,37 +6,18 @@
 {% block header %}
     Авторизация пользователей
 {% endblock %}
-
-{% block form %}
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button class="btn-primary" type="submit">Авторизоваться</button>
-        <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
-    </form>
+{% block content %}
+    {% block form %}
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button class="btn-primary" type="submit">Авторизоваться</button>
+            <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
+        </form>
+    {% endblock %}
 {% endblock %}
-
-
-
-{#<div align="center" style="position:relative; top:60px">#}
-{#    {% block header %}<h2 style="height: 20px"></h2>#}
-{#        <h2>Авторизация пользователей</h2>#}
-{#        {% block body %}#}
-{#            {% block form %}#}
-{#                <form action="{% url 'login' %}" method="POST">#}
-{#                    {% csrf_token %}#}
-{#                    <table>#}
-{#                        {{ form.as_table }}#}
-{#                    </table>#}
-{#                    <button class="btn-primary" type="submit">Авторизоваться</button>#}
-{#                    <button class="btn-primary" type="button" onclick="history.back()">Назад</button>#}
-{#                </form>#}
-{#            {% endblock %}#}
-{#        {% endblock %}#}
-{#    {% endblock %}#}
-{#</div>#}
 
 
 

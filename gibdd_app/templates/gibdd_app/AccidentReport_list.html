@@ -1,0 +1,33 @@
+{% extends 'gibdd_app/base.html' %}
+{% block title %}Протокол аварии{% endblock %}
+{% block header %}
+    Протокол аварии
+{% endblock %}
+{% block content %}
+    {% block form %}
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <table border="2">
+                <caption>Таблица ДТП</caption>
+                <th> № протокола ДТП</th>
+                <th> Дата ДТП</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p>{{ obj.number_accident }}</p></td>
+                            <td><p>{{ obj.accident_date }}</p></td>
+                            <td>
+                                <button class="btn btn-info" type="button"><a
+                                        href="{% url 'accident_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endblock %}
+{% endblock %}
+

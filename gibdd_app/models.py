@@ -548,6 +548,16 @@ class AccidentReport(models.Model):
     def __str__(self):
         return "%s от %s" % (self.number_accident, self.accident_date)
 
+    @property
+    def image_url_1(self):
+        if self.accident_photo_1 and hasattr(self.accident_photo_1, 'url'):
+            return self.accident_photo_1.url
+
+    @property
+    def image_url_2(self):
+        if self.accident_photo_2 and hasattr(self.accident_photo_2, 'url'):
+            return self.accident_photo_2.url
+
 
 class Accident_Car(models.Model):
     accid = models.ForeignKey(AccidentReport, on_delete=models.CASCADE,

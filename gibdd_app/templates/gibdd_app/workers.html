@@ -98,10 +98,11 @@
                                                                                     title="Список мед.справок"> </span></a>
                             </li>
                             {% if perms.auth.can_add_medical_certificate %}
-                            <li class="active"><a href="{% url 'med_create' %}"><span class="glyphicon glyphicon-plus"
-                                                                                      style="color:yellowgreen"
-                                                                                      title="Добавить мед. справку"> </span></a>
-                            </li>
+                                <li class="active"><a href="{% url 'med_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить мед. справку"> </span></a>
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
@@ -114,7 +115,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services3.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/category.PNG' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><a href="{% url 'categ_list' %}">Категории
@@ -131,11 +133,11 @@
                                     style="color:darkblue"
                                     title="Список категорий"> </span></a></li>
 
-                                <li class="active"><a href="{% url 'categ_create' %}"><span
-                                        class="glyphicon glyphicon-plus"
-                                        style="color:yellowgreen"
-                                        title="Добавить категорию"> </span></a>
-                                </li>
+                            <li class="active"><a href="{% url 'categ_create' %}"><span
+                                    class="glyphicon glyphicon-plus"
+                                    style="color:yellowgreen"
+                                    title="Добавить категорию"> </span></a>
+                            </li>
 
                         </ul>
                     </div>
@@ -146,7 +148,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/licen.PNG' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><a href="{% url 'license_list' %}">Водительские удостоверения</a></h3>
@@ -171,7 +174,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/driver.PNG' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><a href="{% url 'driver_list' %}">Водители</a></h3>
@@ -196,7 +200,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/disq.jpg' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><a href="{% url 'disq_list' %}">Статусы прав</a></h3>
@@ -221,10 +226,12 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/add_cat.png' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">Добавление новой категории в ВУ</h3>
+                        <h3 class="media-heading">Добавление новой категории в ВУ
+                        </h3>
 
                     </div>
                     {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
@@ -243,7 +250,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/protocol.png' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Составление протокола ДТП</h3>
@@ -256,6 +264,11 @@
                                     class="glyphicon glyphicon-plus"
                                     style="color:yellowgreen"
                                     title="Добавить протокол ДТП"> </span></a></li>
+                            <li class="active"><a href="{% url 'accident_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список ДТП"> </span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -264,7 +277,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/witness.png' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Свидетели ДТП</h3>
@@ -285,7 +299,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/accident_cars.PNG' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">ВУ, участвовавшие в ДТП</h3>
@@ -307,7 +323,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/inspector.jpg' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Сотрудники ГИБДД</h3>
@@ -329,7 +347,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/fine.jpg' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Штрафы за ПДД</h3>
@@ -351,7 +370,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/car.jpg' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Автомобили на учете</h3>
@@ -372,7 +392,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/reg.PNG' %}"
+                             width="100" height="60">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Свидетельства о регистрации</h3>
@@ -394,7 +415,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/owner.PNG' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Собственники автомобилей</h3>
@@ -416,7 +438,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/stealing.PNG' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Подробные данные угона</h3>
@@ -438,7 +461,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/decree.png' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Постановления о нарушении ПДД</h3>
@@ -460,7 +484,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/camera_.PNG' %}"
+                             width="60" height="30">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Средства фиксации нарушений: камеры</h3>
@@ -481,7 +506,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/autoschool.PNG' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Доступные автошколы</h3>
@@ -502,7 +529,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/history.jpg' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Добавить историю к автомобилю</h3>
@@ -521,7 +549,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/diagnostic.jpg' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Диагностические карты</h3>
@@ -540,7 +570,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/insurance.png' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Страховые полиса ТС</h3>
@@ -559,7 +591,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/paper.png' %}"
+                             width="100" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">ВУ в полисе</h3>
@@ -578,7 +611,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/accident_cars.PNG' %}"
+                             width="80" height="40">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">ТС, участвовавшие в ДТП</h3>

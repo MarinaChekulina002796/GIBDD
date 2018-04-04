@@ -38,11 +38,22 @@ def forbidden(request):
     return render(request, 'gibdd_app/forbidden.html')
 
 
-# список всех справок (по 2 шт в ряд)
+# список всех справок (таблица)
 @login_required
 def med_list(request):
     template = 'gibdd_app/MedicalCertificate_list.html'
     objects_list = MedicalCertificate.objects.all().order_by('medical_number', 'medical_date')
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def accident_list(request):
+    template = 'gibdd_app/AccidentReport_list.html'
+    objects_list = AccidentReport.objects.all().order_by('number_accident', 'accident_paper_date')
 
     context = {
         'objects_list': objects_list,
@@ -377,6 +388,16 @@ def categ_detail(request, pk):
     return render(request, template, context)
 
 
+def accident_detail(request, pk):
+    template = 'gibdd_app/AccidentReport_detail.html'
+
+    obj = get_object_or_404(AccidentReport, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
 @login_required
 def med_detail(request, pk):
     template = 'gibdd_app/MedicalCertificate_detail.html'
@@ -501,6 +522,22 @@ def delete_disq(request, pk):
     return render(request, template, {'form': form})
 
 
+@login_required
+def delete_accident(request, pk):
+    template = 'gibdd_app/AccidentReport_form.html'
+
+    obj = get_object_or_404(AccidentReport, pk=pk)
+    if request.method == 'POST':
+        form = AccidentReportForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('license_list'))
+    else:
+        form = AccidentReportForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
 def services(request):
     return render(request, 'gibdd_app/services_for_drivers.html')
 
@@ -583,6 +620,26 @@ def update_license(request, pk):
     context = {
         'form': form,
         'licen': licen,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_accident(request, pk):
+    accident = get_object_or_404(AccidentReport, pk=pk)
+    if request.method == 'POST':
+        form = AccidentReportForm(request.POST, request.FILES, instance=accident)
+        if form.is_valid():
+            form.save()
+        return redirect('accident_detail', pk)
+    else:
+        form = AccidentReportForm(instance=accident)
+
+    template = 'gibdd_app/AccidentReport_form.html'
+    context = {
+        'form': form,
+        'licen': accident,
     }
 
     return render(request, template, context)

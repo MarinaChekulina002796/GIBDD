@@ -71,8 +71,8 @@
         <div class="center wow fadeInDown">
             <h2 style="height: 110px"></h2>
 
-            <h2>Доступные услуги</h2>
-            <p class="lead">Описание услуг</p>
+            <b><i><h2 style="color: mediumblue">Доступные услуги</h2></i></b>
+            {#            <p class="lead" style="color: royalblue">Описание услуг</p>#}
         </div>
 
         <div class="row">
@@ -80,8 +80,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/search_fine.jpg' %}"
-                             width="100" height="50">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/search_fine.jpg' %}"
+                             width="120" height="60">
                     </div>
                     <div class="media-body">
                         <a href="{% url 'mix_list_reg_auto_fine' %}"><h3 class="media-heading">Проверка неоплаченных
@@ -107,7 +108,8 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services3.png' %}">
+                        <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/driver.png' %}"
+                             width="120" height="60">
                     </div>
                     <div class="media-body">
                         <a href="{% url 'mix_list_licen_fine' %}"><h3 class="media-heading">Проверка водительского
@@ -131,7 +133,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/search_VIN.jpg' %}"
+                             width="120" height="60">
                     </div>
                     <div class="media-body">
                         <a href="{% url 'mix_list_VIN_stealing' %}"><h3 class="media-heading">Проверка транспортного
@@ -155,7 +159,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/search_VIN.jpg' %}"
+                             width="120" height="60">
                     </div>
                     <div class="media-body">
                         <a href="{% url 'mix_list_VIN_history' %}"><h3 class="media-heading">Проверка истории
@@ -178,7 +184,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/search_VIN.jpg' %}"
+                             width="120" height="60">
                     </div>
                     <div class="media-body">
                         <a href="{% url 'mix_list_VIN_accident' %}"><h3 class="media-heading">Проверка на участие
@@ -202,7 +210,9 @@
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
-                            <img class="img-responsive" src="{% static 'gibdd_app/images/services/services4.png' %}">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/accident_cars.PNG' %}"
+                                 width="160" height="80">
                         </div>
                         <div class="media-body">
                             <a href="{% url 'search_accidents_by_date' %}"><h3 class="media-heading">Поиск ДТП по

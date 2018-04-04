@@ -79,4 +79,9 @@ urlpatterns = [
                   url(r'^accident/detail/(?P<pk>\d+)/$', accident_detail, name='accident_detail'),
                   url(r'^accident/(?P<pk>\d+)/update/$', update_accident, name='accident_update'),
                   url(r'^accident/delete/(?P<pk>\d+)/$', delete_accident, name='accident_delete'),
+                  url(r'^car_reg_plan/$', car_reg_plan, name='car_reg_plan'),
+                  url(r'^reg_accident/$', reg_accident, name='reg_accident'),
+                  url(r'^europrotocol/$', europrotocol, name='europrotocol'),
+                  url(r'^change_dr_license/$', change_dr_license, name='change_dr_license'),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,40 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+    <div class="m-t2 m-b2">
+        <h2 style="color: red"><b><i>ДЕЙСТВИЯ ВОДИТЕЛЯ ПРИ ДТП (НЕМЕДЛЕННО ПОСЛЕ ДТП)</i></b></h2>
+        <div>
+            <ul class="list_disc">
+                <li style="text-align: justify; color: red"><b>остановить (не трогать с места) транспортное средство</b>
+                </li>
+                <li style="text-align: justify;">включить аварийную сигнализацию</li>
+                <li style="text-align: justify;">выставить знак аварийной остановки</li>
+                <li style="text-align: justify;">не перемещать предметы, имеющие отношение к происшествию</li>
+                <li style="text-align: justify; color: red"><b>определить наличие погибших или раненых в результате ДТП
+                </b></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+    <h2 style="position: relative; text-align: left"><a
+            href="{% static 'gibdd_app/images/workers_interface/pri_dtp.pdf' %}"><b><u
+            style="text-decoration-color: #2b669a;">Скачать инструкцию</u></b></a></h2>
+    <p>Ответственность за оставление места ДТП предусмотрена ст. 12.27 КоАП РФ, согласно которой <b
+            style="color: darkred"> за
+        оставление места ДТП </b> предусмотрено наказание в виде <b style="color: darkred">лишения прав от года до
+        полутора лет или административного
+        ареста до 15 суток.</b> Штраф за оставление места ДТП законом не предусмотрен.</p>
+    <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
+{% endblock %}
+</body>
+</html>

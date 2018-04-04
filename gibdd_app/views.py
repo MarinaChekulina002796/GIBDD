@@ -177,7 +177,10 @@ def mix_list_VIN_accident(request):
             'car__car_registr_certificate__registr_certificate_number',
             'car__car_registr_certificate__registr_certificate_car_model',
             'car__car_registr_certificate__registr_certificate_colour',
-            'accid__accident_date', 'accid__accident_severity'
+            'accid__accident_date', 'accid__accident_severity',
+            'car__car_owner__owner_name', 'car__car_owner__owner_surname',
+            'car__car_owner__owner_patronymic', 'car__car_stealing__stealing_status',
+            'car__car_stealing__stealing_date', 'car__car_stealing__stealing_town'
             ]
     objects_list = Accident_Car.objects.all().values(*list)
 
@@ -201,13 +204,13 @@ def mix_search_VIN_accident(request):
         regs = Accident_Car.objects.filter(
             car__car_registr_certificate__registr_certificate_VIN__icontains=query).values(
             *list)
+        return render(request, template, {'regs': regs, 'query': query})
 
     else:
         text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
         button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
         tex = (text, button)
         return HttpResponse(tex)
-    return render(request, template, {'regs': regs, 'query': query})
 
 
 def med_search(request):
@@ -253,23 +256,21 @@ def search_accidents_by_date(request):
     template = 'gibdd_app/Search_accidents_by_date.html'
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
-
+    # if query1 and query2:
     list = ['pk', 'car__car_registr_certificate__registr_certificate_VIN',
             'car__car_registr_certificate__registr_certificate_number',
             'car__car_registr_certificate__registr_certificate_car_model',
             'car__car_registr_certificate__registr_certificate_colour',
             'accid__accident_date', 'accid__accident_severity']
-    if query1 and query2:
-        regs = Accident_Car.objects.all().order_by('accid__accident_date')
-        regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
-        return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2})
-    else:
-        text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
-        button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
-        tex = (text, button)
-        return HttpResponse(tex)
-        # regs = Accident_Car.objects.all().order_by('accid__accident_date')
-        # regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
+    regs = Accident_Car.objects.all().order_by('accid__accident_date')
+
+    regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
+    return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2})
+    # if not query1 or not query2:
+    #     text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+    #     button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+    #     tex = (text, button)
+    #     return HttpResponse(tex)
 
 
 def mix_search_licen_fine(request):
@@ -562,6 +563,20 @@ def statistics(request):
 def contacts(request):
     return render(request, 'gibdd_app/contacts.html')
 
+
+def car_reg_plan(request):
+    return render(request, 'gibdd_app/car_reg_plan.html')
+
+
+def reg_accident(request):
+    return render(request, 'gibdd_app/reg_accident.html')
+
+
+def europrotocol(request):
+    return render(request, 'gibdd_app/europrotocol.html')
+
+def change_dr_license(request):
+    return render(request, 'gibdd_app/change_dr_license.html')
 
 # для авторизации уже зарегистрированного пользователя
 def login(request):

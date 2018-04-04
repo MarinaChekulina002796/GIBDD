@@ -1,0 +1,24 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#<img class="img-responsive"#}
+{% block content %}
+
+    <a href="{% static 'gibdd_app/images/workers_interface/Car_registration_plan.pdf' %}">
+        <img style="float:left;margin:10px;"
+             src='{% static 'gibdd_app/images/workers_interface/car_reg_licen_img.png' %}'
+             width="400" height="200">
+        <p>Оформить машину? Легко! Скачайте файл pdf(7.6 МБ) − о том, как быстро зарегистрировать автомобиль в ГИБДД или
+            поменять его собственника.</p>
+    </a>
+    <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
+{% endblock %}
+
+</body>
+</html>

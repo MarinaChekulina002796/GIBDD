@@ -83,5 +83,6 @@ urlpatterns = [
                   url(r'^reg_accident/$', reg_accident, name='reg_accident'),
                   url(r'^europrotocol/$', europrotocol, name='europrotocol'),
                   url(r'^change_dr_license/$', change_dr_license, name='change_dr_license'),
+                  url(r'^med003/$', med003, name='med003'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

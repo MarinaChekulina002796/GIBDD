@@ -577,7 +577,8 @@ def europrotocol(request):
 
 def change_dr_license(request):
     return render(request, 'gibdd_app/change_dr_license.html')
-
+def med003(request):
+    return render(request,'gibdd_app/med003.html')
 # для авторизации уже зарегистрированного пользователя
 def login(request):
     if request.method == 'POST':

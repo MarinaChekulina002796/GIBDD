@@ -79,14 +79,15 @@
             <div class="col-sm-5 col-md-3">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" style="align:center"
-                             src="{% static 'gibdd_app/images/workers_interface/info_car.jpg' %}"
-                             width="240" height="120">
+                        <a href="{% url 'reg_accident' %}">
+                            <img class="img-responsive" style="align:center"
+                                 src="{% static 'gibdd_app/images/workers_interface/info_car.jpg' %}"
+                                 width="240" height="120"></a>
                     </div>
                     <div>
                         <a href="{% url 'reg_accident' %}"><h3 class="media-heading"
                                                                style="text-align: center">Действия при ДТП и его
-                            оформление инспектором
+                            оформление инспектором (инструкция)
                         </h3></a>
                     </div>
                 </div>
@@ -95,24 +96,10 @@
             <div class="col-sm-5 col-md-3">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive"
-                             src="{% static 'gibdd_app/images/workers_interface/info_license.jpg' %}"
-                             width="240" height="120">
-                    </div>
-                    <div class="media-body">
-                        <a href="{% url 'change_dr_license' %}"><h3 class="media-heading"
-                                                                         style="text-align: center">Замена
-                            водительского удостоверения</h3></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-5 col-md-3">
-                <div class="media services-wrap wow fadeInDown">
-                    <div class="pull-left">
-                        <img class="img-responsive"
-                             src="{% static 'gibdd_app/images/workers_interface/evroprotocol_short_img.PNG' %}"
-                             width="240" height="120">
+                        <a href="{% url 'europrotocol' %}">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/evroprotocol_short_img.PNG' %}"
+                                 width="240" height="120"></a>
                     </div>
                     <div class="media-body">
                         <a href="{% url 'europrotocol' %}"><h3 class="media-heading"
@@ -122,6 +109,37 @@
                 </div>
             </div>
 
+            <div class="col-sm-5 col-md-3">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <a href="{% url 'change_dr_license' %}">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/info_license.jpg' %}"
+                                 width="240" height="120"></a>
+                    </div>
+                    <div class="media-body">
+                        <a href="{% url 'change_dr_license' %}"><h3 class="media-heading"
+                                                                    style="text-align: center">Замена
+                            водительского удостоверения</h3></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-5 col-md-3">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <a href="{% url 'med003' %}">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/med_003.jpg' %}"
+                                 width="280" height="140"></a>
+                    </div>
+                    <div class="media-body">
+                        <a href="{% url 'med003' %}"><h3 class="media-heading"
+                                                         style="text-align: center">Оформление медицинской
+                            справки 003 В/У</h3></a>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-sm-5 col-md-3">
                 <div class="media services-wrap wow fadeInDown">

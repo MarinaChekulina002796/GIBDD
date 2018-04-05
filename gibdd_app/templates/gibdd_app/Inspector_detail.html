@@ -1,0 +1,40 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+
+<title>Car_detail</title>
+{% block content %}
+
+    {% block form %}
+        <form>
+
+
+            <div class="col-sm-12 col-md-9">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'inspector_update' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-pencil"
+                                style="color:darkorange"
+                                title="Редактировать данные сотрудника"> </span></a></div>
+                        <div class="active"><a href="{% url 'inspector_delete' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-trash"
+                                style="color:red"
+                                title="Удалить сотрудника"> </span></a></div>
+                    </ul>
+                </div>
+                <h2><i><b>Номер жетона: {{ obj.inspector_number_token }}</b></i></h2>
+                <p>Фото инспектора: <img src="{{ MEDIA_URL }}{{ obj.image_url|default_if_none:'#' }}"
+                                         style="width: 100px"></p>
+                <p>ФИО
+                    сотрудника: {{ obj.inspector_surname }} {{ obj.inspector_name }} {{ obj.inspector_patronymic }}</p>
+                <p>Звание инспектора: {{ obj.inspector_status }}</p>
+                <p>Номер отделения: {{ obj.inspector_division }}</p>
+            </div>
+
+        </form>
+    {% endblock %}
+{% endblock %}

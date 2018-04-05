@@ -4,17 +4,12 @@ from django.contrib.auth.models import User
 from datetime import timedelta
 from dateutil.relativedelta import *
 import datetime
-from django.utils.timezone import now
-# Create your models here.
-# Водитель
 from django.urls import reverse
 
 
-#
-# def age_check():
-#     now = datetime.datetime.now
+# Create your models here.
 
-
+# Водитель
 class Driver(models.Model):
     passport_number = models.CharField(max_length=11, verbose_name="Номер паспорта")
     driver_surname = models.CharField(max_length=50, verbose_name="Фамилия водителя")
@@ -147,7 +142,7 @@ class License(models.Model):
     #         self.datetime = self.date_issue_dr_license + d
     #         super(License,self.save())
 
-    # фото водителя
+
 
     def __str__(self):
         return "%s № %s от %s" % (self.series_dr_license, self.number_dr_license, self.date_issue_dr_license)
@@ -155,6 +150,7 @@ class License(models.Model):
     def get_absolute_url(self):
         return reverse('lic_cat_create')
 
+    # фото водителя
     @property
     def image_url(self):
         if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
@@ -196,6 +192,12 @@ class Inspector(models.Model):
 
     def __str__(self):
         return "%s %s %s" % (self.inspector_number_token, self.inspector_surname, self.inspector_name)
+
+    # фото
+    @property
+    def image_url(self):
+        if self.photo_inspector and hasattr(self.photo_inspector, 'url'):
+            return self.photo_inspector.url
 
 
 DECREE_CHOICES = (

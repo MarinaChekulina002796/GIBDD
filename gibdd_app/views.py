@@ -423,6 +423,17 @@ def licen_accid_list(request):
 
 
 @login_required
+def inspector_list(request):
+    template = 'gibdd_app/Inspector_list.html'
+    objects_list = Inspector.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def witness_detail(request, pk):
     template = 'gibdd_app/Witness_detail.html'
 
@@ -525,6 +536,17 @@ def licen_accid_detail(request, pk):
     template = 'gibdd_app/Lisense_Accident_detail.html'
 
     obj = get_object_or_404(Lisense_Accident, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def inspector_detail(request, pk):
+    template = 'gibdd_app/Inspector_detail.html'
+
+    obj = get_object_or_404(Inspector, pk=pk)
     context = {
         'obj': obj,
     }
@@ -686,6 +708,21 @@ def delete_licen_accid(request, pk):
         return redirect(reverse('licen_accid_list'))
     else:
         form = Lisense_AccidentForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_inspector(request, pk):
+    template = 'gibdd_app/Inspector_form.html'
+    obj = get_object_or_404(Inspector, pk=pk)
+    if request.method == 'POST':
+        form = InspectorForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('inspector_list'))
+    else:
+        form = InspectorForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -892,6 +929,26 @@ def update_licen_accid(request, pk):
     context = {
         'form': form,
         'licen_accid': licen_accid,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_inspector(request, pk):
+    inspect = get_object_or_404(Inspector, pk=pk)
+    if request.method == 'POST':
+        form = InspectorForm(request.POST, request.FILES, instance=inspect)
+        if form.is_valid():
+            form.save()
+        return redirect('inspector_detail', pk)
+    else:
+        form = InspectorForm(instance=inspect)
+
+    template = 'gibdd_app/Inspector_form.html'
+    context = {
+        'form': form,
+        'inspect': inspect,
     }
 
     return render(request, template, context)

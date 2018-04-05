@@ -96,5 +96,8 @@ urlpatterns = [
                   url(r'^licen_accid/detail/(?P<pk>\d+)/$', licen_accid_detail, name='licen_accid_detail'),
                   url(r'^licen_accid/(?P<pk>\d+)/update/$', update_licen_accid, name='licen_accid_update'),
                   url(r'^licen_accid/delete/(?P<pk>\d+)/$', delete_licen_accid, name='licen_accid_delete'),
-
+                  url(r'^inspector_list/$', inspector_list, name='inspector_list'),
+                  url(r'^inspector/detail/(?P<pk>\d+)/$', inspector_detail, name='inspector_detail'),
+                  url(r'^inspector/(?P<pk>\d+)/update/$', update_inspector, name='inspector_update'),
+                  url(r'^inspector/delete/(?P<pk>\d+)/$', delete_inspector, name='inspector_delete'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -35,7 +35,7 @@
                             {% for med in meds %}
 
                                 <tr>
-                                    <td> {{ med.medical_number }}</td>
+                                    <td><a href="{% url 'med_detail' pk=med.pk %}">{{ med.medical_number }}</a></td>
                                     <td>{{ med.medical_date }}</td>
                                     <td>{{ med.diagnosis }}</td>
                                     <td> {{ med.validity }}</td>
@@ -51,7 +51,7 @@
 
                 {% else %}
                     <table border="2">
-                        <caption>Таблица штрафов</caption>
+                        <caption>Таблица справок</caption>
                         <th> № справки</th>
                         <th> Дата выдачи</th>
                         <th> Диагноз</th>

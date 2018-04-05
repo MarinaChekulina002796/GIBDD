@@ -4,7 +4,8 @@
     <p>Found {{ meds|length }} med{{ meds|pluralize }}.</p>
     <ul>
         {% for med in meds %}
-        <li>{{ med.medical_number }}</li>
+            <li>{{ med.medical_number }}</li>
+            <
         {% endfor %}
     </ul>
 {% else %}

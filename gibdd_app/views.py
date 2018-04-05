@@ -401,6 +401,39 @@ def lic_cat_list(request):
 
 
 @login_required
+def witness_list(request):
+    template = 'gibdd_app/Witness_list.html'
+    objects_list = Witness.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def licen_accid_list(request):
+    template = 'gibdd_app/Lisense_Accident_list.html'
+    objects_list = Lisense_Accident.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def witness_detail(request, pk):
+    template = 'gibdd_app/Witness_detail.html'
+
+    obj = get_object_or_404(Witness, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def lic_cat_detail(request, pk):
     template = 'gibdd_app/Licen_Cat_detail.html'
 
@@ -481,6 +514,17 @@ def car_detail(request, pk):
     template = 'gibdd_app/Car_detail.html'
 
     obj = get_object_or_404(Car, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def licen_accid_detail(request, pk):
+    template = 'gibdd_app/Lisense_Accident_detail.html'
+
+    obj = get_object_or_404(Lisense_Accident, pk=pk)
     context = {
         'obj': obj,
     }
@@ -611,6 +655,37 @@ def delete_lic_cat(request, pk):
         return redirect(reverse('car_list'))
     else:
         form = Licen_CatForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_witness(request, pk):
+    template = 'gibdd_app/Witness_form.html'
+
+    obj = get_object_or_404(Witness, pk=pk)
+    if request.method == 'POST':
+        form = WitnessForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('witness_list'))
+    else:
+        form = WitnessForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_licen_accid(request, pk):
+    template = 'gibdd_app/Lisense_Accident_form.html'
+    obj = get_object_or_404(Lisense_Accident, pk=pk)
+    if request.method == 'POST':
+        form = Lisense_AccidentForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('licen_accid_list'))
+    else:
+        form = Lisense_AccidentForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -777,6 +852,46 @@ def update_lic_cat(request, pk):
     context = {
         'form': form,
         'lic_cat': lic_cat,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_witness(request, pk):
+    witness = get_object_or_404(Witness, pk=pk)
+    if request.method == 'POST':
+        form = WitnessForm(request.POST, request.FILES, instance=witness)
+        if form.is_valid():
+            form.save()
+        return redirect('witness_detail', pk)
+    else:
+        form = WitnessForm(instance=witness)
+
+    template = 'gibdd_app/Witness_form.html'
+    context = {
+        'form': form,
+        'witness': witness,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_licen_accid(request, pk):
+    licen_accid = get_object_or_404(Lisense_Accident, pk=pk)
+    if request.method == 'POST':
+        form = Lisense_AccidentForm(request.POST, request.FILES, instance=licen_accid)
+        if form.is_valid():
+            form.save()
+        return redirect('licen_accid_detail', pk)
+    else:
+        form = Lisense_AccidentForm(instance=licen_accid)
+
+    template = 'gibdd_app/Lisense_Accident_form.html'
+    context = {
+        'form': form,
+        'licen_accid': licen_accid,
     }
 
     return render(request, template, context)

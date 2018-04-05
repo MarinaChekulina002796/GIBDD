@@ -88,5 +88,13 @@ urlpatterns = [
                   url(r'^lic_cat/detail/(?P<pk>\d+)/$', lic_cat_detail, name='lic_cat_detail'),
                   url(r'^lic_cat/(?P<pk>\d+)/update/$', update_lic_cat, name='lic_cat_update'),
                   url(r'^lic_cat/delete/(?P<pk>\d+)/$', delete_lic_cat, name='lic_cat_delete'),
+                  url(r'^witness_list/$', witness_list, name='witness_list'),
+                  url(r'^witness/detail/(?P<pk>\d+)/$', witness_detail, name='witness_detail'),
+                  url(r'^witness/(?P<pk>\d+)/update/$', update_witness, name='witness_update'),
+                  url(r'^witness/delete/(?P<pk>\d+)/$', delete_witness, name='witness_delete'),
+                  url(r'^licen_accid_list/$', licen_accid_list, name='licen_accid_list'),
+                  url(r'^licen_accid/detail/(?P<pk>\d+)/$', licen_accid_detail, name='licen_accid_detail'),
+                  url(r'^licen_accid/(?P<pk>\d+)/update/$', update_licen_accid, name='licen_accid_update'),
+                  url(r'^licen_accid/delete/(?P<pk>\d+)/$', delete_licen_accid, name='licen_accid_delete'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

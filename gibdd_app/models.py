@@ -447,6 +447,11 @@ class Car(models.Model):
     def __str__(self):
         return "%s" % (self.car_number)
 
+    @property
+    def image_url_car(self):
+        if self.car_photo and hasattr(self.car_photo, 'url'):
+            return self.car_photo.url
+
 
 KOAP_CHOICES = (
     ('Предупреждение', 'Предупреждение'),

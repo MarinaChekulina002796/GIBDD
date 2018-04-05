@@ -1,12 +1,8 @@
 from django.conf.urls import url
 from django.conf.urls.static import static
 from gibdd_app.views import *
-# med_search
 from gibdd_app.views import main
 from gibdd_application import settings
-from gibdd_app.views import MedicalCertificateCreate
-
-# LicenseCreate
 
 urlpatterns = [
                   url(r'^$', main, name='main'),
@@ -84,5 +80,13 @@ urlpatterns = [
                   url(r'^europrotocol/$', europrotocol, name='europrotocol'),
                   url(r'^change_dr_license/$', change_dr_license, name='change_dr_license'),
                   url(r'^med003/$', med003, name='med003'),
+                  url(r'^car_list/$', car_list, name='car_list'),
+                  url(r'^car/detail/(?P<pk>\d+)/$', car_detail, name='car_detail'),
+                  url(r'^car/(?P<pk>\d+)/update/$', update_car, name='car_update'),
+                  url(r'^car/delete/(?P<pk>\d+)/$', delete_car, name='car_delete'),
+                  url(r'^lic_cat_list/$', lic_cat_list, name='lic_cat_list'),
+                  url(r'^lic_cat/detail/(?P<pk>\d+)/$', lic_cat_detail, name='lic_cat_detail'),
+                  url(r'^lic_cat/(?P<pk>\d+)/update/$', update_lic_cat, name='lic_cat_update'),
+                  url(r'^lic_cat/delete/(?P<pk>\d+)/$', delete_lic_cat, name='lic_cat_delete'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

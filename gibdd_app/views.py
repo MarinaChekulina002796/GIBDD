@@ -379,6 +379,39 @@ def disq_list(request):
 
 
 @login_required
+def car_list(request):
+    template = 'gibdd_app/Car_list.html'
+    objects_list = Car.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def lic_cat_list(request):
+    template = 'gibdd_app/Licen_Cat_list.html'
+    objects_list = Lisense_Category.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def lic_cat_detail(request, pk):
+    template = 'gibdd_app/Licen_Cat_detail.html'
+
+    obj = get_object_or_404(Lisense_Category, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def categ_detail(request, pk):
     template = 'gibdd_app/Category_detail.html'
 
@@ -437,6 +470,17 @@ def disq_detail(request, pk):
     template = 'gibdd_app/LicenseDisqualification_detail.html'
 
     obj = get_object_or_404(LicenseDisqualification, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def car_detail(request, pk):
+    template = 'gibdd_app/Car_detail.html'
+
+    obj = get_object_or_404(Car, pk=pk)
     context = {
         'obj': obj,
     }
@@ -535,6 +579,38 @@ def delete_accident(request, pk):
         return redirect(reverse('license_list'))
     else:
         form = AccidentReportForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_car(request, pk):
+    template = 'gibdd_app/Car_form.html'
+
+    obj = get_object_or_404(Car, pk=pk)
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('car_list'))
+    else:
+        form = CarForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_lic_cat(request, pk):
+    template = 'gibdd_app/Licen_CatForm.html'
+
+    obj = get_object_or_404(Lisense_Category, pk=pk)
+    if request.method == 'POST':
+        form = Licen_CatForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('car_list'))
+    else:
+        form = Licen_CatForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -660,7 +736,47 @@ def update_accident(request, pk):
     template = 'gibdd_app/AccidentReport_form.html'
     context = {
         'form': form,
-        'licen': accident,
+        'accident': accident,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_car(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES, instance=car)
+        if form.is_valid():
+            form.save()
+        return redirect('car_detail', pk)
+    else:
+        form = CarForm(instance=car)
+
+    template = 'gibdd_app/Car_form.html'
+    context = {
+        'form': form,
+        'car': car,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_lic_cat(request, pk):
+    lic_cat = get_object_or_404(Lisense_Category, pk=pk)
+    if request.method == 'POST':
+        form = Licen_CatForm(request.POST, request.FILES, instance=lic_cat)
+        if form.is_valid():
+            form.save()
+        return redirect('lic_cat_detail', pk)
+    else:
+        form = Licen_CatForm(instance=lic_cat)
+
+    template = 'gibdd_app/Licen_CatForm.html'
+    context = {
+        'form': form,
+        'lic_cat': lic_cat,
     }
 
     return render(request, template, context)
@@ -1103,4 +1219,9 @@ class LicenseDisqualificationCreate(CreateView):
 
 class LicenseDisqualificationUpdate(UpdateView):
     model = LicenseDisqualification
+    fields = '__all__'
+
+
+class CarUpdate(UpdateView):
+    model = Car
     fields = '__all__'

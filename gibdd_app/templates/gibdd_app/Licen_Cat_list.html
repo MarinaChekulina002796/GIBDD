@@ -1,0 +1,30 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список авто</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список ВУ с категориями</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица ВУ с категориями</caption>
+                <th> Все ВУ</th>
+                <th> Все категории</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'lic_cat_detail' pk=obj.pk %}">{{ obj.licen }}
+                            </a></p></td>
+                            <td><p>{{ obj.categ }}</p></td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

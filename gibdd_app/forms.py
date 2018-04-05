@@ -10,7 +10,7 @@ from django.shortcuts import render_to_response
 from django.urls import reverse_lazy
 from datetime import timedelta
 from dateutil.relativedelta import *
-
+from django.utils import timezone
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
     AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
     Camera, AutoSchool, CarHistory, DiagnosticCard, Insurance, InsuranceLicense, Accident_Car
@@ -59,22 +59,6 @@ class LicenseForm(forms.ModelForm):
     class Meta:
         model = License
         exclude = ('date_end_dr_license',)
-
-
-# class MonthDateYearOrYearField(forms.DateField):
-#     def clean(self, value):
-#         date_length = len(value)
-#
-#         if date_length == 4:  # 2003
-#             raise forms.ValidationError('Дата должна быть в формате "мм-дд-гггг"')
-#         elif 8 <= date_length <= 10:  # 5/10/2003, 05/10/2003, 5/9/2009
-#             pass
-#         else:
-#             raise forms.ValidationError('Дата должна быть в формате "мм-дд-гггг"')
-#
-#         return super(MonthDateYearOrYearField, self).clean(value)
-
-from django.utils import timezone
 
 
 class DriverForm(forms.ModelForm):

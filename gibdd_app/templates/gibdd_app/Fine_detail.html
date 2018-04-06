@@ -1,0 +1,40 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+
+<title>fine_detail</title>
+{% block content %}
+
+    {% block form %}
+        <form>
+
+
+            <div class="col-sm-12 col-md-9">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'fine_update' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-pencil"
+                                style="color:darkorange"
+                                title="Редактировать штраф"> </span></a></div>
+                        <div class="active"><a href="{% url 'fine_delete' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-trash"
+                                style="color:red"
+                                title="Удалить штраф"> </span></a></div>
+                    </ul>
+                </div>
+                <h2><i><b>Данные о постановлении: {{ obj.fine_decree_data }}</b></i></h2>
+                <p>Штраф для автомобиля {{ obj.fine_car_data }} </p>
+                <p>Данные о ВУ: {{ obj.fine_license_data }}</p>
+                <p>Статус штрафа: {{ obj.fine_status }}</p>
+                <p>Дата оплаты штрафа: {{ obj.date_of_payment_fine }}</p>
+                <p>Первоначальная сумма штрафа: {{ obj.fine_amount }}</p>
+                <p>Скидка: {{ obj.fine_discount }}</p>
+            </div>
+
+        </form>
+    {% endblock %}
+{% endblock %}

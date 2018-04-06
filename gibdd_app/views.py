@@ -434,6 +434,39 @@ def inspector_list(request):
 
 
 @login_required
+def fine_list(request):
+    template = 'gibdd_app/Fine_list.html'
+    objects_list = Fine.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def registr_list(request):
+    template = 'gibdd_app/RegistrationCertificate_list.html'
+    objects_list = RegistrationCertificate.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def registr_detail(request, pk):
+    template = 'gibdd_app/RegistrationCertificate_detail.html'
+
+    obj = get_object_or_404(RegistrationCertificate, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def witness_detail(request, pk):
     template = 'gibdd_app/Witness_detail.html'
 
@@ -547,6 +580,16 @@ def inspector_detail(request, pk):
     template = 'gibdd_app/Inspector_detail.html'
 
     obj = get_object_or_404(Inspector, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def fine_detail(request, pk):
+    template = 'gibdd_app/Fine_detail.html'
+    obj = get_object_or_404(Fine, pk=pk)
     context = {
         'obj': obj,
     }
@@ -723,6 +766,36 @@ def delete_inspector(request, pk):
         return redirect(reverse('inspector_list'))
     else:
         form = InspectorForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_fine(request, pk):
+    template = 'gibdd_app/Fine_form.html'
+    obj = get_object_or_404(Fine, pk=pk)
+    if request.method == 'POST':
+        form = FineForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('fine_list'))
+    else:
+        form = FineForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_registr(request, pk):
+    template = 'gibdd_app/RegistrationCertificate_form.html'
+    obj = get_object_or_404(RegistrationCertificate, pk=pk)
+    if request.method == 'POST':
+        form = RegistrationCertificateForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('registr_list'))
+    else:
+        form = RegistrationCertificateForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -949,6 +1022,46 @@ def update_inspector(request, pk):
     context = {
         'form': form,
         'inspect': inspect,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_fine(request, pk):
+    fine = get_object_or_404(Fine, pk=pk)
+    if request.method == 'POST':
+        form = FineForm(request.POST, request.FILES, instance=fine)
+        if form.is_valid():
+            form.save()
+        return redirect('fine_detail', pk)
+    else:
+        form = FineForm(instance=fine)
+
+    template = 'gibdd_app/Fine_form.html'
+    context = {
+        'form': form,
+        'fine': fine,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_registr(request, pk):
+    reg = get_object_or_404(RegistrationCertificate, pk=pk)
+    if request.method == 'POST':
+        form = RegistrationCertificateForm(request.POST, request.FILES, instance=reg)
+        if form.is_valid():
+            form.save()
+        return redirect('registr_detail', pk)
+    else:
+        form = RegistrationCertificateForm(instance=reg)
+
+    template = 'gibdd_app/RegistrationCertificate_form.html'
+    context = {
+        'form': form,
+        'reg': reg,
     }
 
     return render(request, template, context)

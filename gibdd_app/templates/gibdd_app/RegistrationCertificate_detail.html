@@ -1,0 +1,48 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+
+<title>registr_detail</title>
+{% block content %}
+
+    {% block form %}
+        <form>
+
+
+            <div class="col-sm-12 col-md-9">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'registr_update' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-pencil"
+                                style="color:darkorange"
+                                title="Редактировать СТС"> </span></a></div>
+                        <div class="active"><a href="{% url 'registr_delete' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-trash"
+                                style="color:red"
+                                title="Удалить СТС"> </span></a></div>
+                    </ul>
+                </div>
+                <h2><i><b>Номер СТС: {{ obj.registr_certificate_number }}</b></i></h2>
+                <p> Регистрационный знак: {{ obj.registr_certificate_registr_sign }}</p>
+                <p> VIN: {{ obj.registr_certificate_VIN }}</p>
+                <p>Марка, модель: {{ obj.registr_certificate_car_model }}</p>
+                <p> Тип ТС: {{ obj.registr_certificate_type_car }}</p>
+                <p>Категория ТС: {{ obj.registr_certificate_category }}</p>
+                <p> Год выпуска ТС: {{ obj.registr_certificate_year }}</p>
+                <p>Шасси №: {{ obj.registr_certificate_chassis }}</p>
+                <p> Кузов №: {{ obj.registr_certificate_body }}</p>
+                <p>Цвет: {{ obj.registr_certificate_colour }}</p>
+                <p>Мощность двигателя,кВт/л.с: {{ obj.registr_certificate_power }}</p>
+                <p>Экологический класс: {{ obj.registr_certificate_ecology_class }}</p>
+                <p>Паспорт ТС серия: {{ obj.registr_certificate_passport }}</p>
+                <p>Разрешенная max масса,kg: {{ obj.registr_certificate_max_weight }}</p>
+                <p>Масса без нагрузки,kg: {{ obj.registr_certificate_without_load }}</p>
+            </div>
+
+        </form>
+    {% endblock %}
+{% endblock %}

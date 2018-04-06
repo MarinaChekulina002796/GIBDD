@@ -1,0 +1,39 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+
+<title>insurance_detail</title>
+{% block content %}
+
+    {% block form %}
+        <form>
+
+
+            <div class="col-sm-12 col-md-9">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'insurance_update' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-pencil"
+                                style="color:darkorange"
+                                title="Редактировать полис"> </span></a></div>
+                        <div class="active"><a href="{% url 'insurance_delete' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-trash"
+                                style="color:red"
+                                title="Удалить полис"> </span></a></div>
+                    </ul>
+                </div>
+                <h2><i><b>Номер полиса: {{ obj.insurance_number }}</b></i></h2>
+                <p> Страховая компания: {{ obj.insurance_company }} </p>
+                <p> Тип полиса: {{ obj.insurance_type }}</p>
+                <p> Дата начала действия: {{ obj.insurance_date_from }}</p>
+                <p>Дата окончания действия: {{ obj.insurance_date_to }}</p>
+                <p>Ограничения: {{ obj.insurance_confines }}</p>
+                <p> Диагностическая карта (ТО) о состоянии автомобиля: {{ obj.insurance_diagnostic_card }}</p>
+            </div>
+        </form>
+    {% endblock %}
+{% endblock %}

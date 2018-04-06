@@ -1,0 +1,37 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список авто</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>ТС в ДТП</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица ТС, участвовавших в ДТП</caption>
+                <th> Авария</th>
+                <th> Автомобили, участвовавшие в ДТП</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'accident_car_detail' pk=obj.pk %}">{{ obj.accid }}
+                            </a></p></td>
+                            <td><p>{{ obj.car }}</p></td>
+
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'accident_car_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

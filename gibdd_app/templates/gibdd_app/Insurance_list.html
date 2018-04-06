@@ -1,0 +1,40 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список страховых полисов</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список страховых полисов</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица страховых полисов</caption>
+                <th> Номер полиса</th>
+                <th> Тип полиса</th>
+                <th>Период действия</th>
+                <th>Ограничения</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'insurance_detail' pk=obj.pk %}">{{ obj.insurance_number }}
+                            </a></p></td>
+                            <td><p>{{ obj.insurance_type }}</p></td>
+                            <td><p> {{ obj.insurance_date_from }} - {{ obj.insurance_date_to }}</p></td>
+                            <td><p>{{ obj.insurance_confines }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'insurance_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

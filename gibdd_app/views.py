@@ -531,6 +531,67 @@ def diagnostic_card_list(request):
 
 
 @login_required
+def insurance_list(request):
+    template = 'gibdd_app/Insurance_list.html'
+    objects_list = Insurance.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def insurance_license_list(request):
+    template = 'gibdd_app/InsuranceLicense_list.html'
+    objects_list = InsuranceLicense.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def accident_car_list(request):
+    template = 'gibdd_app/Accident_Car_list.html'
+    objects_list = Accident_Car.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def accident_car_detail(request, pk):
+    template = 'gibdd_app/Accident_Car_detail.html'
+    obj = get_object_or_404(Accident_Car, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def insurance_license_detail(request, pk):
+    template = 'gibdd_app/InsuranceLicense_detail.html'
+    obj = get_object_or_404(InsuranceLicense, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def insurance_detail(request, pk):
+    template = 'gibdd_app/Insurance_detail.html'
+
+    obj = get_object_or_404(Insurance, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def diagnostic_card_detail(request, pk):
     template = 'gibdd_app/DiagnosticCard_detail.html'
 
@@ -1051,6 +1112,48 @@ def delete_diagnostic_card(request, pk):
     return render(request, template, {'form': form})
 
 
+@login_required
+def delete_insurance(request, pk):
+    template = 'gibdd_app/Insurance_form.html'
+    obj = get_object_or_404(Insurance, pk=pk)
+    if request.method == 'POST':
+        form = InsuranceForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('insurance_list'))
+    else:
+        form = InsuranceForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_insurance_license(request, pk):
+    template = 'gibdd_app/InsuranceLicense_form.html'
+    obj = get_object_or_404(InsuranceLicense, pk=pk)
+    if request.method == 'POST':
+        form = InsuranceLicenseForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('insurance_license_list'))
+    else:
+        form = InsuranceLicenseForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_accident_car(request, pk):
+    template = 'gibdd_app/Accident_Car_form.html'
+    obj = get_object_or_404(Accident_Car, pk=pk)
+    if request.method == 'POST':
+        form = Accident_CarForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('accident_car_list'))
+    else:
+        form = Accident_CarForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
 def services(request):
     return render(request, 'gibdd_app/services_for_drivers.html')
 
@@ -1451,6 +1554,60 @@ def update_diagnostic_card(request, pk):
     context = {
         'form': form,
         'diagnostic': diagnostic,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_insurance(request, pk):
+    insurance = get_object_or_404(Insurance, pk=pk)
+    if request.method == 'POST':
+        form = InsuranceForm(request.POST, request.FILES, instance=insurance)
+        if form.is_valid():
+            form.save()
+        return redirect('insurance_detail', pk)
+    else:
+        form = InsuranceForm(instance=insurance)
+    template = 'gibdd_app/Insurance_form.html'
+    context = {
+        'form': form,
+        'insurance': insurance,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_insurance_license(request, pk):
+    insurance_license = get_object_or_404(InsuranceLicense, pk=pk)
+    if request.method == 'POST':
+        form = InsuranceLicenseForm(request.POST, request.FILES, instance=insurance_license)
+        if form.is_valid():
+            form.save()
+        return redirect('insurance_license_detail', pk)
+    else:
+        form = InsuranceLicenseForm(instance=insurance_license)
+    template = 'gibdd_app/InsuranceLicense_form.html'
+    context = {
+        'form': form,
+        'insurance_license': insurance_license,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_accident_car(request, pk):
+    accident_car = get_object_or_404(Accident_Car, pk=pk)
+    if request.method == 'POST':
+        form = Accident_CarForm(request.POST, request.FILES, instance=accident_car)
+        if form.is_valid():
+            form.save()
+        return redirect('accident_car_detail', pk)
+    else:
+        form = Accident_CarForm(instance=accident_car)
+    template = 'gibdd_app/Accident_Car_form.html'
+    context = {
+        'form': form,
+        'accident_car': accident_car,
     }
     return render(request, template, context)
 

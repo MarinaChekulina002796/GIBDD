@@ -1,0 +1,35 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+
+<title>accident_car_detail</title>
+{% block content %}
+
+    {% block form %}
+        <form>
+
+
+            <div class="col-sm-12 col-md-9">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'accident_car_update' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-pencil"
+                                style="color:darkorange"
+                                title="Редактировать"> </span></a></div>
+                        <div class="active"><a href="{% url 'accident_car_delete' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-trash"
+                                style="color:red"
+                                title="Удалить"> </span></a></div>
+                    </ul>
+                </div>
+                <h2><i><b>Данные аварии: {{ obj.accid }}</b></i></h2>
+                <p>Автомобили, участвовавшие в ДТП: {{ obj.car }} </p>
+            </div>
+
+        </form>
+    {% endblock %}
+{% endblock %}

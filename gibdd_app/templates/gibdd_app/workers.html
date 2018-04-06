@@ -640,13 +640,18 @@
                     <div class="pull-left">
                         <img class="img-responsive"
                              src="{% static 'gibdd_app/images/workers_interface/insurance.png' %}"
-                             width="100" height="50">
+                             width="90" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">Страховые полиса ТС</h3>
                     </div>
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'insurance_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список страховых полисов"> </span></a>
+                            </li>
                             <li class="active"><a href="{% url 'insurance_create' %}"><span
                                     class="glyphicon glyphicon-plus"
                                     style="color:yellowgreen"
@@ -660,13 +665,18 @@
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
                         <img class="img-responsive" src="{% static 'gibdd_app/images/workers_interface/paper.png' %}"
-                             width="100" height="50">
+                             width="90" height="50">
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">ВУ в полисе</h3>
                     </div>
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'insurance_license_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список ВУ в полис"> </span></a>
+                            </li>
                             <li class="active"><a href="{% url 'insurance_license_create' %}"><span
                                     class="glyphicon glyphicon-plus"
                                     style="color:yellowgreen"
@@ -681,13 +691,18 @@
                     <div class="pull-left">
                         <img class="img-responsive"
                              src="{% static 'gibdd_app/images/workers_interface/accident_cars.PNG' %}"
-                             width="80" height="40">
+                             width="90" height="50">
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">ТС, участвовавшие в ДТП</h3>
+                        <h3 class="media-heading">ТС в ДТП</h3>
                     </div>
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'accident_car_list' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Список ТС, участвовавших в ДТП"> </span></a>
+                            </li>
                             <li class="active"><a href="{% url 'accident_car_create' %}"><span
                                     class="glyphicon glyphicon-plus"
                                     style="color:yellowgreen"

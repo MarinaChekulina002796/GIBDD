@@ -124,7 +124,6 @@ urlpatterns = [
                   url(r'^camera/detail/(?P<pk>\d+)/$', camera_detail, name='camera_detail'),
                   url(r'^camera/(?P<pk>\d+)/update/$', update_camera, name='camera_update'),
                   url(r'^camera/delete/(?P<pk>\d+)/$', delete_camera, name='camera_delete'),
-
                   url(r'^autoschool_list/$', autoschool_list, name='autoschool_list'),
                   url(r'^autoschool/detail/(?P<pk>\d+)/$', autoschool_detail, name='autoschool_detail'),
                   url(r'^autoschool/(?P<pk>\d+)/update/$', update_autoschool, name='autoschool_update'),

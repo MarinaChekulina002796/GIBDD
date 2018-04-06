@@ -1,0 +1,40 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список диагностических карт</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>диагностических карт</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица диагностических карт</caption>
+                <th> Регистрационный номер</th>
+                <th>Автомобиль для диагностики</th>
+                <th>Срок действия</th>
+                <th>Результаты диагностирования</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'diagnostic_card_detail' pk=obj.pk %}">{{ obj.diagnostic_number }}
+                            </a></p></td>
+                            <td><p>{{ obj.diagnostic_car }}</p></td>
+                            <td><p> {{ obj.diagnostic_date_from }} - {{ obj.diagnostic_date_to }}</p></td>
+                            <td><p>{{ obj.diagnostic_results }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'diagnostic_card_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

@@ -639,9 +639,9 @@ class Lisense_Accident(models.Model):
 
 # Диагностическая карта
 class DiagnosticCard(models.Model):
-    diagnostic_number = models.CharField(max_length=15, verbose_name="Регистрационный номер", unique_for_year=True)
+    diagnostic_number = models.CharField(max_length=15, verbose_name="Регистрационный номер", unique=True)
     diagnostic_car = models.ForeignKey(Car, verbose_name="Автомобиль для диагностики", on_delete=models.CASCADE,
-                                       unique_for_year=True)
+                                       unique=True)
     diagnostic_date_from = models.DateField(verbose_name="Дата выдачи")
     diagnostic_date_to = models.DateField(verbose_name="Срок действия до")
     diagnostic_company = models.CharField(max_length=200, verbose_name="Пункт технического осмотра")

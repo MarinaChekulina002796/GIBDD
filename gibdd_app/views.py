@@ -521,6 +521,27 @@ def history_list(request):
 
 
 @login_required
+def diagnostic_card_list(request):
+    template = 'gibdd_app/DiagnosticCard_list.html'
+    objects_list = DiagnosticCard.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def diagnostic_card_detail(request, pk):
+    template = 'gibdd_app/DiagnosticCard_detail.html'
+
+    obj = get_object_or_404(DiagnosticCard, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def history_detail(request, pk):
     template = 'gibdd_app/History_detail.html'
 
@@ -1016,6 +1037,20 @@ def delete_history(request, pk):
     return render(request, template, {'form': form})
 
 
+@login_required
+def delete_diagnostic_card(request, pk):
+    template = 'gibdd_app/DiagnosticCard_form.html'
+    obj = get_object_or_404(DiagnosticCard, pk=pk)
+    if request.method == 'POST':
+        form = DiagnosticCardForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('diagnostic_card_list'))
+    else:
+        form = DiagnosticCardForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
 def services(request):
     return render(request, 'gibdd_app/services_for_drivers.html')
 
@@ -1397,6 +1432,25 @@ def update_history(request, pk):
     context = {
         'form': form,
         'history': history,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_diagnostic_card(request, pk):
+    diagnostic = get_object_or_404(DiagnosticCard, pk=pk)
+    if request.method == 'POST':
+        form = DiagnosticCardForm(request.POST, request.FILES, instance=diagnostic)
+        if form.is_valid():
+            form.save()
+        return redirect('diagnostic_card_detail', pk)
+    else:
+        form = DiagnosticCardForm(instance=diagnostic)
+
+    template = 'gibdd_app/DiagnosticCard_form.html'
+    context = {
+        'form': form,
+        'diagnostic': diagnostic,
     }
     return render(request, template, context)
 

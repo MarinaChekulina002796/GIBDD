@@ -499,6 +499,50 @@ def camera_list(request):
 
 
 @login_required
+def autoschool_list(request):
+    template = 'gibdd_app/AutoSchool_list.html'
+    objects_list = AutoSchool.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def history_list(request):
+    template = 'gibdd_app/History_list.html'
+    # list = ['car_item__car_registr_certificate__registr_certificate_VIN', ]
+    objects_list = CarHistory.objects.all() \
+        # .values(*list)
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def history_detail(request, pk):
+    template = 'gibdd_app/History_detail.html'
+
+    obj = get_object_or_404(CarHistory, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def autoschool_detail(request, pk):
+    template = 'gibdd_app/AutoSchool_detail.html'
+
+    obj = get_object_or_404(AutoSchool, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def decree_detail(request, pk):
     template = 'gibdd_app/Decree_detail.html'
 
@@ -944,6 +988,34 @@ def delete_camera(request, pk):
     return render(request, template, {'form': form})
 
 
+@login_required
+def delete_autoschool(request, pk):
+    template = 'gibdd_app/AutoSchool_form.html'
+    obj = get_object_or_404(AutoSchool, pk=pk)
+    if request.method == 'POST':
+        form = AutoschoolForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('autoschool_list'))
+    else:
+        form = AutoschoolForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_history(request, pk):
+    template = 'gibdd_app/History_form.html'
+    obj = get_object_or_404(CarHistory, pk=pk)
+    if request.method == 'POST':
+        form = HistoryForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('history_list'))
+    else:
+        form = HistoryForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
 def services(request):
     return render(request, 'gibdd_app/services_for_drivers.html')
 
@@ -1288,6 +1360,44 @@ def update_camera(request, pk):
         'camera': camera,
     }
 
+    return render(request, template, context)
+
+
+@login_required
+def update_autoschool(request, pk):
+    school = get_object_or_404(AutoSchool, pk=pk)
+    if request.method == 'POST':
+        form = AutoschoolForm(request.POST, request.FILES, instance=school)
+        if form.is_valid():
+            form.save()
+        return redirect('autoschool_detail', pk)
+    else:
+        form = AutoschoolForm(instance=school)
+
+    template = 'gibdd_app/AutoSchool_form.html'
+    context = {
+        'form': form,
+        'school': school,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_history(request, pk):
+    history = get_object_or_404(CarHistory, pk=pk)
+    if request.method == 'POST':
+        form = HistoryForm(request.POST, request.FILES, instance=history)
+        if form.is_valid():
+            form.save()
+        return redirect('history_detail', pk)
+    else:
+        form = HistoryForm(instance=history)
+
+    template = 'gibdd_app/History_form.html'
+    context = {
+        'form': form,
+        'history': history,
+    }
     return render(request, template, context)
 
 

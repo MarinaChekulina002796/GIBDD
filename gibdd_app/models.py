@@ -406,7 +406,7 @@ class Stealing(models.Model):
 
 # Автошкола
 class AutoSchool(models.Model):
-    student = models.ForeignKey(Driver, verbose_name="Ученик автошколы", on_delete=models.CASCADE, unique_for_date=True)
+    student = models.ForeignKey(Driver, verbose_name="Ученик автошколы", on_delete=models.CASCADE, unique=True)
     school_name = models.CharField(max_length=100, verbose_name="Название автошколы")
     school_photo = models.ImageField(upload_to='autoschool_photo/',
                                      default='autoschool_photo/default.jpg',
@@ -419,6 +419,12 @@ class AutoSchool(models.Model):
     def __str__(self):
         return "%s, %s" % (
             self.school_name, self.school_address)
+
+    # фото
+    @property
+    def image_url(self):
+        if self.school_photo and hasattr(self.school_photo, 'url'):
+            return self.school_photo.url
 
 
 CAR_CHOICES = (

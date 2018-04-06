@@ -1,0 +1,46 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список историй авто</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список историй автомобилей</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица историй автомобиля</caption>
+{#                <th>№</th>#}
+{#                <th> История автомобиля c VIN</th>#}
+
+                <th> Документ,подтверждающий приобретение
+                </th>
+                <th>Документ,подтверждающий продажу
+                </th>
+                <th>ФИО владельца</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+{#                            <td><p><a#}
+{#                                    href="{% url 'history_detail' pk=obj.pk %}">{{ obj.pk }}#}
+{#                            </a></p></td>#}
+{#                            <td><p>{{ obj.car_item__car_registr_certificate__registr_certificate_VIN }}</p></td>#}
+                            <td><p>{{ obj.history_document_buy }}</p></td>
+                            <td><p> {{ obj.history_document_selling }}</p></td>
+                            <td><p>{{ obj.history_FIO }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'history_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

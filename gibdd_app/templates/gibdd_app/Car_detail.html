@@ -26,16 +26,22 @@
                                 title="Удалить авто"> </span></a></div>
                     </ul>
                 </div>
-                <h2><i><b>Номер автомобиля: {{ obj.car_number }}</b></i></h2>
-                <p>Статус автомобиля: {{ obj.car_status }} </p>
-                <p>Фото автомобиля: <img src="{{ MEDIA_URL }}{{ obj.image_url_car|default_if_none:'#' }}"
-                                         style="width: 100px"></p>
-                <p>Модель автомобиля: {{ obj.car_model }}</p>
-                <p>Цвет автомобиля: {{ obj.car_colour }}</p>
-
-                <p>Свидетельство о регистрации: {{ obj.car_registr_certificate }}</p>
-                <p>Собственник автомобиля: {{ obj.car_owner }}</p>
-                <p>Детали угона: {{ obj.car_stealing }}</p>
+                <div style="float:left"><p><img
+                        src="{{ MEDIA_URL }}{{ obj.image_url_car|default_if_none:'#' }}"
+                        style="width: 260px"></p></div>
+                <div style="margin-left: 340px;">
+                    <table border="2">
+                        <tr>
+                            <h2><i><b>Номер автомобиля: {{ obj.car_number }}</b></i></h2>
+                            <p style="color: darkred">Статус автомобиля: <b>{{ obj.car_status }}</b></p>
+                            <p>Модель автомобиля: {{ obj.car_model }}</p>
+                            <p>Цвет автомобиля: {{ obj.car_colour }}</p>
+                            <p>Свидетельство о регистрации: {{ obj.car_registr_certificate }}</p>
+                            <p>Собственник автомобиля: {{ obj.car_owner }}</p>
+                            <p>Детали угона: {{ obj.car_stealing }}</p>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
         </form>

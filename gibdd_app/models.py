@@ -589,23 +589,23 @@ class InsuranceLicense(models.Model):
     def __str__(self):
         return "%s, %s" % (self.insur, self.licen)
 
+        # европротокол
+        # class Europrotocol(models.Model):
+        #     europrotocol_date = models.DateField(verbose_name="День составления протокола")
+        #     europrotocol_driver_1 = models.OneToOneField(Driver, on_delete=models.CASCADE)
+        #     europrotocol_driver_2 = models.OneToOneField(Driver, on_delete=models.CASCADE)
+        #     europrotocol_license_1 = models.OneToOneField(License, on_delete=models.CASCADE, )
+        #     europrotocol_license_2 = models.OneToOneField(License, on_delete=models.CASCADE, )
+        #     europrotocol_car_1 = models.OneToOneField(Car, on_delete=models.CASCADE, )
+        #     europrotocol_car_2 = models.OneToOneField(Car, on_delete=models.CASCADE, )
+        #     europrotocol_insurance_1 = models.OneToOneField(Insurance, on_delete=models.CASCADE)
+        #     europrotocol_insurance_2 = models.OneToOneField(Insurance, on_delete=models.CASCADE)
+        #     europrotocol_scan_1 = models.ImageField(verbose_name="Скан лицевой стороны европротокола", blank=True, null=True)
+        #     europrotocol_scan_2 = models.ImageField(verbose_name=" Скан оборотной стороны европротокола", blank=True, null=True)
 
-# европротокол
-class Europrotocol(models.Model):
-    europrotocol_date = models.DateField(verbose_name="День составления протокола")
-    europrotocol_driver_1 = models.OneToOneField(Driver, on_delete=models.CASCADE)
-    europrotocol_driver_2 = models.OneToOneField(Driver, on_delete=models.CASCADE)
-    europrotocol_license_1 = models.OneToOneField(License, on_delete=models.CASCADE, )
-    europrotocol_license_2 = models.OneToOneField(License, on_delete=models.CASCADE, )
-    europrotocol_car_1 = models.OneToOneField(Car, on_delete=models.CASCADE, )
-    europrotocol_car_2 = models.OneToOneField(Car, on_delete=models.CASCADE, )
-    europrotocol_insurance_1 = models.OneToOneField(Insurance, on_delete=models.CASCADE)
-    europrotocol_insurance_2 = models.OneToOneField(Insurance, on_delete=models.CASCADE)
-    europrotocol_scan_1 = models.ImageField(verbose_name="Скан лицевой стороны европротокола", blank=True, null=True)
-    europrotocol_scan_2 = models.ImageField(verbose_name=" Скан оборотной стороны европротокола", blank=True, null=True)
 
-    def __str__(self):
-        return "%s, %s до %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
+        # def __str__(self):
+        #     return "%s, %s до %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
 
 
 ACCIDENT_CHOICES = (
@@ -638,8 +638,8 @@ class AccidentReport(models.Model):
     # accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
     accident_inspector = models.ForeignKey(Inspector, verbose_name="Инспектор, оформивший ДТП",
                                            on_delete=models.CASCADE, unique=False, blank=True, null=True)
-    accident_europrotocol = models.OneToOneField(Europrotocol, verbose_name="ДТП по европротоколу",
-                                                 on_delete=models.CASCADE, unique=False, blank=True, null=True)
+    # accident_europrotocol = models.OneToOneField(Europrotocol, verbose_name="ДТП по европротоколу",
+    #                                              on_delete=models.CASCADE, unique=False, blank=True, null=True)
     accident_photo_1 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
                                          verbose_name="Первое фото аварии", blank=True, null=True)

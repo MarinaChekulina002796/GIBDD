@@ -5,12 +5,15 @@ from django.contrib.admin.widgets import AdminDateWidget
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.forms import SelectDateWidget
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.urls import reverse_lazy
 from datetime import timedelta
 from dateutil.relativedelta import *
 from django.utils import timezone
+from psycopg2 import extras
+
 from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
     AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
     Camera, AutoSchool, CarHistory, DiagnosticCard, Insurance, InsuranceLicense, Accident_Car
@@ -53,6 +56,7 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         exclude = ()
+        widget = {'date_open_category': forms.SelectDateWidget(years=range(1930, 2025))}
 
 
 class LicenseForm(forms.ModelForm):

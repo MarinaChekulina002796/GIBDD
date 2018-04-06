@@ -406,7 +406,7 @@ class Stealing(models.Model):
 
 # Автошкола
 class AutoSchool(models.Model):
-    student = models.ForeignKey(Driver, verbose_name="Ученик автошколы", on_delete=models.CASCADE, unique=True)
+    student = models.ForeignKey(Driver, verbose_name="Ученик автошколы", on_delete=models.CASCADE)
     school_name = models.CharField(max_length=100, verbose_name="Название автошколы")
     school_photo = models.ImageField(upload_to='autoschool_photo/',
                                      default='autoschool_photo/default.jpg',
@@ -525,6 +525,89 @@ class Fine(models.Model):
         return "Штраф на основании постановления № %s" % (self.fine_decree_data.decree_number)
 
 
+# Диагностическая карта
+class DiagnosticCard(models.Model):
+    diagnostic_number = models.CharField(max_length=15, verbose_name="Регистрационный номер", unique=True)
+    diagnostic_car = models.OneToOneField(Car, verbose_name="Автомобиль для диагностики", on_delete=models.CASCADE,
+                                          unique=True)
+    diagnostic_date_from = models.DateField(verbose_name="Дата выдачи")
+    diagnostic_date_to = models.DateField(verbose_name="Срок действия до")
+    diagnostic_company = models.CharField(max_length=200, verbose_name="Пункт технического осмотра")
+    diagnostic_results = models.TextField(verbose_name="Результаты диагностирования")
+
+    def __str__(self):
+        return "%s, %s" % (self.diagnostic_number, self.diagnostic_date_from)
+
+
+INSURANCE_CHOICES = (
+    ('ОСАГО', 'ОСАГО'),
+    ('КАСКО', 'КАСКО'),
+)
+
+INSURANCE_CHOICES2 = (
+    ('ОСАГО', 'ОСАГО'),
+    ('ОСАГО без ограничений', 'ОСАГО без ограничений'),
+    ('открытая страховка ОСАГО', 'открытая страховка ОСАГО'),
+
+)
+
+
+# Страхововй полис
+class Insurance(models.Model):
+    insurance_number = models.CharField(max_length=15, verbose_name="Номер полиса", help_text="ЕЕЕ№1234567890")
+    insurance_company = models.CharField(max_length=100, verbose_name="Страховая компания")
+    insurance_type = models.CharField(max_length=10, verbose_name="Тип полиса", choices=INSURANCE_CHOICES,
+                                      default='ОСАГО')
+    insurance_date_from = models.DateField(verbose_name="Дата начала действия")
+    insurance_date_to = models.DateField(verbose_name="Дата окончания действия")
+    insurance_confines = models.CharField(max_length=50, verbose_name="Ограничения", choices=INSURANCE_CHOICES2,
+                                          default='ОСАГО')
+    insurance_diagnostic_card = models.OneToOneField(DiagnosticCard,
+                                                     verbose_name="Диагностическая карта (ТО) о состоянии автомобиля",
+                                                     on_delete=models.CASCADE, unique=True)
+    # insurance_driving_license = models.ManyToManyField(License,
+    #                                                    verbose_name="Допущенные к управления автомобилем по полису")
+    insurance_car = models.ForeignKey(Car, verbose_name="Полис на автомобиль", on_delete=models.CASCADE)
+    insurance_comments = models.TextField(verbose_name="Комментарий к полису")
+
+    def __str__(self):
+        return "%s, %s, %s" % (self.insurance_number, self.insurance_company, self.insurance_type)
+
+
+class InsuranceLicense(models.Model):
+    insur = models.ForeignKey(Insurance, on_delete=models.CASCADE,
+                              verbose_name="Все страховки для данного автомобиля (ОСАГО, КАСКО)")
+    licen = models.ForeignKey(License, on_delete=models.CASCADE,
+                              verbose_name="ВУ, допущенные к управлению автомобилем по полису")
+
+    def get_absolute_url(self):
+        return reverse('workers')
+
+    class Meta:
+        unique_together = ("insur", "licen")
+
+    def __str__(self):
+        return "%s, %s" % (self.insur, self.licen)
+
+
+# европротокол
+class Europrotocol(models.Model):
+    europrotocol_date = models.DateField(verbose_name="День составления протокола")
+    europrotocol_driver_1 = models.OneToOneField(Driver, on_delete=models.CASCADE)
+    europrotocol_driver_2 = models.OneToOneField(Driver, on_delete=models.CASCADE)
+    europrotocol_license_1 = models.OneToOneField(License, on_delete=models.CASCADE, )
+    europrotocol_license_2 = models.OneToOneField(License, on_delete=models.CASCADE, )
+    europrotocol_car_1 = models.OneToOneField(Car, on_delete=models.CASCADE, )
+    europrotocol_car_2 = models.OneToOneField(Car, on_delete=models.CASCADE, )
+    europrotocol_insurance_1 = models.OneToOneField(Insurance, on_delete=models.CASCADE)
+    europrotocol_insurance_2 = models.OneToOneField(Insurance, on_delete=models.CASCADE)
+    europrotocol_scan_1 = models.ImageField(verbose_name="Скан лицевой стороны европротокола", blank=True, null=True)
+    europrotocol_scan_2 = models.ImageField(verbose_name=" Скан оборотной стороны европротокола", blank=True, null=True)
+
+    def __str__(self):
+        return "%s, %s до %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
+
+
 ACCIDENT_CHOICES = (
     ('легкая', 'легкая'),
     ('средней тяжести', 'средней тяжести'),
@@ -554,7 +637,9 @@ class AccidentReport(models.Model):
     # accident_participants = models.ManyToManyField(License, verbose_name="Участники аварии")
     # accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
     accident_inspector = models.ForeignKey(Inspector, verbose_name="Инспектор, оформивший ДТП",
-                                           on_delete=models.CASCADE, unique=False)
+                                           on_delete=models.CASCADE, unique=False, blank=True, null=True)
+    accident_europrotocol = models.OneToOneField(Europrotocol, verbose_name="ДТП по европротоколу",
+                                                 on_delete=models.CASCADE, unique=False, blank=True, null=True)
     accident_photo_1 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
                                          verbose_name="Первое фото аварии", blank=True, null=True)
@@ -609,19 +694,6 @@ class Witness(models.Model):
         return "%s, свидетель: %s %s" % (self.witness_accident, self.witness_surname, self.witness_name)
 
 
-INSURANCE_CHOICES = (
-    ('ОСАГО', 'ОСАГО'),
-    ('КАСКО', 'КАСКО'),
-)
-
-INSURANCE_CHOICES2 = (
-    ('ОСАГО', 'ОСАГО'),
-    ('ОСАГО без ограничений', 'ОСАГО без ограничений'),
-    ('открытая страховка ОСАГО', 'открытая страховка ОСАГО'),
-
-)
-
-
 # дополнительная таблица для аварии и ВУ (участники аварии) (разбила связь М:М)
 class Lisense_Accident(models.Model):
     licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
@@ -635,58 +707,6 @@ class Lisense_Accident(models.Model):
 
     def __str__(self):
         return "%s, %s" % (self.licen, self.accid)
-
-
-# Диагностическая карта
-class DiagnosticCard(models.Model):
-    diagnostic_number = models.CharField(max_length=15, verbose_name="Регистрационный номер", unique=True)
-    diagnostic_car = models.ForeignKey(Car, verbose_name="Автомобиль для диагностики", on_delete=models.CASCADE,
-                                       unique=True)
-    diagnostic_date_from = models.DateField(verbose_name="Дата выдачи")
-    diagnostic_date_to = models.DateField(verbose_name="Срок действия до")
-    diagnostic_company = models.CharField(max_length=200, verbose_name="Пункт технического осмотра")
-    diagnostic_results = models.TextField(verbose_name="Результаты диагностирования")
-
-    def __str__(self):
-        return "%s, %s" % (self.diagnostic_number, self.diagnostic_date_from)
-
-
-# Страхововй полис
-class Insurance(models.Model):
-    insurance_number = models.CharField(max_length=15, verbose_name="Номер полиса", help_text="ЕЕЕ№1234567890")
-    insurance_company = models.CharField(max_length=100, verbose_name="Страховая компания")
-    insurance_type = models.CharField(max_length=10, verbose_name="Тип полиса", choices=INSURANCE_CHOICES,
-                                      default='ОСАГО')
-    insurance_date_from = models.DateField(verbose_name="Дата начала действия")
-    insurance_date_to = models.DateField(verbose_name="Дата окончания действия")
-    insurance_confines = models.CharField(max_length=50, verbose_name="Ограничения", choices=INSURANCE_CHOICES2,
-                                          default='ОСАГО')
-    insurance_diagnostic_card = models.OneToOneField(DiagnosticCard,
-                                                     verbose_name="Диагностическая карта (ТО) о состоянии автомобиля",
-                                                     on_delete=models.CASCADE, unique=True)
-    # insurance_driving_license = models.ManyToManyField(License,
-    #                                                    verbose_name="Допущенные к управления автомобилем по полису")
-    insurance_car = models.ForeignKey(Car, verbose_name="Полис на автомобиль", on_delete=models.CASCADE)
-    insurance_comments = models.TextField(verbose_name="Комментарий к полису")
-
-    def __str__(self):
-        return "%s, %s, %s" % (self.insurance_number, self.insurance_company, self.insurance_type)
-
-
-class InsuranceLicense(models.Model):
-    insur = models.ForeignKey(Insurance, on_delete=models.CASCADE,
-                              verbose_name="Все страховки для данного автомобиля (ОСАГО, КАСКО)")
-    licen = models.ForeignKey(License, on_delete=models.CASCADE,
-                              verbose_name="ВУ, допущенные к управлению автомобилем по полису")
-
-    def get_absolute_url(self):
-        return reverse('workers')
-
-    class Meta:
-        unique_together = ("insur", "licen")
-
-    def __str__(self):
-        return "%s, %s" % (self.insur, self.licen)
 
 
 # История владения автомобилем
@@ -707,17 +727,3 @@ class CarHistory(models.Model):
 
     def __str__(self):
         return "%s, %s до %s" % (self.car_item, self.history_FIO, self.history_date_to)
-
-# USER_ROLE = (
-#     ('Администратор', 'Администратор'),
-#     ('Инспектор', 'Инспектор'),
-#     ('Регистрирующий оператор', 'Регистрирующий оператор'),
-#     ('Основной оператор', 'Основной оператор'),
-#     ('Справочная', 'Справочная'),
-#     ('Страховщик', 'Страховщик'),
-# )
-#
-#
-# class Profile(models.Model):
-#     member = models.ForeignKey(User, on_delete=models.CASCADE)
-#     group = models.CharField(max_length=25, choices=USER_ROLE)

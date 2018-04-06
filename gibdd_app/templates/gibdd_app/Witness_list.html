@@ -13,7 +13,7 @@
             <table border="2">
                 <caption>Таблица свидетедей</caption>
                 <th> ФИО свидетеля</th>
-                <th> Свидетель аварии</th>
+                <th>Свидетель аварии</th>
                 <th>Город проживания свидетеля</th>
                 <th> Подробнее...</th>
                 {% for obj in objects_list %}
@@ -23,6 +23,7 @@
                                     href="{% url 'witness_detail' pk=obj.pk %}">{{ obj.witness_surname }} {{ obj.witness_name }}
                                 {{ obj.witness_patronymic }}
                             </a></p></td>
+                            <td><p>{{ obj.witness_accident }}</p></td>
                             <td><p>{{ obj.witness_town }}</p></td>
 
                             <td>

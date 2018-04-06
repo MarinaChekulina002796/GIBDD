@@ -489,6 +489,16 @@ def decree_list(request):
 
 
 @login_required
+def camera_list(request):
+    template = 'gibdd_app/Camera_list.html'
+    objects_list = Camera.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def decree_detail(request, pk):
     template = 'gibdd_app/Decree_detail.html'
 
@@ -654,6 +664,16 @@ def owner_detail(request, pk):
 def steal_detail(request, pk):
     template = 'gibdd_app/Stealing_detail.html'
     obj = get_object_or_404(Stealing, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def camera_detail(request, pk):
+    template = 'gibdd_app/Camera_detail.html'
+    obj = get_object_or_404(Camera, pk=pk)
     context = {
         'obj': obj,
     }
@@ -905,6 +925,21 @@ def delete_decree(request, pk):
         return redirect(reverse('decree_list'))
     else:
         form = DecreeForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_camera(request, pk):
+    template = 'gibdd_app/Camera_form.html'
+    obj = get_object_or_404(Camera, pk=pk)
+    if request.method == 'POST':
+        form = CameraForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('camera_list'))
+    else:
+        form = CameraForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -1231,6 +1266,26 @@ def update_decree(request, pk):
     context = {
         'form': form,
         'decree': decree,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_camera(request, pk):
+    camera = get_object_or_404(Camera, pk=pk)
+    if request.method == 'POST':
+        form = CameraForm(request.POST, request.FILES, instance=camera)
+        if form.is_valid():
+            form.save()
+        return redirect('camera_detail', pk)
+    else:
+        form = CameraForm(instance=camera)
+
+    template = 'gibdd_app/Camera_form.html'
+    context = {
+        'form': form,
+        'camera': camera,
     }
 
     return render(request, template, context)

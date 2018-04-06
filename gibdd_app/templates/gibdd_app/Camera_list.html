@@ -1,0 +1,41 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список камер</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список камер</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица камер</caption>
+                <th>Номер камеры</th>
+                <th>Расположение камеры(адрес)</th>
+                <th>Функции камеры</th>
+                <th>Дата действия поверки камеры до</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'camera_detail' pk=obj.pk %}">{{ obj.camera_number }}
+                            </a></p></td>
+                            <td><p>{{ obj.camera_address }}</p></td>
+                            <td><p> {{ obj.camera_functions }}</p></td>
+                            <td><p>{{ obj.camera_vertification_to }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'camera_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

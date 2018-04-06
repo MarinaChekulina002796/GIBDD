@@ -1,0 +1,38 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список авто</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список свидетельств собственника</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица свидетельств собственника</caption>
+                <th> Номер свидетельства собственника</th>
+                <th> ФИО собственника</th>
+                <th>Дата выдачи свидетельства собственника</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'owner_detail' pk=obj.pk %}">{{ obj.owner_number }}
+                            </a></p></td>
+                            <td><p>{{ obj.owner_surname }} {{ obj.owner_name }} {{ obj.owner_patronymic }}</p></td>
+                            <td><p> {{ obj.owner_date_give }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'owner_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endblock %}
+{% endblock %}

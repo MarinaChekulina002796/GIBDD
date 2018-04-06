@@ -1,0 +1,42 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список постановлений</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список постановлений</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица постановлений</caption>
+                <th>Номер постановления</th>
+                <th>Дата постановления</th>
+                <th>Данные ВУ для вынесения постановления</th>
+                <th>Данные о нарушевшем автомобиле</th>
+                <th>Нарушение</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'decree_detail' pk=obj.pk %}">{{ obj.decree_number }}
+                            </a></p></td>
+                            <td><p>{{ obj.decree_date }}</p></td>
+                            <td><p> {{ obj.decree_license_data }}</p></td>
+                            <td><p>{{ obj.decree_car }}</p></td>
+                            <td><p>{{ obj.decree_violation }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'decree_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endblock %}
+{% endblock %}

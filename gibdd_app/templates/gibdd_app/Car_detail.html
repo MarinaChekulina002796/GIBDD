@@ -27,7 +27,7 @@
                     </ul>
                 </div>
                 <h2><i><b>Номер автомобиля: {{ obj.car_number }}</b></i></h2>
-                <p>Статус автомобиля {{ obj.car_status }} </p>
+                <p>Статус автомобиля: {{ obj.car_status }} </p>
                 <p>Фото автомобиля: <img src="{{ MEDIA_URL }}{{ obj.image_url_car|default_if_none:'#' }}"
                                          style="width: 100px"></p>
                 <p>Модель автомобиля: {{ obj.car_model }}</p>

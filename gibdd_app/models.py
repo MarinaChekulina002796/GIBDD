@@ -496,6 +496,11 @@ class Decree(models.Model):
     def __str__(self):
         return "%s" % (self.decree_number)
 
+    @property
+    def image_url_decree(self):
+        if self.decree_photo and hasattr(self.decree_photo, 'url'):
+            return self.decree_photo.url
+
 
 # штраф
 class Fine(models.Model):

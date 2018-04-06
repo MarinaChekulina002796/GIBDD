@@ -1,0 +1,40 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список авто</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список угонов</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица угонов</caption>
+                <th> Номер угона</th>
+                <th> Статус</th>
+                <th>Дата угона</th>
+                <th>Город угона</th>
+                <th> Подробнее...</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'steal_detail' pk=obj.pk %}">{{ obj.stealing_unique_number }}
+                            </a></p></td>
+                            <td><p>{{ obj.stealing_status }}</p></td>
+                            <td><p> {{ obj.stealing_date }}</p></td>
+                            <td><p>{{ obj.stealing_town }}</p></td>
+                            <td>
+                                <button class="btn-info" type="button"><a
+                                        href="{% url 'steal_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endblock %}
+{% endblock %}

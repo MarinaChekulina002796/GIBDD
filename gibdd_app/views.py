@@ -456,6 +456,50 @@ def registr_list(request):
 
 
 @login_required
+def owner_list(request):
+    template = 'gibdd_app/Owner_list.html'
+    objects_list = Owner.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def steal_list(request):
+    template = 'gibdd_app/Stealing_list.html'
+    objects_list = Stealing.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def decree_list(request):
+    template = 'gibdd_app/Decree_list.html'
+    objects_list = Decree.objects.all()
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def decree_detail(request, pk):
+    template = 'gibdd_app/Decree_detail.html'
+
+    obj = get_object_or_404(Decree, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def registr_detail(request, pk):
     template = 'gibdd_app/RegistrationCertificate_detail.html'
 
@@ -590,6 +634,26 @@ def inspector_detail(request, pk):
 def fine_detail(request, pk):
     template = 'gibdd_app/Fine_detail.html'
     obj = get_object_or_404(Fine, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def owner_detail(request, pk):
+    template = 'gibdd_app/Owner_detail.html'
+    obj = get_object_or_404(Owner, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def steal_detail(request, pk):
+    template = 'gibdd_app/Stealing_detail.html'
+    obj = get_object_or_404(Stealing, pk=pk)
     context = {
         'obj': obj,
     }
@@ -796,6 +860,51 @@ def delete_registr(request, pk):
         return redirect(reverse('registr_list'))
     else:
         form = RegistrationCertificateForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_owner(request, pk):
+    template = 'gibdd_app/Owner_form.html'
+    obj = get_object_or_404(Owner, pk=pk)
+    if request.method == 'POST':
+        form = OwnerForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('owner_list'))
+    else:
+        form = OwnerForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_steal(request, pk):
+    template = 'gibdd_app/Stealing_form.html'
+    obj = get_object_or_404(Stealing, pk=pk)
+    if request.method == 'POST':
+        form = StealingForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('steal_list'))
+    else:
+        form = StealingForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_decree(request, pk):
+    template = 'gibdd_app/Decree_form.html'
+    obj = get_object_or_404(Decree, pk=pk)
+    if request.method == 'POST':
+        form = DecreeForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('decree_list'))
+    else:
+        form = DecreeForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -1062,6 +1171,66 @@ def update_registr(request, pk):
     context = {
         'form': form,
         'reg': reg,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_owner(request, pk):
+    own = get_object_or_404(Owner, pk=pk)
+    if request.method == 'POST':
+        form = OwnerForm(request.POST, request.FILES, instance=own)
+        if form.is_valid():
+            form.save()
+        return redirect('owner_detail', pk)
+    else:
+        form = OwnerForm(instance=own)
+
+    template = 'gibdd_app/Owner_form.html'
+    context = {
+        'form': form,
+        'own': own,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_steal(request, pk):
+    steal = get_object_or_404(Stealing, pk=pk)
+    if request.method == 'POST':
+        form = StealingForm(request.POST, request.FILES, instance=steal)
+        if form.is_valid():
+            form.save()
+        return redirect('steal_detail', pk)
+    else:
+        form = StealingForm(instance=steal)
+
+    template = 'gibdd_app/Stealing_form.html'
+    context = {
+        'form': form,
+        'steal': steal,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_decree(request, pk):
+    decree = get_object_or_404(Decree, pk=pk)
+    if request.method == 'POST':
+        form = DecreeForm(request.POST, request.FILES, instance=decree)
+        if form.is_valid():
+            form.save()
+        return redirect('decree_detail', pk)
+    else:
+        form = DecreeForm(instance=decree)
+
+    template = 'gibdd_app/Decree_form.html'
+    context = {
+        'form': form,
+        'decree': decree,
     }
 
     return render(request, template, context)

@@ -43,11 +43,11 @@
                 {% if url_name == 'decree_create' %}
                     <button class="btn btn-success" type="submit">Сохранить</button>
                     <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
-                    {#        {% elif url_name == 'license_update' %}#}
-                    {#            <button class="btn btn-warning" type="submit">Update</button>#}
-                    {#            <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>#}
+                {% elif url_name == 'decree_update' %}
+                    <button class="btn btn-warning" type="submit">Обновить</button>
+                    <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
                 {% else %}
-                    {#            <button class="btn btn-danger" type="submit">Delete</button>#}
+                    <button class="btn btn-danger" type="submit">Удалить</button>
                     <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
                 {% endif %}
             {% endwith %}

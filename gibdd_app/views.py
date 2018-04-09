@@ -1613,6 +1613,78 @@ def update_accident_car(request, pk):
 
 
 @login_required
+def update_med(request, pk):
+    med = get_object_or_404(MedicalCertificate, pk=pk)
+    if request.method == 'POST':
+        form = MedicalCertificateForm(request.POST, request.FILES, instance=med)
+        if form.is_valid():
+            form.save()
+        return redirect('med_detail', pk)
+    else:
+        form = MedicalCertificateForm(instance=med)
+    template = 'gibdd_app/MedicalCertificate_form.html'
+    context = {
+        'form': form,
+        'med': med,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_categ(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid():
+            form.save()
+        return redirect('categ_detail', pk)
+    else:
+        form = CategoryForm(instance=category)
+    template = 'gibdd_app/Category_form.html'
+    context = {
+        'form': form,
+        'category': category,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_driver(request, pk):
+    driver = get_object_or_404(Driver, pk=pk)
+    if request.method == 'POST':
+        form = DriverForm(request.POST, request.FILES, instance=driver)
+        if form.is_valid():
+            form.save()
+        return redirect('driver_detail', pk)
+    else:
+        form = DriverForm(instance=driver)
+    template = 'gibdd_app/Driver_form.html'
+    context = {
+        'form': form,
+        'driver': driver,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def update_disq(request, pk):
+    disq = get_object_or_404(LicenseDisqualification, pk=pk)
+    if request.method == 'POST':
+        form = LicenseDisqualificationForm(request.POST, request.FILES, instance=disq)
+        if form.is_valid():
+            form.save()
+        return redirect('disq_detail', pk)
+    else:
+        form = LicenseDisqualificationForm(instance=disq)
+    template = 'gibdd_app/LicenseDisqualification_form.html'
+    context = {
+        'form': form,
+        'disq': disq,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def add_med(request):
     if request.method == 'POST':
         form = MedicalCertificateForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
@@ -1624,6 +1696,24 @@ def add_med(request):
         form = MedicalCertificateForm()
 
     template = 'gibdd_app/MedicalCertificate_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def add_disq(request):
+    if request.method == 'POST':
+        form = LicenseDisqualificationForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
+        if form.is_valid():
+            med = LicenseDisqualification(**form.cleaned_data)
+            med.save()
+            return redirect(reverse('disq_create'))
+    else:
+        form = LicenseDisqualificationForm()
+
+    template = 'gibdd_app/LicenseDisqualification_form.html'
     context = {
         'form': form,
     }
@@ -1929,6 +2019,25 @@ def add_driver(request):
         form = DriverForm()
 
     template = 'gibdd_app/Driver_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            cam = Category(**form.cleaned_data)
+            cam.save()
+            return redirect(reverse('categ_create'), args=[cam.pk])
+    else:
+        form = CategoryForm()
+
+    template = 'gibdd_app/Category_form.html'
     context = {
         'form': form,
     }

@@ -285,7 +285,7 @@ CAMERA_CHOICES1 = (
 class Camera(models.Model):
     camera_number = models.CharField(max_length=30, verbose_name="Номер камеры")
     camera_name = models.CharField(verbose_name="Название камеры", max_length=100, choices=CAMERA_CHOICES1)
-    camera_vertification_from = models.DateField(verbose_name="Дата поверки камеры", blank=True)
+    camera_vertification_from = models.DateField(verbose_name="Дата поверки камеры", blank=True, null=True)
     camera_vertification_to = models.DateField(verbose_name="Дата действия поверки камеры до")
     camera_functions = models.CharField(max_length=100, verbose_name="Функции камеры", choices=CAMERA_CHOICES)
     camera_address = models.CharField(max_length=200, verbose_name="Расположение камеры(адрес)")
@@ -667,8 +667,8 @@ class AccidentReport(models.Model):
     # accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
     accident_inspector = models.ForeignKey(Inspector, verbose_name="Инспектор, оформивший ДТП",
                                            on_delete=models.CASCADE, unique=False, blank=True, null=True)
-    # accident_europrotocol = models.OneToOneField(Europrotocol, verbose_name="ДТП по европротоколу",
-    #                                              on_delete=models.CASCADE, unique=False, blank=True, null=True)
+    accident_europrotocol = models.OneToOneField(Europrotocol, verbose_name="ДТП по европротоколу",
+                                                 on_delete=models.CASCADE, unique=False, blank=True, null=True)
     accident_photo_1 = models.ImageField(upload_to='accident_photo/',
                                          default='accident_photo/default.jpg',
                                          verbose_name="Первое фото аварии", blank=True, null=True)
@@ -716,7 +716,7 @@ class Witness(models.Model):
     witness_town = models.CharField(max_length=50, verbose_name="Город проживания свидетеля")
     witness_address = models.CharField(max_length=50, verbose_name="Адрес свидетеля")
     witness_phone = models.CharField(max_length=20, verbose_name="Телефон свидетеля")
-    witness_email = models.EmailField(verbose_name="email свидетеля", blank=True)
+    witness_email = models.EmailField(verbose_name="email свидетеля", blank=True, null=True)
     witness_comment = models.TextField(verbose_name="Показания свидетеля")
 
     def __str__(self):

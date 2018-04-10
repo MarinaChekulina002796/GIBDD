@@ -483,7 +483,8 @@ class Car(models.Model):
                                   verbose_name="Фото автомобиля")
     car_model = models.CharField(max_length=100, verbose_name="Модель автомобиля")
     car_colour = models.CharField(max_length=50, verbose_name="Цвет автомобиля")
-    car_number = models.CharField(max_length=9, verbose_name="Номер автомобиля")
+    car_number = models.CharField(max_length=6, verbose_name="Номер автомобиля")
+    car_region = models.CharField(max_length=3, verbose_name="Регион автомобиля")
     car_registr_certificate = models.OneToOneField(RegistrationCertificate, verbose_name="Свидетельство о регистрации",
                                                    on_delete=models.CASCADE, unique=True)
     car_owner = models.OneToOneField(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля",
@@ -638,26 +639,43 @@ class InsuranceLicense(models.Model):
 
 # европротокол
 class Europrotocol(models.Model):
-    europrotocol_date = models.DateField(verbose_name="День составления протокола")
+    europrotocol_date = models.DateField(verbose_name="Дата составления протокола")
     europrotocol_driver_1 = models.OneToOneField(Driver, related_name='europrotocol_driver_1',
-                                                 on_delete=models.CASCADE)
-    europrotocol_driver_2 = models.OneToOneField(Driver, related_name='europrotocol_driver_2', on_delete=models.CASCADE)
+                                                 on_delete=models.CASCADE, verbose_name="Водитель 1")
+    europrotocol_driver_2 = models.OneToOneField(Driver, related_name='europrotocol_driver_2', on_delete=models.CASCADE,
+                                                 verbose_name="Водитель 2")
     europrotocol_license_1 = models.OneToOneField(License, related_name='europrotocol_license_1',
-                                                  on_delete=models.CASCADE, )
+                                                  on_delete=models.CASCADE, verbose_name="ВУ 1")
     europrotocol_license_2 = models.OneToOneField(License, related_name='europrotocol_license_2',
-                                                  on_delete=models.CASCADE, )
-    europrotocol_car_1 = models.OneToOneField(Car, related_name='europrotocol_car_1', on_delete=models.CASCADE, )
-    europrotocol_car_2 = models.OneToOneField(Car, related_name='europrotocol_car_2', on_delete=models.CASCADE, )
+                                                  on_delete=models.CASCADE, verbose_name="ВУ 2")
+    europrotocol_car_1 = models.OneToOneField(Car, related_name='europrotocol_car_1', on_delete=models.CASCADE,
+                                              verbose_name="Автомобиль 1")
+    europrotocol_car_2 = models.OneToOneField(Car, related_name='europrotocol_car_2', on_delete=models.CASCADE,
+                                              verbose_name="Автомобиль 2")
     europrotocol_insurance_1 = models.OneToOneField(Insurance, related_name='europrotocol_insurance_1',
-                                                    on_delete=models.CASCADE)
+                                                    on_delete=models.CASCADE, verbose_name="Страховой полис 1")
     europrotocol_insurance_2 = models.OneToOneField(Insurance, related_name='europrotocol_insurance_2s',
-                                                    on_delete=models.CASCADE)
+                                                    on_delete=models.CASCADE, verbose_name="Страховой полис 2")
     europrotocol_scan_1 = models.ImageField(verbose_name="Скан лицевой стороны европротокола", blank=True, null=True)
     europrotocol_scan_2 = models.ImageField(verbose_name=" Скан оборотной стороны европротокола", blank=True, null=True)
 
+    class Meta:
+        unique_together = (
+            ('europrotocol_driver_1', 'europrotocol_driver_2'), ('europrotocol_license_1', 'europrotocol_license_2'),
+            ('europrotocol_car_1', 'europrotocol_car_2'), ('europrotocol_insurance_1', 'europrotocol_insurance_2'))
 
-def __str__(self):
-    return "%s, %s до %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
+    def __str__(self):
+        return "%s, %s до %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
+
+    @property
+    def image_url_scan_1(self):
+        if self.europrotocol_scan_1 and hasattr(self.europrotocol_scan_1, 'url'):
+            return self.europrotocol_scan_1.url
+
+    @property
+    def image_url_scan_2(self):
+        if self.europrotocol_scan_2 and hasattr(self.europrotocol_scan_2, 'url'):
+            return self.europrotocol_scan_2.url
 
 
 ACCIDENT_CHOICES = (

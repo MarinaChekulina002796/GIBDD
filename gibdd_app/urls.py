@@ -157,9 +157,9 @@ urlpatterns = [
                   url(r'^europrotocol/(?P<pk>\d+)/update/$', update_europrotocol, name='europrotocol_update'),
                   url(r'^europrotocol/delete/(?P<pk>\d+)/$', delete_europrotocol, name='europrotocol_delete'),
 
-                  url(r'^autoschool/create/$', add_autoschool, name='autoschool_create'),
-                  url(r'^autoschool/$', autoschool_list, name='autoschool_list'),
-                  url(r'^autoschool/detail/(?P<pk>\d+)/$', autoschool_detail, name='autoschool_detail'),
-                  url(r'^autoschool/(?P<pk>\d+)/update/$', update_autoschool, name='autoschool_update'),
-                  url(r'^autoschool/delete/(?P<pk>\d+)/$', delete_autoschool, name='autoschool_delete'),
+                  url(r'^autostudent/create/$', add_autostudent, name='autostudent_create'),
+                  url(r'^autostudent/$', autostudent_list, name='autostudent_list'),
+                  url(r'^autostudent/detail/(?P<pk>\d+)/$', autostudent_detail, name='autostudent_detail'),
+                  url(r'^autostudent/(?P<pk>\d+)/update/$', update_autostudent, name='autostudent_update'),
+                  url(r'^autostudent/delete/(?P<pk>\d+)/$', delete_autostudent, name='autostudent_delete'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

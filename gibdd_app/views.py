@@ -546,6 +546,16 @@ def insurance_license_list(request):
 
 
 @login_required
+def autostudent_list(request):
+    template = 'gibdd_app/Autoschool_Driver_list.html'
+    objects_list = Autoschool_Driver.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def accident_car_list(request):
     template = 'gibdd_app/Accident_Car_list.html'
     objects_list = Accident_Car.objects.all()
@@ -590,6 +600,17 @@ def insurance_detail(request, pk):
     template = 'gibdd_app/Insurance_detail.html'
 
     obj = get_object_or_404(Insurance, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def autostudent_detail(request, pk):
+    template = 'gibdd_app/Autoschool_Driver_detail.html'
+
+    obj = get_object_or_404(Autoschool_Driver, pk=pk)
     context = {
         'obj': obj,
     }
@@ -833,6 +854,21 @@ def delete_med(request, pk):
         return redirect(reverse('med_list'))
     else:
         form = MedicalCertificateForm(instance=obj)
+
+    return render(request, template, {'form': form})
+
+
+@login_required
+def delete_autostudent(request, pk):
+    template = 'gibdd_app/Autoschool_Driver_form.html'
+    obj = get_object_or_404(Autoschool_Driver, pk=pk)
+    if request.method == 'POST':
+        form = Autoschool_DriverForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('autostudent_list'))
+    else:
+        form = Autoschool_DriverForm(instance=obj)
 
     return render(request, template, {'form': form})
 
@@ -1271,6 +1307,24 @@ def add_license(request):
 
 
 @login_required
+def add_autostudent(request):
+    if request.method == 'POST':
+        form = Autoschool_DriverForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
+        if form.is_valid():
+            licen = Autoschool_Driver(**form.cleaned_data)
+            licen.save()
+            return reverse('autostudent_create')
+    else:
+        form = Autoschool_DriverForm()
+    template = 'gibdd_app/Autoschool_Driver_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def add_europrotocol(request):
     if request.method == 'POST':
         form = EuroprotocolForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
@@ -1303,6 +1357,26 @@ def update_europrotocol(request, pk):
     context = {
         'form': form,
         'europrotocol': europrotocol,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_autostudent(request, pk):
+    autostudent = get_object_or_404(Autoschool_Driver, pk=pk)
+    if request.method == 'POST':
+        form = Autoschool_DriverForm(request.POST, request.FILES, instance=autostudent)
+        if form.is_valid():
+            form.save()
+        return redirect('autostudent_detail', pk)
+    else:
+        form = Autoschool_DriverForm(instance=autostudent)
+
+    template = 'gibdd_app/Autoschool_Driver_form.html'
+    context = {
+        'form': form,
+        'autostudent': autostudent,
     }
 
     return render(request, template, context)

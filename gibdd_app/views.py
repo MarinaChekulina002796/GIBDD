@@ -1289,13 +1289,9 @@ def add_license(request):
     if request.method == 'POST':
         form = LicenseForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
         if form.is_valid():
-            # licen = form.save(commit=False)
-            # licen.driver_data = request.driver_data
-            # licen.medical_certificate_data = request.medical_certificate_data
-            # licen.status_dr_license = request.status_dr_license
             licen = License(**form.cleaned_data)
             licen.save()
-            return reverse('lic_cat_create')
+            return redirect(reverse('workers'), args=[licen.pk])
     else:
         form = LicenseForm()
     template = 'gibdd_app/License_form.html'
@@ -1304,6 +1300,7 @@ def add_license(request):
     }
 
     return render(request, template, context)
+
 
 
 @login_required

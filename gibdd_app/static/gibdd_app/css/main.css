@@ -1799,7 +1799,12 @@ ul.sidebar-gallery {
 #footer a {
     color: #fff;
 }
-
+.footer{
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    background-color: cornflowerblue;
+}
 #footer a:hover {
     color: #E8CE0E;
 }

@@ -103,12 +103,25 @@ DISQAULIF_CHOICES = (
     ('Просрочены', 'Просрочены'),
 )
 
+DISQ_CHOICES_2 = (
+    ('0 месяцев', '0 месяцев'),
+    ('1 месяц', '1 месяц'),
+    ('3 месяца', '3 месяца'),
+    ('4 месяца', '4 месяца'),
+    ('6 месяцев', '6 месяцев'),
+    ('1 год', '1 год'),
+    ('1,5 года', '1,5 года'),
+    ('2 года', '2 года'),
+    ('2,5 года', '2,5 года')
+)
+
 
 class LicenseDisqualification(models.Model):
     # заменить статус на номер
+    disqualif_number = models.CharField(max_length=10, verbose_name="Номер постановления о лишении  прав")
     disqualif_status = models.CharField(verbose_name="Статус прав", max_length=20, choices=DISQAULIF_CHOICES)
     disqualif_time = models.CharField(verbose_name="Срок лишения прав", max_length=10, help_text="18 месяцев",
-                                      blank=True, null=True)
+                                      blank=True, null=True, choices=DISQ_CHOICES_2)
     disqualif_date_from = models.DateField(verbose_name="Дата лишения прав", blank=True, null=True)
     disqualif_date_end = models.DateField(verbose_name="Дата окончания лишение прав", blank=True, null=True)
     disqualif_cause = models.CharField(max_length=200, verbose_name="Причина лишения", blank=True, null=True)
@@ -116,7 +129,7 @@ class LicenseDisqualification(models.Model):
     disqualif_comment = models.TextField(verbose_name="Комментарий", blank=True, null=True)
 
     def __str__(self):
-        return self.disqualif_status
+        return "%s № %s от %s" % (self.disqualif_number, self.disqualif_status, self.disqualif_date_from)
 
     def get_absolute_url(self):
         return reverse('license_create')
@@ -129,8 +142,8 @@ DR_STATUS_CHOICES = (
 )
 
 
-def get_deadline():
-    return datetime.datetime.today() + timedelta(days=8 * 365) + timedelta(days=2 * 366) + timedelta(days=1)
+# def get_deadline():
+#     return datetime.date.today() + relativedelta(years=10)
 
 
 # Водительское удостоверение(ВУ)
@@ -147,22 +160,13 @@ class License(models.Model):
     series_dr_license = models.CharField(max_length=4, verbose_name="Серия ВУ")
     number_dr_license = models.CharField(max_length=6, verbose_name="Номер ВУ")
     status_dr_license = models.OneToOneField(LicenseDisqualification, on_delete=models.CASCADE,
-                                             verbose_name="Подробности лишения прав", blank=True, null=True)
+                                             verbose_name="Подробности лишения прав", unique=True, blank=True)
     date_issue_dr_license = models.DateField(verbose_name="Дата выдачи ВУ", default=datetime.datetime.now,
                                              editable=False)
     date_end_dr_license = models.DateField(verbose_name="Дата окончания действия ВУ", blank=True, null=True,
-                                           default=get_deadline, editable=False)
+                                           default=datetime.date.today() + relativedelta(years=10), editable=False)
     division_give_dr_license = models.CharField(max_length=100, verbose_name="Подразделение ГИБДД, выдавшее ВУ")
     town_dr_license = models.CharField(max_length=100, verbose_name="Город выдачи ВУ")
-
-    # def save(self):
-    #     from datetime import datetime, timedelta
-    #     d = timedelta(days=8 * 365) + timedelta(days=2 * 366)
-    #     if not self.id:
-    #         self.datetime = self.date_issue_dr_license + d
-    #         super(License,self.save())
-
-
 
     def __str__(self):
         return "%s № %s от %s" % (self.series_dr_license, self.number_dr_license, self.date_issue_dr_license)
@@ -175,12 +179,6 @@ class License(models.Model):
     def image_url(self):
         if self.photo_dr_license and hasattr(self.photo_dr_license, 'url'):
             return self.photo_dr_license.url
-
-            # @property
-            # def date_end_license(self):
-            #     if self.date_end_dr_license:
-            #         # return self.date_issue_dr_license + datetime.timedelta(days=8 * 365) + datetime.timedelta(days=2 * 364)
-            #         # return self.date_issue_dr_license+relativedelta(years=10)
 
 
 # дополнительная таблица для категории и ВУ (разбила связь М:М)
@@ -200,7 +198,7 @@ class Lisense_Category(models.Model):
 
 # Инспектор
 class Inspector(models.Model):
-    inspector_number_token = models.CharField(max_length=30, verbose_name="Номер жетона")
+    inspector_number_token = models.CharField(max_length=9, verbose_name="Номер жетона")
     photo_inspector = models.ImageField(upload_to='inspector_photo/',
                                         default='inspector_photo/default_photo_inspector.jpg',
                                         verbose_name="Фото инспектора")
@@ -514,7 +512,7 @@ class Car(models.Model):
                                         blank=True, null=True)
 
     def __str__(self):
-        return "%s" % (self.car_number)
+        return "%s %s" % (self.car_number, self.car_region)
 
     @property
     def image_url_car(self):
@@ -580,7 +578,7 @@ FINE_STATUS_CHOICES = (
 class Fine(models.Model):
     fine_amount = models.IntegerField(verbose_name="Первоначальная сумма штрафа")
     fine_discount = models.FloatField(verbose_name="Скидка")
-    date_of_payment_fine = models.DateTimeField(verbose_name="Дата оплаты штрафа", blank=True, null=True)
+    date_of_payment_fine = models.DateField(verbose_name="Дата оплаты штрафа", blank=True, null=True)
     fine_status = models.CharField(max_length=50, verbose_name="Статус штрафа", choices=FINE_STATUS_CHOICES)
     fine_license_data = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Данные о ВУ", unique=False)
     fine_decree_data = models.OneToOneField(Decree, verbose_name="Данные о постановлении", on_delete=models.CASCADE)
@@ -808,6 +806,8 @@ class CarHistory(models.Model):
     history_passport = models.CharField(max_length=11, help_text="4444№123456", verbose_name="Номер паспорта владельца")
     history_country = models.CharField(max_length=50, verbose_name="Страна")
     history_town = models.CharField(max_length=50, verbose_name="Город")
+    history_car_run_start = models.FloatField(verbose_name="Пробег автомобиля в км", blank=True, null=True)
+    history_car_run_end = models.FloatField(verbose_name="Пробег автомобиля в тыс. км", blank=True, null=True)
     history_date_from = models.DateField(verbose_name="Дата владения от")
     history_date_to = models.DateField(verbose_name="Дата владения до")
     history_document_buy = models.CharField(max_length=250, verbose_name="Документ, подтверждающий приобретение")

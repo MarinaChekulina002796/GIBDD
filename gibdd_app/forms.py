@@ -144,7 +144,7 @@ class CarForm(forms.ModelForm):
 
 class RegistrationCertificateForm(forms.ModelForm):
     class Meta:
-        widgets = {'registr_certificate_year': forms.SelectDateWidget(years=range(1960, 2025)), }
+        widgets = {'registr_certificate_year': forms.NumberInput, }
         model = RegistrationCertificate
         exclude = ()
 

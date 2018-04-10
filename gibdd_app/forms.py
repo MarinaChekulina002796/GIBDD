@@ -74,8 +74,8 @@ class DriverForm(forms.ModelForm):
 
     def clean_driver_birth(self):
         data = self.cleaned_data['driver_birth']
-        birth_date_delta = timezone.now() - relativedelta(years=16)
-        birth_date_old = timezone.now() - relativedelta(years=100)
+        birth_date_delta = datetime.date.today() - relativedelta(years=16)
+        birth_date_old = datetime.date.today() - relativedelta(years=100)
         if data > birth_date_delta:
             raise forms.ValidationError("Водитель не может быть младше 16 лет")
         # elif data > timezone.now():

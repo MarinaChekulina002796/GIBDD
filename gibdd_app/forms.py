@@ -112,6 +112,7 @@ class AccidentReportForm(forms.ModelForm):
 
 class WitnessForm(forms.ModelForm):
     class Meta:
+        widgets = {'witness_email': forms.EmailInput(), }
         model = Witness
         exclude = ()
 

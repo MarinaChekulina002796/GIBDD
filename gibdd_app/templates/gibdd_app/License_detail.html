@@ -26,16 +26,18 @@
                                 title="Удалить ВУ"> </span></a></div>
                     </ul>
                 </div>
-                <h2><i><b> {{ obj.driver_data }} </b></i></h2>
-                <p>Фото на ВУ: <img src="{{ MEDIA_URL }}{{ obj.image_url|default_if_none:'#' }}"
-                                    style="width: 100px"></p>
-                <p>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</p>
-                <p>Статус прав: {{ obj.status_dr_license }}</p>
-                <p>Дата выдачи ВУ: {{ obj.date_issue_dr_license }}</p>
-                <p>Дата окончания действия ВУ: {{ obj.date_end_dr_license }}</p>
-                <p>Подразделение ГИБДД, выдавшее ВУ: {{ obj.division_give_dr_license }}</p>
-                <p>Город выдачи ВУ: {{ obj.town_dr_license }}</p>
-                <p>Данные о мед. справках: {{ obj.medical_certificate_data }}</p>
+                <div style="float:left"><p><img src="{{ MEDIA_URL }}{{ obj.image_url|default_if_none:'#' }}"
+                                                style="width: 300px"></p></div>
+                <div style="margin-left: 350px">
+                    <h2><i><b> {{ obj.driver_data }} </b></i></h2>
+                    <p>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</p>
+                    <p>Статус прав: {{ obj.status_dr_license }}</p>
+                    <p>Дата выдачи ВУ: {{ obj.date_issue_dr_license }}</p>
+                    <p>Дата окончания действия ВУ: {{ obj.date_end_dr_license }}</p>
+                    <p>Подразделение ГИБДД, выдавшее ВУ: {{ obj.division_give_dr_license }}</p>
+                    <p>Город выдачи ВУ: {{ obj.town_dr_license }}</p>
+                    <p>Данные о мед. справках: {{ obj.medical_certificate_data }}</p>
+                </div>
             </div>
 
         </form>

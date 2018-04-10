@@ -1,0 +1,32 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список учеников автошкол</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список учеников автошкол</b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица учеников автошкол</caption>
+                <th> Ученик автошколы</th>
+                <th> Автошкола</th>
+                <th>Обучение на категорию</th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p><a href="{% url 'autostudent_detail' pk=obj.pk %}">{{ obj.student }}
+                            </a></p></td>
+                            <td><p>{{ obj.school }}</p></td>
+                            <td><p>{{ obj.school_categ }}</p></td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    {% endblock %}
+{% endblock %}

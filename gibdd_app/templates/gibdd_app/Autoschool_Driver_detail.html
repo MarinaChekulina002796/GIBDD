@@ -1,0 +1,38 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+
+<title>autostudent_detail</title>
+{% block content %}
+
+    {% block form %}
+        <form>
+
+
+            <div class="col-sm-12 col-md-9">
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <button type="button" onclick="history.back()"><span
+                                class="glyphicon glyphicon-arrow-left"
+                                style="color:blue"
+                                title="Назад"> </span>
+                        </button>
+                        <div class="active"><a href="{% url 'autostudent_update' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-pencil"
+                                style="color:darkorange"
+                                title="Редактировать"> </span></a></div>
+                        <div class="active"><a href="{% url 'autostudent_delete' pk=obj.pk %}"><span
+                                class="glyphicon glyphicon-trash"
+                                style="color:red"
+                                title="Удалить"> </span></a></div>
+                    </ul>
+                </div>
+                <h2><i><b> Ученик автошколы: {{ obj.student }}</b></i></h2>
+                <p>Автошкола: {{ obj.school }} </p>
+                <p>Обучение на категорию:{{ obj.school_categ }}</p>
+                <p>Дата начала обучения:{{ obj.school_date_from }}</p>
+                <p>Дата окончания обучения:{{ obj.school_date_to }}</p>
+                <p>Результат экзамена:{{ obj.school_exam_mark }}</p>
+            </div>
+        </form>
+    {% endblock %}
+{% endblock %}

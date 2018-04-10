@@ -15,7 +15,7 @@ class Driver(models.Model):
     driver_surname = models.CharField(max_length=50, verbose_name="Фамилия водителя", blank=True, null=True)
     driver_name = models.CharField(max_length=50, verbose_name="Имя водителя")
     driver_patronymic = models.CharField(max_length=50, verbose_name="Отчество водителя")
-    driver_birth = models.DateTimeField(verbose_name="Дата рождения водителя")
+    driver_birth = models.DateField(verbose_name="Дата рождения водителя")
     driver_town = models.CharField(max_length=50, verbose_name="Город проживания водителя")
 
     def __str__(self):
@@ -69,7 +69,7 @@ MEDICAL_CHOICES = (
 
 # Медицинская справка
 class MedicalCertificate(models.Model):
-    medical_number = models.CharField(max_length=15, verbose_name="Номер справки")
+    medical_number = models.CharField(max_length=10, verbose_name="Номер справки")
     medical_date = models.DateField(verbose_name="Дата выдачи")
     diagnosis = models.CharField(max_length=200, verbose_name="Диагноз")
     organization_give = models.CharField(max_length=300, verbose_name="Выдавшая организация")
@@ -111,8 +111,7 @@ class LicenseDisqualification(models.Model):
                                       blank=True, null=True)
     disqualif_date_from = models.DateField(verbose_name="Дата лишения прав", blank=True, null=True)
     disqualif_date_end = models.DateField(verbose_name="Дата окончания лишение прав", blank=True, null=True)
-    disqualif_cause = models.CharField(max_length=200, verbose_name="Причина лишения",
-                                       default="Вождение автомобиля под воздействием алкоголя", blank=True, null=True)
+    disqualif_cause = models.CharField(max_length=200, verbose_name="Причина лишения", blank=True, null=True)
     disqualif_alcohol_amount = models.FloatField(verbose_name="Промилле алкоголя в крови", blank=True, null=True)
     disqualif_comment = models.TextField(verbose_name="Комментарий", blank=True, null=True)
 

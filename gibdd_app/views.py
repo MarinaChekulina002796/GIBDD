@@ -17,15 +17,10 @@ from dateutil.relativedelta import *
 import datetime
 from datetime import timedelta
 import gibdd_app
-from gibdd_app.forms import AuthorizationForm, MedicalCertificateForm, CategoryForm, LicenseForm, DriverForm, \
-    LicenseDisqualificationForm, Licen_CatForm, AccidentReportForm, WitnessForm, Lisense_AccidentForm, InspectorForm, \
-    FineForm, CarForm, RegistrationCertificateForm, OwnerForm, StealingForm, DecreeForm, CameraForm, AutoschoolForm, \
-    HistoryForm, DiagnosticCardForm, InsuranceForm, InsuranceLicenseForm, Accident_CarForm
+from gibdd_app.forms import *
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
-    Camera, CarHistory, Accident_Car, AutoSchool, DiagnosticCard, Insurance, InsuranceLicense
+from gibdd_app.models import *
 from django.shortcuts import render
 
 
@@ -561,6 +556,16 @@ def accident_car_list(request):
 
 
 @login_required
+def europrotocol_list(request):
+    template = 'gibdd_app/Europrotocol_list.html'
+    objects_list = Europrotocol.objects.all()
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
+
+
+@login_required
 def accident_car_detail(request, pk):
     template = 'gibdd_app/Accident_Car_detail.html'
     obj = get_object_or_404(Accident_Car, pk=pk)
@@ -790,6 +795,16 @@ def owner_detail(request, pk):
 def steal_detail(request, pk):
     template = 'gibdd_app/Stealing_detail.html'
     obj = get_object_or_404(Stealing, pk=pk)
+    context = {
+        'obj': obj,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def europrotocol_detail(request, pk):
+    template = 'gibdd_app/Europrotocol_detail.html'
+    obj = get_object_or_404(Europrotocol, pk=pk)
     context = {
         'obj': obj,
     }
@@ -1141,6 +1156,20 @@ def delete_insurance_license(request, pk):
 
 
 @login_required
+def delete_europrotocol(request, pk):
+    template = 'gibdd_app/Europrotocol_form.html'
+    obj = get_object_or_404(Europrotocol, pk=pk)
+    if request.method == 'POST':
+        form = EuroprotocolForm(request.POST, request.FILES, instance=obj)
+        obj.delete()
+        messages.success(request, 'Successful delete')
+        return redirect(reverse('europrotocol_list'))
+    else:
+        form = EuroprotocolForm(instance=obj)
+    return render(request, template, {'form': form})
+
+
+@login_required
 def delete_accident_car(request, pk):
     template = 'gibdd_app/Accident_Car_form.html'
     obj = get_object_or_404(Accident_Car, pk=pk)
@@ -1236,6 +1265,44 @@ def add_license(request):
     template = 'gibdd_app/License_form.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_europrotocol(request):
+    if request.method == 'POST':
+        form = EuroprotocolForm(request.POST, request.FILES)  # тут возвращается словарь вместе с csrf
+        if form.is_valid():
+            licen = Europrotocol(**form.cleaned_data)
+            licen.save()
+            return reverse('europrotocol_create')
+    else:
+        form = EuroprotocolForm()
+    template = 'gibdd_app/Europrotocol_form.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def update_europrotocol(request, pk):
+    europrotocol = get_object_or_404(Europrotocol, pk=pk)
+    if request.method == 'POST':
+        form = EuroprotocolForm(request.POST, request.FILES, instance=europrotocol)
+        if form.is_valid():
+            form.save()
+        return redirect('europrotocol_detail', pk)
+    else:
+        form = EuroprotocolForm(instance=europrotocol)
+
+    template = 'gibdd_app/Europrotocol_form.html'
+    context = {
+        'form': form,
+        'europrotocol': europrotocol,
     }
 
     return render(request, template, context)
@@ -2100,67 +2167,3 @@ def add_accident_car(request):
     }
 
     return render(request, template, context)
-
-
-class MedicalCertificateCreate(CreateView):
-    model = MedicalCertificate
-    template_name = 'gibdd_app/MedicalCertificate_form.html'
-    fields = '__all__'
-
-
-class MedicalCertificateUpdate(UpdateView):
-    model = MedicalCertificate
-    template_name = 'gibdd_app/MedicalCertificate_form.html'
-    fields = '__all__'
-    success_url = reverse_lazy('med_list')
-
-
-class CategoryCreate(CreateView):
-    model = Category
-    template_name = 'gibdd_app/Category_form.html'
-    fields = ['category_name', 'date_open_category']
-
-
-class CategoryUpdate(UpdateView):
-    model = Category
-    template_name = 'gibdd_app/Category_form.html'
-    fields = ['category_name', 'date_open_category']
-    success_url = reverse_lazy('categ_list')
-
-
-class LicenseCreate(CreateView):
-    model = License
-    fields = ['driver_data', 'category_dr_license_data', 'medical_certificate_data', 'photo_dr_license',
-              'series_dr_license', 'number_dr_license', 'status_dr_license',
-              'date_issue_dr_license', 'date_end_dr_license', 'division_give_dr_license', 'town_dr_license']
-
-
-class LicenseUpdate(UpdateView):
-    model = License
-    fields = ['photo_dr_license', 'series_dr_license', 'number_dr_license', 'status_dr_license',
-              'date_issue_dr_license', 'date_end_dr_license', 'division_give_dr_license', 'town_dr_license']
-
-
-class DriverCreate(CreateView):
-    model = Driver
-    fields = '__all__'
-
-
-class DriverUpdate(UpdateView):
-    model = Driver
-    fields = '__all__'
-
-
-class LicenseDisqualificationCreate(CreateView):
-    model = LicenseDisqualification
-    fields = '__all__'
-
-
-class LicenseDisqualificationUpdate(UpdateView):
-    model = LicenseDisqualification
-    fields = '__all__'
-
-
-class CarUpdate(UpdateView):
-    model = Car
-    fields = '__all__'

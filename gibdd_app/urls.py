@@ -150,4 +150,16 @@ urlpatterns = [
                   url(r'^accident_car/detail/(?P<pk>\d+)/$', accident_car_detail, name='accident_car_detail'),
                   url(r'^accident_car/(?P<pk>\d+)/update/$', update_accident_car, name='accident_car_update'),
                   url(r'^accident_car/delete/(?P<pk>\d+)/$', delete_accident_car, name='accident_car_delete'),
+
+                  url(r'^europrotocol/create/$', add_europrotocol, name='europrotocol_create'),
+                  url(r'^europrotocol/$', europrotocol_list, name='europrotocol_list'),
+                  url(r'^europrotocol/detail/(?P<pk>\d+)/$', europrotocol_detail, name='europrotocol_detail'),
+                  url(r'^europrotocol/(?P<pk>\d+)/update/$', update_europrotocol, name='europrotocol_update'),
+                  url(r'^europrotocol/delete/(?P<pk>\d+)/$', delete_europrotocol, name='europrotocol_delete'),
+
+                  url(r'^autoschool/create/$', add_autoschool, name='autoschool_create'),
+                  url(r'^autoschool/$', autoschool_list, name='autoschool_list'),
+                  url(r'^autoschool/detail/(?P<pk>\d+)/$', autoschool_detail, name='autoschool_detail'),
+                  url(r'^autoschool/(?P<pk>\d+)/update/$', update_autoschool, name='autoschool_update'),
+                  url(r'^autoschool/delete/(?P<pk>\d+)/$', delete_autoschool, name='autoschool_delete'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

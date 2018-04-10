@@ -14,9 +14,7 @@ from dateutil.relativedelta import *
 from django.utils import timezone
 from psycopg2 import extras
 
-from gibdd_app.models import MedicalCertificate, License, Category, Driver, LicenseDisqualification, Lisense_Category, \
-    AccidentReport, Witness, Lisense_Accident, Inspector, Fine, Car, RegistrationCertificate, Owner, Stealing, Decree, \
-    Camera, AutoSchool, CarHistory, DiagnosticCard, Insurance, InsuranceLicense, Accident_Car, Europrotocol
+from gibdd_app.models import *
 
 
 # форма для авторизации
@@ -227,4 +225,13 @@ class EuroprotocolForm(forms.ModelForm):
         widgets = {'europrotocol_date': forms.SelectDateWidget(years=range(2016, 2035)),
                    }
         model = Europrotocol
+        exclude = ()
+
+
+class Autoschool_DriverForm(forms.ModelForm):
+    class Meta:
+        widgets = {'school_date_from': forms.SelectDateWidget(years=range(2016, 2035)),
+                   'school_date_to': forms.SelectDateWidget(years=range(2016, 2035)),
+                   }
+        model = Autoschool_Driver
         exclude = ()

@@ -445,7 +445,6 @@ class Stealing(models.Model):
 
 # Автошкола
 class AutoSchool(models.Model):
-    student = models.ForeignKey(Driver, verbose_name="Ученик автошколы", on_delete=models.CASCADE)
     school_name = models.CharField(max_length=100, verbose_name="Название автошколы")
     school_photo = models.ImageField(upload_to='autoschool_photo/',
                                      default='autoschool_photo/default.jpg',
@@ -464,6 +463,29 @@ class AutoSchool(models.Model):
     def image_url(self):
         if self.school_photo and hasattr(self.school_photo, 'url'):
             return self.school_photo.url
+
+
+SCHOOL_CHOICES = (
+    ('Экзамен : 5', 'Экзамен : 5'),
+    ('Экзамен : 4', 'Экзамен : 4'),
+    ('Экзамен : 3', 'Экзамен : 3'),
+)
+
+
+class Autoschool_Driver(models.Model):
+    student = models.ForeignKey(Driver, verbose_name="Ученик автошколы", on_delete=models.CASCADE)
+    school = models.ForeignKey(AutoSchool, verbose_name="Автошкола", on_delete=models.CASCADE)
+    school_categ = models.TextField(verbose_name="Обучение на категорию", choices=CATEGORY_CHOICES)
+    school_date_from = models.DateField(verbose_name="Дата начала обучения")
+    school_date_to = models.DateField(verbose_name="Дата окончания обучения")
+    school_exam_mark = models.TextField(verbose_name="Результат экзамена", choices=SCHOOL_CHOICES)
+
+    class Meta:
+        unique_together = ('student', 'school')
+
+    def __str__(self):
+        return "%s, %s" % (
+            self.student, self.school)
 
 
 CAR_CHOICES = (
@@ -665,7 +687,7 @@ class Europrotocol(models.Model):
             ('europrotocol_car_1', 'europrotocol_car_2'), ('europrotocol_insurance_1', 'europrotocol_insurance_2'))
 
     def __str__(self):
-        return "%s, %s до %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
+        return "%от s, %s с %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
 
     @property
     def image_url_scan_1(self):

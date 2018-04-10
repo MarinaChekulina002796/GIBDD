@@ -1,0 +1,41 @@
+{% extends 'gibdd_app/base.html' %}
+
+<title>Список европротоколов</title>
+{% load staticfiles %}
+{% block header %}
+    <h2><i><b>Список европротоколов </b></i></h2>
+{% endblock %}
+{% block content %}
+
+    {% block form %}
+
+        <form>
+            <table border="2">
+                <caption>Таблица европротоколов</caption>
+                <th>Дата составления протокола</th>
+                <th> ВУ 1</th>
+                <th> ВУ 2</th>
+                <th>Автомобиль 1
+                <th>Автомобиль 2</th>
+                <th>Подробнее>></th>
+                {% for obj in objects_list %}
+                    <tr>
+                        <div>
+                            <td><p> {{ obj.europrotocol_date }}</p></td>
+                            <td><p> {{ obj.europrotocol_license_1 }}</p></td>
+                            <td><p> {{ obj.europrotocol_license_2 }}</p></td>
+                            <td><p>{{ obj.europrotocol_car_1 }}</p></td>
+                            <td><p>{{ obj.europrotocol_car_2 }}</p></td>
+                            <td>
+                                <button class="btn btn-info" type="button"><a href="{% url 'europrotocol_detail' pk=obj.pk %}">Подробнее
+                                    >></a></button>
+                            </td>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endblock %}
+{% endblock %}
+
+

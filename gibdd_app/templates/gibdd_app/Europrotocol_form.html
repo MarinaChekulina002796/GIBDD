@@ -1,0 +1,43 @@
+{% extends 'gibdd_app/base.html' %}
+
+
+{% block title %}Европротокол{% endblock %}
+
+
+{% block header %}
+    Европротокол
+{% endblock %}
+
+{% block content %}
+    {% if perms.auth.can_add_europrotocol %}
+        {% block form %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+
+                    {{ form.as_table }}
+
+
+                </table>
+                {% with url_name=request.resolver_match.url_name %}
+                    {% if url_name == 'europrotocol_create' %}
+                        <button class="btn btn-success" type="submit">Сохранить</button>
+                        <button class="btn btn-default" type="button" onclick="history.back()">Назад</button>
+                    {% elif url_name == 'europrotocol_update' %}
+                        <button class="btn btn-warning" type="submit">Обновить</button>
+                        <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+                    {% else %}
+                        <button class="btn btn-danger" type="submit">Удалить</button>
+                        <button class="btn btn-info" type="button" onclick="history.back()">Назад</button>
+                    {% endif %}
+                {% endwith %}
+
+            </form>
+        {% endblock %}
+    {% else %}
+        <p><i> <b>{{ user.username }}s</b>, у вас нет доступа к данной услуге.</i></p>
+    {% endif %}
+{% endblock %}
+
+
+

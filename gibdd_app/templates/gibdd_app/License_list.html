@@ -21,7 +21,7 @@
                         <div>
                             <td><p><a href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
                                 № {{ obj.number_dr_license }}</a></p></td>
-                            <td><p> {{ obj.status_dr_license }}</p></td>
+                            <td><p> {{ obj.short_status_license }}</p></td>
                             <td>
                                 <button class="btn-info" type="button"><a
                                         href="{% url 'license_detail' pk=obj.pk %}">Подробнее

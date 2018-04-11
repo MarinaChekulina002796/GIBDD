@@ -30,8 +30,9 @@
                                                 style="width: 300px"></p></div>
                 <div style="margin-left: 350px">
                     <h2><i><b> {{ obj.driver_data }} </b></i></h2>
+                    <p>Статус прав: {{ obj.short_status_license }}</p>
                     <p>Серия ВУ: {{ obj.series_dr_license }} № {{ obj.number_dr_license }}</p>
-                    <p>Статус прав: {{ obj.status_dr_license }}</p>
+                    <p>Данные о лишении прав: {{ obj.status_dr_license }}</p>
                     <p>Дата выдачи ВУ: {{ obj.date_issue_dr_license }}</p>
                     <p>Дата окончания действия ВУ: {{ obj.date_end_dr_license }}</p>
                     <p>Подразделение ГИБДД, выдавшее ВУ: {{ obj.division_give_dr_license }}</p>

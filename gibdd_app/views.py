@@ -343,7 +343,7 @@ def categ_list(request):
 @login_required
 def license_list(request):
     template = 'gibdd_app/License_list.html'
-    objects_list = License.objects.all()
+    objects_list = License.objects.all().order_by('series_dr_license', 'number_dr_license')
 
     context = {
         'objects_list': objects_list,
@@ -1302,7 +1302,6 @@ def add_license(request):
     return render(request, template, context)
 
 
-
 @login_required
 def add_autostudent(request):
     if request.method == 'POST':
@@ -1328,7 +1327,7 @@ def add_europrotocol(request):
         if form.is_valid():
             licen = Europrotocol(**form.cleaned_data)
             licen.save()
-            return reverse('europrotocol_create')
+            return redirect(reverse('europrotocol_create'))
     else:
         form = EuroprotocolForm()
     template = 'gibdd_app/Europrotocol_form.html'

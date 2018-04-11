@@ -160,7 +160,8 @@ class License(models.Model):
     series_dr_license = models.CharField(max_length=4, verbose_name="Серия ВУ")
     number_dr_license = models.CharField(max_length=6, verbose_name="Номер ВУ")
     status_dr_license = models.OneToOneField(LicenseDisqualification, on_delete=models.CASCADE,
-                                             verbose_name="Подробности лишения прав", unique=True, blank=True)
+                                             verbose_name="Подробности лишения прав", unique=True, blank=True,
+                                             null=True)
     date_issue_dr_license = models.DateField(verbose_name="Дата выдачи ВУ", default=datetime.datetime.now,
                                              editable=False)
     date_end_dr_license = models.DateField(verbose_name="Дата окончания действия ВУ", blank=True, null=True,
@@ -198,7 +199,7 @@ class Lisense_Category(models.Model):
 
 # Инспектор
 class Inspector(models.Model):
-    inspector_number_token = models.CharField(max_length=9, verbose_name="Номер жетона")
+    inspector_number_token = models.CharField(max_length=9, verbose_name="Номер жетона", unique=True)
     photo_inspector = models.ImageField(upload_to='inspector_photo/',
                                         default='inspector_photo/default_photo_inspector.jpg',
                                         verbose_name="Фото инспектора")
@@ -448,7 +449,7 @@ class AutoSchool(models.Model):
                                      verbose_name="Фото автошколы", blank=True, null=True)
     school_address = models.CharField(max_length=100, verbose_name="Адрес автошколы")
     school_phone = models.CharField(max_length=100, verbose_name="Телефон автошколы")
-    school_category_dr_license = models.CharField(max_length=10,
+    school_category_dr_license = models.CharField(max_length=40,
                                                   verbose_name="Обучение на категорию")
 
     def __str__(self):
@@ -620,7 +621,8 @@ INSURANCE_CHOICES2 = (
 
 # Страхововй полис
 class Insurance(models.Model):
-    insurance_number = models.CharField(max_length=15, verbose_name="Номер полиса", help_text="ЕЕЕ№1234567890")
+    insurance_number = models.CharField(max_length=14, verbose_name="Номер полиса", help_text="ЕЕЕ№1234567890",
+                                        unique=True)
     insurance_company = models.CharField(max_length=100, verbose_name="Страховая компания")
     insurance_type = models.CharField(max_length=10, verbose_name="Тип полиса", choices=INSURANCE_CHOICES,
                                       default='ОСАГО')
@@ -684,7 +686,7 @@ class Europrotocol(models.Model):
             ('europrotocol_car_1', 'europrotocol_car_2'), ('europrotocol_insurance_1', 'europrotocol_insurance_2'))
 
     def __str__(self):
-        return "%от s, %s с %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
+        return "от %s, %s с %s" % (self.europrotocol_date, self.europrotocol_car_1, self.europrotocol_car_2)
 
     @property
     def image_url_scan_1(self):

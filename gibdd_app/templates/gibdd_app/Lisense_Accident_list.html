@@ -12,13 +12,13 @@
         <form>
             <table border="2">
                 <caption>Таблица ДТП с ВУ</caption>
-                <th> Водительское удостоверение</th>
                 <th> ДТП</th>
+                <th> Водительское удостоверение</th>
                 <th> Подробнее...</th>
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'accid' pk=obj.pk %}">{{ obj.car_number }}
+                            <td><p><a href="{% url 'licen_accid_detail' pk=obj.pk %}">{{ obj.accid }}
                             </a></p></td>
                             <td><p>{{ obj.licen }}</p></td>
                             <td>

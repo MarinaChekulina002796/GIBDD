@@ -1309,7 +1309,7 @@ def add_autostudent(request):
         if form.is_valid():
             licen = Autoschool_Driver(**form.cleaned_data)
             licen.save()
-            return reverse('autostudent_create')
+            return redirect(reverse('autostudent_create'))
     else:
         form = Autoschool_DriverForm()
     template = 'gibdd_app/Autoschool_Driver_form.html'

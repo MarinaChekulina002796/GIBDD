@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rolepermissions',
+    # 'rolepermissions',
     'gibdd_app',
 ]
 
@@ -98,8 +98,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': 'localhost',
-        'PORT': '',
-
+        'PORT': '5432',
     }
 }
 
@@ -141,4 +140,3 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-

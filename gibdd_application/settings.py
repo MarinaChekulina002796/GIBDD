@@ -29,8 +29,8 @@ SECRET_KEY = '3t+e+h0^+qdh!zorxuoiq(!dql0b130tt$8#7a%o0)e_l58^#b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'gibdd.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'gibdd_application.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gibdd',
         'USER': 'postgres',
         'PASSWORD': '1',

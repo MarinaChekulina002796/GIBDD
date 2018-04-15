@@ -1858,7 +1858,8 @@ def add_disq(request):
     return render(request, template, context)
 
 
-@permission_required("can_add_lisense_category", login_url='forbidden')
+# @permission_required("can_add_lisense_category", login_url='forbidden')
+@permission_required("can_add_lisense_category")
 @login_required
 def add_lic_cat(request):
     if request.method == 'POST':
@@ -1878,6 +1879,7 @@ def add_lic_cat(request):
     return render(request, template, context)
 
 
+@permission_required("can_add_accident_report")
 @login_required
 def add_accident(request):
     if request.method == 'POST':
@@ -1897,6 +1899,7 @@ def add_accident(request):
     return render(request, template, context)
 
 
+@permission_required("can_add_witness")
 @login_required
 def add_witness(request):
     if request.method == 'POST':
@@ -1935,6 +1938,7 @@ def add_licen_accid(request):
     return render(request, template, context)
 
 
+@permission_required("can_add_inspector",)
 @login_required
 def add_inspector(request):
     if request.method == 'POST':

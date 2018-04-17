@@ -5,21 +5,10 @@ from functools import reduce
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.postgres.aggregates import StringAgg
-from django.contrib.postgres.search import SearchVector, SearchRank
-from django.db.models import Q, F
+from django.db.models import Q
 from django.db.models.functions import Concat
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.urls.base import reverse
-from django.db.models import Value as V
-from dateutil.relativedelta import *
-import datetime
-from datetime import timedelta
-import gibdd_app
+from django.shortcuts import redirect, get_object_or_404, render_to_response
 from gibdd_app.forms import *
-from django.views.generic import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 from gibdd_app.models import *
 from django.shortcuts import render
 
@@ -1231,7 +1220,7 @@ def participants(request):
     return render(request, 'gibdd_app/participants.html')
 
 
-@login_required
+@login_required()
 def workers(request):
     return render(request, 'gibdd_app/workers.html')
 
@@ -1879,8 +1868,8 @@ def add_lic_cat(request):
     return render(request, template, context)
 
 
-@permission_required("can_add_accident_report")
 @login_required
+# @permission_required('accident_create')
 def add_accident(request):
     if request.method == 'POST':
         form = AccidentReportForm(request.POST, request.FILES)
@@ -1899,7 +1888,9 @@ def add_accident(request):
     return render(request, template, context)
 
 
-@permission_required("can_add_witness")
+#
+# @has_add_permission()
+# @permission_required("can_add_witness")
 @login_required
 def add_witness(request):
     if request.method == 'POST':
@@ -1938,7 +1929,7 @@ def add_licen_accid(request):
     return render(request, template, context)
 
 
-@permission_required("can_add_inspector",)
+# @permission_required("can_add_inspector",)
 @login_required
 def add_inspector(request):
     if request.method == 'POST':

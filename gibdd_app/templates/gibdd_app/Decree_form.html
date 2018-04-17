@@ -19,20 +19,24 @@
                         </label>
 
                         {{ field }}
-
-                        {% if field.name == "decree_inspector" %}
-                            <a class="related-widget-wrapper-link add-related"
-                               href="{% url 'inspector_create' %}"> <span
-                                    class="glyphicon glyphicon-plus"
-                                    style="color:yellowgreen"
-                                    title="Добавить инспектора, выписавшего постановление"> </span></a>
+                        {% if user.groups.all.0.name == 'admins' or  user.groups.all.0.name == 'main_operators' %}
+                            {% if field.name == "decree_inspector" %}
+                                <a class="related-widget-wrapper-link add-related"
+                                   href="{% url 'inspector_create' %}"> <span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить инспектора, выписавшего постановление"> </span></a>
+                            {% endif %}
                         {% endif %}
 
-                        {% if field.name == "decree_camera" %}
-                            <a class="related-widget-wrapper-link add-related" href="{% url 'camera_create' %}"> <span
-                                    class="glyphicon glyphicon-plus"
-                                    style="color:yellowgreen"
-                                    title="Добавить камеру"> </span></a>
+                        {% if user.groups.all.0.name == 'admins' or  user.groups.all.0.name == 'main_operators' %}
+                            {% if field.name == "decree_camera" %}
+                                <a class="related-widget-wrapper-link add-related"
+                                   href="{% url 'camera_create' %}"> <span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить камеру"> </span></a>
+                            {% endif %}
                         {% endif %}
 
                     </div>

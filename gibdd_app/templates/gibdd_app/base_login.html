@@ -35,15 +35,15 @@
 
                 <div id="navbar" class="navbar-collapse collapse"
                      style="position:relative; left:1000px; top: 50px; color: darkblue">
-                    {% if user.is_authenticated %}
+{#                    {% if user.is_authenticated %}#}
                         {#                        <h1> Your login: {{ user.username }}</h1>#}
-                        <button id="signout" type="submit" class="btn btn-success button_style">
-                            Выйти {{ user.username }}</button>
-
-                    {% else %}
-                        <button id="signin" type="submit" class="btn btn-success button_style">Авторизоваться</button>
-
-                    {% endif %}
+{#                        <button id="signout" type="submit" class="btn btn-success button_style">#}
+{#                            Выйти {{ user.username }}</button>#}
+{##}
+{#                    {% else %}#}
+{#                        <button id="signin" type="submit" class="btn btn-success button_style">Авторизоваться</button>#}
+{##}
+{#                    {% endif %}#}
                 </div>
                 <a class="navbar-left">
                     <img src="{% static 'gibdd_app/images/logo.png' %}" alt="">
@@ -93,7 +93,7 @@
 
 
 <footer class="footer" class="midnight-blue"
-        style="position:relative; margin: auto; padding: 1px;  height:auto; top:400px">
+        style="position:relative; margin: auto; padding: 1px;  height:auto; top:473px">
     <div class="top-bar">
         <div class="container">
             <div class="row">
@@ -121,24 +121,6 @@
 </footer><!--/#footer-->
 
 
-<script>
 
-    var signin = document.getElementById('signin');
-    if (signin != undefined) {
-        signin.onclick = function (event) {
-            window.location = '{% url 'login' %}';
-            event.stopPropagation();
-        }
-    }
-
-    var signout = document.getElementById('signout');
-    if (signout != undefined) {
-        signout.onclick = function (event) {
-            window.location = '{% url 'logout' %}';
-            event.stopPropagation();
-        }
-    }
-
-</script>
 </body>
 </html>

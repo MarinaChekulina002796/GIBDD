@@ -1,24 +1,23 @@
-{% extends 'gibdd_app/base.html' %}
+{% extends 'gibdd_app/base_login.html' %}
 
 {% block title %}Авторизация{% endblock %}
 
 
 {% block header %}
-    Авторизация пользователей
+    <div align="center" style="position:relative; margin: auto; padding: 1px;  height:auto; top:80px"> Авторизация пользователей</div>
 {% endblock %}
 {% block content %}
     {% block form %}
-        <form action="{% url 'login' %}" method="POST">
+        <form action="{% url 'login' %}" method="POST" align="center" style="position:relative; margin: auto; padding: 1px;  height:auto; top:80px">
             {% csrf_token %}
-            <table>
+            <table align="center">
                 {{ form.as_table }}
             </table>
             <button class="btn-primary" type="submit">Авторизоваться</button>
             <button class="btn-primary" type="button" onclick="history.back()">Назад</button>
         </form>
     {% endblock %}
+
 {% endblock %}
-
-
 
 

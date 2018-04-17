@@ -32,11 +32,10 @@
                 <div id="navbar" class="navbar-collapse collapse" style="position:relative; left:1000px; top: 50px">
                     {% if user.is_authenticated %}
                         {#                        <h1> Your login: {{ user.username }}</h1>#}
-                        <button id="signout" type="submit" class="btn btn-success button_style">Sign
-                            out {{ user.username }}</button>
+                        <button id="signout" type="submit" class="btn btn-success button_style">Выйти {{ user.username }}</button>
 
                     {% else %}
-                        <button id="signin" type="submit" class="btn btn-success button_style">Sign in</button>
+                        <button id="signin" type="submit" class="btn btn-success button_style">Авторизоваться</button>
 
                     {% endif %}
                 </div>
@@ -75,7 +74,7 @@
         </div>
 
         <div class="row">
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     {#                {% if perms.auth.can_add_medical_certificate %}#}
                     <div class="media services-wrap wow fadeInDown">
@@ -99,13 +98,13 @@
                                         style="color:darkblue"
                                         title="Список мед.справок"> </span></a>
                                 </li>
-                                {% if perms.auth.can_add_medical_certificate %}
-                                    <li class="active"><a href="{% url 'med_create' %}"><span
-                                            class="glyphicon glyphicon-plus"
-                                            style="color:yellowgreen"
-                                            title="Добавить мед. справку"> </span></a>
-                                    </li>
-                                {% endif %}
+                                {#                                {% if perms.auth.can_add_medical_certificate %}#}
+                                <li class="active"><a href="{% url 'med_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить мед. справку"> </span></a>
+                                </li>
+                                {#                                {% endif %}#}
                             </ul>
                         </div>
 
@@ -115,7 +114,7 @@
                     {#                {% endif %}#}
                 </div>
             {% endif %}
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -150,7 +149,7 @@
                     </div>
                 </div>
             {% endif %}
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -180,7 +179,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -209,7 +208,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -238,7 +237,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -268,7 +267,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
 
                     <div class="media services-wrap wow fadeInDown">
@@ -299,7 +298,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -328,7 +327,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -357,7 +356,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -386,7 +385,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -414,7 +413,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'reg_car_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -433,12 +432,12 @@
                                         style="color:darkblue"
                                         title="Список автомобилей"> </span></a>
                                 </li>
-                                {% if perms.auth.can_add_car %}
+{#                                {% if perms.auth.can_add_car %}#}
                                     <li class="active"><a href="{% url 'car_create' %}"><span
                                             class="glyphicon glyphicon-plus"
                                             style="color:yellowgreen"
                                             title="Добавить автомобиль"> </span></a></li>
-                                {% endif %}
+{#                                {% endif %}#}
 
 
                             </ul>
@@ -447,7 +446,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'reg_car_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -476,7 +475,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'reg_car_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -506,7 +505,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -535,7 +534,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -565,7 +564,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -595,7 +594,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -625,7 +624,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'reg_car_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -653,7 +652,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -681,7 +680,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -709,7 +708,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -737,7 +736,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -765,7 +764,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -793,7 +792,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">

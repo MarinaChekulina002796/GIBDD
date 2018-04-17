@@ -75,7 +75,7 @@
         </div>
 
         <div class="row">
-            {% if user.groups.all.0.name == 'license_operator' or user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' %}
                 <div class="col-sm-6 col-md-4">
                     {#                {% if perms.auth.can_add_medical_certificate %}#}
                     <div class="media services-wrap wow fadeInDown">
@@ -115,7 +115,7 @@
                     {#                {% endif %}#}
                 </div>
             {% endif %}
-            {% if user.groups.all.0.name == 'inspectors' or user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -268,7 +268,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
 
                     <div class="media services-wrap wow fadeInDown">
@@ -299,7 +299,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -328,7 +328,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -506,7 +506,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -535,7 +535,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -737,7 +737,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -794,31 +794,31 @@
             {% endif %}
 
             {% if user.groups.all.0.name == 'admins' %}
-            <div class="col-sm-6 col-md-4">
-                <div class="media services-wrap wow fadeInDown">
-                    <div class="pull-left">
-                        <img class="img-responsive"
-                             src="{% static 'gibdd_app/images/workers_interface/autostudent.jpg' %}"
-                             width="90" height="50">
-                    </div>
-                    <div class="media-body">
-                        <h3 class="media-heading">Данные об обучении в автошколе</h3>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-right">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="{% url 'autostudent_list' %}"><span
-                                    class="glyphicon glyphicon-list-alt"
-                                    style="color:darkblue"
-                                    title="Список"> </span></a>
-                            </li>
-                            <li class="active"><a href="{% url 'autostudent_create' %}"><span
-                                    class="glyphicon glyphicon-plus"
-                                    style="color:yellowgreen"
-                                    title="Добавить данные"> </span></a></li>
-                        </ul>
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/autostudent.jpg' %}"
+                                 width="90" height="50">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Данные об обучении в автошколе</h3>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="{% url 'autostudent_list' %}"><span
+                                        class="glyphicon glyphicon-list-alt"
+                                        style="color:darkblue"
+                                        title="Список"> </span></a>
+                                </li>
+                                <li class="active"><a href="{% url 'autostudent_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить данные"> </span></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endif %}
 
         </div><!--/.row-->

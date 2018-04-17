@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="perm">
+    <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
     </list>
@@ -34,10 +34,10 @@
       <file leaf-file-name="workers.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="820" column="18" lean-forward="true" selection-start-line="820" selection-start-column="18" selection-end-line="820" selection-end-column="18" />
+            <state relative-caret-position="121">
+              <caret line="77" column="17" lean-forward="false" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
               <folding>
-                <marker date="1523947376194" expanded="true" signature="17533:17546" ph="..." />
+                <marker date="1523947696760" expanded="true" signature="17527:17540" ph="..." />
               </folding>
             </state>
           </provider>
@@ -338,13 +338,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Добавлены страховой полис и диагностическая карта">
-      <created>1522330058093</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1522330058093</updated>
     </task>
     <task id="LOCAL-00049" summary="Созданы все формы на добавление">
       <created>1522331464227</created>
@@ -682,7 +675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523862985433</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Permissions">
+      <created>1523947415960</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1523947415960</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -754,7 +754,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлен поиск истории по № VIN, введено ограничение на кол-во символов ввода (&lt;input&gt; maxlength &amp; minlength)." />
     <MESSAGE value="Добавлен поиск ТС в ДТП по № VIN, введено ограничение на кол-во символов ввода (&lt;input&gt; maxlength &amp; minlength)." />
     <MESSAGE value="Добавлено add_autoschool" />
     <MESSAGE value="Добавлено add_history" />
@@ -779,7 +778,8 @@
     <MESSAGE value="add Autoschool_Driver" />
     <MESSAGE value="Синхронизация" />
     <MESSAGE value="perm" />
-    <option name="LAST_COMMIT_MESSAGE" value="perm" />
+    <MESSAGE value="Permissions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Permissions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1144,10 +1144,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="820" column="18" lean-forward="true" selection-start-line="820" selection-start-column="18" selection-end-line="820" selection-end-column="18" />
+        <state relative-caret-position="121">
+          <caret line="77" column="17" lean-forward="false" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
           <folding>
-            <marker date="1523947376194" expanded="true" signature="17533:17546" ph="..." />
+            <marker date="1523947696760" expanded="true" signature="17527:17540" ph="..." />
           </folding>
         </state>
       </provider>

@@ -241,7 +241,7 @@ def search_accidents_by_date(request):
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
     # if query1 and query2:
-    list = ['pk', 'car__car_registr_certificate__registr_certificate_VIN',
+    list = ['pk', 'accid__number_accident','car__car_registr_certificate__registr_certificate_VIN',
             'car__car_registr_certificate__registr_certificate_number',
             'car__car_registr_certificate__registr_certificate_car_model',
             'car__car_registr_certificate__registr_certificate_colour',

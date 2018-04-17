@@ -426,7 +426,7 @@ class RegistrationCertificate(models.Model):
 
 # Собственник
 class Owner(models.Model):
-    owner_number = models.CharField(max_length=10, verbose_name="Номер свидетельства собственника", unique=True)
+    owner_number = models.CharField(max_length=11, verbose_name="Номер свидетельства собственника", unique=True)
     owner_surname = models.CharField(max_length=50, verbose_name="Фамилия собственника")
     owner_name = models.CharField(max_length=50, verbose_name="Имя собственника")
     owner_patronymic = models.CharField(max_length=50, verbose_name="Отчество собственника")

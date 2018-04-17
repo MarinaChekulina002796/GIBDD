@@ -10,8 +10,8 @@
     {% block form %}
 
         <form method="GET" action="{% url 'search_accidents_by_date' %}">
-            <p><i>Для поиска введите начальную и конечную даты поиска.</i></p>
-            <p><b><i>Например,</i></b>с 2018-01-20 <i> по </i> 2018-01-30. </p>
+            <p><i>Для поиска введите начальную и конечную даты поиска.</i>
+            <b><i>Например,</i></b>с 2018-01-20 <i> по </i> 2018-01-30. </p>
             <p> Поиск: <strong><input maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
                                       placeholder="2018-01-21"></strong>
                 <strong><input maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
@@ -33,29 +33,26 @@
                         <table border="2">
                             <caption>Таблица с историей ДТП</caption>
                             <th> №</th>
+                            <th> Номер протокола аварии</th>
+                            <th>Дата ДТП</th>
+                            <th>Тяжесть аварии</th>
                             <th> VIN</th>
                             <th>№ СТС</th>
                             <th>Модель автомобиля</th>
                             <th>Цвет автомобиля</th>
-                            <th>Дата ДТП</th>
-                            <th>Тяжесть аварии</th>
-                            {#                            <th>Дата угона</th>#}
-                            {#                            <th>Город угона</th>#}
 
                             {% for obj in regs %}
 
                                 <tr>
-                                    <td><p>{{ obj.pk }}</p></td>
-                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>
-                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_number }}</p></td>
-                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
+                                    <td><p align="center">{{ obj.pk }}</p></td>
+                                    <td><p align="center">{{ obj.accid__number_accident }}</p></td>
+                                    <td><p align="center">{{ obj.accid__accident_date }}</p></td>
+                                    <td><p align="center">{{ obj.accid__accident_severity }}</p></td>
+                                    <td><p align="center">{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>
+                                    <td><p align="center">{{ obj.car__car_registr_certificate__registr_certificate_number }}</p></td>
+                                    <td><p align="center">{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
                                     </td>
-                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p></td>
-                                    <td><p>{{ obj.accid__accident_date }}</p>
-                                    </td>
-                                    <td>
-                                        <p>{{ obj.accid__accident_severity }}</p>
-                                    </td>
+                                    <td><p align="center">{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p></td>
 
                                 </tr>
                             {% endfor %}

@@ -1857,6 +1857,11 @@ def add_lic_cat(request):
             main_form = Lisense_Category(**form.cleaned_data)
             main_form.save()
             return redirect(reverse('workers'), args=[main_form.pk])
+        else:
+            text = '<i><b>Пожалуйста, введите корректные данные.Данная пара ВУ_категория уже существует.</b></i> '
+            button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+            tex = (text, button)
+            return HttpResponse(tex)
     else:
         form = Licen_CatForm()
 
@@ -2223,6 +2228,11 @@ def add_accident_car(request):
             cam = Accident_Car(**form.cleaned_data)
             cam.save()
             return redirect(reverse('workers'), args=[cam.pk])
+        else:
+            text = '<i><b>Пожалуйста, введите корректные данные.Данная пара ДТП - автомобиль уже существует.</b></i> '
+            button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+            tex = (text, button)
+            return HttpResponse(tex)
     else:
         form = Accident_CarForm()
 

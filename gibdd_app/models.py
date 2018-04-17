@@ -197,6 +197,28 @@ class Lisense_Category(models.Model):
         return "%s, категория - %s " % (self.licen, self.categ)
 
 
+INSPECTOR_CHOICES = (
+    ('Рядовой полиции', 'Рядовой полиции'),
+    ('Младший сержант', 'Младший сержант'),
+    ('Сержант', 'Сержант'),
+    ('Старший сержант', 'Старший сержант'),
+    ('Старшина полиции', 'Старшина полиции'),
+    ('Прапорщик полиции', 'Прапорщик полиции'),
+    ('Старший прапорщик', 'Старший прапорщик'),
+    ('Младший лейтенант полиции', 'Младший лейтенант полиции'),
+    ('Лейтенант', 'Лейтенант'),
+    ('Старший лейтенант', 'Старший лейтенант'),
+    ('Капитан полиции', 'Капитан полиции'),
+    ('Майор полиции', 'Майор полиции'),
+    ('Подполковник', 'Подполковник'),
+    ('Полковник полиции', 'Полковник полиции'),
+    ('Генерал-майор полиции', 'Генерал-майор полиции'),
+    ('Генерал-лейтенант полиции', 'Генерал-лейтенант полиции'),
+    ('Генерал-полковник полиции', 'Генерал-полковник полиции'),
+    ('Генерал полиции Российской Федерации', 'Генерал полиции Российской Федерации'),
+)
+
+
 # Инспектор
 class Inspector(models.Model):
     inspector_number_token = models.CharField(max_length=9, verbose_name="Номер жетона", unique=True)
@@ -206,7 +228,7 @@ class Inspector(models.Model):
     inspector_surname = models.CharField(max_length=50, verbose_name="Фамилия инспектора")
     inspector_name = models.CharField(max_length=50, verbose_name="Имя инспектора")
     inspector_patronymic = models.CharField(max_length=50, verbose_name="Отчество инспектора")
-    inspector_status = models.CharField(max_length=50, verbose_name="Звание инспектора")
+    inspector_status = models.CharField(max_length=50, verbose_name="Звание инспектора", choices=INSPECTOR_CHOICES)
     inspector_division = models.CharField(max_length=40, verbose_name="Номер отделения")
 
     def __str__(self):

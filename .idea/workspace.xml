@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/chartloader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/highcharts-more.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/highcharts-more.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/highcharts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/highcharts.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/highcharts.src.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/urls.py" afterPath="$PROJECT_DIR$/gibdd_app/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/views.py" afterPath="$PROJECT_DIR$/gibdd_app/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_application/settings.py" afterPath="$PROJECT_DIR$/gibdd_application/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="273">
-              <caret line="16" column="65" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+              <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -456,13 +443,6 @@
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
     </task>
-    <task id="LOCAL-00053" summary="Add search by date for accidents">
-      <created>1522740006393</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1522740006393</updated>
-    </task>
     <task id="LOCAL-00054" summary="Search fines with right data on 2 fields with car number, which consists of 8 or 9 signs.">
       <created>1522744547979</created>
       <option name="number" value="00054" />
@@ -799,7 +779,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523961301628</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Update">
+      <created>1524049619913</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1524049619915</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1335,7 +1322,7 @@
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
-          <caret line="16" column="65" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+          <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
           <folding />
         </state>
       </provider>

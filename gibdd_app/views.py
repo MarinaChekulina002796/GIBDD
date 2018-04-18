@@ -13,7 +13,7 @@ from gibdd_app.models import *
 from django.shortcuts import render
 
 from chartit import DataPool, PivotDataPool, Chart, PivotChart
-import simplejson
+from django.db.models import Avg, Count, Sum
 
 
 def statistics(request):
@@ -34,21 +34,21 @@ def chart_view(request):
         datasource=data,
         series_options=
         [{'options': {
-            'type': 'line',
+            'type': 'column',
             'stacking': False},
             'terms': {
-                'accident_date': [
-                    'accident_number_of_people']
-            }}],
+                'accident_date': ['accident_number_of_people']
+            }
+        }],
         chart_options=
         {'title': {
             'text': 'Date and severity of accident'},
             'xAxis': {
                 'title': {
-                    'text': 'Date оf accident'}},
+                    'text': 'Дата ДТП'}},
             'yAxis': {
                 'title': {
-                    'text': 'Severity оf accident'}}
+                    'text': 'Количество людей'}}
         })
 
     # context = {

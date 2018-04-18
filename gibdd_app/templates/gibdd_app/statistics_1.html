@@ -24,9 +24,10 @@
 
     {% load chartit %}
     {{ cht|load_charts:"container" }}
-    <div id='container'>
+    <div class="col-lg-12">
+    <div id='container' style="width: 500px">
         {{ cht|load_charts:"container" }}
-        Chart will be rendered here
+    </div>
     </div>
 {% endblock %}
 </body>

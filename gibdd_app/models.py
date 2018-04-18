@@ -744,8 +744,8 @@ class AccidentReport(models.Model):
     accident_death = models.IntegerField(verbose_name="Смертельный исход, взрослые (количество)", default=0)
     accident_children = models.IntegerField(verbose_name="Из участвовавших в аварии-дети", default=0)
     accident_children_death = models.IntegerField(verbose_name="Смертельный исход, дети(количество)", default=0)
-    accident_causer_person = models.OneToOneField(Driver, verbose_name="Виновник аварии", on_delete=models.CASCADE,
-                                                  unique=False)
+    accident_causer_person = models.ForeignKey(Driver, verbose_name="Виновник аварии", on_delete=models.CASCADE,
+                                               unique=False)
     accident_cause = models.CharField(max_length=250, verbose_name="Причина аварии")
     # accident_participants = models.ManyToManyField(License, verbose_name="Участники аварии")
     # accidents_cars = models.ManyToManyField(Car, verbose_name="Автомобили, участвовавшие в аварии")
@@ -760,6 +760,9 @@ class AccidentReport(models.Model):
                                          default='accident_photo/default.jpg',
                                          verbose_name="Второе фото аварии", blank=True, null=True)
     accident_comment = models.TextField(verbose_name="Комментарий к аварии")
+
+    class Meta:
+        unique_together = ("accident_date", "accident_causer_person")
 
     def __str__(self):
         return "%s от %s" % (self.number_accident, self.accident_date)

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gibdd_app',
-    'rolepermissions'
+    'rolepermissions',
+    'chartit'
 ]
 
 MIDDLEWARE = [

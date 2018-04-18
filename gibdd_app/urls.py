@@ -14,6 +14,7 @@ urlpatterns = [
                   url(r'^services/', services, name='services'),
                   url(r'^workers/', workers, name='workers'),
                   url(r'^statistics/', statistics, name='statistics'),
+                  url(r'^stat_chart_1/', chart_view, name='stat_chart_1'),
                   url(r'^contacts/', contacts, name='contacts'),
                   url(r'^med_list/$', med_list, name='med_list'),
                   url(r'^med/detail/(?P<pk>\d+)/$', med_detail, name='med_detail'),

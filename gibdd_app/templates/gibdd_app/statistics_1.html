@@ -1,0 +1,35 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Статистика</title>
+{% load static %}
+
+<body>
+{% block header %}
+    <div align="center" style="position:relative; margin: auto; padding: 1px;  height:auto; top:1px">
+        Статистическая диаграмма #1
+    </div>
+{% endblock %}
+
+{% block content %}
+    <script src="{% static "gibdd_app/js/jquery.js" %}"></script>
+    <script src="{% static "gibdd_app/js/chartloader.js" %}"></script>
+    <script src="{% static "gibdd_app/js/highcharts.js" %}"></script>
+
+
+
+    {#    <!-- load_charts filter takes a comma-separated list of id's where -->#}
+    {#    <!-- the charts need to be rendered to                             -->#}
+
+    {% load chartit %}
+    {{ cht|load_charts:"container" }}
+    <p>Загрузка</p>
+    <div id='container'>
+        {{ cht|load_charts:"container" }}
+        Chart will be rendered here
+    </div>
+{% endblock %}
+</body>
+</html>

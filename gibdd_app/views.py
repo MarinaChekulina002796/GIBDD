@@ -12,8 +12,55 @@ from gibdd_app.forms import *
 from gibdd_app.models import *
 from django.shortcuts import render
 
+from chartit import DataPool, PivotDataPool, Chart, PivotChart
+import simplejson
 
-# главная страница ГИБДД
+
+def statistics(request):
+    return render(request, 'gibdd_app/statistics.html')
+
+
+def chart_view(request):
+    # Step 1: Create a DataPool with the data we want to retrieve.
+    data = DataPool(series=
+    [{'options': {
+        'source': AccidentReport.objects.all()},
+        'terms': [
+            'accident_date',
+            'accident_number_of_people']}
+    ])
+    # Step 2: Create the Chart object
+    cht = Chart(
+        datasource=data,
+        series_options=
+        [{'options': {
+            'type': 'line',
+            'stacking': False},
+            'terms': {
+                'accident_date': [
+                    'accident_number_of_people']
+            }}],
+        chart_options=
+        {'title': {
+            'text': 'Date and severity of accident'},
+            'xAxis': {
+                'title': {
+                    'text': 'Date оf accident'}},
+            'yAxis': {
+                'title': {
+                    'text': 'Severity оf accident'}}
+        })
+
+    # context = {
+    #     'cht': cht,
+    # }
+
+    # Step 3: Send the chart object to the template.
+    return render(request, 'gibdd_app/statistics_1.html', {'cht': cht})
+    # return render_to_response('gibdd_app/statistics_1.html', {'cht': cht})
+    # главная страница ГИБДД
+
+
 def main(request):
     return render(request, 'gibdd_app/main.html')
 
@@ -241,7 +288,7 @@ def search_accidents_by_date(request):
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
     # if query1 and query2:
-    list = ['pk', 'accid__number_accident','car__car_registr_certificate__registr_certificate_VIN',
+    list = ['pk', 'accid__number_accident', 'car__car_registr_certificate__registr_certificate_VIN',
             'car__car_registr_certificate__registr_certificate_number',
             'car__car_registr_certificate__registr_certificate_car_model',
             'car__car_registr_certificate__registr_certificate_colour',
@@ -1223,10 +1270,6 @@ def participants(request):
 @login_required()
 def workers(request):
     return render(request, 'gibdd_app/workers.html')
-
-
-def statistics(request):
-    return render(request, 'gibdd_app/statistics.html')
 
 
 def contacts(request):

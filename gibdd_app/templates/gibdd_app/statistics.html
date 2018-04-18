@@ -1,19 +1,38 @@
 {% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Статистика</title>
-    {% load static %}
-{#    <script type="text/javascript" src="{% static "gibdd_app/js/fusioncharts.js" %}"></script>#}
-{#    <script type="text/javascript" src="{% static "gibdd_app/js/fusioncharts.theme.fint.js" %}"></script>#}
-</head>
-<body>
-<html>
+<meta charset="UTF-8">
+<title>Статистика</title>
+{% load static %}
 
 <body>
-<div id="chart-1">{{ output|safe }}</div>
-</body>
-</html>
+{% block header %}
+    <div align="center" style="position:relative; margin: auto; padding: 1px;  height:auto; top:1px">
+        Статистика
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="media-body">
+        <a href="{% url 'stat_chart_1' %}"><h3 class="media-heading">Статистические данные № 1 ......</h3>
+        </a>
+
+    </div>
+    {#    <script src="{% static "gibdd_app/js/highcharts.js" %}"></script>#}
+    {#    <script src="{% static "gibdd_app/js/jquery.js" %}"></script>#}
+    {#    <script src="{% static "gibdd_app/js/chartloader.js" %}"></script>#}
+    {#ы#}
+    {#    <!-- load_charts filter takes a comma-separated list of id's where -->#}
+    {#    <!-- the charts need to be rendered to                             -->#}
+    {#    {% load chartit %}#}
+    {#    {{ cht|load_charts:"container" }}#}
+    {##}
+    {#    <div id='container'>#}
+    {#        {{ cht|load_charts:"container" }}#}
+    {#        Chart will be rendered here#}
+    {#    </div>#}
+{% endblock %}
 </body>
 </html>

@@ -61,45 +61,6 @@
                         <p>В данный интервал дат ДТП не было.</p>
                     {% endif %}
                     </form>
-
-                    {#                {% else %}#}
-                    {#                    {% if user.is_authenticated %}#}
-                    {#                        <table border="2">#}
-                    {#                            <caption>Таблица с историей ДТП</caption>#}
-                    {#                            <th> №</th>#}
-                    {#                            <th> VIN</th>#}
-                    {#                            <th>№ СТС</th>#}
-                    {#                            <th>Модель автомобиля</th>#}
-                    {#                            <th>Цвет автомобиля</th>#}
-                    {#                            <th> Фамилия и имя собственника</th>#}
-                    {#                            <th>Статус автомобиля</th>#}
-                    {#                            <th>Дата угона</th>#}
-                    {#                            <th>Город угона</th>#}
-                    {#                            {% for obj in objects_list %}#}
-                    {#                                <tr>#}
-                    {#                                    <div>#}
-                    {#                                        <td><p>{{ obj.pk }}</p></td>#}
-                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>#}
-                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_number }}</p>#}
-                    {#                                        </td>#}
-                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>#}
-                    {#                                        </td>#}
-                    {#                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p>#}
-                    {#                                        </td>#}
-                    {#                                        <td><p>{{ obj.car_owner__owner_surname }} {{ obj.car_owner__owner_name }}</p>#}
-                    {#                                        </td>#}
-                    {#                                        <td>#}
-                    {#                                            <p>{{ obj.car_stealing__stealing_status }}</p>#}
-                    {#                                        </td>#}
-                    {#                                        <td><p>{{ obj.car_stealing__stealing_date }}</p></td>#}
-                    {#                                        <td><p>{{ obj.car_stealing__stealing_town }}</p></td>#}
-                    {##}
-                    {##}
-                    {#                                    </div>#}
-                    {#                                </tr>#}
-                    {#                            {% endfor %}#}
-                    {#                        </table>#}
-                    {#                    {% endif %}#}
                 {% endif %}
             {% endwith %}
     {% endblock %}

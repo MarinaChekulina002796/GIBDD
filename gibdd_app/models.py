@@ -529,8 +529,8 @@ class Car(models.Model):
     car_region = models.CharField(max_length=3, verbose_name="Регион автомобиля")
     car_registr_certificate = models.OneToOneField(RegistrationCertificate, verbose_name="Свидетельство о регистрации",
                                                    on_delete=models.CASCADE, unique=True)
-    car_owner = models.OneToOneField(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля",
-                                     unique=True)
+    car_owner = models.ForeignKey(Owner, on_delete=models.CASCADE, verbose_name="Собственник автомобиля",
+                                  unique=False)
     car_stealing = models.OneToOneField(Stealing, on_delete=models.CASCADE, verbose_name="Детали угона", unique=True,
                                         blank=True, null=True)
 

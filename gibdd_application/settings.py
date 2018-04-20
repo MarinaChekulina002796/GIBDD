@@ -14,6 +14,7 @@ import os
 # import psycopg2
 
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

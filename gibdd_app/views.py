@@ -14,116 +14,222 @@ from django.shortcuts import render
 
 from chartit import DataPool, PivotDataPool, Chart, PivotChart
 from django.db.models import Avg, Count, Sum
+from itertools import groupby, chain, islice
 
 
 def statistics(request):
     return render(request, 'gibdd_app/statistics.html')
 
 
-# def chart_view(request):
-#     # query1 = request.GET.get('q')
-#     # query2 = request.GET.get('p')
-#     # list = ['pk', 'accid__accident_date', 'accid__accident_severity', 'accid__accident_number_of_people']
-#     # regs = Accident_Car.objects.all().order_by('accid__accident_date')
-#     # regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
-#
-#     # Step 1: Create a DataPool with the data we want to retrieve.
-#     # a = AccidentReport.objects.count(id)
-#
-#     data = DataPool(series=
-#     [{'options': {
-#         'source': AccidentReport.objects.all()
-#     },
-#         'terms': [
-#             'accident_date',
-#             'accident_number_of_people']
-#     }]
-#     )
-#     # Step 2: Create the Chart object
-#     cht = Chart(
-#         datasource=data,
-#         series_options=
-#         [{'options': {
-#             'type': 'pie',
-#             'stacking': False},
-#             'terms': {
-#                 'accident_date': ['accident_number_of_people']
-#             }
-#         }],
-#         chart_options=
-#         {'title': {
-#             'text': 'Количество пострадавших за день'},
-#             'xAxis': {
-#                 'title': {
-#                     'text': 'Степень тяжести ДТП'}},
-#             'yAxis': {
-#                 'title': {
-#                     'text': 'Количество людей'}}
-#         })
-#
-#     # Step 3: Send the chart object to the template.
-#     return render(request, 'gibdd_app/statistics_1.html', {'cht': cht})
-#     # return render_to_response('gibdd_app/statistics_1.html', {'cht': cht})
+def chart_view_1_2(request):
+    #     # query1 = request.GET.get('q')
+    #     # query2 = request.GET.get('p')
+    #     # list = ['pk', 'accid__accident_date', 'accid__accident_severity', 'accid__accident_number_of_people']
+    #     # regs = Accident_Car.objects.all().order_by('accid__accident_date')
+    #     # regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
+    #
+    #     # Step 1: Create a DataPool with the data we want to retrieve.
+    data = DataPool(series=
+    [{'options': {
+        'source': AccidentReport.objects.values('accident_severity').annotate(
+            Sum('accident_number_of_people')
+        )
+    },
+        'terms': [
+            'accident_severity',
+            'accident_number_of_people__sum']
+    }]
+    )
+    # Step 2: Create the Chart object
 
 
-def chart_view(request):
+    chart2 = Chart(
+        datasource=data,
+        series_options=
+        [{'options': {
+            'type': 'pie',
+            'stacking': False},
+            'terms': {
+                'accident_severity': ['accident_number_of_people__sum']
+            }
+        }],
+        chart_options=
+        {'title': {
+            'text': 'Количество пострадавших за день'},
+            'xAxis': {
+                'crosshair': True,
+                'labels': {'format': '{value}'},
+                'title': {
+                    'text': 'Степень тяжести ДТП'}},
+            'yAxis': {
+                'title': {
+                    'text': 'Количество людей'}},
+            'chart': {'zoomType': 'x'}
+        })  # Step 3: Send the chart object to the template.
+    return render(request, 'gibdd_app/statistics_2.html',
+                  {'chart2': chart2})  # # return render_to_response('gibdd_app/statistics_1.html', {'cht': cht})
+
+
+def chart_view_1_1(request):
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+    regs = AccidentReport.objects.values('accident_date', 'accident_number_of_people').filter(
+        Q(accident_date__range=[query1, query2]))
     ds = PivotDataPool(
         series=[
             {'options': {
-                'source': AccidentReport.objects.all(),
+                'source': AccidentReport.objects.values('accident_date', 'accident_number_of_people').filter(
+                    Q(accident_date__range=[query1, query2])),
                 'categories': 'accident_date'},
                 'terms': {
-                    'tot_people': Sum('accident_number_of_people')}}])
+                    'Всего': Sum('accident_number_of_people')}}])
 
-    cht = PivotChart(
+    chart = PivotChart(
         datasource=ds,
         series_options=[
             {'options': {
                 'type': 'column'},
-                'terms': ['tot_people']}])
-    # end_code
-    return render(request, 'gibdd_app/statistics_1.html', {'cht': cht})
+                'terms': ['Всего']}],
 
-    # def chart_view(request):
-    #     ds = PivotDataPool(
-    #         series=[
-    #             {'options': {
-    #                 'source': AccidentReport.objects.all(),
-    #                 'top_n_per_cat': 5, },
-    #                 'terms': ['accident_date',
-    #                           {Avg('accident_number_of_people'), }
-    #                           ]
-    #             }
-    #         ]
-    #     )
-    #
-    #     cht = PivotChart(datasource=ds, series_options=[
-    #         {'options': {
-    #             'type': 'column',
-    #             'stacking': True
-    #         },
-    #
-    #             'terms': {'accident_date': [Avg('accident_number_of_people')]}
-    #         }],
-    #                      chart_options={
-    #                          'title': {'text': "Statictics of accidents"},
-    #                          'xAxis': {
-    #                              'title': {
-    #                                  'text': 'Степень тяжести ДТП'}},
-    #                          'yAxis': {
-    #                              'title': {
-    #                                  'text': 'Количество людей'}}
-    #                      }
-    #
-    #                      )
-    #
-    #     # end_code
-    #     return render(request, 'gibdd_app/statistics_1.html', {'cht': cht})
+        chart_options=
+        {'title': {
+            'text': 'Количество пострадавших в день'},
+            'xAxis': {
+                'title': {
+                    'text': 'Дата ДТП'}},
+            'yAxis': {
+                'title': {
+                    'text': 'Количество людей'}}
+        }
+    )
+
+    return render(request, 'gibdd_app/statistics_1.html',
+                  {'chart': chart, 'regs': regs, 'query1': query1, 'query2': query2})
 
 
-    #  главная страница ГИБДД
+# def chart_view_1_2(request):
+#     ds = PivotDataPool(
+#         series=[
+#             {'options': {
+#                 'source': AccidentReport.objects.all(),
+#                 'categories': 'accident_severity'},
+#                 'terms': {
+#                     'Всего ДТП': Count('pk')}}])
+#
+#     chart2 = PivotChart(
+#         datasource=ds,
+#         series_options=[
+#             {'options': {
+#                 'type': 'pie',
+#                 'stacking': False,
+#             },
+#                 'terms': ['Всего ДТП']
+#             }],
+#
+#         chart_options=
+#         {'title': {
+#             'text': 'Степень тяжести ДТП'},
+#             'xAxis': {
+#                 'title': {
+#                     'text': 'Степень тяжести'}},
+#             'yAxis': {
+#                 'title': {
+#                     'text': 'Количество ДТП'}}
+#         }
+#     )
+#     return render(request, 'gibdd_app/statistics_2.html', {'chart2': chart2})
 
 
+def chart_view_3(request):
+    ds = PivotDataPool(
+        series=[
+            {'options': {
+                'source': Lisense_Category.objects.all(),
+                'categories': 'categ__category_name',
+                'legend_by': 'categ__category_name',
+            },
+                'terms': {
+                    'Всего': Count('pk')
+                }
+            }],
+        top_n_term='Всего',
+        top_n=20
+    )
+
+    chart3 = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column',
+                'stacking': True,
+                'xAxis': 0,
+                'yAxis': 0
+            },
+                'terms': ['Всего']
+            }],
+
+        chart_options=
+        {'title': {
+            'text': 'Процентное соотношение категорий прав'},
+            'xAxis': {
+                'title': {
+                    'text': 'Категория прав'}},
+            'yAxis': {
+                'title': {
+                    'text': 'Количество категорий'}},
+
+        }
+    )
+    return render(request, 'gibdd_app/statistics_3.html', {'chart3': chart3})
+
+
+def chart_view_4(request):
+    data = DataPool(series=
+    [{'options': {
+        'source': AccidentReport.objects.values('accident_date').annotate(
+            Sum('accident_number_of_people'),
+            Sum('accident_death'),
+            Sum('accident_children'),
+            Sum('accident_children_death')
+        )
+    },
+        'terms': [
+            'accident_date',
+            'accident_number_of_people__sum',
+            'accident_death__sum',
+            'accident_children__sum',
+            'accident_children_death__sum']
+    }]
+    )
+    # Step 2: Create the Chart object
+
+
+    chart4 = Chart(
+        datasource=data,
+        series_options=
+        [{'options': {
+            'type': 'line',
+            'stacking': False},
+            'terms': {
+                'accident_date': ['accident_number_of_people__sum', 'accident_death__sum', 'accident_children__sum',
+                                  'accident_children_death__sum']
+            }
+        }],
+        chart_options=
+        {'title': {
+            'text': 'Количество пострадавших за день'},
+            'xAxis': {
+                'title': {
+                    'text': 'Степень тяжести ДТП'}
+            },
+            'yAxis': {
+                'title': {
+                    'text': 'Количество людей'}}
+        })  # Step 3: Send the chart object to the template.
+    return render(request, 'gibdd_app/statistics_4.html', {'chart4': chart4})
+
+
+#  главная страница ГИБДД
 def main(request):
     return render(request, 'gibdd_app/main.html')
 
@@ -356,10 +462,11 @@ def search_accidents_by_date(request):
             'car__car_registr_certificate__registr_certificate_car_model',
             'car__car_registr_certificate__registr_certificate_colour',
             'accid__accident_date', 'accid__accident_severity']
-    regs = Accident_Car.objects.all().order_by('accid__accident_date')
 
+    regs = Accident_Car.objects.all().order_by('accid__accident_date')
     regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
-    return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2})
+    data_count = AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2]))
+    return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2, 'data_count': data_count})
     # if not query1 or not query2:
     #     text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
     #     button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'

@@ -12,34 +12,36 @@
         Статистическая диаграмма #1
         <p>{{ a }}</p>
     </div>
+
 {% endblock %}
+
 
 {% block content %}
 
+    {% block form %}
 
-    <p><i>Для поиска введите начальную и конечную даты поиска.</i>
-        <b><i>Например,</i></b>с 2018-01-20 <i> по </i> 2018-01-30. </p>
-    <p> Поиск: <strong><input maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
-                              placeholder="2018-01-21"></strong>
-        <strong><input maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
-                       placeholder="2018-01-30"></strong>
+        <form method="GET" action="{% url 'stat_chart_1' %}">
+            <p><i>Для поиска введите начальную и конечную даты поиска.</i>
+                <b><i>Например,</i></b>с 2018-01-20 <i> по </i> 2018-01-30. </p>
+            <p> Поиск: <strong><input maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
+                                      placeholder="2018-01-21"></strong>
+                <strong><input maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
+                               placeholder="2018-01-30"></strong>
 
-        <button type="submit"><span class="glyphicon glyphicon-search"
-                                    style="color:grey"
-                                    title="Поиск аварий по дате"> </span>
-            Поиск
-        </button>
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск аварий по дате"> </span>
+                    Поиск
+                </button>
 
-    </p>
+            </p>
+        </form>
+    {% endblock %}
+
     <script src="{% static "gibdd_app/js/jquery.js" %}"></script>
     <script src="{% static "gibdd_app/js/chartloader.js" %}"></script>
     <script src="{% static "gibdd_app/js/highcharts.js" %}"></script>
 
-    {% if regs %}
-        <p>Результат поиска: {{ regs|length }} шт.
-            {% else %}
-        <p>В данный интервал дат ДТП не было.</p>
-    {% endif %}
 
     {% load chartit %}
     {{ chart|load_charts:"container" }}
@@ -49,12 +51,6 @@
         </div>
     </div>
 
-    {#    {{ chart2|load_charts:"container2" }}#}
-    {#    <div class="col-lg-12">#}
-    {#        <div id='container2' style="width: 500px">#}
-    {#            {{ chart2|load_charts:"container2" }}#}
-    {#        </div>#}
-    {#    </div>#}
 {% endblock %}
 </body>
 </html>

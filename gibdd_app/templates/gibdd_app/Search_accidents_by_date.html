@@ -24,6 +24,8 @@
                 </button>
 
             </p>
+
+
             {% with url_name=request.resolver_match.url_name %}
                 {% if url_name == 'search_accidents_by_date' %}
                     {% if data_count %}

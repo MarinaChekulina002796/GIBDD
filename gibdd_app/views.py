@@ -22,13 +22,7 @@ def statistics(request):
 
 
 def chart_view_1_2(request):
-    #     # query1 = request.GET.get('q')
-    #     # query2 = request.GET.get('p')
-    #     # list = ['pk', 'accid__accident_date', 'accid__accident_severity', 'accid__accident_number_of_people']
-    #     # regs = Accident_Car.objects.all().order_by('accid__accident_date')
-    #     # regs = regs.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
-    #
-    #     # Step 1: Create a DataPool with the data we want to retrieve.
+    # Step 1: Create a DataPool with the data we want to retrieve.
     data = DataPool(series=
     [{'options': {
         'source': AccidentReport.objects.values('accident_severity').annotate(
@@ -41,7 +35,6 @@ def chart_view_1_2(request):
     }]
     )
     # Step 2: Create the Chart object
-
 
     chart2 = Chart(
         datasource=data,
@@ -73,13 +66,12 @@ def chart_view_1_2(request):
 def chart_view_1_1(request):
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
-    regs = AccidentReport.objects.values('accident_date', 'accident_number_of_people').filter(
-        Q(accident_date__range=[query1, query2]))
+    # chart = AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2]))
+
     ds = PivotDataPool(
         series=[
             {'options': {
-                'source': AccidentReport.objects.values('accident_date', 'accident_number_of_people').filter(
-                    Q(accident_date__range=[query1, query2])),
+                'source': AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2])),
                 'categories': 'accident_date'},
                 'terms': {
                     'Всего': Sum('accident_number_of_people')}}])
@@ -103,8 +95,7 @@ def chart_view_1_1(request):
         }
     )
 
-    return render(request, 'gibdd_app/statistics_1.html',
-                  {'chart': chart, 'regs': regs, 'query1': query1, 'query2': query2})
+    return render(request, 'gibdd_app/statistics_1.html', {'query1': query1, 'query2': query2, 'chart': chart})
 
 
 # def chart_view_1_2(request):

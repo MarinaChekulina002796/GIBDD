@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/migrations/0005_auto_20180419_1703.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_3.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_4.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/models.py" afterPath="$PROJECT_DIR$/gibdd_app/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Search_accidents_by_date.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Search_accidents_by_date.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/urls.py" afterPath="$PROJECT_DIR$/gibdd_app/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/views.py" afterPath="$PROJECT_DIR$/gibdd_app/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_application/settings.py" afterPath="$PROJECT_DIR$/gibdd_application/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,8 +37,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+            <state relative-caret-position="84">
+              <caret line="16" column="75" lean-forward="false" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="75" />
               <folding>
                 <marker date="1524154080923" expanded="true" signature="2134:2196" ph="..." />
               </folding>
@@ -54,16 +46,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="466" column="85" lean-forward="true" selection-start-line="466" selection-start-column="85" selection-end-line="466" selection-end-column="85" />
+            <state relative-caret-position="7970">
+              <caret line="445" column="28" lean-forward="false" selection-start-line="445" selection-start-column="21" selection-end-line="445" selection-end-column="28" />
               <folding>
                 <element signature="e#26#41#0" expanded="true" />
-                <marker date="1524208728801" expanded="true" signature="3766:4717" ph="..." />
-                <marker date="1524208728801" expanded="true" signature="17361:17451" ph="..." />
+                <marker date="1524214669756" expanded="true" signature="2165:2228" ph="..." />
+                <marker date="1524214669756" expanded="true" signature="3230:4181" ph="..." />
+                <marker date="1524214669756" expanded="true" signature="16825:16915" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Search_accidents_by_date.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Search_accidents_by_date.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="948">
+              <caret line="67" column="40" lean-forward="true" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,22 +74,12 @@
       <file leaf-file-name="statistics_1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="654">
+              <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1524206078297" expanded="true" signature="1697:1933" ph="..." />
+                <marker date="1524214893141" expanded="true" signature="1523:1748" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Search_accidents_by_date.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Search_accidents_by_date.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="29" column="101" lean-forward="false" selection-start-line="29" selection-start-column="101" selection-end-line="29" selection-end-column="101" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -94,22 +87,12 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="736" column="18" lean-forward="false" selection-start-line="736" selection-start-column="18" selection-end-line="736" selection-end-column="18" />
+            <state relative-caret-position="147">
+              <caret line="734" column="17" lean-forward="false" selection-start-line="734" selection-start-column="4" selection-end-line="734" selection-end-column="17" />
               <folding>
                 <marker date="1524146615406" expanded="true" signature="5491:5595" ph="..." />
                 <marker date="1524146615406" expanded="true" signature="37855:37950" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="statistics.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -216,8 +199,8 @@
         <option value="$PROJECT_DIR$/gibdd_app/urls.py" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
         <option value="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/statistics_4.html" />
-        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
         <option value="$PROJECT_DIR$/gibdd_app/views.py" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Search_accidents_by_date.html" />
       </list>
     </option>
@@ -439,13 +422,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Add icons">
-      <created>1522856630630</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1522856630631</updated>
     </task>
     <task id="LOCAL-00059" summary="Add icons">
       <created>1522856754041</created>
@@ -783,7 +759,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524070196842</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Statistics_count)))))">
+      <created>1524208834311</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1524208834311</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -896,13 +879,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/django/contrib/sessions/backends/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/psycopg2/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
@@ -1227,16 +1203,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
-          <folding>
-            <marker date="1524154080923" expanded="true" signature="2134:2196" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_4.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1263,8 +1229,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="736" column="18" lean-forward="false" selection-start-line="736" selection-start-column="18" selection-end-line="736" selection-end-column="18" />
+        <state relative-caret-position="147">
+          <caret line="734" column="17" lean-forward="false" selection-start-line="734" selection-start-column="4" selection-end-line="734" selection-end-column="17" />
           <folding>
             <marker date="1524146615406" expanded="true" signature="5491:5595" ph="..." />
             <marker date="1524146615406" expanded="true" signature="37855:37950" ph="..." />
@@ -1272,34 +1238,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html">
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_licen_fine.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="276">
+          <caret line="19" column="51" lean-forward="true" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1524206078297" expanded="true" signature="1697:1933" ph="..." />
+            <element signature="e#990#1008#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
+    <entry file="file://$PROJECT_DIR$/gibdd_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="466" column="85" lean-forward="true" selection-start-line="466" selection-start-column="85" selection-end-line="466" selection-end-column="85" />
+        <state relative-caret-position="84">
+          <caret line="16" column="75" lean-forward="false" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="75" />
           <folding>
-            <element signature="e#26#41#0" expanded="true" />
-            <marker date="1524208728801" expanded="true" signature="3766:4717" ph="..." />
-            <marker date="1524208728801" expanded="true" signature="17361:17451" ph="..." />
+            <marker date="1524154080923" expanded="true" signature="2134:2196" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Search_accidents_by_date.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="29" column="101" lean-forward="false" selection-start-line="29" selection-start-column="101" selection-end-line="29" selection-end-column="101" />
+        <state relative-caret-position="948">
+          <caret line="67" column="40" lean-forward="true" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1524214893141" expanded="true" signature="1523:1748" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7970">
+          <caret line="445" column="28" lean-forward="false" selection-start-line="445" selection-start-column="21" selection-end-line="445" selection-end-column="28" />
+          <folding>
+            <element signature="e#26#41#0" expanded="true" />
+            <marker date="1524214669756" expanded="true" signature="2165:2228" ph="..." />
+            <marker date="1524214669756" expanded="true" signature="3230:4181" ph="..." />
+            <marker date="1524214669756" expanded="true" signature="16825:16915" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

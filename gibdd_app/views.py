@@ -51,7 +51,13 @@ def chart_view_1_1(request):
         datasource=ds,
         series_options=[
             {'options': {
-                'type': 'column'},
+                'type': 'column',
+                'stacking': False,
+                'allowPointSelect': True,
+                'lineWidth': 5,
+                # 'colors': 'red'
+
+            },
                 'terms': ['Всего_пострадавших_взрослых', 'Всего_пострадавших_детей']}],
 
         chart_options=
@@ -63,7 +69,8 @@ def chart_view_1_1(request):
                     'text': 'Дата ДТП'}},
             'yAxis': {
                 'title': {
-                    'text': 'Количество пострадавших людей'}}
+                    'text': 'Количество пострадавших людей'}},
+            # 'Всего_пострадавших_детей':{'color': 'red'}
         }
     )
 
@@ -71,6 +78,18 @@ def chart_view_1_1(request):
 
 
 def chart_view_1_2(request):
+    all_accidents = AccidentReport.objects.aggregate(Count('pk'))['pk__count']
+    not_define = AccidentReport.objects.filter(accident_severity__exact='не указано').count()
+    not_define_per = (not_define / all_accidents) * 100
+    light = AccidentReport.objects.filter(accident_severity__exact='легкая').count()
+    light_per = (light / all_accidents) * 100
+    middle = AccidentReport.objects.filter(accident_severity__exact='средней тяжести').count()
+    middle_per = (middle / all_accidents) * 100
+    high = AccidentReport.objects.filter(accident_severity__exact='тяжкий вред').count()
+    high_per = (high / all_accidents) * 100
+    without = AccidentReport.objects.filter(accident_severity__exact='без вреда здоровью').count()
+    without_per = (without / all_accidents) * 100
+
     # Step 1: Create a DataPool with the data we want to retrieve.
     data = DataPool(series=
     [{'options': {
@@ -80,7 +99,7 @@ def chart_view_1_2(request):
     },
         'terms': [
             'accident_severity',
-            {'Количество аварий':'pk__count'}]
+            {'Количество аварий': 'pk__count'}]
     }]
     )
     # Step 2: Create the Chart object
@@ -97,7 +116,7 @@ def chart_view_1_2(request):
         }],
         chart_options=
         {'title': {
-            'text': 'Количество пострадавших за день'},
+            'text': 'Соотношение степеней тяжести ДТП'},
             'xAxis': {
                 'crosshair': True,
                 'labels': {'format': '{value}'},
@@ -109,7 +128,8 @@ def chart_view_1_2(request):
             'chart': {'zoomType': 'x'}
         })  # Step 3: Send the chart object to the template.
     return render(request, 'gibdd_app/statistics_2.html',
-                  {'chart2': chart2})  # # return render_to_response('gibdd_app/statistics_1.html', {'cht': cht})
+                  {'chart2': chart2, 'all_accidents': all_accidents, 'not_define_per': not_define_per,
+                   'light_per': light_per, 'middle_per': middle_per, 'high_per': high_per, 'without_per': without_per})
 
 
 def chart_view_3(request):

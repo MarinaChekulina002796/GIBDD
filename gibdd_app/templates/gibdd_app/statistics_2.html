@@ -21,13 +21,27 @@
 
     {% load chartit %}
 
-
-    {{ chart2|load_charts:"container2" }}
-    <div class="col-lg-12" align="center">
-        <div id='container2' style="width: 500px">
-            {{ chart2|load_charts:"container2" }}
+    <div style="float:left; margin-left: 200px">
+        {{ chart2|load_charts:"container2" }}
+        <div class="col-lg-12">
+            <div id='container2' style="width: 500px">
+                {{ chart2|load_charts:"container2" }}
+            </div>
         </div>
     </div>
+
+    <p style="margin-bottom: 75px">
+        <div style="margin-left: 830px">
+
+    <p>Всего ДТП:{{ "  " }}{{ all_accidents }}{{ " " }} шт.</p>
+    <p>1.Тяжесть аварии не указана: {{ not_define_per }} %</p>
+    <p>2.Тяжесть аварии "легкая": {{ light_per }} %</p>
+    <p>3.Авария "средней тяжести": {{ middle_per }} %</p>
+    <p>4.Причинение тяжкого вреда здоровью: {{ high_per }} %</p>
+    <p>5.Авария "без вреда здоровью": {{ without_per }} %</p>
+    </div>
+    </p>
+
 {% endblock %}
 </body>
 </html>

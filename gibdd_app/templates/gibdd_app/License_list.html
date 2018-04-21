@@ -10,29 +10,74 @@
 
     {% block form %}
 
-        <form>
-            <table border="2">
-                <caption>Таблица ВУ</caption>
-                <th> Серия ВУ</th>
-                <th> Статус прав</th>
-                <th> Подробнее...</th>
-                {% for obj in objects_list %}
-                    <tr>
-                        <div>
-                            <td><p><a href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
-                                № {{ obj.number_dr_license }}</a></p></td>
-                            <td><p> {{ obj.short_status_license }}</p></td>
-                            <td>
-                                <button class="btn-info" type="button"><a
-                                        href="{% url 'license_detail' pk=obj.pk %}">Подробнее
-                                    >></a></button>
-                            </td>
+        <form method="GET" action="{% url 'license_search' %}">
+            <p>Вы ищете ВУ №: <strong><input name="q" maxlength="4" minlength="4" value="{{ request.GET.q }}"
+                                             placeholder="1234"></strong>
+                <strong><input name="p" maxlength="6" minlength="6" value="{{ request.GET.p }}"
+                               placeholder="123456"></strong>
+                <strong><input name="r" maxlength="10" minlength="10" value="{{ request.GET.r }}"
+                               placeholder="2018-04-19"></strong>
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск ВУ"> </span>
+                    Поиск
+                </button>
 
-                        </div>
-                    </tr>
-                {% endfor %}
-            </table>
+            </p>
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'license_search' %}
+                    {% if ls %}
+                        <p>Результат поиска: {{ ls|length }} шт.
+                            {#                    {{ meds|pluralize }}.#}
+                        </p>
+                        <table border="2">
+                            <caption>Таблица ВУ</caption>
+                            <th> Серия ВУ</th>
+                            <th> Статус прав</th>
 
-        </form>
+                            {% for l in ls %}
+
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'license_detail' pk=l.pk %}">{{ l.series_dr_license }}
+                                            № {{ l.number_dr_license }}</a>
+                                    </td>
+                                    <td>{{ l.short_status_license }}</td>
+
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+
+                    {% else %}
+                        <p>Нет ВУ по заданному критерию.</p>
+                    {% endif %}
+                    </form>
+                {% else %}
+                    <table border="2">
+                        <caption>Таблица ВУ</caption>
+                        <th> Серия ВУ</th>
+                        <th> Статус прав</th>
+                        <th> Подробнее...</th>
+                        {% for obj in objects_list %}
+                            <tr>
+                                <div>
+                                    <td><p><a
+                                            href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
+                                        № {{ obj.number_dr_license }}</a></p></td>
+                                    <td><p> {{ obj.short_status_license }}</p></td>
+                                    <td>
+                                        <button class="btn-info" type="button"><a
+                                                href="{% url 'license_detail' pk=obj.pk %}">Подробнее
+                                            >></a></button>
+                                    </td>
+
+                                </div>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                {% endif %}
+            {% endwith %}
     {% endblock %}
 {% endblock %}

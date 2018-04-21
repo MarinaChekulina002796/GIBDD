@@ -414,6 +414,20 @@ def med_search(request):
     return render(request, template, {'meds': meds, 'query': query})
 
 
+def license_search(request):
+    template = 'gibdd_app/License_list.html'
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+    query3 = request.GET.get('r')
+
+    if query1 and query2 and query3:
+        ls = License.objects.filter(Q(series_dr_license__exact=query1),
+                                    Q(number_dr_license__exact=query2), Q(date_issue_dr_license__exact=query3))
+    else:
+        return HttpResponse('Пожалуйста, заполните строку поиска.')
+    return render(request, template, {'ls': ls, 'query1': query1, 'query2': query2, 'query3': query3})
+
+
 def mix_search(request):
     template = 'gibdd_app/Mix.html'
     query1 = request.GET.get('q')

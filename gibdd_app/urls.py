@@ -63,6 +63,7 @@ urlpatterns = [
                   url(r'^insurance_license/create/$', add_insurance_license, name='insurance_license_create'),
                   url(r'^accident_car/create/$', add_accident_car, name='accident_car_create'),
                   url(r'^med_search/$', med_search, name="med_search"),
+                  url(r'^license_search/$', license_search, name="license_search"),
                   url(r'^mix_list_reg_auto_fine/$', mix_list_reg_auto_fine, name='mix_list_reg_auto_fine'),
                   url(r'^mix_list_licen_fine/$', mix_list_licen_fine, name='mix_list_licen_fine'),
                   url(r'^mix_search/$', mix_search, name="mix_search"),

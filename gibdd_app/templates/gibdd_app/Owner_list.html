@@ -19,11 +19,11 @@
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'owner_detail' pk=obj.pk %}">{{ obj.owner_number }}
+                            <td align="center"><p><a href="{% url 'owner_detail' pk=obj.pk %}">{{ obj.owner_number }}
                             </a></p></td>
                             <td><p>{{ obj.owner_surname }} {{ obj.owner_name }} {{ obj.owner_patronymic }}</p></td>
-                            <td><p> {{ obj.owner_date_give }}</p></td>
-                            <td>
+                            <td align="center"><p> {{ obj.owner_date_give }}</p></td>
+                            <td align="center">
                                 <button class="btn" type="button"><a
                                         href="{% url 'owner_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>

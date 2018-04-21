@@ -20,12 +20,13 @@
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'autoschool_detail' pk=obj.pk %}">{{ obj.school_name }}
+                            <td align="center"><p><a
+                                    href="{% url 'autoschool_detail' pk=obj.pk %}">{{ obj.school_name }}
                             </a></p></td>
                             <td><p>{{ obj.school_address }}</p></td>
-                            <td><p> {{ obj.school_phone }}</p></td>
+                            <td align="center"><p> {{ obj.school_phone }}</p></td>
                             <td><p>{{ obj.school_category_dr_license }}</p></td>
-                            <td>
+                            <td align="center">
                                 <button class="btn" type="button"><a
                                         href="{% url 'autoschool_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>

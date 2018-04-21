@@ -13,20 +13,20 @@
             <table border="2">
                 <caption>Таблица европротоколов</caption>
                 <th>Дата составления протокола</th>
-                <th> ВУ 1</th>
-                <th> ВУ 2</th>
+                <th align="center"> ВУ 1</th>
+                <th align="center"> ВУ 2</th>
                 <th>Автомобиль 1
                 <th>Автомобиль 2</th>
                 <th>Подробнее>></th>
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p> {{ obj.europrotocol_date }}</p></td>
-                            <td><p> {{ obj.europrotocol_license_1 }}</p></td>
-                            <td><p> {{ obj.europrotocol_license_2 }}</p></td>
-                            <td><p>{{ obj.europrotocol_car_1 }}</p></td>
-                            <td><p>{{ obj.europrotocol_car_2 }}</p></td>
-                            <td>
+                            <td align="center"><p> {{ obj.europrotocol_date }}</p></td>
+                            <td align="center"><p> {{ obj.europrotocol_license_1 }}</p></td>
+                            <td align="center"><p> {{ obj.europrotocol_license_2 }}</p></td>
+                            <td align="center"><p>{{ obj.europrotocol_car_1 }}</p></td>
+                            <td align="center"><p>{{ obj.europrotocol_car_2 }}</p></td>
+                            <td align="center">
                                 <button class="btn" type="button"><a href="{% url 'europrotocol_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>
                             </td>

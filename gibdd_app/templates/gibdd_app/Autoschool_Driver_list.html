@@ -18,10 +18,10 @@
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'autostudent_detail' pk=obj.pk %}">{{ obj.student }}
+                            <td align="center"><p><a href="{% url 'autostudent_detail' pk=obj.pk %}">{{ obj.student }}
                             </a></p></td>
                             <td><p>{{ obj.school }}</p></td>
-                            <td><p>{{ obj.school_categ }}</p></td>
+                            <td align="center"><p>{{ obj.school_categ }}</p></td>
                         </div>
                     </tr>
                 {% endfor %}

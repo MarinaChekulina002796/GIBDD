@@ -19,9 +19,9 @@
                     <tr>
                         <div>
                             <td><p>{{ obj.driver_surname }} {{ obj.driver_name }} {{ obj.driver_patronymic }}</p></td>
-                            <td><p>{{ obj.driver_birth }}</p></td>
+                            <td align="center"><p>{{ obj.driver_birth }}</p></td>
 
-                            <td>
+                            <td align="center">
                                 <button class="btn " type="button"><a
                                         href="{% url 'driver_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>

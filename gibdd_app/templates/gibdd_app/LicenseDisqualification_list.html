@@ -3,7 +3,6 @@
 <title>Список о статусе прав (лишение)</title>
 {% load staticfiles %}
 {% block header %}
-    {#    <div class="left"><button class="btn-primary" type="button" onclick="history.back()">Назад</button></div>#}
     <h2><i><b>Список о статусе прав (лишение) </b></i></h2>
 {% endblock %}
 {% block content %}
@@ -25,7 +24,7 @@
                             <td><p> {{ obj.disqualif_date_from }}</p></td>
                             <td>
                                 <button class="btn" type="button"><a href="{% url 'disq_detail' pk=obj.pk %}">Подробнее
-                                    >></a></button>
+                                </a></button>
                             </td>
 
                         </div>

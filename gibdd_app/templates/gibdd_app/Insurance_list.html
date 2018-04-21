@@ -20,12 +20,12 @@
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'insurance_detail' pk=obj.pk %}">{{ obj.insurance_number }}
+                            <td align="center"><p><a href="{% url 'insurance_detail' pk=obj.pk %}">{{ obj.insurance_number }}
                             </a></p></td>
-                            <td><p>{{ obj.insurance_type }}</p></td>
-                            <td><p> {{ obj.insurance_date_from }} - {{ obj.insurance_date_to }}</p></td>
+                            <td align="center"><p>{{ obj.insurance_type }}</p></td>
+                            <td align="center"><p> {{ obj.insurance_date_from }} - {{ obj.insurance_date_to }}</p></td>
                             <td><p>{{ obj.insurance_confines }}</p></td>
-                            <td>
+                            <td align="center">
                                 <button class="btn" type="button"><a
                                         href="{% url 'insurance_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>

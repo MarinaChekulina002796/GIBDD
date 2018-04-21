@@ -22,12 +22,12 @@
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'registr_detail' pk=obj.pk %}">{{ obj.registr_certificate_number }}
+                            <td align="center"><p><a href="{% url 'registr_detail' pk=obj.pk %}">{{ obj.registr_certificate_number }}
                             </a></p></td>
-                            <td><p>{{ obj.registr_certificate_registr_sign }}</p></td>
-                            <td><p> {{ obj.registr_certificate_VIN }}</p></td>
-                            <td><p>{{ obj.registr_certificate_car_model }}</p></td>
-                            <td>
+                            <td align="center"><p>{{ obj.registr_certificate_registr_sign }}</p></td>
+                            <td align="center"><p> {{ obj.registr_certificate_VIN }}</p></td>
+                            <td align="center"><p>{{ obj.registr_certificate_car_model }}</p></td>
+                            <td align="center">
                                 <button class="btn" type="button"><a
                                         href="{% url 'registr_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>

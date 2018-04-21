@@ -14,11 +14,44 @@ from django.shortcuts import render
 
 from chartit import DataPool, PivotDataPool, Chart, PivotChart
 from django.db.models import Avg, Count, Sum
-from itertools import groupby, chain, islice
 
 
 def statistics(request):
     return render(request, 'gibdd_app/statistics.html')
+
+
+def chart_view_1_1(request):
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+
+    ds = PivotDataPool(
+        series=[
+            {'options': {
+                'source': AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2])),
+                'categories': 'accident_date'},
+                'terms': {
+                    'Всего': Sum('accident_number_of_people')}}])
+
+    chart = PivotChart(
+        datasource=ds,
+        series_options=[
+            {'options': {
+                'type': 'column'},
+                'terms': ['Всего']}],
+
+        chart_options=
+        {'title': {
+            'text': 'Количество пострадавших за выбранный период'},
+            'xAxis': {
+                'title': {
+                    'text': 'Дата ДТП'}},
+            'yAxis': {
+                'title': {
+                    'text': 'Количество пострадавших людей'}}
+        }
+    )
+
+    return render(request, 'gibdd_app/statistics_1.html', {'query1': query1, 'query2': query2, 'chart': chart})
 
 
 def chart_view_1_2(request):
@@ -61,74 +94,6 @@ def chart_view_1_2(request):
         })  # Step 3: Send the chart object to the template.
     return render(request, 'gibdd_app/statistics_2.html',
                   {'chart2': chart2})  # # return render_to_response('gibdd_app/statistics_1.html', {'cht': cht})
-
-
-def chart_view_1_1(request):
-    query1 = request.GET.get('q')
-    query2 = request.GET.get('p')
-    # chart = AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2]))
-
-    ds = PivotDataPool(
-        series=[
-            {'options': {
-                'source': AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2])),
-                'categories': 'accident_date'},
-                'terms': {
-                    'Всего': Sum('accident_number_of_people')}}])
-
-    chart = PivotChart(
-        datasource=ds,
-        series_options=[
-            {'options': {
-                'type': 'column'},
-                'terms': ['Всего']}],
-
-        chart_options=
-        {'title': {
-            'text': 'Количество пострадавших в день'},
-            'xAxis': {
-                'title': {
-                    'text': 'Дата ДТП'}},
-            'yAxis': {
-                'title': {
-                    'text': 'Количество людей'}}
-        }
-    )
-
-    return render(request, 'gibdd_app/statistics_1.html', {'query1': query1, 'query2': query2, 'chart': chart})
-
-
-# def chart_view_1_2(request):
-#     ds = PivotDataPool(
-#         series=[
-#             {'options': {
-#                 'source': AccidentReport.objects.all(),
-#                 'categories': 'accident_severity'},
-#                 'terms': {
-#                     'Всего ДТП': Count('pk')}}])
-#
-#     chart2 = PivotChart(
-#         datasource=ds,
-#         series_options=[
-#             {'options': {
-#                 'type': 'pie',
-#                 'stacking': False,
-#             },
-#                 'terms': ['Всего ДТП']
-#             }],
-#
-#         chart_options=
-#         {'title': {
-#             'text': 'Степень тяжести ДТП'},
-#             'xAxis': {
-#                 'title': {
-#                     'text': 'Степень тяжести'}},
-#             'yAxis': {
-#                 'title': {
-#                     'text': 'Количество ДТП'}}
-#         }
-#     )
-#     return render(request, 'gibdd_app/statistics_2.html', {'chart2': chart2})
 
 
 def chart_view_3(request):
@@ -550,6 +515,15 @@ def categ_list(request):
     }
     return render(request, template, context)
 
+
+def license_list_for_drivers(request):
+    template = 'gibdd_app/License_list.html'
+    objects_list = License.objects.all().order_by('series_dr_license', 'number_dr_license')
+
+    context = {
+        'objects_list': objects_list,
+    }
+    return render(request, template, context)
 
 @login_required
 def license_list(request):

@@ -27,22 +27,24 @@
             {% with url_name=request.resolver_match.url_name %}
                 {% if url_name == 'license_search' %}
                     {% if ls %}
-                        <p>Результат поиска: {{ ls|length }} шт.
-                            {#                    {{ meds|pluralize }}.#}
-                        </p>
-                        <table border="2">
+                        <p>Результат поиска: {{ ls|length }} шт.</p>
+                        <table border="1">
                             <caption>Таблица ВУ</caption>
-                            <th> Серия ВУ</th>
-                            <th> Статус прав</th>
+                            <th align="center"> Серия ВУ</th>
+                            <th align="center"> Статус прав</th>
+                            <th align="center"> Дата выдачи</th>
+                            <th align="center"> ФИО водителя, дата рождения, паспорт</th>
 
                             {% for l in ls %}
 
                                 <tr>
-                                    <td>
+                                    <td align="center">
                                         <a href="{% url 'license_detail' pk=l.pk %}">{{ l.series_dr_license }}
                                             № {{ l.number_dr_license }}</a>
                                     </td>
-                                    <td>{{ l.short_status_license }}</td>
+                                    <td align="center">{{ l.short_status_license }}</td>
+                                    <td align="center"> {{ l.date_issue_dr_license }}</td>
+                                    <td align="center">{{ l.driver_data }}</td>
 
                                 </tr>
                             {% endfor %}
@@ -54,28 +56,30 @@
                     {% endif %}
                     </form>
                 {% else %}
-                    <table border="2">
-                        <caption>Таблица ВУ</caption>
-                        <th> Серия ВУ</th>
-                        <th> Статус прав</th>
-                        <th> Подробнее...</th>
-                        {% for obj in objects_list %}
-                            <tr>
-                                <div>
-                                    <td><p><a
-                                            href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
-                                        № {{ obj.number_dr_license }}</a></p></td>
-                                    <td><p> {{ obj.short_status_license }}</p></td>
-                                    <td>
-                                        <button class="btn-info" type="button"><a
-                                                href="{% url 'license_detail' pk=obj.pk %}">Подробнее
-                                            >></a></button>
-                                    </td>
+                    {% if user.is_authenticated %}
+                        <table border="2">
+                            <caption>Таблица ВУ</caption>
+                            <th> Серия ВУ</th>
+                            <th> Статус прав</th>
+                            <th> Подробнее...</th>
+                            {% for obj in objects_list %}
+                                <tr>
+                                    <div>
+                                        <td><p><a
+                                                href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
+                                            № {{ obj.number_dr_license }}</a></p></td>
+                                        <td><p> {{ obj.short_status_license }}</p></td>
+                                        <td>
+                                            <button class="btn-info" type="button"><a
+                                                    href="{% url 'license_detail' pk=obj.pk %}">Подробнее
+                                                >></a></button>
+                                        </td>
 
-                                </div>
-                            </tr>
-                        {% endfor %}
-                    </table>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
 
                 {% endif %}
             {% endwith %}

@@ -43,7 +43,7 @@ h4 {
 }
 
 a {
-    color: #E8CE0E;
+    color: forestgreen;
     -webkit-transition: color 300ms, background-color 300ms;
     -moz-transition: color 300ms, background-color 300ms;
     -o-transition: color 300ms, background-color 300ms;

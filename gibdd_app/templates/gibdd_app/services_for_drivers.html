@@ -206,6 +206,33 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive"
+                             src="{% static 'gibdd_app/images/workers_interface/licen_for_drivers.jpg' %}"
+                             width="140" height="70">
+                    </div>
+                    <div class="media-body">
+                        <a href="{% url 'license_list_for_drivers' %}"><h3 class="media-heading">Проверка регистрации
+                            Вашего ВУ в базе ГИБДД</h3></a>
+
+                    </div>
+                    <p>Сервис по номеру ВУ и его дате выдачи позволяет узнать, зарегистрировано ли водительское
+                        удостоверение в базе
+                        ГИБДД </p>
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'license_list_for_drivers' %}"><span
+                                    class="glyphicon glyphicon-list-alt"
+                                    style="color:darkblue"
+                                    title="Проверка ВУ в базе ГИБДД "> </span></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
             {% if user.is_authenticated %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">

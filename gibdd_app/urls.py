@@ -30,6 +30,7 @@ urlpatterns = [
                   url(r'^categ/(?P<pk>\d+)/update/$', update_categ, name='categ_update'),
                   url(r'^categ/delete/(?P<pk>\d+)/$', delete_categ, name='categ_delete'),
                   url(r'^license_list/$', license_list, name='license_list'),
+                  url(r'^license_list_for_drivers/$', license_list_for_drivers, name='license_list_for_drivers'),
                   url(r'^license/detail/(?P<pk>\d+)/$', license_detail, name='license_detail'),
                   url(r'^license/create/$', add_license, name='license_create'),
                   url(r'^license/(?P<pk>\d+)/update/$', update_license, name='license_update'),

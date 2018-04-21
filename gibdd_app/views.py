@@ -84,7 +84,7 @@ def chart_view_1_2(request):
     light = AccidentReport.objects.filter(accident_severity__exact='легкая').count()
     light_per = (light / all_accidents) * 100
     middle = AccidentReport.objects.filter(accident_severity__exact='средней тяжести').count()
-    middle_per = (middle / all_accidents) * 100
+    middle_per = ((middle / all_accidents) * 100)
     high = AccidentReport.objects.filter(accident_severity__exact='тяжкий вред').count()
     high_per = (high / all_accidents) * 100
     without = AccidentReport.objects.filter(accident_severity__exact='без вреда здоровью').count()

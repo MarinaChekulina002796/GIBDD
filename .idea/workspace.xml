@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/med_photo/Thumbs.db" afterPath="$PROJECT_DIR$/media/med_photo/Thumbs.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/views.py" afterPath="$PROJECT_DIR$/gibdd_app/views.py" />
@@ -36,11 +37,11 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="82" column="55" lean-forward="false" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
+            <state relative-caret-position="273">
+              <caret line="86" column="49" lean-forward="false" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
               <folding>
                 <element signature="e#26#41#0" expanded="true" />
-                <marker date="1524328520933" expanded="true" signature="18923:19013" ph="..." />
+                <marker date="1524329307550" expanded="true" signature="18925:19015" ph="..." />
               </folding>
             </state>
           </provider>
@@ -78,8 +79,8 @@
       <file leaf-file-name="statistics_2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+            <state relative-caret-position="499">
+              <caret line="40" column="67" lean-forward="false" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -93,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/gibdd_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="117">
-              <caret line="728" column="33" lean-forward="true" selection-start-line="724" selection-start-column="4" selection-end-line="728" selection-end-column="33" />
+              <caret line="728" column="33" lean-forward="false" selection-start-line="724" selection-start-column="4" selection-end-line="728" selection-end-column="33" />
               <folding>
                 <marker date="1524315592339" expanded="true" signature="5491:5595" ph="..." />
                 <marker date="1524315592339" expanded="true" signature="37864:37959" ph="..." />
@@ -427,13 +428,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Участникам движения: выровнился последний блок с помощью clear:left.">
-      <created>1522906681117</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1522906681118</updated>
     </task>
     <task id="LOCAL-00067" summary="Add lic_cat &amp; car - all functions + html">
       <created>1522923239528</created>
@@ -771,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524324182063</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="statistics">
+      <created>1524328824015</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1524328824015</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -843,7 +844,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Мелкие поправки в оформлении" />
     <MESSAGE value="Add icons" />
     <MESSAGE value="Участникам движения: выровнился последний блок с помощью clear:left." />
     <MESSAGE value="Add lic_cat &amp; car - all functions + html" />
@@ -868,7 +868,8 @@
     <MESSAGE value="Search driving_license" />
     <MESSAGE value="Search driving_license_for_drivers" />
     <MESSAGE value="Design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Design" />
+    <MESSAGE value="statistics" />
+    <option name="LAST_COMMIT_MESSAGE" value="statistics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1266,7 +1267,7 @@
     <entry file="file://$PROJECT_DIR$/gibdd_app/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
-          <caret line="728" column="33" lean-forward="true" selection-start-line="724" selection-start-column="4" selection-end-line="728" selection-end-column="33" />
+          <caret line="728" column="33" lean-forward="false" selection-start-line="724" selection-start-column="4" selection-end-line="728" selection-end-column="33" />
           <folding>
             <marker date="1524315592339" expanded="true" signature="5491:5595" ph="..." />
             <marker date="1524315592339" expanded="true" signature="37864:37959" ph="..." />
@@ -1291,19 +1292,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="82" column="55" lean-forward="false" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
+        <state relative-caret-position="273">
+          <caret line="86" column="49" lean-forward="false" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
           <folding>
             <element signature="e#26#41#0" expanded="true" />
-            <marker date="1524328520933" expanded="true" signature="18923:19013" ph="..." />
+            <marker date="1524329307550" expanded="true" signature="18925:19015" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        <state relative-caret-position="499">
+          <caret line="40" column="67" lean-forward="false" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />

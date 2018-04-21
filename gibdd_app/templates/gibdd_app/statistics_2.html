@@ -34,11 +34,11 @@
         <div style="margin-left: 830px">
 
     <p>Всего ДТП:{{ "  " }}{{ all_accidents }}{{ " " }} шт.</p>
-    <p>1.Тяжесть аварии не указана: {{ not_define_per }} %</p>
-    <p>2.Тяжесть аварии "легкая": {{ light_per }} %</p>
-    <p>3.Авария "средней тяжести": {{ middle_per }} %</p>
-    <p>4.Причинение тяжкого вреда здоровью: {{ high_per }} %</p>
-    <p>5.Авария "без вреда здоровью": {{ without_per }} %</p>
+    <p>1.Тяжесть аварии не указана: {{ not_define_per |floatformat:2 }} %</p>
+    <p>2.Тяжесть аварии "легкая": {{ light_per|floatformat:2 }} %</p>
+    <p>3.Авария "средней тяжести": {{ middle_per |floatformat:2 }} %</p>
+    <p>4.Причинение тяжкого вреда здоровью: {{ high_per |floatformat:2 }} %</p>
+    <p>5.Авария "без вреда здоровью": {{ without_per |floatformat:2 }} %</p>
     </div>
     </p>
 

@@ -59,7 +59,9 @@
                     <li><a href="{% url 'gibdd' %}">Госавтоинспекция</a></li>
                     <li><a href="{% url 'participants' %}">Участникам движения</a></li>
                     <li><a href="{% url 'services' %}">Услуги</a></li>
-                    <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
+                    {% endif %}
                     <li><a href="{% url 'statistics' %}">Статистика</a></li>
                     {#                        <li><a href="blog.html">Blog</a></li>#}
                     <li><a href="{% url 'contacts' %}">Контакты</a></li>

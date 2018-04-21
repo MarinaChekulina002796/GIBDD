@@ -45,8 +45,6 @@
                                     <td align="center">{{ l.short_status_license }}</td>
                                     <td align="center"> {{ l.date_issue_dr_license }}</td>
                                     <td align="center">{{ l.driver_data }}</td>
-
-
                                 </tr>
                             {% endfor %}
 
@@ -62,22 +60,22 @@
                             <caption>Таблица ВУ</caption>
                             <th> Серия и номер ВУ</th>
                             <th> Статус прав</th>
-                            <th align="center"> Дата выдачи</th>
-                            <th align="center"> ФИО водителя, дата рождения, паспорт</th>
+                            <th> Дата выдачи</th>
+                            <th> ФИО водителя, дата рождения, паспорт</th>
                             <th> Подробнее...</th>
                             {% for obj in objects_list %}
                                 <tr>
                                     <div>
-                                        <td align="center"><p><a
+                                        <td align="center"><a
                                                 href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
-                                            № {{ obj.number_dr_license }}</a></p></td>
-                                        <td align="center"><p> {{ obj.short_status_license }}</p></td>
+                                            № {{ obj.number_dr_license }}</a></td>
+                                        <td align="center">{{ obj.short_status_license }}</td>
                                         <td align="center"> {{ obj.date_issue_dr_license }}</td>
-                                        <td align="center">{{ obj.driver_data }}</td>
-                                        <td>
+                                        <td>{{ obj.driver_data }}</td>
+                                        <td align="center">
                                             <button class="btn" type="button"><a
-                                                    href="{% url 'license_detail' pk=obj.pk %}">Подробнее
-                                                >></a></button>
+                                                    href="{% url 'license_detail' pk=obj.pk %}">Подробнее>> </a>
+                                            </button>
                                         </td>
 
                                     </div>

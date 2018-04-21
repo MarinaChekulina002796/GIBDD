@@ -740,7 +740,7 @@ class AccidentReport(models.Model):
     accident_address = models.CharField(max_length=200, verbose_name="Адрес аварии")
     accident_severity = models.CharField(max_length=50, verbose_name="Тяжесть аварии", choices=ACCIDENT_CHOICES,
                                          blank=True, null=True, default='не указано')
-    accident_number_of_people = models.IntegerField(verbose_name="Количество людей в аварии")
+    accident_number_of_people = models.IntegerField(verbose_name="Количество взрослых людей в аварии")
     accident_death = models.IntegerField(verbose_name="Смертельный исход, взрослые (количество)", default=0)
     accident_children = models.IntegerField(verbose_name="Из участвовавших в аварии-дети", default=0)
     accident_children_death = models.IntegerField(verbose_name="Смертельный исход, дети(количество)", default=0)

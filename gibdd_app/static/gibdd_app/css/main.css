@@ -136,6 +136,11 @@ body > section {
     margin-bottom: 0;
 }
 
+.outline {
+    border: 2px solid blue;
+    padding: 0 10px;
+}
+
 @-webkit-keyframes scaleIn {
     0% {
         opacity: 0;
@@ -1799,12 +1804,14 @@ ul.sidebar-gallery {
 #footer a {
     color: #fff;
 }
-.footer{
+
+.footer {
     position: absolute;
-    bottom:0;
+    bottom: 0;
     width: 100%;
     background-color: cornflowerblue;
 }
+
 #footer a:hover {
     color: #E8CE0E;
 }

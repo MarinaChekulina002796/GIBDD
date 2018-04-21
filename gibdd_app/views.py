@@ -17,7 +17,20 @@ from django.db.models import Avg, Count, Sum
 
 
 def statistics(request):
-    return render(request, 'gibdd_app/statistics.html')
+    previous_date = datetime.date.today() - relativedelta(days=1)
+    number_of_accidents = AccidentReport.objects.filter(accident_date=previous_date).count()
+    number_people = AccidentReport.objects.filter(accident_date=previous_date).aggregate(
+        Sum('accident_number_of_people'))['accident_number_of_people__sum']
+    accident_death = AccidentReport.objects.filter(accident_date=previous_date).aggregate(
+        Sum('accident_death'))['accident_death__sum']
+    accident_children = AccidentReport.objects.filter(accident_date=previous_date).aggregate(
+        Sum('accident_children'))['accident_children__sum']
+    accident_children_death = AccidentReport.objects.filter(accident_date=previous_date).aggregate(
+        Sum('accident_children_death'))['accident_children_death__sum']
+    return render(request, 'gibdd_app/statistics.html',
+                  {'previous_date': previous_date, 'number_of_accidents': number_of_accidents,
+                   'number_people': number_people, 'accident_death': accident_death,
+                   'accident_children': accident_children, 'accident_children_death': accident_children_death})
 
 
 def chart_view_1_1(request):
@@ -524,6 +537,7 @@ def license_list_for_drivers(request):
         'objects_list': objects_list,
     }
     return render(request, template, context)
+
 
 @login_required
 def license_list(request):

@@ -10,16 +10,18 @@
 
             <table border="2">
                 <caption>Таблица ДТП</caption>
-                <th> № протокола ДТП</th>
-                <th> Дата ДТП</th>
-                <th> Подробнее...</th>
+                <th align="center"> № протокола ДТП</th>
+                <th align="center"> Дата ДТП</th>
+                <th align="center"> Подробнее...</th>
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-                            <td><p><a href="{% url 'accident_detail' pk=obj.pk %}">{{ obj.number_accident }}</a></p></td>
-                            <td><p>{{ obj.accident_date }}</p></td>
-                            <td>
-                                <button class="btn btn-info" type="button"><a
+                            <td align="center"><p><a
+                                    href="{% url 'accident_detail' pk=obj.pk %}">{{ obj.number_accident }}</a></p>
+                            </td>
+                            <td align="center"><p>{{ obj.accident_date }}</p></td>
+                            <td align="center">
+                                <button class="btn" type="button"><a
                                         href="{% url 'accident_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>
                             </td>

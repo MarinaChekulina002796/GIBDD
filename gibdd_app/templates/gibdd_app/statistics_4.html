@@ -9,13 +9,13 @@
 <body>
 {% block header %}
     <div align="center" style="position:relative; margin: auto; padding: 1px;  height:auto; top:1px">
-        Статистическая диаграмма #3 (Категории прав)
+        Сравнение количества пострадавших и погибших детей и взрослых
         <p>{{ a }}</p>
     </div>
 {% endblock %}
 
 {% block content %}
-    <p>Всего: {{ all_people }}</p>
+{#    <p>Всего: {{ all_people }}</p>#}
     <script src="{% static "gibdd_app/js/jquery.js" %}"></script>
     <script src="{% static "gibdd_app/js/chartloader.js" %}"></script>
     <script src="{% static "gibdd_app/js/highcharts.js" %}"></script>

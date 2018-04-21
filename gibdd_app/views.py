@@ -43,18 +43,21 @@ def chart_view_1_1(request):
                 'source': AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2])),
                 'categories': 'accident_date'},
                 'terms': {
-                    'Всего': Sum('accident_number_of_people')}}])
+                    'Всего_пострадавших_взрослых': Sum('accident_number_of_people'),
+                    'Всего_пострадавших_детей': Sum('accident_children'),
+                }}])
 
     chart = PivotChart(
         datasource=ds,
         series_options=[
             {'options': {
                 'type': 'column'},
-                'terms': ['Всего']}],
+                'terms': ['Всего_пострадавших_взрослых', 'Всего_пострадавших_детей']}],
 
         chart_options=
-        {'title': {
-            'text': 'Количество пострадавших за выбранный период'},
+        {
+            'title': {
+                'text': 'Количество пострадавших за выбранный период'},
             'xAxis': {
                 'title': {
                     'text': 'Дата ДТП'}},
@@ -72,12 +75,12 @@ def chart_view_1_2(request):
     data = DataPool(series=
     [{'options': {
         'source': AccidentReport.objects.values('accident_severity').annotate(
-            Sum('accident_number_of_people')
+            Count('pk')
         )
     },
         'terms': [
             'accident_severity',
-            'accident_number_of_people__sum']
+            {'Количество аварий':'pk__count'}]
     }]
     )
     # Step 2: Create the Chart object
@@ -89,7 +92,7 @@ def chart_view_1_2(request):
             'type': 'pie',
             'stacking': False},
             'terms': {
-                'accident_severity': ['accident_number_of_people__sum']
+                'accident_severity': ['Количество аварий']
             }
         }],
         chart_options=
@@ -165,12 +168,13 @@ def chart_view_4(request):
             Sum('accident_children_death')
         )
     },
-        'terms': [
-            'accident_date',
-            'accident_number_of_people__sum',
-            'accident_death__sum',
-            'accident_children__sum',
-            'accident_children_death__sum']
+
+        'terms': [{'accident_date': 'accident_date'},
+                  {'Пострадало взрослых': 'accident_number_of_people__sum'},
+                  {'Погибло взрослых': 'accident_death__sum'},
+                  {'Пострадало детей': 'accident_children__sum'},
+                  {'Погибло детей': 'accident_children_death__sum'}
+                  ]
     }]
     )  # Step 2: Create the Chart object
 
@@ -181,8 +185,8 @@ def chart_view_4(request):
             'type': 'line',
             'stacking': False},
             'terms': {
-                'accident_date': ['accident_number_of_people__sum', 'accident_death__sum', 'accident_children__sum',
-                                  'accident_children_death__sum']
+                'accident_date': ['Пострадало взрослых', 'Погибло взрослых', 'Пострадало детей',
+                                  'Погибло детей']
             }
         }],
         chart_options=

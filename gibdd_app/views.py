@@ -162,7 +162,7 @@ def chart_view_3(request):
 
         chart_options=
         {'title': {
-            'text': 'Процентное соотношение категорий прав'},
+            'text': 'Cоотношение категорий прав'},
             'xAxis': {
                 'title': {
                     'text': 'Категория прав'}},

@@ -5,7 +5,7 @@ from functools import reduce
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required, permission_required
-from django.db.models import Q
+from django.db.models import Q, F
 from django.db.models.functions import Concat
 from django.shortcuts import redirect, get_object_or_404, render_to_response
 from gibdd_app.forms import *
@@ -153,6 +153,9 @@ def chart_view_3(request):
 
 
 def chart_view_4(request):
+    # all_people = AccidentReport.objects.aggregate(total=Sum(F('accident_number_of_people') + F('accident_children')))[
+    #     'total']
+
     data = DataPool(series=
     [{'options': {
         'source': AccidentReport.objects.values('accident_date').annotate(
@@ -169,9 +172,7 @@ def chart_view_4(request):
             'accident_children__sum',
             'accident_children_death__sum']
     }]
-    )
-    # Step 2: Create the Chart object
-
+    )  # Step 2: Create the Chart object
 
     chart4 = Chart(
         datasource=data,
@@ -189,16 +190,16 @@ def chart_view_4(request):
             'text': 'Количество пострадавших за день'},
             'xAxis': {
                 'title': {
-                    'text': 'Степень тяжести ДТП'}
+                    'text': 'Дата ДТП'}
             },
             'yAxis': {
                 'title': {
-                    'text': 'Количество людей'}}
+                    'text': 'Количество людей'}},
+
         })  # Step 3: Send the chart object to the template.
-    return render(request, 'gibdd_app/statistics_4.html', {'chart4': chart4})
+    return render(request, 'gibdd_app/statistics_4.html', {'chart4': chart4})  # главная страница ГИБДД
 
 
-#  главная страница ГИБДД
 def main(request):
     return render(request, 'gibdd_app/main.html')
 

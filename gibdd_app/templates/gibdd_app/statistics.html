@@ -16,25 +16,32 @@
 {% block content %}
 
     <div class="media-body">
+
         <div style="float:left">
-            <a href="{% url 'stat_chart_1' %}"><h3 class="media-heading">Статистические данные № 1 ......</h3></a>
-            <a href="{% url 'stat_chart_2' %}"><h3 class="media-heading">Статистические данные № 2 ......</h3></a>
-            <a href="{% url 'stat_chart_3' %}"><h3 class="media-heading">Статистические данные № 3 ......</h3></a>
-            <a href="{% url 'stat_chart_4' %}"><h3 class="media-heading">Статистические данные № 4 ......</h3></a>
+            <p style="margin-bottom: 70px">
+            <h2><a href="{% url 'stat_chart_1' %}"><h2>Статистические данные № 1 ......</h2></a></h2>
+            <a href="{% url 'stat_chart_2' %}"><h2>Статистические данные № 2 ......</h2></a>
+            <a href="{% url 'stat_chart_3' %}"><h2>Статистические данные № 3 ......</h2></a>
+            <a href="{% url 'stat_chart_4' %}"><h2>Статистические данные № 4 ......</h2></a>
+            </p>
+
         </div>
-        <div style="margin-left: 800px" class="outline">
 
+        <p style="margin-bottom: 45px">
+            <div style="margin-left: 830px" class="outline">
 
-
-            <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}</b></i></p>
-            <p align="center">Произошло ДТП: {{ number_of_accidents }}</p>
-            <p align="center">Пострадало взрослых: {{ number_people }}</p>
-            <p align="center">Пострадало детей: {{ accident_children }}</p>
-            <p align="center">Погибло взрослых: {{ accident_death }}</p>
-            <p align="center">Погибло детей: {{ accident_children_death }}</p>
-        </div>
+        <p>
+        <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}</b></i></p>
+        <p align="center">Произошло ДТП: {{ number_of_accidents }}</p>
+        <p align="center">Пострадало взрослых: {{ number_people }}</p>
+        <p align="center">Пострадало детей: {{ accident_children }}</p>
+        <p align="center">Погибло взрослых: {{ accident_death }}</p>
+        <p align="center">Погибло детей: {{ accident_children_death }}</p>
+        </p>
 
     </div>
+    </p>
+
 
 {% endblock %}
 </body>

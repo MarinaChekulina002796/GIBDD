@@ -28,14 +28,20 @@
                     </div>
                 </div>
                 <table>
-                    <h2><b><i>Медицинская справка №:{{ obj.medical_number }}</i></b></h2>
-                    <p>Дата выдачи справки:{{ obj.medical_date }}</p>
-                    <p>Диагноз:{{ obj.diagnosis }}</p>
-                    <p>Выдавшая организация:{{ obj.organization_give }}</p>
-                    <p>Срок действия справки:{{ obj.validity }}</p>
-                    <p> Сканы справки:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"
-                                           style="width: 100px">
-                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 100px"></p>
+                    <div style="float:left"><p align="center"><img
+                            src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"
+                            style="width: 200px">
+                        <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}" style="width: 200px"></p>
+                    </div>
+                    <div style="margin-left: 10px">
+                        <p>Регистрационный номер медицинской справки:
+                        <p align="center"><b><i>{{ obj.medical_number }}</i></b></p></p>
+                        <p>Дата выдачи справки:{{ obj.medical_date }}</p>
+                        <p>Диагноз:{{ obj.diagnosis }}</p>
+                        <p>Выдавшая организация:{{ obj.organization_give }}</p>
+                        <p>Срок действия справки:{{ obj.validity }}</p>
+                    </div>
+
                 </table>
             </div>
 

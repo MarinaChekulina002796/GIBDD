@@ -32,7 +32,8 @@
                 <div id="navbar" class="navbar-collapse collapse" style="position:relative; left:1000px; top: 50px">
                     {% if user.is_authenticated %}
                         {#                        <h1> Your login: {{ user.username }}</h1>#}
-                        <button id="signout" type="submit" class="btn btn-success button_style">Выйти {{ user.username }}</button>
+                        <button id="signout" type="submit" class="btn btn-success button_style">
+                            Выйти {{ user.username }}</button>
 
                     {% else %}
                         <button id="signin" type="submit" class="btn btn-success button_style">Авторизоваться</button>
@@ -71,9 +72,9 @@
 
             <h2>Доступные услуги для сотрудников ГИБДД</h2>
             <p class="lead">Сервис позволяет добавлять, редактировать и удалять данные о выбранной категории</p>
-{#            <p>#}
-{#                {%  user.permissions.all.0.name %}#}
-{#            </p>#}
+            {#            <p>#}
+            {#                {%  user.permissions.all.0.name %}#}
+            {#            </p>#}
         </div>
 
         <div class="row">
@@ -89,7 +90,7 @@
                         <div class="media-body">
                             <h3 class="media-heading">
                                 {#                            <a href="{% url 'med_all' %}">Медицинская справка</a>#}
-                                <a href="{% url 'med_list' %}">Медицинские справки</a>
+                                <a href="{% url 'med_list' %}"><h3 class="media-heading">Медицинские справки</h3></a>
                             </h3>
                         </div>
 
@@ -110,11 +111,7 @@
                                 {#                                {% endif %}#}
                             </ul>
                         </div>
-
-
-                        {#                    <p>Сервис позволяет добавлять, редактировать и удалять данные о мед справках</p>#}
                     </div>
-                    {#                {% endif %}#}
                 </div>
             {% endif %}
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
@@ -126,12 +123,13 @@
                                  width="80" height="40">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading"><a href="{% url 'categ_list' %}">Категории
-                                <ol>ВУ</ol>
+                            <h3 class="media-heading"><a href="{% url 'categ_list' %}">
+                                <h3 class="media-heading">Категории
+                                    <ol>ВУ</ol>
+                                </h3>
                             </a></h3>
 
                         </div>
-                        {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
 
                         <div class="collapse navbar-collapse navbar-right">
                             <ul class="nav navbar-nav">
@@ -161,7 +159,8 @@
                                  width="100" height="50">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading"><a href="{% url 'license_list' %}">Водительские удостоверения</a>
+                            <h3 class="media-heading"><a href="{% url 'license_list' %}"><h3 class="media-heading">
+                                Водительские удостоверения</h3></a>
                             </h3>
 
                         </div>
@@ -191,7 +190,8 @@
                                  width="80" height="40">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading"><a href="{% url 'driver_list' %}">Водители</a></h3>
+                            <h3 class="media-heading"><a href="{% url 'driver_list' %}"><h3 class="media-heading">
+                                Водители</h3></a></h3>
 
                         </div>
                         {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
@@ -219,7 +219,8 @@
                                  width="80" height="40">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading"><a href="{% url 'disq_list' %}">Статусы прав</a></h3>
+                            <h3 class="media-heading"><a href="{% url 'disq_list' %}"><h3 class="media-heading">Статусы
+                                прав</h3></a></h3>
 
                         </div>
                         {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
@@ -435,12 +436,12 @@
                                         style="color:darkblue"
                                         title="Список автомобилей"> </span></a>
                                 </li>
-{#                                {% if perms.auth.can_add_car %}#}
-                                    <li class="active"><a href="{% url 'car_create' %}"><span
-                                            class="glyphicon glyphicon-plus"
-                                            style="color:yellowgreen"
-                                            title="Добавить автомобиль"> </span></a></li>
-{#                                {% endif %}#}
+                                {#                                {% if perms.auth.can_add_car %}#}
+                                <li class="active"><a href="{% url 'car_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить автомобиль"> </span></a></li>
+                                {#                                {% endif %}#}
 
 
                             </ul>

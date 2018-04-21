@@ -12,8 +12,8 @@
         <form>
             <table border="2">
                 <caption>Таблица историй автомобиля</caption>
-{#                <th>№</th>#}
-{#                <th> История автомобиля c VIN</th>#}
+                {#                <th>№</th>#}
+                {#                <th> История автомобиля c VIN</th>#}
 
                 <th> Документ,подтверждающий приобретение
                 </th>
@@ -24,15 +24,11 @@
                 {% for obj in objects_list %}
                     <tr>
                         <div>
-{#                            <td><p><a#}
-{#                                    href="{% url 'history_detail' pk=obj.pk %}">{{ obj.pk }}#}
-{#                            </a></p></td>#}
-{#                            <td><p>{{ obj.car_item__car_registr_certificate__registr_certificate_VIN }}</p></td>#}
                             <td><p>{{ obj.history_document_buy }}</p></td>
                             <td><p> {{ obj.history_document_selling }}</p></td>
                             <td><p>{{ obj.history_FIO }}</p></td>
                             <td>
-                                <button class="btn-info" type="button"><a
+                                <button class="btn" type="button"><a
                                         href="{% url 'history_detail' pk=obj.pk %}">Подробнее
                                     >></a></button>
                             </td>

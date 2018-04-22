@@ -66,12 +66,12 @@
                             {% for obj in objects_list %}
                                 <tr>
                                     <div>
-                                        <td align="center"><a
+                                        <td align="center"><p><a
                                                 href="{% url 'license_detail' pk=obj.pk %}">{{ obj.series_dr_license }}
-                                            № {{ obj.number_dr_license }}</a></td>
-                                        <td align="center">{{ obj.short_status_license }}</td>
-                                        <td align="center"> {{ obj.date_issue_dr_license }}</td>
-                                        <td>{{ obj.driver_data }}</td>
+                                            № {{ obj.number_dr_license }}</a></p></td>
+                                        <td align="center"><p>{{ obj.short_status_license }}</p></td>
+                                        <td align="center"><p> {{ obj.date_issue_dr_license }}</p></td>
+                                        <td><p>{{ obj.driver_data }}</p></td>
                                         <td align="center">
                                             <button class="btn" type="button"><a
                                                     href="{% url 'license_detail' pk=obj.pk %}">Подробнее>> </a>

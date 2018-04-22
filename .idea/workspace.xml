@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state relative-caret-position="-68">
+              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mix_VIN_Accident.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1209">
+              <caret line="87" column="50" lean-forward="false" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -110,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/Desktop/django-chartit2-master/chartit_tests/models.py" />
         <option value="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/highcharts.js" />
         <option value="$PROJECT_DIR$/gibdd_app/static/gibdd_app/js/chartloader.js" />
         <option value="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/chartit/validation.py" />
@@ -161,6 +168,7 @@
         <option value="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html" />
       </list>
     </option>
   </component>
@@ -367,13 +375,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Europrotocol">
-      <created>1523043827325</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1523043827325</updated>
     </task>
     <task id="LOCAL-00080" summary="add Europrotocol, date widgets =&gt; new views for some classes">
       <created>1523303531273</created>
@@ -711,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524410155408</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="statistics">
+      <created>1524412410349</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1524412410349</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -824,14 +832,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="47" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/MedicalCertificate_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
@@ -1237,8 +1237,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="-68">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1209">
+          <caret line="87" column="50" lean-forward="false" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
           <folding />
         </state>
       </provider>

@@ -47,12 +47,14 @@
                                     <td><p>{{ obj.pk }}</p></td>
                                     <td><p>{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>
                                     <td><p>{{ obj.car__car_registr_certificate__registr_certificate_number }}</p></td>
-                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
+                                    <td align="center">
+                                        <p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
                                     </td>
-                                    <td><p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p></td>
-                                    <td><p>{{ obj.accid__accident_date }}</p>
+                                    <td align="center">
+                                        <p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p></td>
+                                    <td align="center"><p>{{ obj.accid__accident_date }}</p>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <p>{{ obj.accid__accident_severity }}</p>
                                     </td>
                                     {#                                    <td><p>{{ obj.car_stealing__stealing_date }}</p></td>#}
@@ -86,18 +88,24 @@
                                         <td><p>{{ obj.car__car_registr_certificate__registr_certificate_VIN }}</p></td>
                                         <td><p>{{ obj.car__car_registr_certificate__registr_certificate_number }}</p>
                                         </td>
-                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
+                                        <td align="center">
+                                            <p>{{ obj.car__car_registr_certificate__registr_certificate_car_model }}</p>
                                         </td>
-                                        <td><p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p>
+                                        <td align="center">
+                                            <p>{{ obj.car__car_registr_certificate__registr_certificate_colour }}</p>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <p>{{ obj.car__car_owner__owner_surname }} {{ obj.car__car_owner__owner_name }}</p>
                                         </td>
-                                        <td>
-                                            <p>{{ obj.car__car_stealing__stealing_status }}</p>
+                                        <td align="center">
+                                            <p>{{ obj.car__car_stealing__stealing_status | default_if_none:'нет данных' }}</p>
                                         </td>
-                                        <td><p>{{ obj.car__car_stealing__stealing_date }}</p></td>
-                                        <td><p>{{ obj.car__car_stealing__stealing_town }}</p></td>
+                                        <td align="center">
+                                            <p>{{ obj.car__car_stealing__stealing_date | default_if_none:'нет данных' }}</p>
+                                        </td>
+                                        <td align="center">
+                                            <p>{{ obj.car__car_stealing__stealing_town | default_if_none:'нет данных' }}</p>
+                                        </td>
 
 
                                     </div>

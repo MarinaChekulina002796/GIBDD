@@ -11,7 +11,7 @@ from django.urls import reverse
 
 # Водитель
 class Driver(models.Model):
-    passport_number = models.CharField(max_length=11, verbose_name="Номер паспорта")
+    passport_number = models.CharField(max_length=11, verbose_name="Номер паспорта", unique=True)
     driver_surname = models.CharField(max_length=50, verbose_name="Фамилия водителя", blank=True, null=True)
     driver_name = models.CharField(max_length=50, verbose_name="Имя водителя")
     driver_patronymic = models.CharField(max_length=50, verbose_name="Отчество водителя")

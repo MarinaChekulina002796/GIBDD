@@ -375,13 +375,6 @@
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
     </task>
-    <task id="LOCAL-00081" summary="add Europrotocol, date widgets =&gt; new views for some classes">
-      <created>1523304418572</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1523304418572</updated>
-    </task>
     <task id="LOCAL-00082" summary="add Europrotocol, date widgets =&gt; new views for some classes">
       <created>1523304618739</created>
       <option name="number" value="00082" />
@@ -718,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524412953359</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="statistics">
+      <created>1524413025877</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1524413025877</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TestHistory">

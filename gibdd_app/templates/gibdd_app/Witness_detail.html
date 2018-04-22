@@ -26,9 +26,10 @@
                                 title="Удалить данные"> </span></a></div>
                     </ul>
                 </div>
-                <h2><i><b> {{ obj. witness_surname }} {{ obj.witness_name }} {{ obj.witness_patronymic }}</b></i></h2>
-                <p>Свидетель аварии: {{ obj.witness_accident }} </p>
-                <p>Город проживания свидетеля: {{ obj. witness_town }}</p>
+                <h2><i><b> {{ obj.witness_surname }} {{ obj.witness_name }} {{ obj.witness_patronymic }}</b></i></h2>
+                <p>Свидетель аварии: <a
+                        href="{% url 'accident_detail' pk=obj.pk %}">{{ obj.witness_accident }} </a></p>
+                <p>Город проживания свидетеля: {{ obj.witness_town }}</p>
                 <p>Адрес свидетеля: {{ obj.witness_address }}</p>
                 <p>Телефон свидетеля: {{ obj.witness_phone }}</p>
                 <p>email свидетеля: {{ obj.witness_email }}</p>

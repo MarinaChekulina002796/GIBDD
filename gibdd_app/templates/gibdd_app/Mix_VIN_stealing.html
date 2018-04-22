@@ -14,7 +14,7 @@
                 строчные, так и заглавные.</i></p>
             <p><b><i>Например,</i></b> ABCDEFG11A1234567 <i> или</i> abcdefg11a1234567. </p>
             <p> Поиск: <strong><input maxlength="17" minlength="17" name="q" value="{{ request.GET.q }}"
-                                              placeholder="ABCDEFG11A1234567"></strong>
+                                      placeholder="ABCDEFG11A1234567"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"
                                             style="color:grey"
@@ -47,15 +47,19 @@
                                     <td><p>{{ obj.pk }}</p></td>
                                     <td><p>{{ obj.car_registr_certificate__registr_certificate_VIN }}</p></td>
                                     <td><p>{{ obj.car_registr_certificate__registr_certificate_number }}</p></td>
-                                    <td><p>{{ obj.car_registr_certificate__registr_certificate_car_model }}</p></td>
-                                    <td><p>{{ obj.car_registr_certificate__registr_certificate_colour }}</p></td>
+                                    <td align="center">
+                                        <p>{{ obj.car_registr_certificate__registr_certificate_car_model }}</p></td>
+                                    <td align="center">
+                                        <p>{{ obj.car_registr_certificate__registr_certificate_colour }}</p></td>
                                     <td><p>{{ obj.car_owner__owner_surname }} {{ obj.car_owner__owner_name }}</p>
                                     </td>
-                                    <td>
-                                        <p>{{ obj.car_stealing__stealing_status }}</p>
+                                    <td align="center">
+                                        <p>{{ obj.car_stealing__stealing_status|default_if_none:'нет данных' }}</p>
                                     </td>
-                                    <td><p>{{ obj.car_stealing__stealing_date }}</p></td>
-                                    <td><p>{{ obj.car_stealing__stealing_town }}</p></td>
+                                    <td align="center">
+                                        <p>{{ obj.car_stealing__stealing_date|default_if_none:'нет данных' }}</p></td>
+                                    <td align="center">
+                                        <p>{{ obj.car_stealing__stealing_town|default_if_none:'нет данных' }}</p></td>
                                 </tr>
                             {% endfor %}
                         </table>

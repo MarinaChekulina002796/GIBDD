@@ -39,9 +39,9 @@
                     <p>Из участвовавших в аварии-дети:{{ obj.accident_children }}</p>
                     <p>Смертельный исход, дети(количество):{{ obj.accident_children_death }}</p>
                     <p>Виновник аварии:{{ obj.accident_causer_person }}</p>
-                    <p>Европротокол: {{ obj.accident_europrotocol }}</p>
+                    <p>Европротокол: {{ obj.accident_europrotocol|default_if_none:'нет данных' }}</p>
                     <p>Причина аварии:{{ obj.accident_cause }}</p>
-                    <p>Инспектор, оформивший ДТП:{{ obj.accident_inspector }}</p>
+                    <p>Инспектор, оформивший ДТП:{{ obj.accident_inspector |default_if_none:'нет данных' }}</p>
                     <p>Фото аварии:<img src="{{ MEDIA_URL }}{{ obj.image_url_1|default_if_none:'#' }}"
                                         style="width: 300px">
                         <img src="{{ MEDIA_URL }}{{ obj.image_url_2|default_if_none:'#' }}"

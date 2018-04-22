@@ -9,6 +9,9 @@ body {
     font-family: 'Open Sans', Arial, sans-serif;
     color: darkblue;
     line-height: 1.6em;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*min-height: 100vh;*/
 }
 
 h1,
@@ -1799,6 +1802,7 @@ ul.sidebar-gallery {
     padding-bottom: 30px;
     color: black;
     background: cornflowerblue;
+    /*margin-top: auto;*/
 }
 
 #footer a {
@@ -1806,9 +1810,10 @@ ul.sidebar-gallery {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    margin-top: auto;
     background-color: cornflowerblue;
 }
 

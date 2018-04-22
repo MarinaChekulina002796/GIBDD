@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/Mix_VIN_Accident.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -376,13 +375,6 @@
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
     </task>
-    <task id="LOCAL-00080" summary="add Europrotocol, date widgets =&gt; new views for some classes">
-      <created>1523303531273</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1523303531273</updated>
-    </task>
     <task id="LOCAL-00081" summary="add Europrotocol, date widgets =&gt; new views for some classes">
       <created>1523304418572</created>
       <option name="number" value="00081" />
@@ -719,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524412410349</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="statistics">
+      <created>1524412953359</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1524412953359</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TestHistory">

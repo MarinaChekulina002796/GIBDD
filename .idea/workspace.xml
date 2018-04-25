@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,7 +44,7 @@
       <file leaf-file-name="workers.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
+            <state relative-caret-position="2856">
               <caret line="189" column="55" lean-forward="false" selection-start-line="189" selection-start-column="55" selection-end-line="189" selection-end-column="55" />
               <folding />
             </state>
@@ -317,13 +316,13 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\templates\gibdd_app" />
       <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app\js" />
       <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -424,13 +423,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00087" summary="add Autoschool_Driver">
-      <created>1523348722081</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1523348722081</updated>
     </task>
     <task id="LOCAL-00088" summary="add Autoschool_Driver">
       <created>1523349216901</created>
@@ -768,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524679693472</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Design">
+      <created>1524680367016</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1524680367017</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -860,12 +859,12 @@
     <MESSAGE value="Statistics_count &amp; search on date in statistics" />
     <MESSAGE value="Search driving_license" />
     <MESSAGE value="Search driving_license_for_drivers" />
-    <MESSAGE value="Design" />
     <MESSAGE value="statistics" />
     <MESSAGE value="unique_key_passport" />
     <MESSAGE value="change link on main page &amp; other pages in header" />
     <MESSAGE value="Add_groups" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add_groups" />
+    <MESSAGE value="Design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Design" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1287,7 +1286,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
+        <state relative-caret-position="2856">
           <caret line="189" column="55" lean-forward="false" selection-start-line="189" selection-start-column="55" selection-end-line="189" selection-end-column="55" />
           <folding />
         </state>

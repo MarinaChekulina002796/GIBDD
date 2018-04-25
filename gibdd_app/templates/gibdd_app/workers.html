@@ -78,42 +78,7 @@
         </div>
 
         <div class="row">
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
-                <div class="col-sm-6 col-md-4">
-                    {#                {% if perms.auth.can_add_medical_certificate %}#}
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive"
-                                 src="{% static 'gibdd_app/images/workers_interface/medic.PNG' %}"
-                                 width="80" height="40">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">
-                                {#                            <a href="{% url 'med_all' %}">Медицинская справка</a>#}
-                                <a href="{% url 'med_list' %}"><h3 class="media-heading">Медицинские справки</h3></a>
-                            </h3>
-                        </div>
 
-
-                        <div class="collapse navbar-collapse navbar-right">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="{% url 'med_list' %}"><span
-                                        class="glyphicon glyphicon-list-alt"
-                                        style="color:darkblue"
-                                        title="Список мед.справок"> </span></a>
-                                </li>
-                                {#                                {% if perms.auth.can_add_medical_certificate %}#}
-                                <li class="active"><a href="{% url 'med_create' %}"><span
-                                        class="glyphicon glyphicon-plus"
-                                        style="color:yellowgreen"
-                                        title="Добавить мед. справку"> </span></a>
-                                </li>
-                                {#                                {% endif %}#}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
@@ -150,6 +115,7 @@
                     </div>
                 </div>
             {% endif %}
+
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
@@ -186,12 +152,42 @@
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
                             <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/add_cat.png' %}"
+                                 width="80" height="40">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Добавление новой категории в ВУ
+                            </h3>
+
+                        </div>
+                        {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                        <div class="collapse navbar-collapse navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="{% url 'lic_cat_list' %}"><span
+                                        class="glyphicon glyphicon-list-alt"
+                                        style="color:darkblue"
+                                        title="Список категорий в ВУ"> </span></a></li>
+                                <li class="active"><a href="{% url 'lic_cat_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить новую категорию в ВУ"> </span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive"
                                  src="{% static 'gibdd_app/images/workers_interface/driver.PNG' %}"
                                  width="80" height="40">
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'driver_list' %}"><h3 class="media-heading">
-                                Водители</h3></a></h3>
+                                Личные данные водителей</h3></a></h3>
 
                         </div>
                         {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
@@ -211,6 +207,8 @@
                 </div>
             {% endif %}
 
+
+
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
@@ -219,7 +217,7 @@
                                  width="80" height="40">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading"><a href="{% url 'disq_list' %}"><h3 class="media-heading">Статусы
+                            <h3 class="media-heading"><a href="{% url 'disq_list' %}"><h3 class="media-heading">Статусы водительских
                                 прав</h3></a></h3>
 
                         </div>
@@ -243,28 +241,35 @@
 
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
                 <div class="col-sm-6 col-md-4">
+                    {#                {% if perms.auth.can_add_medical_certificate %}#}
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
                             <img class="img-responsive"
-                                 src="{% static 'gibdd_app/images/workers_interface/add_cat.png' %}"
+                                 src="{% static 'gibdd_app/images/workers_interface/medic.PNG' %}"
                                  width="80" height="40">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading">Добавление новой категории в ВУ
+                            <h3 class="media-heading">
+                                {#                            <a href="{% url 'med_all' %}">Медицинская справка</a>#}
+                                <a href="{% url 'med_list' %}"><h3 class="media-heading">Медицинские справки</h3></a>
                             </h3>
-
                         </div>
-                        {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+
+
                         <div class="collapse navbar-collapse navbar-right">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="{% url 'lic_cat_list' %}"><span
+                                <li class="active"><a href="{% url 'med_list' %}"><span
                                         class="glyphicon glyphicon-list-alt"
                                         style="color:darkblue"
-                                        title="Список категорий в ВУ"> </span></a></li>
-                                <li class="active"><a href="{% url 'lic_cat_create' %}"><span
+                                        title="Список мед.справок"> </span></a>
+                                </li>
+                                {#                                {% if perms.auth.can_add_medical_certificate %}#}
+                                <li class="active"><a href="{% url 'med_create' %}"><span
                                         class="glyphicon glyphicon-plus"
                                         style="color:yellowgreen"
-                                        title="Добавить новую категорию в ВУ"> </span></a></li>
+                                        title="Добавить мед. справку"> </span></a>
+                                </li>
+                                {#                                {% endif %}#}
                             </ul>
                         </div>
                     </div>
@@ -312,7 +317,7 @@
                                  width="90" height="50">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading">ТС в ДТП</h3>
+                            <h3 class="media-heading">ТС,участвовавшие в ДТП</h3>
                         </div>
                         <div class="collapse navbar-collapse navbar-right">
                             <ul class="nav navbar-nav">
@@ -440,6 +445,34 @@
                                         class="glyphicon glyphicon-plus"
                                         style="color:yellowgreen"
                                         title="Добавить штраф"> </span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/euro_accident.jpg' %}"
+                                 width="90" height="50">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Добавить европротокол</h3>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="{% url 'europrotocol_list' %}"><span
+                                        class="glyphicon glyphicon-list-alt"
+                                        style="color:darkblue"
+                                        title="Список европротоколов"> </span></a>
+                                </li>
+                                <li class="active"><a href="{% url 'europrotocol_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить европротокол"> </span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -627,6 +660,34 @@
                 </div>
             {% endif %}
 
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/autostudent.jpg' %}"
+                                 width="90" height="50">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Ученики автошколы</h3>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="{% url 'autostudent_list' %}"><span
+                                        class="glyphicon glyphicon-list-alt"
+                                        style="color:darkblue"
+                                        title="Список"> </span></a>
+                                </li>
+                                <li class="active"><a href="{% url 'autostudent_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить данные"> </span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
@@ -763,62 +824,6 @@
                                         class="glyphicon glyphicon-plus"
                                         style="color:yellowgreen"
                                         title="Добавить ВУ в полис"> </span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive"
-                                 src="{% static 'gibdd_app/images/workers_interface/euro_accident.jpg' %}"
-                                 width="90" height="50">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Добавить европротокол</h3>
-                        </div>
-                        <div class="collapse navbar-collapse navbar-right">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="{% url 'europrotocol_list' %}"><span
-                                        class="glyphicon glyphicon-list-alt"
-                                        style="color:darkblue"
-                                        title="Список европротоколов"> </span></a>
-                                </li>
-                                <li class="active"><a href="{% url 'europrotocol_create' %}"><span
-                                        class="glyphicon glyphicon-plus"
-                                        style="color:yellowgreen"
-                                        title="Добавить европротокол"> </span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'license_operators' %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive"
-                                 src="{% static 'gibdd_app/images/workers_interface/autostudent.jpg' %}"
-                                 width="90" height="50">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Данные об обучении в автошколе</h3>
-                        </div>
-                        <div class="collapse navbar-collapse navbar-right">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="{% url 'autostudent_list' %}"><span
-                                        class="glyphicon glyphicon-list-alt"
-                                        style="color:darkblue"
-                                        title="Список"> </span></a>
-                                </li>
-                                <li class="active"><a href="{% url 'autostudent_create' %}"><span
-                                        class="glyphicon glyphicon-plus"
-                                        style="color:yellowgreen"
-                                        title="Добавить данные"> </span></a></li>
                             </ul>
                         </div>
                     </div>

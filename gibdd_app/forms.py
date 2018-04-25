@@ -12,7 +12,6 @@ from django.urls import reverse_lazy
 from datetime import timedelta
 from dateutil.relativedelta import *
 from django.utils import timezone
-from psycopg2 import extras
 
 from gibdd_app.models import *
 

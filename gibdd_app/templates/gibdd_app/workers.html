@@ -656,7 +656,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'diagnostic_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -684,7 +684,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'insurance_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
@@ -712,7 +712,7 @@
                 </div>
             {% endif %}
 
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' %}
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'insurance_operators' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">

@@ -37,6 +37,7 @@ def chart_view_1_1(request):
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
 
+    # if query1 and query2:
     ds = PivotDataPool(
         series=[
             {'options': {
@@ -73,6 +74,9 @@ def chart_view_1_1(request):
             # 'Всего_пострадавших_детей':{'color': 'red'}
         }
     )
+    #     # text = '<i><b>Пожалуйста, заполните строку поиска</b><i>'
+    #     # button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+    #     # return HttpResponse(text, button)
 
     return render(request, 'gibdd_app/statistics_1.html', {'query1': query1, 'query2': query2, 'chart': chart})
 

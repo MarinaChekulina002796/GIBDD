@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-# import psycopg2
-
 import pymysql
 
 pymysql.install_as_MySQLdb()
@@ -29,8 +27,7 @@ SECRET_KEY = '3t+e+h0^+qdh!zorxuoiq(!dql0b130tt$8#7a%o0)e_l58^#b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1', 'gibdd.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gibdd_app',
-    # 'rolepermissions',
     'chartit'
 ]
 
@@ -82,9 +78,9 @@ WSGI_APPLICATION = 'gibdd_application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gibdd_db',
+        'NAME': 'gibdd',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': 3306,  # Стандартный порт MySQL
         'OPTIONS': {'charset': 'utf8'},

@@ -302,29 +302,29 @@
                 </div>
             {% endif %}
 
+
             {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
                             <img class="img-responsive"
-                                 src="{% static 'gibdd_app/images/workers_interface/witness.png' %}"
-                                 width="80" height="40">
+                                 src="{% static 'gibdd_app/images/workers_interface/accident_cars.PNG' %}"
+                                 width="90" height="50">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading">Свидетели ДТП</h3>
-
+                            <h3 class="media-heading">ТС в ДТП</h3>
                         </div>
-                        {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
                         <div class="collapse navbar-collapse navbar-right">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="{% url 'witness_list' %}"><span
+                                <li class="active"><a href="{% url 'accident_car_list' %}"><span
                                         class="glyphicon glyphicon-list-alt"
                                         style="color:darkblue"
-                                        title="Список свидетелей"> </span></a></li>
-                                <li class="active"><a href="{% url 'witness_create' %}"><span
+                                        title="Список ТС, участвовавших в ДТП"> </span></a>
+                                </li>
+                                <li class="active"><a href="{% url 'accident_car_create' %}"><span
                                         class="glyphicon glyphicon-plus"
                                         style="color:yellowgreen"
-                                        title="Добавить свидетеля"> </span></a></li>
+                                        title="Добавить ТС, участвовавшие в ДТП"> </span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -354,6 +354,35 @@
                                         class="glyphicon glyphicon-plus"
                                         style="color:yellowgreen"
                                         title="Добавить ВУ, участвовавшее в ДТП"> </span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive"
+                                 src="{% static 'gibdd_app/images/workers_interface/witness.png' %}"
+                                 width="80" height="40">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Свидетели ДТП</h3>
+
+                        </div>
+                        {#                    <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>#}
+                        <div class="collapse navbar-collapse navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="{% url 'witness_list' %}"><span
+                                        class="glyphicon glyphicon-list-alt"
+                                        style="color:darkblue"
+                                        title="Список свидетелей"> </span></a></li>
+                                <li class="active"><a href="{% url 'witness_create' %}"><span
+                                        class="glyphicon glyphicon-plus"
+                                        style="color:yellowgreen"
+                                        title="Добавить свидетеля"> </span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -734,34 +763,6 @@
                                         class="glyphicon glyphicon-plus"
                                         style="color:yellowgreen"
                                         title="Добавить ВУ в полис"> </span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if user.groups.all.0.name == 'admins' or user.groups.all.0.name == 'main_operators' or user.groups.all.0.name == 'inspectors' %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive"
-                                 src="{% static 'gibdd_app/images/workers_interface/accident_cars.PNG' %}"
-                                 width="90" height="50">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">ТС в ДТП</h3>
-                        </div>
-                        <div class="collapse navbar-collapse navbar-right">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="{% url 'accident_car_list' %}"><span
-                                        class="glyphicon glyphicon-list-alt"
-                                        style="color:darkblue"
-                                        title="Список ТС, участвовавших в ДТП"> </span></a>
-                                </li>
-                                <li class="active"><a href="{% url 'accident_car_create' %}"><span
-                                        class="glyphicon glyphicon-plus"
-                                        style="color:yellowgreen"
-                                        title="Добавить ТС, участвовавшие в ДТП"> </span></a></li>
                             </ul>
                         </div>
                     </div>

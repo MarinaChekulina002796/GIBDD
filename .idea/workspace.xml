@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,8 +45,8 @@
       <file leaf-file-name="workers.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="714" column="138" lean-forward="false" selection-start-line="714" selection-start-column="138" selection-end-line="714" selection-end-column="138" />
+            <state relative-caret-position="526">
+              <caret line="389" column="23" lean-forward="false" selection-start-line="389" selection-start-column="23" selection-end-line="389" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -427,13 +425,6 @@
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
     </task>
-    <task id="LOCAL-00085" summary="add Autoschool_Driver">
-      <created>1523340350604</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1523340350604</updated>
-    </task>
     <task id="LOCAL-00086" summary="add Autoschool_Driver">
       <created>1523341382027</created>
       <option name="number" value="00086" />
@@ -770,7 +761,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524461807805</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="Add_groups">
+      <created>1524674696354</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1524674696355</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -842,7 +840,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add lic_cat &amp; car - all functions + html" />
     <MESSAGE value="Add licen_accid &amp; witness - all functions + html" />
     <MESSAGE value="Add inspector - all functions + html" />
     <MESSAGE value="Add inspector &amp; RegCertificate % Fine - all functions + html" />
@@ -867,7 +864,8 @@
     <MESSAGE value="statistics" />
     <MESSAGE value="unique_key_passport" />
     <MESSAGE value="change link on main page &amp; other pages in header" />
-    <option name="LAST_COMMIT_MESSAGE" value="change link on main page &amp; other pages in header" />
+    <MESSAGE value="Add_groups" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add_groups" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1275,6 +1273,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="47" column="80" lean-forward="false" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1288,8 +1287,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="714" column="138" lean-forward="false" selection-start-line="714" selection-start-column="138" selection-end-line="714" selection-end-column="138" />
+        <state relative-caret-position="526">
+          <caret line="389" column="23" lean-forward="false" selection-start-line="389" selection-start-column="23" selection-end-line="389" selection-end-column="23" />
           <folding />
         </state>
       </provider>

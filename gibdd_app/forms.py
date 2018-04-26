@@ -37,7 +37,7 @@ class AuthorizationForm(forms.Form):
 
 class MedicalCertificateForm(forms.ModelForm):
     class Meta:
-        widgets = {'medical_date': forms.SelectDateWidget(years=range(2005, 2025)), }
+        widgets = {'medical_date': forms.SelectDateWidget(years=range(2008, 2025)), }
         model = MedicalCertificate
         exclude = ()
 
@@ -52,7 +52,7 @@ class MedicalCertificateForm(forms.ModelForm):
 
 class CategoryForm(forms.ModelForm):
     class Meta:
-        widgets = {'date_open_category': forms.SelectDateWidget(years=range(1940, 2025)), }
+        widgets = {'date_open_category': forms.SelectDateWidget(years=range(1950, 2025)), }
         model = Category
         exclude = ()
 
@@ -87,8 +87,8 @@ class DriverForm(forms.ModelForm):
 
 class LicenseDisqualificationForm(forms.ModelForm):
     class Meta:
-        widgets = {'disqualif_date_from': forms.SelectDateWidget(years=range(2005, 2035)),
-                   'disqualif_date_end': forms.SelectDateWidget(years=range(2005, 2035)), }
+        widgets = {'disqualif_date_from': forms.SelectDateWidget(years=range(2015, 2035)),
+                   'disqualif_date_end': forms.SelectDateWidget(years=range(2015, 2035)), }
         model = LicenseDisqualification
         exclude = ()
 
@@ -101,8 +101,8 @@ class Licen_CatForm(forms.ModelForm):
 
 class AccidentReportForm(forms.ModelForm):
     class Meta:
-        widgets = {'accident_date': forms.SelectDateWidget(years=range(2016, 2040)),
-                   'accident_paper_date': forms.SelectDateWidget(years=range(2016, 2040)),
+        widgets = {'accident_date': forms.SelectDateWidget(years=range(2017, 2040)),
+                   'accident_paper_date': forms.SelectDateWidget(years=range(2017, 2040)),
                    'accident_time': forms.TimeInput(),
                    }
         model = AccidentReport
@@ -150,7 +150,7 @@ class RegistrationCertificateForm(forms.ModelForm):
 
 class OwnerForm(forms.ModelForm):
     class Meta:
-        widgets = {'owner_date_give': forms.SelectDateWidget(years=range(2005, 2025)), }
+        widgets = {'owner_date_give': forms.SelectDateWidget(years=range(2000, 2025)), }
         model = Owner
         exclude = ()
 
@@ -164,7 +164,7 @@ class StealingForm(forms.ModelForm):
 
 class DecreeForm(forms.ModelForm):
     class Meta:
-        widgets = {'decree_date': forms.SelectDateWidget(years=range(2010, 2025)), }
+        widgets = {'decree_date': forms.SelectDateWidget(years=range(2015, 2025)), }
         model = Decree
         exclude = ()
 
@@ -193,7 +193,7 @@ class DiagnosticCardForm(forms.ModelForm):
 
 class HistoryForm(forms.ModelForm):
     class Meta:
-        widgets = {'history_birth': forms.SelectDateWidget(years=range(1930, 2025)),
+        widgets = {'history_birth': forms.SelectDateWidget(years=range(1950, 2025)),
                    'history_date_from': forms.SelectDateWidget(years=range(1990, 2030)),
                    'history_date_to': forms.SelectDateWidget(years=range(1990, 2030)), }
         model = CarHistory
@@ -202,8 +202,8 @@ class HistoryForm(forms.ModelForm):
 
 class InsuranceForm(forms.ModelForm):
     class Meta:
-        widgets = {'insurance_date_from': forms.SelectDateWidget(years=range(2016, 2035)),
-                   'insurance_date_to': forms.SelectDateWidget(years=range(2016, 2035)), }
+        widgets = {'insurance_date_from': forms.SelectDateWidget(years=range(2017, 2035)),
+                   'insurance_date_to': forms.SelectDateWidget(years=range(2017, 2035)), }
         model = Insurance
         exclude = ()
 
@@ -222,7 +222,7 @@ class Accident_CarForm(forms.ModelForm):
 
 class EuroprotocolForm(forms.ModelForm):
     class Meta:
-        widgets = {'europrotocol_date': forms.SelectDateWidget(years=range(2016, 2035)),
+        widgets = {'europrotocol_date': forms.SelectDateWidget(years=range(2017, 2035)),
                    }
         model = Europrotocol
         exclude = ()

@@ -638,6 +638,19 @@ def license_search(request):
     return render(request, template, {'ls': ls, 'query1': query1, 'query2': query2, 'query3': query3})
 
 
+def accident_search(request):
+    template = 'gibdd_app/AccidentReport_list.html'
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+
+    if query1 and query2:
+        accids = AccidentReport.objects.filter(Q(number_accident__exact=query1),
+                                    Q(accident_date__exact=query2))
+    else:
+        return HttpResponse('Пожалуйста, заполните строку поиска.')
+    return render(request, template, {'accids': accids, 'query1': query1, 'query2': query2})
+
+
 def mix_search(request):
     template = 'gibdd_app/Mix.html'
     query1 = request.GET.get('q')

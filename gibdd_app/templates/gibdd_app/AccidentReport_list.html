@@ -6,30 +6,77 @@
 {% block content %}
     {% block form %}
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="GET" action="{% url 'accident_search' %}">
+            <p>Вы ищете протокол ДТП №: <strong><input name="q" maxlength="40" minlength="10"
+                                                       value="{{ request.GET.q }}"
+                                                       placeholder="1234"></strong>
+                от <strong><input name="p" maxlength="10" minlength="10" value="{{ request.GET.p }}"
+                                  placeholder="2018-04-19"></strong>
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск ДТП"> </span>
+                    Поиск
+                </button>
 
-            <table border="2">
-                <caption>Таблица ДТП</caption>
-                <th align="center"> № протокола ДТП</th>
-                <th align="center"> Дата ДТП</th>
-                <th align="center"> Подробнее...</th>
-                {% for obj in objects_list %}
-                    <tr>
-                        <div>
-                            <td align="center"><p><a
-                                    href="{% url 'accident_detail' pk=obj.pk %}">{{ obj.number_accident }}</a></p>
-                            </td>
-                            <td align="center"><p>{{ obj.accident_date }}</p></td>
-                            <td align="center">
-                                <button class="btn" type="button"><a
-                                        href="{% url 'accident_detail' pk=obj.pk %}">Подробнее
-                                    >></a></button>
-                            </td>
-                        </div>
-                    </tr>
-                {% endfor %}
-            </table>
-        </form>
+            </p>
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'accident_search' %}
+                    {% if accids %}
+                        <p>Результат поиска: {{ accids|length }} шт.</p>
+                        <table border="2">
+                            <caption>Таблица ДТП</caption>
+                            <th align="center"> № протокола ДТП</th>
+                            <th align="center"> Дата ДТП</th>
+                            <th align="center"> Подробнее...</th>
+                            {% for accid in accids %}
+                                <tr>
+                                    <div>
+                                        <td align="center"><p><a
+                                                href="{% url 'accident_detail' pk=accid.pk %}">{{ accid.number_accident }}</a>
+                                        </p>
+                                        </td>
+                                        <td align="center"><p>{{ accid.accident_date }}</p></td>
+                                        <td align="center">
+                                            <button class="btn" type="button"><a
+                                                    href="{% url 'accident_detail' pk=accid.pk %}">Подробнее
+                                                >></a></button>
+                                        </td>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>Нет ДТП по заданным критериям.</p>
+                    {% endif %}
+                    </form>
+                {% else %}
+                    {% if user.is_authenticated %}
+                        <table border="2">
+                            <caption>Таблица ДТП</caption>
+                            <th align="center"> № протокола ДТП</th>
+                            <th align="center"> Дата ДТП</th>
+                            <th align="center"> Подробнее...</th>
+                            {% for obj in objects_list %}
+                                <tr>
+                                    <div>
+                                        <td align="center"><p><a
+                                                href="{% url 'accident_detail' pk=obj.pk %}">{{ obj.number_accident }}</a>
+                                        </p>
+                                        </td>
+                                        <td align="center"><p>{{ obj.accident_date }}</p></td>
+                                        <td align="center">
+                                            <button class="btn" type="button"><a
+                                                    href="{% url 'accident_detail' pk=obj.pk %}">Подробнее
+                                                >></a></button>
+                                        </td>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+
+                {% endif %}
+            {% endwith %}
     {% endblock %}
 {% endblock %}
 

@@ -118,57 +118,124 @@ def chart_view_1_1(request):
 
 
 def chart_view_1_2(request):
-    all_accidents = AccidentReport.objects.aggregate(Count('pk'))['pk__count']
-    not_define = AccidentReport.objects.filter(accident_severity__exact='не указано').count()
-    not_define_per = (not_define / all_accidents) * 100
-    light = AccidentReport.objects.filter(accident_severity__exact='легкая').count()
-    light_per = (light / all_accidents) * 100
-    middle = AccidentReport.objects.filter(accident_severity__exact='средней тяжести').count()
-    middle_per = ((middle / all_accidents) * 100)
-    high = AccidentReport.objects.filter(accident_severity__exact='тяжкий вред').count()
-    high_per = (high / all_accidents) * 100
-    without = AccidentReport.objects.filter(accident_severity__exact='без вреда здоровью').count()
-    without_per = (without / all_accidents) * 100
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
 
-    # Step 1: Create a DataPool with the data we want to retrieve.
-    data = DataPool(series=
-    [{'options': {
-        'source': AccidentReport.objects.values('accident_severity').annotate(
-            Count('pk')
-        )
-    },
-        'terms': [
-            'accident_severity',
-            {'Количество аварий': 'pk__count'}]
-    }]
-    )
-    # Step 2: Create the Chart object
-
-    chart2 = Chart(
-        datasource=data,
-        series_options=
+    if query1 is None or query2 is None:
+        date1 = datetime.date.today() - relativedelta(days=7)
+        date2 = datetime.date.today()
+        # Step 1: Create a DataPool with the data we want to retrieve.
+        data = DataPool(series=
         [{'options': {
-            'type': 'pie',
-            'stacking': False},
-            'terms': {
-                'accident_severity': ['Количество аварий']
-            }
-        }],
-        chart_options=
-        {'title': {
-            'text': 'Соотношение степеней тяжести ДТП'},
-            'xAxis': {
-                'crosshair': True,
-                'labels': {'format': '{value}'},
-                'title': {
-                    'text': 'Степень тяжести ДТП'}},
-            'yAxis': {
-                'title': {
-                    'text': 'Количество людей'}},
-            'chart': {'zoomType': 'x'}
-        })  # Step 3: Send the chart object to the template.
+            'source': AccidentReport.objects.values('accident_severity').filter(
+                Q(accident_date__range=[date1, date2])).annotate(
+                Count('pk'))
+        },
+            'terms': [
+                'accident_severity',
+                {'Количество аварий': 'pk__count'}]
+        }]
+        )
+        # Step 2: Create the Chart object
+
+        chart2 = Chart(
+            datasource=data,
+            series_options=
+            [{'options': {
+                'type': 'pie',
+                'stacking': False},
+                'terms': {
+                    'accident_severity': ['Количество аварий']
+                }
+            }],
+            chart_options=
+            {'title': {
+                'text': 'Соотношение степеней тяжести ДТП'},
+                'xAxis': {
+                    'crosshair': True,
+                    'labels': {'format': '{value}'},
+                    'title': {
+                        'text': 'Степень тяжести ДТП'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество людей'}},
+                'chart': {'zoomType': 'x'}
+            })  # Step 3: Send the chart object to the template.
+        all_accidents = AccidentReport.objects.filter(
+            Q(accident_date__range=[date1, date2])).aggregate(Count('pk'))['pk__count']
+        not_define = AccidentReport.objects.filter(accident_severity__exact='не указано').filter(
+            Q(accident_date__range=[date1, date2])).count()
+        not_define_per = (not_define / all_accidents) * 100
+        light = AccidentReport.objects.filter(accident_severity__exact='легкая').filter(
+            Q(accident_date__range=[date1, date2])).count()
+        light_per = (light / all_accidents) * 100
+        middle = AccidentReport.objects.filter(accident_severity__exact='средней тяжести').filter(
+            Q(accident_date__range=[date1, date2])).count()
+        middle_per = ((middle / all_accidents) * 100)
+        high = AccidentReport.objects.filter(accident_severity__exact='тяжкий вред').filter(
+            Q(accident_date__range=[date1, date2])).count()
+        high_per = (high / all_accidents) * 100
+        without = AccidentReport.objects.filter(accident_severity__exact='без вреда здоровью').filter(
+            Q(accident_date__range=[date1, date2])).count()
+        without_per = (without / all_accidents) * 100
+    else:
+        data = DataPool(series=
+        [{'options': {
+            'source': AccidentReport.objects.values('accident_severity').filter(
+                Q(accident_date__range=[query1, query2])).annotate(
+                Count('pk'))
+        },
+            'terms': [
+                'accident_severity',
+                {'Количество аварий': 'pk__count'}]
+        }]
+        )
+        # Step 2: Create the Chart object
+
+        chart2 = Chart(
+            datasource=data,
+            series_options=
+            [{'options': {
+                'type': 'pie',
+                'stacking': False},
+                'terms': {
+                    'accident_severity': ['Количество аварий']
+                }
+            }],
+            chart_options=
+            {'title': {
+                'text': 'Соотношение степеней тяжести ДТП'},
+                'xAxis': {
+                    'crosshair': True,
+                    'labels': {'format': '{value}'},
+                    'title': {
+                        'text': 'Степень тяжести ДТП'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество людей'}},
+                'chart': {'zoomType': 'x'}
+            })  # Step 3: Send the chart object to the template.
+        all_accidents = AccidentReport.objects.filter(Q(accident_date__range=[query1, query2])).aggregate(Count('pk'))[
+            'pk__count']
+        not_define = AccidentReport.objects.filter(accident_severity__exact='не указано').filter(
+            Q(accident_date__range=[query1, query2])).count()
+        not_define_per = (not_define / all_accidents) * 100
+        light = AccidentReport.objects.filter(accident_severity__exact='легкая').filter(
+            Q(accident_date__range=[query1, query2])).count()
+        light_per = (light / all_accidents) * 100
+        middle = AccidentReport.objects.filter(accident_severity__exact='средней тяжести').filter(
+            Q(accident_date__range=[query1, query2])).count()
+        middle_per = ((middle / all_accidents) * 100)
+        high = AccidentReport.objects.filter(accident_severity__exact='тяжкий вред').filter(
+            Q(accident_date__range=[query1, query2])).count()
+        high_per = (high / all_accidents) * 100
+        without = AccidentReport.objects.filter(accident_severity__exact='без вреда здоровью').filter(
+            Q(accident_date__range=[query1, query2])).count()
+        without_per = (without / all_accidents) * 100
+
     return render(request, 'gibdd_app/statistics_2.html',
-                  {'chart2': chart2, 'all_accidents': all_accidents, 'not_define_per': not_define_per,
+                  {'chart2': chart2, 'query1': query1, 'query2': query2, 'all_accidents': all_accidents,
+                   'not_define_per': not_define_per,
                    'light_per': light_per, 'middle_per': middle_per, 'high_per': high_per, 'without_per': without_per})
 
 

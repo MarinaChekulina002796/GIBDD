@@ -37,47 +37,83 @@ def chart_view_1_1(request):
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
 
-    # if query1 and query2:
-    ds = PivotDataPool(
-        series=[
-            {'options': {
-                'source': AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2])),
-                'categories': 'accident_date'},
-                'terms': {
-                    'Всего_пострадавших_взрослых': Sum('accident_number_of_people'),
-                    'Всего_пострадавших_детей': Sum('accident_children'),
-                }}])
+    if query1 is None or query2 is None:
+        date1 = datetime.date.today() - relativedelta(days=7)
+        date2 = datetime.date.today()
+        ds = PivotDataPool(
+            series=[
+                {'options': {
+                    'source': AccidentReport.objects.all().filter(Q(accident_date__range=[date1, date2])),
+                    'categories': 'accident_date'},
+                    'terms': {
+                        'Всего_пострадавших_взрослых': Sum('accident_number_of_people'),
+                        'Всего_пострадавших_детей': Sum('accident_children'),
+                    }}])
 
-    chart = PivotChart(
-        datasource=ds,
-        series_options=[
-            {'options': {
-                'type': 'column',
-                'stacking': False,
-                'allowPointSelect': True,
-                'lineWidth': 5,
-                # 'colors': 'red'
+        chart = PivotChart(
+            datasource=ds,
+            series_options=[
+                {'options': {
+                    'type': 'column',
+                    'stacking': False,
+                    'allowPointSelect': True,
+                    'lineWidth': 5,
+                    # 'colors': 'red'
 
-            },
-                'terms': ['Всего_пострадавших_взрослых', 'Всего_пострадавших_детей']}],
+                },
+                    'terms': ['Всего_пострадавших_взрослых', 'Всего_пострадавших_детей']}],
 
-        chart_options=
-        {
-            'title': {
-                'text': 'Количество пострадавших за выбранный период'},
-            'xAxis': {
+            chart_options=
+            {
                 'title': {
-                    'text': 'Дата ДТП'}},
-            'yAxis': {
-                'title': {
-                    'text': 'Количество пострадавших людей'}},
-            # 'Всего_пострадавших_детей':{'color': 'red'}
-        }
-    )
-    #     # text = '<i><b>Пожалуйста, заполните строку поиска</b><i>'
-    #     # button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
-    #     # return HttpResponse(text, button)
+                    'text': 'Количество пострадавших за выбранный период'},
+                'xAxis': {
+                    'title': {
+                        'text': 'Дата ДТП'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество пострадавших людей'}},
+                # 'Всего_пострадавших_детей':{'color': 'red'}
+            }
+        )
 
+    else:
+        ds = PivotDataPool(
+            series=[
+                {'options': {
+                    'source': AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2])),
+                    'categories': 'accident_date'},
+                    'terms': {
+                        'Всего_пострадавших_взрослых': Sum('accident_number_of_people'),
+                        'Всего_пострадавших_детей': Sum('accident_children'),
+                    }}])
+
+        chart = PivotChart(
+            datasource=ds,
+            series_options=[
+                {'options': {
+                    'type': 'column',
+                    'stacking': False,
+                    'allowPointSelect': True,
+                    'lineWidth': 5,
+                    # 'colors': 'red'
+
+                },
+                    'terms': ['Всего_пострадавших_взрослых', 'Всего_пострадавших_детей']}],
+
+            chart_options=
+            {
+                'title': {
+                    'text': 'Количество пострадавших за выбранный период'},
+                'xAxis': {
+                    'title': {
+                        'text': 'Дата ДТП'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество пострадавших людей'}},
+                # 'Всего_пострадавших_детей':{'color': 'red'}
+            }
+        )
     return render(request, 'gibdd_app/statistics_1.html', {'query1': query1, 'query2': query2, 'chart': chart})
 
 

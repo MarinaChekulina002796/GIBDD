@@ -240,95 +240,195 @@ def chart_view_1_2(request):
 
 
 def chart_view_3(request):
-    ds = PivotDataPool(
-        series=[
-            {'options': {
-                'source': Lisense_Category.objects.all(),
-                'categories': 'categ__category_name',
-                'legend_by': 'categ__category_name',
-            },
-                'terms': {
-                    'Всего': Count('pk')
-                }
-            }],
-        top_n_term='Всего',
-        top_n=20
-    )
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
 
-    chart3 = PivotChart(
-        datasource=ds,
-        series_options=[
-            {'options': {
-                'type': 'column',
-                'stacking': True,
-                'xAxis': 0,
-                'yAxis': 0
-            },
-                'terms': ['Всего']
-            }],
+    if query1 is None or query2 is None:
+        date1 = datetime.date.today() - relativedelta(days=7)
+        date2 = datetime.date.today()
+        ds = PivotDataPool(
+            series=[
+                {'options': {
+                    'source': Lisense_Category.objects.all().filter(Q(categ__date_open_category__range=[date1, date2])),
+                    'categories': 'categ__category_name',
+                    'legend_by': 'categ__category_name',
+                },
+                    'terms': {
+                        'Всего': Count('pk')
+                    }
+                }],
+            top_n_term='Всего',
+            top_n=20
+        )
 
-        chart_options=
-        {'title': {
-            'text': 'Cоотношение категорий прав'},
-            'xAxis': {
-                'title': {
-                    'text': 'Категория прав'}},
-            'yAxis': {
-                'title': {
-                    'text': 'Количество категорий'}},
+        chart3 = PivotChart(
+            datasource=ds,
+            series_options=[
+                {'options': {
+                    'type': 'column',
+                    'stacking': True,
+                    'xAxis': 0,
+                    'yAxis': 0
+                },
+                    'terms': ['Всего']
+                }],
 
-        }
-    )
-    return render(request, 'gibdd_app/statistics_3.html', {'chart3': chart3})
+            chart_options=
+            {'title': {
+                'text': 'Cоотношение категорий прав'},
+                'xAxis': {
+                    'title': {
+                        'text': 'Категория прав'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество категорий'}},
+
+            })
+
+    else:
+        ds = PivotDataPool(
+            series=[
+                {'options': {
+                    'source': Lisense_Category.objects.all().filter(
+                        Q(categ__date_open_category__range=[query1, query2])),
+                    'categories': 'categ__category_name',
+                    'legend_by': 'categ__category_name',
+                },
+                    'terms': {
+                        'Всего': Count('pk')
+                    }
+                }],
+            top_n_term='Всего',
+            top_n=20
+        )
+
+        chart3 = PivotChart(
+            datasource=ds,
+            series_options=[
+                {'options': {
+                    'type': 'column',
+                    'stacking': True,
+                    'xAxis': 0,
+                    'yAxis': 0
+                },
+                    'terms': ['Всего']
+                }],
+
+            chart_options=
+            {'title': {
+                'text': 'Cоотношение категорий прав'},
+                'xAxis': {
+                    'title': {
+                        'text': 'Категория прав'}},
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество категорий'}},
+
+            })
+
+    return render(request, 'gibdd_app/statistics_3.html', {'chart3': chart3, 'query1': query1, 'query2': query2})
 
 
 def chart_view_4(request):
     # all_people = AccidentReport.objects.aggregate(total=Sum(F('accident_number_of_people') + F('accident_children')))[
     #     'total']
 
-    data = DataPool(series=
-    [{'options': {
-        'source': AccidentReport.objects.values('accident_date').annotate(
-            Sum('accident_number_of_people'),
-            Sum('accident_death'),
-            Sum('accident_children'),
-            Sum('accident_children_death')
-        )
-    },
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
 
-        'terms': [{'accident_date': 'accident_date'},
-                  {'Пострадало взрослых': 'accident_number_of_people__sum'},
-                  {'Погибло взрослых': 'accident_death__sum'},
-                  {'Пострадало детей': 'accident_children__sum'},
-                  {'Погибло детей': 'accident_children_death__sum'}
-                  ]
-    }]
-    )  # Step 2: Create the Chart object
-
-    chart4 = Chart(
-        datasource=data,
-        series_options=
+    if query1 is None or query2 is None:
+        date1 = datetime.date.today() - relativedelta(days=7)
+        date2 = datetime.date.today()
+        data = DataPool(series=
         [{'options': {
-            'type': 'line',
-            'stacking': False},
-            'terms': {
-                'accident_date': ['Пострадало взрослых', 'Погибло взрослых', 'Пострадало детей',
-                                  'Погибло детей']
-            }
-        }],
-        chart_options=
-        {'title': {
-            'text': 'Количество пострадавших за день'},
-            'xAxis': {
-                'title': {
-                    'text': 'Дата ДТП'}
-            },
-            'yAxis': {
-                'title': {
-                    'text': 'Количество людей'}},
+            'source': AccidentReport.objects.values('accident_date').filter(
+                Q(accident_date__range=[date1, date2])).annotate(
+                Sum('accident_number_of_people'),
+                Sum('accident_death'),
+                Sum('accident_children'),
+                Sum('accident_children_death')
+            )
+        },
 
-        })  # Step 3: Send the chart object to the template.
-    return render(request, 'gibdd_app/statistics_4.html', {'chart4': chart4})  # главная страница ГИБДД
+            'terms': [{'accident_date': 'accident_date'},
+                      {'Пострадало взрослых': 'accident_number_of_people__sum'},
+                      {'Погибло взрослых': 'accident_death__sum'},
+                      {'Пострадало детей': 'accident_children__sum'},
+                      {'Погибло детей': 'accident_children_death__sum'}
+                      ]
+        }]
+        )  # Step 2: Create the Chart object
+
+        chart4 = Chart(
+            datasource=data,
+            series_options=
+            [{'options': {
+                'type': 'line',
+                'stacking': False},
+                'terms': {
+                    'accident_date': ['Пострадало взрослых', 'Погибло взрослых', 'Пострадало детей',
+                                      'Погибло детей']
+                }
+            }],
+            chart_options=
+            {'title': {
+                'text': 'Количество пострадавших за день'},
+                'xAxis': {
+                    'title': {
+                        'text': 'Дата ДТП'}
+                },
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество людей'}},
+
+            })  # Step 3: Send the chart object to the template.
+    else:
+        data = DataPool(series=
+        [{'options': {
+            'source': AccidentReport.objects.values('accident_date').filter(
+                Q(accident_date__range=[query1, query2])).annotate(
+                Sum('accident_number_of_people'),
+                Sum('accident_death'),
+                Sum('accident_children'),
+                Sum('accident_children_death')
+            )
+        },
+
+            'terms': [{'accident_date': 'accident_date'},
+                      {'Пострадало взрослых': 'accident_number_of_people__sum'},
+                      {'Погибло взрослых': 'accident_death__sum'},
+                      {'Пострадало детей': 'accident_children__sum'},
+                      {'Погибло детей': 'accident_children_death__sum'}
+                      ]
+        }]
+        )  # Step 2: Create the Chart object
+
+        chart4 = Chart(
+            datasource=data,
+            series_options=
+            [{'options': {
+                'type': 'line',
+                'stacking': False},
+                'terms': {
+                    'accident_date': ['Пострадало взрослых', 'Погибло взрослых', 'Пострадало детей',
+                                      'Погибло детей']
+                }
+            }],
+            chart_options=
+            {'title': {
+                'text': 'Количество пострадавших за день'},
+                'xAxis': {
+                    'title': {
+                        'text': 'Дата ДТП'}
+                },
+                'yAxis': {
+                    'title': {
+                        'text': 'Количество людей'}},
+
+            })
+
+    return render(request, 'gibdd_app/statistics_4.html',
+                  {'chart4': chart4, 'query1': query1, 'query2': query2})  # главная страница ГИБДД
 
 
 def main(request):

@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'gibdd_application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gibdd',
+        'NAME': 'gibdd_db',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': 3306,  # Стандартный порт MySQL
         'OPTIONS': {'charset': 'utf8'},

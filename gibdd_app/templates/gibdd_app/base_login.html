@@ -33,24 +33,14 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <div id="navbar" class="navbar-collapse collapse"
-                     style="position:relative; left:1000px; top: 50px; color: darkblue">
-                    {#                    {% if user.is_authenticated %}#}
-                    {#                        <h1> Your login: {{ user.username }}</h1>#}
-                    {#                        <button id="signout" type="submit" class="btn btn-success button_style">#}
-                    {#                            Выйти {{ user.username }}</button>#}
-                    {##}
-                    {#                    {% else %}#}
-                    {#                        <button id="signin" type="submit" class="btn btn-success button_style">Авторизоваться</button>#}
-                    {##}
-                    {#                    {% endif %}#}
-                </div>
-                <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
-                    <img src="{% static 'gibdd_app/images/logo.png' %}" alt="">
-                </a>
-                <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
-                <div class="bn-logo-text" style="top:80px; color:white">
-                    УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
+                <div id="navbar" class="navbar-collapse collapse" style="top: 50px;">
+                    <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
+                        <img src="{% static 'gibdd_app/images/logo.png' %}" alt="">
+                    </a>
+                    <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
+                    <div class="bn-logo-text" style="top:80px; color:white">
+                        УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
+                    </div>
                 </div>
             </div>
             <div class="collapse navbar-collapse navbar-right">

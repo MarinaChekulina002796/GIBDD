@@ -645,10 +645,32 @@ def accident_search(request):
 
     if query1 and query2:
         accids = AccidentReport.objects.filter(Q(number_accident__exact=query1),
-                                    Q(accident_date__exact=query2))
+                                               Q(accident_date__exact=query2))
     else:
         return HttpResponse('Пожалуйста, заполните строку поиска.')
     return render(request, template, {'accids': accids, 'query1': query1, 'query2': query2})
+
+
+def insurance_search(request):
+    template = 'gibdd_app/InsuranceLicense_list.html'
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+    query3 = request.GET.get('r')
+    query4 = request.GET.get('t')
+
+    if query1 and query2:
+        insurs = InsuranceLicense.objects.values('pk', 'insur', 'licen', 'insur__insurance_car__car_number',
+                                                 'insur__insurance_car__car_region', 'licen__series_dr_license',
+                                                 'licen__number_dr_license', 'licen__date_issue_dr_license',
+                                                 'insur__insurance_number', 'insur__insurance_company',
+                                                 'insur__insurance_type', 'insur__insurance_date_from',
+                                                 'insur__insurance_date_to').filter(
+            Q(insur__insurance_number__exact=query1), Q(insur__insurance_car__car_number__exact=query2),
+            Q(insur__insurance_car__car_region__exact=query4), Q(insur__insurance_date_from__exact=query3))
+    else:
+        return HttpResponse('Пожалуйста, заполните строку поиска.')
+    return render(request, template,
+                  {'insurs': insurs, 'query1': query1, 'query2': query2, 'query3': query3, 'query4': query4})
 
 
 def mix_search(request):
@@ -982,7 +1004,12 @@ def insurance_list(request):
 @login_required
 def insurance_license_list(request):
     template = 'gibdd_app/InsuranceLicense_list.html'
-    objects_list = InsuranceLicense.objects.all()
+    objects_list = InsuranceLicense.objects.all().values('pk', 'insur', 'licen', 'insur__insurance_car__car_number',
+                                                         'insur__insurance_car__car_region', 'licen__series_dr_license',
+                                                         'licen__number_dr_license', 'licen__date_issue_dr_license',
+                                                         'insur__insurance_number', 'insur__insurance_company',
+                                                         'insur__insurance_type', 'insur__insurance_date_from',
+                                                         'insur__insurance_date_to')
     context = {
         'objects_list': objects_list,
     }

@@ -9,28 +9,101 @@
 
     {% block form %}
 
-        <form>
-            <table border="2">
-                <caption>Таблица ВУ в полисе</caption>
-                <th> Страховка для автомобиля (ОСАГО, КАСКО)</th>
-                <th> ВУ, допущенные к управлению автомобилем по полису</th>
-                <th> Подробнее...</th>
-                {% for obj in objects_list %}
-                    <tr>
-                        <div>
-                            <td><p><a href="{% url 'insurance_license_detail' pk=obj.pk %}">{{ obj.insur }}
-                            </a></p></td>
-                            <td><p>{{ obj.licen }}</p></td>
-                            <td>
-                                <button class="btn" type="button"><a
-                                        href="{% url 'insurance_license_detail' pk=obj.pk %}">Подробнее
-                                    >></a></button>
-                            </td>
-                        </div>
-                    </tr>
-                {% endfor %}
-            </table>
+        <form method="GET" action="{% url 'insurance_search' %}">
+            <p>Вы ищете страховой полис №: <strong><input name="q" maxlength="14" minlength="8"
+                                                          value="{{ request.GET.q }}"
+                                                          placeholder="1234"></strong>
+                для ТС: <strong><input name="p" maxlength="6" minlength="6" value="{{ request.GET.p }}"
+                                       placeholder="А777АА"></strong>
+                <strong><input name="t" maxlength="3" minlength="2" value="{{ request.GET.t }}"
+                               placeholder="197"></strong>
+                от <strong><input name="r" maxlength="10" minlength="10" value="{{ request.GET.r }}"
+                                  placeholder="2018-04-19"></strong>
+                <button type="submit"><span class="glyphicon glyphicon-search"
+                                            style="color:grey"
+                                            title="Поиск страхового полиса"> </span>
+                    Поиск
+                </button>
 
-        </form>
+            </p>
+            {% with url_name=request.resolver_match.url_name %}
+                {% if url_name == 'insurance_search' %}
+                    {% if insurs %}
+                        <p>Результат поиска: {{ insurs|length }} шт.</p>
+                        <table border="2">
+                            <caption>Таблица ВУ в полисе</caption>
+                            <th>№</th>
+                            <th> Страховой полис (ОСАГО, КАСКО)</th>
+                            <th> ГРН автомобиля</th>
+                            <th> ВУ, допущенные к управлению автомобилем по полису</th>
+                            <th> Подробнее...</th>
+                            {% for insur in insurs %}
+                                <tr>
+                                    <div>
+                                        <td><p>{{ insur.pk }}</p></td>
+                                        <td>
+                                            <p>{{ insur.insur__insurance_number }}, {{ insur.insur__insurance_company }},
+                                                {{ insur.insur__insurance_type }}
+                                                от {{ insur.insur__insurance_date_from }}
+                                                до {{ insur.insur__insurance_date_to }}</p>
+                                        </td>
+                                        <td align="center"><p>
+                                            {{ insur.insur__insurance_car__car_number }}{{ insur.insur__insurance_car__car_region }}</p>
+                                        </td>
+                                        <td>
+                                            <p>ВУ: {{ insur.licen__series_dr_license }}
+                                                №{{ insur.licen__number_dr_license }}
+                                                от {{ insur.licen__date_issue_dr_license }}</p>
+                                        </td>
+                                        <td>
+                                            <button class="btn" type="button"><a
+                                                    href="{% url 'insurance_license_detail' pk=insur.pk %}">Подробнее
+                                                >></a></button>
+                                        </td>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>Нет страховых полисов по заданному критерию.</p>
+                    {% endif %}
+                    </form>
+                {% else %}
+                    {% if user.is_authenticated %}
+                        <table border="2">
+                            <caption>Таблица ВУ в полисе</caption>
+                            <th>№</th>
+                            <th> Страховой полис (ОСАГО, КАСКО)</th>
+                            <th> ГРН автомобиля</th>
+                            <th> ВУ, допущенные к управлению автомобилем по полису</th>
+                            <th> Подробнее...</th>
+                            {% for obj in objects_list %}
+                                <tr>
+                                    <div>
+                                        <td><p>{{ obj.pk }}</p></td>
+                                        <td><p>{{ obj.insur__insurance_number }}, {{ obj.insur__insurance_company }},
+                                            {{ obj.insur__insurance_type }} от {{ obj.insur__insurance_date_from }}
+                                            до {{ obj.insur__insurance_date_to }}
+                                        </p>
+                                        </td>
+                                        <td align="center">
+                                            <p>{{ obj.insur__insurance_car__car_number }} {{ obj.insur__insurance_car__car_region }}</p>
+                                        </td>
+                                        <td><p>ВУ: {{ obj.licen__series_dr_license }}№{{ obj.licen__number_dr_license }}
+                                            от {{ obj.licen__date_issue_dr_license }}</p></td>
+                                        <td>
+                                            <button class="btn" type="button"><a
+                                                    href="{% url 'insurance_license_detail' pk=obj.pk %}">Подробнее
+                                                >></a></button>
+                                        </td>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    {% endif %}
+
+                {% endif %}
+            {% endwith %}
     {% endblock %}
 {% endblock %}

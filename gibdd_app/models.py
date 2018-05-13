@@ -452,8 +452,7 @@ STEALING_CHOICES = (
 class Stealing(models.Model):
     stealing_status = models.CharField(max_length=25, verbose_name="Статус", choices=STEALING_CHOICES, blank=True,
                                        null=True, unique=False)
-    stealing_unique_number = models.CharField(max_length=7, verbose_name="Номер угона", unique_for_date=True,
-                                              blank=True, null=True)
+    stealing_unique_number = models.CharField(max_length=7, verbose_name="Номер угона",blank=True, null=True)
     stealing_date = models.DateField(verbose_name="Дата угона", blank=True, null=True)
     stealing_town = models.CharField(max_length=50, verbose_name="Город угона", blank=True, null=True)
     stealing_comment = models.TextField(verbose_name="Комментарий об угоне", blank=True, null=True)

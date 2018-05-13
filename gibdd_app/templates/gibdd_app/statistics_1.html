@@ -22,12 +22,12 @@
 
         <form method="GET" action="{% url 'stat_chart_1' %}">
             <p><i>Для поиска введите начальную и конечную даты поиска.</i>
-                <b><i>Например,</i></b>с 2018-01-20 <i> по </i> 2018-01-30. По умолчанию выдаются данные за последние
+                <b><i>Например,</i></b>с 18.01.2018 <i> по </i> 21.01.2018. По умолчанию выдаются данные за последние
                 7 дней. </p>
-            <p> Поиск: <strong><input maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
-                                      placeholder="2018-01-21"></strong>
-                <strong><input maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
-                               placeholder="2018-01-30"></strong>
+            <p> Поиск: <strong><input type="date" maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
+                                      placeholder="18.01.2018"></strong>
+                <strong><input type="date" maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
+                               placeholder="21.01.2018"></strong>
 
                 <button type="submit"><span class="glyphicon glyphicon-search"
                                             style="color:grey"

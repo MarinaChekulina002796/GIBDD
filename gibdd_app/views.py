@@ -240,6 +240,7 @@ def chart_view_1_2(request):
 
 
 def chart_view_3(request):
+
     query1 = request.GET.get('q')
     query2 = request.GET.get('p')
 
@@ -326,7 +327,7 @@ def chart_view_3(request):
 
             })
 
-    return render(request, 'gibdd_app/statistics_3.html', {'chart3': chart3, 'query1': query1, 'query2': query2})
+    return render(request, 'gibdd_app/statistics_3.html', {'query1': query1, 'query2': query2, 'chart3': chart3})
 
 
 def chart_view_4(request):

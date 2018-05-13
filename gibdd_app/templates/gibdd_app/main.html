@@ -19,58 +19,58 @@
     <script src="{% static 'gibdd_app/js/respond.min.js' %}"></script>
      <script src="{% static 'gibdd_app/js/bootstrap.js' %}"></script>
       <script src="{% static 'gibdd_app/js/jquery.js' %}"></script>
-      <script src="{% static 'gibdd_app/js/jquery.js' %}"></script>
     <![endif]-->
 
 </head>
 
 <body class="homepage">
-{#<header id="header">#}
-<nav class="navbar navbar-fixed-top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+<header id="header">
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-            <div id="navbar" class="navbar-collapse collapse" style="position:relative; left: 950px; top: 50px">
-                {% if user.is_authenticated %}
-                    <button id="signout" type="submit" class="btn btn-success button_style">
-                        Выйти {{ user.username }}</button>
-                {% else %}
-                    <button id="signin" type="submit" class="btn btn button_style">Авторизоваться</button>
+                <div id="navbar" class="navbar-collapse collapse" style="position:relative; left: 950px; top: 50px">
+                    {% if user.is_authenticated %}
+                        <button id="signout" type="submit" class="btn btn-success button_style">
+                            Выйти {{ user.username }}</button>
+                    {% else %}
+                        <button id="signin" type="submit" class="btn btn button_style">Авторизоваться</button>
 
-                {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-12">
+                    <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
+                        <img src="{% static 'gibdd_app/images/logo.png' %}" alt="Логотип">
+                    </a>
+                </div>
+                <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
+                <div class="bn-logo-text" style="top:80px; color:white">УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
+                </div>
             </div>
 
-
-            <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
-                <img src="{% static 'gibdd_app/images/logo.png' %}" alt="Логотип">
-            </a>
-            <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
-            <div class="bn-logo-text" style="top:80px; color:white">УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'main' %}">Home</a></li>
+                    <li><a href="{% url 'gibdd' %}">Госавтоинспекция</a></li>
+                    <li><a href="{% url 'participants' %}">Участникам движения</a></li>
+                    <li><a href="{% url 'services' %}">Услуги</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'statistics' %}">Статистика</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
             </div>
-        </div>
-
-        <div class="collapse navbar-collapse navbar-right">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'main' %}">Home</a></li>
-                <li><a href="{% url 'gibdd' %}">Госавтоинспекция</a></li>
-                <li><a href="{% url 'participants' %}">Участникам движения</a></li>
-                <li><a href="{% url 'services' %}">Услуги</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
-                {% endif %}
-                <li><a href="{% url 'statistics' %}">Статистика</a></li>
-                <li><a href="{% url 'contacts' %}">Контакты</a></li>
-            </ul>
-        </div>
-    </div><!--/.container-->
-</nav><!--/nav-->
-{#</header><!--/header-->#}
+        </div><!--/.container-->
+    </nav><!--/nav-->
+</header><!--/header-->
 
 
 <div class="slider" style="top:95px">
@@ -173,37 +173,37 @@
 <script src="{% static 'gibdd_app/js/main.js' %}"></script>
 
 
-    <script>
-        var signin = document.getElementById('signin');
-        if (signin != undefined) {
-            signin.onclick = function (event) {
-                window.location = '{% url 'login' %}';
-                event.stopPropagation();
-            }
+<script>
+    var signin = document.getElementById('signin');
+    if (signin != undefined) {
+        signin.onclick = function (event) {
+            window.location = '{% url 'login' %}';
+            event.stopPropagation();
         }
-        {#    var signup = document.getElementById('signup');#}
-        {#    if (signup != undefined) {#}
-        {#        signup.onclick = function (event) {#}
-        {#            window.location = '{% url 'registration' %}';#}
-        {#            event.stopPropagation();#}
-        {#        }#}
-        {#    }#}
-        var signout = document.getElementById('signout');
-        if (signout != undefined) {
-            signout.onclick = function (event) {
-                window.location = '{% url 'logout' %}';
-                event.stopPropagation();
-            }
+    }
+    {#    var signup = document.getElementById('signup');#}
+    {#    if (signup != undefined) {#}
+    {#        signup.onclick = function (event) {#}
+    {#            window.location = '{% url 'registration' %}';#}
+    {#            event.stopPropagation();#}
+    {#        }#}
+    {#    }#}
+    var signout = document.getElementById('signout');
+    if (signout != undefined) {
+        signout.onclick = function (event) {
+            window.location = '{% url 'logout' %}';
+            event.stopPropagation();
         }
-        {#    var _new = document.getElementById('_new');#}
-        {#    if (_new != undefined) {#}
-        {#        _new.onclick = function (event) {#}
-        {#            window.location = '{% url 'new' %}';#}
-        {#            event.stopPropagation();#}
-        {#        }#}
-        {#    }#}
+    }
+    {#    var _new = document.getElementById('_new');#}
+    {#    if (_new != undefined) {#}
+    {#        _new.onclick = function (event) {#}
+    {#            window.location = '{% url 'new' %}';#}
+    {#            event.stopPropagation();#}
+    {#        }#}
+    {#    }#}
 
-    </script>
+</script>
 
 </body>
 </html>

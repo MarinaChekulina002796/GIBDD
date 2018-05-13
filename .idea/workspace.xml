@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_application/settings.py" afterPath="$PROJECT_DIR$/gibdd_application/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,11 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_application/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
               <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1119">
+              <caret line="199" column="53" lean-forward="true" selection-start-line="199" selection-start-column="53" selection-end-line="199" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -133,7 +143,6 @@
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/login.html" />
-        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/DiagnosticCard_list.html" />
         <option value="$PROJECT_DIR$/gibdd_app/models.py" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
@@ -147,6 +156,7 @@
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base_login.html" />
         <option value="$PROJECT_DIR$/gibdd_application/settings.py" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
       </list>
     </option>
   </component>
@@ -353,13 +363,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Design">
-      <created>1524324182062</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1524324182063</updated>
     </task>
     <task id="LOCAL-00115" summary="statistics">
       <created>1524328824015</created>
@@ -697,7 +700,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526240477697</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Update">
+      <created>1526240779970</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1526240779970</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1023,13 +1033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="156" column="8" lean-forward="true" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/DiagnosticCard_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -1200,6 +1203,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1119">
+          <caret line="199" column="53" lean-forward="true" selection-start-line="199" selection-start-column="53" selection-end-line="199" selection-end-column="53" />
           <folding />
         </state>
       </provider>

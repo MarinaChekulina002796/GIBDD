@@ -25,7 +25,7 @@
 
 <body class="homepage">
 <header id="header">
-    <nav class="navbar navbar-inverse navbar-fixed-top " role="banner">
+    <nav class="navbar " role="banner">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,11 +45,10 @@
                     {% endif %}
                 </div>
 
-                <div class="col-lg-12">
-                    <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
-                        <img src="{% static 'gibdd_app/images/logo.png' %}" alt="Логотип">
-                    </a>
-                </div>
+
+                <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
+                    <img src="{% static 'gibdd_app/images/logo.png' %}" alt="Логотип">
+                </a>
                 <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
                 <div class="bn-logo-text" style="top:80px; color:white">УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
                 </div>

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/workers_interface/Thumbs.db" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/workers_interface/Thumbs.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base_login.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base_login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_application/settings.py" afterPath="$PROJECT_DIR$/gibdd_application/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -348,13 +342,6 @@
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
     </task>
-    <task id="LOCAL-00112" summary="Design">
-      <created>1524316277940</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1524316277941</updated>
-    </task>
     <task id="LOCAL-00113" summary="Design">
       <created>1524319829449</created>
       <option name="number" value="00113" />
@@ -691,7 +678,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526218652502</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="Update">
+      <created>1526239710920</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1526239710920</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TestHistory">

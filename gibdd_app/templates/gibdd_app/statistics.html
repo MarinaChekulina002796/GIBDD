@@ -30,12 +30,12 @@
         </div>
 
         <p style="margin-bottom: 45px">
-            <div style="margin-left: 830px" class="outline">
+            <div style="margin-left: 810px" class="outline">
 
         <p>
-        <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}> </b></i></p>
+        <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}</b></i></p>
         <p align="center">Произошло ДТП: {{ number_of_accidents | default_if_none:"0" }}</p>
-        <p align="center">Пострадало взрослых: {{ number_people | default_if_none:"0" }}</p>s
+        <p align="center">Пострадало взрослых: {{ number_people | default_if_none:"0" }}</p>
         <p align="center">Пострадало детей: {{ accident_children | default_if_none:"0" }}</p>
         <p align="center">Погибло взрослых: {{ accident_death | default_if_none:"0" }}</p>
         <p align="center">Погибло детей: {{ accident_children_death | default_if_none:"0" }}</p>

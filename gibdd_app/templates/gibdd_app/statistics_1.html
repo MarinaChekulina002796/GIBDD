@@ -15,43 +15,45 @@
 
 {% endblock %}
 
+<content id="content-main">
+    {% block content %}
 
-{% block content %}
+        {% block form %}
 
-    {% block form %}
+            <form method="GET" action="{% url 'stat_chart_1' %}">
+                <p><i>Для поиска введите начальную и конечную даты поиска.</i>
+                    <b><i>Например, </i></b>с 18.01.2018 <i> по </i> 21.01.2018. По умолчанию выдаются данные за
+                    последние
+                    7 дней. </p>
+                <p> Поиск: <strong><input type="date" maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
+                                          placeholder="18.01.2018"></strong>
+                    <strong><input type="date" maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
+                                   placeholder="21.01.2018"></strong>
 
-        <form method="GET" action="{% url 'stat_chart_1' %}">
-            <p><i>Для поиска введите начальную и конечную даты поиска.</i>
-                <b><i>Например, </i></b>с 18.01.2018 <i> по </i> 21.01.2018. По умолчанию выдаются данные за последние
-                7 дней. </p>
-            <p> Поиск: <strong><input type="date" maxlength="10" minlength="10" name="q" value="{{ request.GET.q }}"
-                                      placeholder="18.01.2018"></strong>
-                <strong><input type="date" maxlength="10" minlength="10" name="p" value="{{ request.GET.p }}"
-                               placeholder="21.01.2018"></strong>
+                    <button type="submit"><span class="glyphicon glyphicon-search"
+                                                style="color:grey"
+                                                title="Поиск аварий по дате"> </span>
+                        Поиск
+                    </button>
 
-                <button type="submit"><span class="glyphicon glyphicon-search"
-                                            style="color:grey"
-                                            title="Поиск аварий по дате"> </span>
-                    Поиск
-                </button>
+                </p>
+            </form>
+        {% endblock %}
 
-            </p>
-        </form>
-    {% endblock %}
-
-    <script src="{% static "gibdd_app/js/jquery.js" %}"></script>
-    <script src="{% static "gibdd_app/js/chartloader.js" %}"></script>
-    <script src="{% static "gibdd_app/js/highcharts.js" %}"></script>
+        <script src="{% static "gibdd_app/js/jquery.js" %}"></script>
+        <script src="{% static "gibdd_app/js/chartloader.js" %}"></script>
+        <script src="{% static "gibdd_app/js/highcharts.js" %}"></script>
 
 
-    {% load chartit %}
-    {{ chart|load_charts:"container" }}
-    <div class="col-lg-12" align="center">
-        <div id='container' style="width: 600px">
-            {{ chart|load_charts:"container" }}
+        {% load chartit %}
+        {{ chart|load_charts:"container" }}
+        <div class="col-lg-12" align="center">
+            <div id='container' style="width: 600px">
+                {{ chart|load_charts:"container" }}
+            </div>
         </div>
-    </div>
 
-{% endblock %}
+    {% endblock %}
+</content>
 </body>
 </html>

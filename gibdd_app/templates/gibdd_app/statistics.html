@@ -33,12 +33,12 @@
             <div style="margin-left: 830px" class="outline">
 
         <p>
-        <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}</b></i></p>
-        <p align="center">Произошло ДТП: {{ number_of_accidents }}</p>
-        <p align="center">Пострадало взрослых: {{ number_people }}</p>
-        <p align="center">Пострадало детей: {{ accident_children }}</p>
-        <p align="center">Погибло взрослых: {{ accident_death }}</p>
-        <p align="center">Погибло детей: {{ accident_children_death }}</p>
+        <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}> </b></i></p>
+        <p align="center">Произошло ДТП: {{ number_of_accidents | default_if_none:"0" }}</p>
+        <p align="center">Пострадало взрослых: {{ number_people | default_if_none:"0" }}</p>s
+        <p align="center">Пострадало детей: {{ accident_children | default_if_none:"0" }}</p>
+        <p align="center">Погибло взрослых: {{ accident_death | default_if_none:"0" }}</p>
+        <p align="center">Погибло детей: {{ accident_children_death | default_if_none:"0" }}</p>
         </p>
 
     </div>

@@ -712,8 +712,8 @@ def search_accidents_by_date(request):
             'car__car_registr_certificate__registr_certificate_colour',
             'accid__accident_date', 'accid__accident_severity']
 
-    # regs = Accident_Car.objects.all().order_by('accid__accident_date')
-    regs = Accident_Car.objects.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
+    regs = Accident_Car.objects.all().order_by('accid__accident_date')
+    regs = regs.objects.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
     data_count = AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2]))
     return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2, 'data_count': data_count})
     # else:

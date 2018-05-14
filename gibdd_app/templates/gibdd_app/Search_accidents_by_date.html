@@ -34,7 +34,7 @@
                         </p>
                     {% endif %}
 
-                    {% if data_count %}
+                    {% if regs %}
                         <table border="2">
                             <caption>Таблица с историей ДТП</caption>
                             <th> №</th>
@@ -46,7 +46,7 @@
                             <th>Модель автомобиля</th>
                             <th>Цвет автомобиля</th>
 
-                            {% for obj in data_count %}
+                            {% for obj in regs %}
 
                                 <tr>
                                     <td><p align="center">{{ obj.pk }}</p></td>

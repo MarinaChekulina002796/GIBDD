@@ -65,8 +65,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="820" column="60" lean-forward="false" selection-start-line="820" selection-start-column="60" selection-end-line="820" selection-end-column="60" />
+            <state relative-caret-position="224">
+              <caret line="821" column="25" lean-forward="false" selection-start-line="821" selection-start-column="25" selection-end-line="821" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -105,7 +105,6 @@
       <find>header</find>
       <find>backro</find>
       <find>navbar</find>
-      <find>backroad</find>
       <find>media</find>
       <find>navbar-</find>
       <find>navbar-br</find>
@@ -115,6 +114,7 @@
       <find>absolute</find>
       <find>outline</find>
       <find>add</find>
+      <find>backroad</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application</dir>
@@ -383,13 +383,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Search">
-      <created>1524737648167</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1524737648167</updated>
     </task>
     <task id="LOCAL-00150" summary="Search">
       <created>1524738663812</created>
@@ -727,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526306933421</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="Update design in %">
+      <created>1526307233196</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1526307233196</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="820" column="60" lean-forward="false" selection-start-line="820" selection-start-column="60" selection-end-line="820" selection-end-column="60" />
+        <state relative-caret-position="224">
+          <caret line="821" column="25" lean-forward="false" selection-start-line="821" selection-start-column="25" selection-end-line="821" selection-end-column="25" />
           <folding />
         </state>
       </provider>

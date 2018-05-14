@@ -26,54 +26,55 @@
 
 <body class="homepage">
 <header id="header">
-<nav class="navbar navbar-fixed-top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+    <nav class="navbar navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-            <div style="position:relative; left: 175%; top: 50px">
-                {% if user.is_authenticated %}
-                    <button id="signout" type="submit" class="btn btn-success button_style">
-                        Выйти {{ user.username }}</button>
-                {% else %}
-                    <button id="signin" type="submit" class="btn btn button_style">Авторизоваться</button>
+                <div style="position:fixed; right: 20%; top:5%; float: right">
+                    {% if user.is_authenticated %}
+                        <button id="signout" type="submit" class="btn btn-success button_style">
+                            Выйти {{ user.username }}</button>
+                    {% else %}
+                        <button id="signin" type="submit" class="btn btn button_style">Авторизоваться</button>
 
-                {% endif %}
+                    {% endif %}
+                </div>
+
+
+                <a class="navbar-left" style="margin-left: -40px; margin-top:-25px">
+                    <img src="{% static 'gibdd_app/images/logo.png' %}" alt="Логотип">
+                </a>
+                <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
+
+                <div class="bn-logo-text" style="top:80px; color:white">УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
+                </div>
             </div>
 
-
-            <a class="navbar-left" style="margin-left: -40px; margin-top:-30px">
-                <img src="{% static 'gibdd_app/images/logo.png' %}" alt="Логотип">
-            </a>
-            <a class="navbar-brand" href="{% url 'main' %}">ГОСАВТОИНСПЕКЦИЯ</a>
-            <div class="bn-logo-text" style="top:80px; color:white">УВАЖЕНИЕ ПРОФЕССИОНАЛИЗМ БЕЗОПАСНОСТЬ
+            <div class="collapse navbar-collapse navbar-center">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'main' %}">Home</a></li>
+                    <li><a href="{% url 'gibdd' %}">Госавтоинспекция</a></li>
+                    <li><a href="{% url 'participants' %}">Участникам движения</a></li>
+                    <li><a href="{% url 'services' %}">Услуги</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'statistics' %}">Статистика</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
             </div>
-        </div>
-
-        <div class="collapse navbar-collapse navbar-right">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'main' %}">Home</a></li>
-                <li><a href="{% url 'gibdd' %}">Госавтоинспекция</a></li>
-                <li><a href="{% url 'participants' %}">Участникам движения</a></li>
-                <li><a href="{% url 'services' %}">Услуги</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'workers' %}">Сотрудникам</a></li>
-                {% endif %}
-                <li><a href="{% url 'statistics' %}">Статистика</a></li>
-                <li><a href="{% url 'contacts' %}">Контакты</a></li>
-            </ul>
-        </div>
-    </div><!--/.container-->
-</nav><!--/nav-->
+        </div><!--/.container-->
+    </nav><!--/nav-->
 </header><!--/header-->
 
 
-<div class="slider" style="top:95px">
+<div class="slider" style="top:65px">
     <div class="container">
         {#        <div id="about-slider">#}
         <div id="carousel-slider" class="carousel slide" data-ride="carousel" align="center"
@@ -90,33 +91,33 @@
 
             <div class="carousel-inner">
                 <div class="item active" align="center">
-                    <img src="{% static 'gibdd_app/images/slider__one.jpg' %}" width="900" height="450"
+                    <img src="{% static 'gibdd_app/images/slider__one.jpg' %}" width="1000" height="500"
                          class="img-responsive" alt="">
                 </div>
 
                 <div class="item" align="center">
-                    <img src="{% static 'gibdd_app/images/slider_two.jpg' %}" width="900" height="450"
+                    <img src="{% static 'gibdd_app/images/slider_two.jpg' %}" width="1000" height="500"
                          class="img-responsive" alt="">
                 </div>
                 <div class="item" align="center">
 
-                    <img src="{% static 'gibdd_app/images/slider_three.jpg' %}" width="900" height="450"
+                    <img src="{% static 'gibdd_app/images/slider_three.jpg' %}" width="1000" height="500"
                          class="img-responsive" alt="">
                 </div>
                 <div class="item" align="center">
 
-                    <img src="{% static 'gibdd_app/images/slider_four.jpg' %}" width="900" height="450"
+                    <img src="{% static 'gibdd_app/images/slider_four.jpg' %}" width="1000" height="500"
                          class="img-responsive" alt="">
                 </div>
 
                 <div class="item" align="center">
 
-                    <img src="{% static 'gibdd_app/images/slider_five.jpg' %}" width="900" height="450"
+                    <img src="{% static 'gibdd_app/images/slider_five.jpg' %}" width="1000" height="500"
                          class="img-responsive" alt="">
                 </div>
                 <div class="item" align="center">
 
-                    <img src="{% static 'gibdd_app/images/slider_six.jpg' %}" width="900" height="450"
+                    <img src="{% static 'gibdd_app/images/slider_six.jpg' %}" width="1000" height="500"
                          class="img-responsive" alt="">
                 </div>
 
@@ -134,7 +135,7 @@
     </div>
 </div>
 
-<div class="top-bar" style="position:relative; margin: auto; padding: 1px;  height:auto; top:100px">
+<div class="top-bar" style="position:relative; margin: auto; padding: 1px;  height:auto; top:auto">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -153,8 +154,8 @@
 </div><!--/.top-bar-->
 
 
-<footer class="footer"
-        style="position:relative; margin: auto; padding: 1px;  height:auto; top:100px">
+<footer id="footer" class="midnight-blue"
+        style="position:relative; margin: auto; padding: 1px;  height:auto; top:auto">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -173,37 +174,23 @@
 <script src="{% static 'gibdd_app/js/main.js' %}"></script>
 
 
-    <script>
-        var signin = document.getElementById('signin');
-        if (signin != undefined) {
-            signin.onclick = function (event) {
-                window.location = '{% url 'login' %}';
-                event.stopPropagation();
-            }
+<script>
+    var signin = document.getElementById('signin');
+    if (signin != undefined) {
+        signin.onclick = function (event) {
+            window.location = '{% url 'login' %}';
+            event.stopPropagation();
         }
-        {#    var signup = document.getElementById('signup');#}
-        {#    if (signup != undefined) {#}
-        {#        signup.onclick = function (event) {#}
-        {#            window.location = '{% url 'registration' %}';#}
-        {#            event.stopPropagation();#}
-        {#        }#}
-        {#    }#}
-        var signout = document.getElementById('signout');
-        if (signout != undefined) {
-            signout.onclick = function (event) {
-                window.location = '{% url 'logout' %}';
-                event.stopPropagation();
-            }
-        }
-        {#    var _new = document.getElementById('_new');#}
-        {#    if (_new != undefined) {#}
-        {#        _new.onclick = function (event) {#}
-        {#            window.location = '{% url 'new' %}';#}
-        {#            event.stopPropagation();#}
-        {#        }#}
-        {#    }#}
+    }
 
-    </script>
+    var signout = document.getElementById('signout');
+    if (signout != undefined) {
+        signout.onclick = function (event) {
+            window.location = '{% url 'logout' %}';
+            event.stopPropagation();
+        }
+    }
+</script>
 
 </body>
 </html>

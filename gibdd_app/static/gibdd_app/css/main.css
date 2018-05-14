@@ -230,6 +230,8 @@ ul.social-share li a:hover {
 }
 
 .navbar-header a.navbar-brand {
+    height: auto;
+    width: auto;
     color: #E8CE0E;
 }
 

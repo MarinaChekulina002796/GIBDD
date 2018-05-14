@@ -520,7 +520,7 @@ ul.social-share li a:hover {
 
 #services {
     background: #000 url(../images/services/backroad2.jpg);
-    background-size: cover;
+    /*background-size: cover;*/
     margin-top: 70px;
 }
 
@@ -819,7 +819,7 @@ a.accordion-toggle i {
 
 #partner {
     background: url(../images/services/backroad2.jpg) 50% 50% no-repeat;
-    background-size: cover;
+    /*background-size: cover;*/
 }
 
 #partner {

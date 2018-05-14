@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
+    <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="Update design in %">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
     </list>
@@ -46,10 +46,8 @@
         <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-              <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+              <caret line="19" column="85" lean-forward="false" selection-start-line="19" selection-start-column="85" selection-end-line="19" selection-end-column="85" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,8 +55,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="194" column="23" lean-forward="false" selection-start-line="194" selection-start-column="17" selection-end-line="194" selection-end-column="23" />
+            <state relative-caret-position="203">
+              <caret line="521" column="58" lean-forward="false" selection-start-line="521" selection-start-column="21" selection-end-line="521" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -77,7 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>insurance_s</find>
       <find>insurance_license_list</find>
       <find>insurance_license_det</find>
       <find>insurance_sea</find>
@@ -107,6 +104,7 @@
       <find>add</find>
       <find>backroad</find>
       <find>navbar</find>
+      <find>backr</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application</dir>
@@ -231,20 +229,7 @@
               <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gibdd_application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gibdd_application" type="462c0819:PsiDirectoryNode" />
-              <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gibdd_application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gibdd_application" type="462c0819:PsiDirectoryNode" />
-              <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gibdd_application" type="b2602c69:ProjectViewProjectNode" />
@@ -268,13 +253,13 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\templates\gibdd_app" />
       <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app\js" />
       <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application\gibdd_app\static\gibdd_app\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -375,13 +360,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00156" summary="Update">
-      <created>1526214558739</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1526214558739</updated>
     </task>
     <task id="LOCAL-00157" summary="Update">
       <created>1526217135392</created>
@@ -719,7 +697,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526308361322</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="Update design in %">
+      <created>1526308394558</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1526308394558</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1233,8 +1218,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="194" column="23" lean-forward="false" selection-start-line="194" selection-start-column="17" selection-end-line="194" selection-end-column="23" />
+        <state relative-caret-position="203">
+          <caret line="521" column="58" lean-forward="false" selection-start-line="521" selection-start-column="21" selection-end-line="521" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1242,10 +1227,8 @@
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <caret line="19" column="85" lean-forward="false" selection-start-line="19" selection-start-column="85" selection-end-line="19" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -18,7 +18,7 @@
     <div class="media-body">
 
         <div style="float:left">
-            <p style="margin-bottom: 70px">
+            <p style="margin-bottom: 8%">
             <h2><a href="{% url 'stat_chart_1' %}"><h2>1.Статистика о количестве пострадавших в ДТП за период</h2>
             </a></h2>
             <a href="{% url 'stat_chart_2' %}"><h2>2. Статистика о степени тяжести ДТП</h2></a>
@@ -29,20 +29,18 @@
 
         </div>
 
-        <p style="margin-bottom: 45px">
-            <div style="margin-left: 810px" class="outline">
 
-        <p>
-        <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}</b></i></p>
-        <p align="center">Произошло ДТП: {{ number_of_accidents | default_if_none:"0" }}</p>
-        <p align="center">Пострадало взрослых: {{ number_people | default_if_none:"0" }}</p>
-        <p align="center">Пострадало детей: {{ accident_children | default_if_none:"0" }}</p>
-        <p align="center">Погибло взрослых: {{ accident_death | default_if_none:"0" }}</p>
-        <p align="center">Погибло детей: {{ accident_children_death | default_if_none:"0" }}</p>
-        </p>
-
+        <div style="float: right; margin-bottom: 6%; margin-right: -10% " class="outline">
+            <p>
+            <p align="center"><i><b style="color: darkred"> АВАРИЙНОСТЬ НА ДОРОГАХ ЗА {{ previous_date }}</b></i></p>
+            <p align="center">Произошло ДТП: {{ number_of_accidents | default_if_none:"0" }}</p>
+            <p align="center">Пострадало взрослых: {{ number_people | default_if_none:"0" }}</p>
+            <p align="center">Пострадало детей: {{ accident_children | default_if_none:"0" }}</p>
+            <p align="center">Погибло взрослых: {{ accident_death | default_if_none:"0" }}</p>
+            <p align="center">Погибло детей: {{ accident_children_death | default_if_none:"0" }}</p>
+            </p>
+        </div>
     </div>
-    </p>
 
 
 {% endblock %}

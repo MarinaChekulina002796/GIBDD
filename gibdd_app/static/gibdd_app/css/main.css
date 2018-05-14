@@ -107,7 +107,7 @@ a:focus {
 }
 
 .media > .pull-left {
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .media > .pull-right {
@@ -272,7 +272,7 @@ ul.social-share li a:hover {
 }
 
 .navbar-fixed-top .navbar-brand {
-    font-size: 40px;
+    font-size: 250%;
     line-height: 46px;
     color: #fff;
 }

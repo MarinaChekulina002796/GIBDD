@@ -1,0 +1,56 @@
+{% extends 'gibdd_app/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Успех</title>
+{% load static %}
+
+<body style="background-color: greenyellow">
+
+
+{% block content %}
+    <div style=" margin-left: 28%; margin-bottom: 5%; border: 2px solid green;width: 40%; height: 40%; padding: 0 10px; margin-top: 5%; background: palegreen">
+        <div align="center"
+             style="color: forestgreen; position:relative; margin: auto; padding: 1px;  height:auto; margin-top:10%">
+            <h2 style="color: forestgreen"><b>Действие совершено успешно</b></h2>
+        </div>
+        <div align="center" style="margin-top:4%">
+            <a href="{% url 'workers' %}">
+                <button class="btn btn-success" type="button"> Перейти в раздел "Сотрудникам"</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer id="footer" class="midnight-blue"
+            style="position:fixed; margin: auto; padding: 1px;  height:auto; margin-top:0%">
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    {#            <div class="col-lg-12">#}
+                    <div class="social">
+                        <ul class="social-share">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                        </ul>
+                    </div>
+                    {#            </div>#}
+                </div>
+            </div><!--/.container-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p style="color: whitesmoke">&copy; 2018 Chekulina Marina, BMSTU.</p>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+{% endblock %}
+</body>
+</html>

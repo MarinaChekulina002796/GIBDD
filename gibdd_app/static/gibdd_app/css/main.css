@@ -144,6 +144,11 @@ body > section {
     padding: 0 10px;
 }
 
+.outline2 {
+    border: 2px solid green;
+    padding: 0 10px;
+}
+
 @-webkit-keyframes scaleIn {
     0% {
         opacity: 0;

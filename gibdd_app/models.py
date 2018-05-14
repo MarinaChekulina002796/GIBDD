@@ -22,8 +22,8 @@ class Driver(models.Model):
         return "%s %s %s, %s, паспорт: %s" % (
             self.driver_surname, self.driver_name, self.driver_patronymic, self.driver_birth, self.passport_number)
 
-    def get_absolute_url(self):
-        return reverse('license_create')
+    # def get_absolute_url(self):
+    #     return reverse('license_create')
 
 
 CATEGORY_CHOICES = (
@@ -55,8 +55,8 @@ class Category(models.Model):
     def __str__(self):
         return "%s от %s" % (self.category_name, self.date_open_category)
 
-    def get_absolute_url(self):
-        return reverse('lic_cat_create')
+    # def get_absolute_url(self):
+    #     return reverse('lic_cat_create')
 
 
 MEDICAL_CHOICES = (
@@ -83,8 +83,8 @@ class MedicalCertificate(models.Model):
     def __str__(self):
         return self.medical_number
 
-    def get_absolute_url(self):
-        return reverse('license_create')
+    # def get_absolute_url(self):
+    #     return reverse('license_create')
 
     @property
     def image_url_1(self):
@@ -131,8 +131,8 @@ class LicenseDisqualification(models.Model):
     def __str__(self):
         return "%s № %s от %s" % (self.disqualif_number, self.disqualif_status, self.disqualif_date_from)
 
-    def get_absolute_url(self):
-        return reverse('license_create')
+    # def get_absolute_url(self):
+    #     return reverse('license_create')
 
 
 DR_STATUS_CHOICES = (
@@ -172,8 +172,8 @@ class License(models.Model):
     def __str__(self):
         return "%s № %s от %s" % (self.series_dr_license, self.number_dr_license, self.date_issue_dr_license)
 
-    def get_absolute_url(self):
-        return reverse('lic_cat_create')
+    # def get_absolute_url(self):
+    #     return reverse('success')
 
     # фото водителя
     @property
@@ -187,8 +187,8 @@ class Lisense_Category(models.Model):
     licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
     categ = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Все категории")
 
-    def get_absolute_url(self):
-        return reverse('workers')
+    # def get_absolute_url(self):
+    #     return reverse('success')
 
     class Meta:
         unique_together = ("licen", "categ")
@@ -669,8 +669,8 @@ class InsuranceLicense(models.Model):
     licen = models.ForeignKey(License, on_delete=models.CASCADE,
                               verbose_name="ВУ, допущенные к управлению автомобилем по полису")
 
-    def get_absolute_url(self):
-        return reverse('workers')
+    # def get_absolute_url(self):
+    #     return reverse('workers')
 
     class Meta:
         unique_together = ("insur", "licen")
@@ -782,8 +782,8 @@ class Accident_Car(models.Model):
                               verbose_name="Все аварии с участием данного автомобиля")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Автомобили, участвовавшие в ДТП")
 
-    def get_absolute_url(self):
-        return reverse('workers')
+    # def get_absolute_url(self):
+    #     return reverse('workers')
 
     class Meta:
         unique_together = ("accid", "car")
@@ -814,8 +814,8 @@ class Lisense_Accident(models.Model):
     licen = models.ForeignKey(License, on_delete=models.CASCADE, verbose_name="Все ВУ")
     accid = models.ForeignKey(AccidentReport, on_delete=models.CASCADE, verbose_name="Список ДТП")
 
-    def get_absolute_url(self):
-        return reverse('workers')
+    # def get_absolute_url(self):
+    #     return reverse('workers')
 
     class Meta:
         unique_together = ("licen", "accid")

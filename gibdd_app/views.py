@@ -435,6 +435,8 @@ def chart_view_4(request):
 def main(request):
     return render(request, 'gibdd_app/main.html')
 
+def success(request):
+    return render(request, 'gibdd_app/success.html')
 
 def forbidden(request):
     return render(request, 'gibdd_app/forbidden.html')
@@ -1759,7 +1761,7 @@ def add_license(request):
         if form.is_valid():
             licen = License(**form.cleaned_data)
             licen.save()
-            return redirect(reverse('workers'), args=[licen.pk])
+            return redirect(reverse('success'), args=[licen.pk])
     else:
         form = LicenseForm()
     template = 'gibdd_app/License_form.html'
@@ -1777,7 +1779,7 @@ def add_autostudent(request):
         if form.is_valid():
             licen = Autoschool_Driver(**form.cleaned_data)
             licen.save()
-            return redirect(reverse('autostudent_create'))
+            return redirect(reverse('success'))
     else:
         form = Autoschool_DriverForm()
     template = 'gibdd_app/Autoschool_Driver_form.html'
@@ -1795,7 +1797,7 @@ def add_europrotocol(request):
         if form.is_valid():
             licen = Europrotocol(**form.cleaned_data)
             licen.save()
-            return redirect(reverse('europrotocol_create'))
+            return redirect(reverse('success'))
     else:
         form = EuroprotocolForm()
     template = 'gibdd_app/Europrotocol_form.html'
@@ -2296,7 +2298,7 @@ def add_med(request):
         if form.is_valid():
             med = MedicalCertificate(**form.cleaned_data)
             med.save()
-            return redirect(reverse('license_create'))
+            return redirect(reverse('success'))
     else:
         form = MedicalCertificateForm()
 
@@ -2314,7 +2316,7 @@ def add_disq(request):
         if form.is_valid():
             med = LicenseDisqualification(**form.cleaned_data)
             med.save()
-            return redirect(reverse('disq_create'))
+            return redirect(reverse('success'))
     else:
         form = LicenseDisqualificationForm()
 
@@ -2335,7 +2337,7 @@ def add_lic_cat(request):
         if form.is_valid():
             main_form = Lisense_Category(**form.cleaned_data)
             main_form.save()
-            return redirect(reverse('workers'), args=[main_form.pk])
+            return redirect(reverse('success'), args=[main_form.pk])
         else:
             text = '<i><b>Пожалуйста, введите корректные данные.Данная пара ВУ_категория уже существует.</b></i> '
             button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
@@ -2360,7 +2362,7 @@ def add_accident(request):
         if form.is_valid():
             accid = AccidentReport(**form.cleaned_data)
             accid.save()
-            return redirect(reverse('workers'), args=[accid.pk])
+            return redirect(reverse('success'), args=[accid.pk])
     else:
         form = AccidentReportForm()
 
@@ -2382,7 +2384,7 @@ def add_witness(request):
         if form.is_valid():
             wit = Witness(**form.cleaned_data)
             wit.save()
-            return redirect(reverse('workers'), args=[wit.pk])
+            return redirect(reverse('success'), args=[wit.pk])
     else:
         form = WitnessForm()
 
@@ -2401,7 +2403,7 @@ def add_licen_accid(request):
         if form.is_valid():
             l_a = Lisense_Accident(**form.cleaned_data)
             l_a.save()
-            return redirect(reverse('workers'), args=[l_a.pk])
+            return redirect(reverse('success'), args=[l_a.pk])
     else:
         form = Lisense_AccidentForm()
 
@@ -2421,7 +2423,7 @@ def add_inspector(request):
         if form.is_valid():
             insp = Inspector(**form.cleaned_data)
             insp.save()
-            return redirect(reverse('workers'), args=[insp.pk])
+            return redirect(reverse('success'), args=[insp.pk])
     else:
         form = InspectorForm()
 
@@ -2440,7 +2442,7 @@ def add_fine(request):
         if form.is_valid():
             fine = Fine(**form.cleaned_data)
             fine.save()
-            return redirect(reverse('workers'), args=[fine.pk])
+            return redirect(reverse('success'), args=[fine.pk])
     else:
         form = FineForm()
 
@@ -2459,7 +2461,7 @@ def add_car(request):
         if form.is_valid():
             car = Car(**form.cleaned_data)
             car.save()
-            return redirect(reverse('workers'), args=[car.pk])
+            return redirect(reverse('success'), args=[car.pk])
     else:
         form = CarForm()
 
@@ -2478,7 +2480,7 @@ def add_registr(request):
         if form.is_valid():
             reg = RegistrationCertificate(**form.cleaned_data)
             reg.save()
-            return redirect(reverse('workers'), args=[reg.pk])
+            return redirect(reverse('success'), args=[reg.pk])
     else:
         form = RegistrationCertificateForm()
 
@@ -2497,7 +2499,7 @@ def add_owner(request):
         if form.is_valid():
             reg = Owner(**form.cleaned_data)
             reg.save()
-            return redirect(reverse('workers'), args=[reg.pk])
+            return redirect(reverse('success'), args=[reg.pk])
     else:
         form = OwnerForm()
 
@@ -2516,7 +2518,7 @@ def add_steal(request):
         if form.is_valid():
             steal = Stealing(**form.cleaned_data)
             steal.save()
-            return redirect(reverse('workers'), args=[steal.pk])
+            return redirect(reverse('success'), args=[steal.pk])
     else:
         form = StealingForm()
 
@@ -2535,7 +2537,7 @@ def add_decree(request):
         if form.is_valid():
             decree = Decree(**form.cleaned_data)
             decree.save()
-            return redirect(reverse('workers'), args=[decree.pk])
+            return redirect(reverse('success'), args=[decree.pk])
     else:
         form = DecreeForm()
 
@@ -2554,7 +2556,7 @@ def add_camera(request):
         if form.is_valid():
             cam = Camera(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = CameraForm()
 
@@ -2573,7 +2575,7 @@ def add_autoschool(request):
         if form.is_valid():
             cam = AutoSchool(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = AutoschoolForm()
 
@@ -2592,7 +2594,7 @@ def add_history(request):
         if form.is_valid():
             cam = CarHistory(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = HistoryForm()
 
@@ -2611,7 +2613,7 @@ def add_diagnostic_card(request):
         if form.is_valid():
             cam = DiagnosticCard(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = DiagnosticCardForm()
 
@@ -2630,7 +2632,7 @@ def add_driver(request):
         if form.is_valid():
             cam = Driver(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('license_create'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = DriverForm()
 
@@ -2649,7 +2651,7 @@ def add_category(request):
         if form.is_valid():
             cam = Category(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('categ_create'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = CategoryForm()
 
@@ -2668,7 +2670,7 @@ def add_insurance(request):
         if form.is_valid():
             cam = Insurance(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = InsuranceForm()
 
@@ -2687,7 +2689,7 @@ def add_insurance_license(request):
         if form.is_valid():
             cam = InsuranceLicense(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
     else:
         form = InsuranceLicenseForm()
 
@@ -2706,7 +2708,7 @@ def add_accident_car(request):
         if form.is_valid():
             cam = Accident_Car(**form.cleaned_data)
             cam.save()
-            return redirect(reverse('workers'), args=[cam.pk])
+            return redirect(reverse('success'), args=[cam.pk])
         else:
             text = '<i><b>Пожалуйста, введите корректные данные.Данная пара ДТП - автомобиль уже существует.</b></i> '
             button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'

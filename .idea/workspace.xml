@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f68faf4-b5e5-444a-ad00-b233b1fc5397" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/backroad2.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/services/Thumbs.db" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/services/Thumbs.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/workers_interface/Thumbs.db" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/images/workers_interface/Thumbs.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" afterPath="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" afterPath="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gibdd_application/settings.py" afterPath="$PROJECT_DIR$/gibdd_application/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,44 +41,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_application/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+            <state relative-caret-position="168">
+              <caret line="80" column="25" lean-forward="false" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
+      <file leaf-file-name="workers.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-189">
-              <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="329">
+              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="statistics.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html">
+      <file leaf-file-name="participants.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="230">
+              <caret line="70" column="44" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#b#0;n#i#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="606">
+              <caret line="509" column="0" lean-forward="true" selection-start-line="509" selection-start-column="0" selection-end-line="509" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services_for_drivers.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="70" column="44" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,8 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>body</find>
-      <find>&lt;/header&gt;</find>
       <find>width</find>
       <find>европро</find>
       <find>Accident</find>
@@ -115,9 +135,11 @@
       <find>navbar-</find>
       <find>bod</find>
       <find>logo</find>
-      <find>navbar</find>
       <find>br</find>
       <find>header</find>
+      <find>backro</find>
+      <find>navbar</find>
+      <find>backroad</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Marina_Chekulina\PycharmProjects\gibdd_application</dir>
@@ -165,21 +187,21 @@
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/login.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/DiagnosticCard_list.html" />
         <option value="$PROJECT_DIR$/gibdd_app/models.py" />
-        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_3.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_4.html" />
         <option value="$PROJECT_DIR$/gibdd_app/views.py" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/gibdd.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_1.html" />
-        <option value="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" />
-        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base_login.html" />
+        <option value="$PROJECT_DIR$/gibdd_application/settings.py" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html" />
+        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html" />
+        <option value="$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html" />
         <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html" />
-        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html" />
-        <option value="$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html" />
-        <option value="$PROJECT_DIR$/gibdd_application/settings.py" />
       </list>
     </option>
   </component>
@@ -243,6 +265,14 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gibdd_application" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gibdd_application" type="462c0819:PsiDirectoryNode" />
+              <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="gibdd_app" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gibdd_application" type="b2602c69:ProjectViewProjectNode" />
@@ -386,13 +416,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00129" summary="statistics">
-      <created>1524412953359</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1524412953359</updated>
     </task>
     <task id="LOCAL-00130" summary="statistics">
       <created>1524413025877</created>
@@ -730,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526283755631</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="Update">
+      <created>1526284711385</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1526284711385</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1055,14 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -1108,24 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3634">
-          <caret line="332" column="26" lean-forward="true" selection-start-line="332" selection-start-column="26" selection-end-line="332" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="56" column="60" lean-forward="false" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
-          <folding>
-            <marker date="1526280522092" expanded="false" signature="4505:4511" ph="©" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base_login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -1166,22 +1170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="49" column="62" lean-forward="false" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="50" column="62" lean-forward="false" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/med_search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1198,22 +1186,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html">
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="298" column="24" lean-forward="true" selection-start-line="270" selection-start-column="0" selection-end-line="298" selection-end-column="24" />
+        <state relative-caret-position="609">
+          <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="52" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#b#0;n#i#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1407">
+          <caret line="67" column="7" lean-forward="true" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="77" column="87" lean-forward="false" selection-start-line="77" selection-start-column="87" selection-end-line="77" selection-end-column="87" />
+          <folding>
+            <marker date="1526288759642" expanded="false" signature="4505:4511" ph="©" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189">
-          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="420">
+          <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1223,25 +1235,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/statistics.html">
+    <entry file="file://$PROJECT_DIR$/gibdd_application/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="168">
+          <caret line="80" column="25" lean-forward="false" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="509" column="0" lean-forward="true" selection-start-line="509" selection-start-column="0" selection-end-line="509" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/services_for_drivers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="70" column="44" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#b#0;n#i#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_application/settings.py">
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/workers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="329">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/templates/gibdd_app/participants.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="70" column="44" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

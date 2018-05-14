@@ -43,7 +43,7 @@
 
     {% load chartit %}
 
-    <div style="float:left; margin-left: 200px">
+    <div style="float:left; margin-left: 15%">
         {{ chart2|load_charts:"container2" }}
         <div class="col-lg-12">
             <div id='container2' style="width: 500px">
@@ -52,8 +52,8 @@
         </div>
     </div>
 
-    <p style="margin-bottom: 75px">
-        <div style="margin-left: 830px">
+    <p style="margin-bottom: 6%">
+        <div style="float: right; margin-bottom: 6%;">
 
     <p>Всего ДТП:{{ "  " }}{{ all_accidents | default_if_none:"ДТП не было" }}{{ " " }} шт.</p>
     <p>1.Тяжесть аварии не указана: {{ not_define_per |floatformat:2 | default_if_none:" не было" }} %</p>

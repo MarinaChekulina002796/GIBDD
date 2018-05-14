@@ -65,8 +65,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="821" column="25" lean-forward="false" selection-start-line="821" selection-start-column="25" selection-end-line="821" selection-end-column="25" />
+            <state relative-caret-position="371">
+              <caret line="828" column="0" lean-forward="true" selection-start-line="828" selection-start-column="0" selection-end-line="828" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -383,13 +383,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Search">
-      <created>1524738663812</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1524738663812</updated>
     </task>
     <task id="LOCAL-00151" summary="Search">
       <created>1524739075853</created>
@@ -727,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526307233196</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="Update design in %">
+      <created>1526307420182</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1526307420183</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1249,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="821" column="25" lean-forward="false" selection-start-line="821" selection-start-column="25" selection-end-line="821" selection-end-column="25" />
+        <state relative-caret-position="371">
+          <caret line="828" column="0" lean-forward="true" selection-start-line="828" selection-start-column="0" selection-end-line="828" selection-end-column="0" />
           <folding />
         </state>
       </provider>

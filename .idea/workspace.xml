@@ -66,8 +66,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="717" column="27" lean-forward="true" selection-start-line="717" selection-start-column="27" selection-end-line="717" selection-end-column="27" />
+            <state relative-caret-position="570">
+              <caret line="249" column="63" lean-forward="true" selection-start-line="249" selection-start-column="63" selection-end-line="249" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -388,13 +388,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00176" summary="Update">
-      <created>1526282549297</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1526282549297</updated>
     </task>
     <task id="LOCAL-00177" summary="Update">
       <created>1526283755631</created>
@@ -732,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526337917960</updated>
     </task>
-    <option name="localTasksCounter" value="225" />
+    <task id="LOCAL-00225" summary="Update design in %">
+      <created>1526338167662</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1526338167662</updated>
+    </task>
+    <option name="localTasksCounter" value="226" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1206,14 +1206,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gibdd_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_application/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1224,8 +1216,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gibdd_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="717" column="27" lean-forward="true" selection-start-line="717" selection-start-column="27" selection-end-line="717" selection-end-column="27" />
+        <state relative-caret-position="570">
+          <caret line="249" column="63" lean-forward="true" selection-start-line="249" selection-start-column="63" selection-end-line="249" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gibdd_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="22" />
           <folding />
         </state>
       </provider>

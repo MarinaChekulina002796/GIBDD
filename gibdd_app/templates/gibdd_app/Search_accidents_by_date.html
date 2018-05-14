@@ -29,7 +29,7 @@
             {% with url_name=request.resolver_match.url_name %}
                 {% if url_name == 'search_accidents_by_date' %}
 
-                    {% if data_count %}
+                    {% if regs %}
                         <p>Результат поиска по количеству протоколов ДТП: {{ data_count|length }} шт.
                         </p>
                     {% endif %}

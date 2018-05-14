@@ -238,6 +238,26 @@ def chart_view_1_2(request):
                    'not_define_per': not_define_per,
                    'light_per': light_per, 'middle_per': middle_per, 'high_per': high_per, 'without_per': without_per})
 
+def search_accidents_by_date(request):
+    template = 'gibdd_app/Search_accidents_by_date.html'
+    query1 = request.GET.get('q')
+    query2 = request.GET.get('p')
+    # if query1 and query2:
+    list = ['pk', 'accid__number_accident', 'car__car_registr_certificate__registr_certificate_VIN',
+            'car__car_registr_certificate__registr_certificate_number',
+            'car__car_registr_certificate__registr_certificate_car_model',
+            'car__car_registr_certificate__registr_certificate_colour',
+            'accid__accident_date', 'accid__accident_severity']
+
+    regs = Accident_Car.objects.all().filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
+    data_count = AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2]))
+    return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2, 'data_count': data_count})
+
+    # else:
+    #     text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
+    #     button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
+    #     tex = (text, button)
+    #     return HttpResponse(tex)
 
 def chart_view_3(request):
 
@@ -699,28 +719,6 @@ def mix_search(request):
         button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
         tex = (text, button)
         return HttpResponse(tex)
-
-
-def search_accidents_by_date(request):
-    template = 'gibdd_app/Search_accidents_by_date.html'
-    query1 = request.GET.get('q')
-    query2 = request.GET.get('p')
-    # if query1 and query2:
-    list = ['pk', 'accid__number_accident', 'car__car_registr_certificate__registr_certificate_VIN',
-            'car__car_registr_certificate__registr_certificate_number',
-            'car__car_registr_certificate__registr_certificate_car_model',
-            'car__car_registr_certificate__registr_certificate_colour',
-            'accid__accident_date', 'accid__accident_severity']
-
-    regs = Accident_Car.objects.all().order_by('accid__accident_date')
-    regs = regs.objects.filter(Q(accid__accident_date__range=[query1, query2])).values(*list)
-    data_count = AccidentReport.objects.all().filter(Q(accident_date__range=[query1, query2]))
-    return render(request, template, {'regs': regs, 'query1': query1, 'query2': query2, 'data_count': data_count})
-    # else:
-    #     text = '<i><b>Пожалуйста, заполните строку поиска.</b></i> '
-    #     button = '<ol><button class="btn btn-info" type="button" onclick="history.back()">Назад</button></ol>'
-    #     tex = (text, button)
-    #     return HttpResponse(tex)
 
 
 def mix_search_licen_fine(request):

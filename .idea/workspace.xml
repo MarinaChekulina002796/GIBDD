@@ -66,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="224">
-              <caret line="522" column="4" lean-forward="false" selection-start-line="522" selection-start-column="6" selection-end-line="522" selection-end-column="29" />
+              <caret line="821" column="3" lean-forward="false" selection-start-line="821" selection-start-column="3" selection-end-line="821" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -383,13 +383,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519283180647</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Search">
-      <created>1524740460094</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1524740460094</updated>
     </task>
     <task id="LOCAL-00154" summary="Update">
       <created>1526213996283</created>
@@ -727,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526307757496</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="Update design in %">
+      <created>1526307892451</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1526307892451</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1250,7 +1250,7 @@
     <entry file="file://$PROJECT_DIR$/gibdd_app/static/gibdd_app/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
-          <caret line="522" column="4" lean-forward="false" selection-start-line="522" selection-start-column="6" selection-end-line="522" selection-end-column="29" />
+          <caret line="821" column="3" lean-forward="false" selection-start-line="821" selection-start-column="3" selection-end-line="821" selection-end-column="27" />
           <folding />
         </state>
       </provider>

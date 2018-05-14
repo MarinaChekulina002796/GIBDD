@@ -28,10 +28,12 @@
 
             {% with url_name=request.resolver_match.url_name %}
                 {% if url_name == 'search_accidents_by_date' %}
+
                     {% if data_count %}
                         <p>Результат поиска по количеству протоколов ДТП: {{ data_count|length }} шт.
                         </p>
                     {% endif %}
+
                     {% if regs %}
                         <table border="2">
                             <caption>Таблица с историей ДТП</caption>
@@ -70,8 +72,11 @@
                     {% else %}
                         <p>В данный интервал дат ДТП не было.</p>
                     {% endif %}
-                    </form>
+
+
                 {% endif %}
+
             {% endwith %}
+        </form>
     {% endblock %}
 {% endblock %}

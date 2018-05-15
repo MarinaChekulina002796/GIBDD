@@ -137,4 +137,4 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/root/GIBDD/gibdd_app/static/'
+# STATIC_ROOT = '/root/GIBDD/gibdd_app/static/'
